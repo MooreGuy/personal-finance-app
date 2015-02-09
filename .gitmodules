@@ -1,0 +1,3 @@
+[submodule "saltyphp"]
+	path = saltyphp
+	url = git@github.com:MooreGuy/saltyphp
