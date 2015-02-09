@@ -1,3 +1,6 @@
 [submodule "saltyphp"]
 	path = saltyphp
 	url = git@github.com:MooreGuy/saltyphp
+[submodule "php-markdown"]
+	path = php-markdown
+	url = git@github.com:michelf/php-markdown
