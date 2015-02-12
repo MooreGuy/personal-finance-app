@@ -22,7 +22,6 @@ class Editor extends CI_Controller
     	if( isset($_POST['markdown']) )
     	{
 	    	$data['markdown'] = $_POST['markdown'];    	
-	    	$data['html'] = $_POST['html'];
 
 	    	$this->load->view("guides/display", $data);
     	}
