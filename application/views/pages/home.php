@@ -15,13 +15,13 @@
 		<script type="text/javascript" src="<?php $base_url ?>js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="<?php $base_url ?>js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="<?php $base_url ?>js/scripts.js"></script>
-		<script type="text/javascript" src="<?php $base_url ?>js/jquery.canvasjs.min"></script>
+		<script type="text/javascript" src="<?php $base_url ?>js/jquery.canvasjs.min.js"></script>
 		
 	</head>
 
 	<body>
 		
-		<nav class="navbar navbar-inverse navbar-fixed-top">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
