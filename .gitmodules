@@ -4,3 +4,6 @@
 [submodule "php-markdown"]
 	path = php-markdown
 	url = git@github.com:michelf/php-markdown
+[submodule "application/third_party/php-markdown"]
+	path = application/third_party/php-markdown
+	url = git@github.com:michelf/php-markdown
