@@ -1,5 +1,6 @@
 <?php 
 	$base_url = ($_SERVER["SERVER_NAME"]);
+	echo $base_url;
 ?>
 
 <html lang="en"><head>
@@ -8,14 +9,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<!-- Bootsrap and our CSS -->
-		<link rel="stylesheet" type="text/css" href="<?php echo '$base_url' ?>css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo $base_url ?>css/styles.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
 
 		<!-- JQuery, Bootstrap, CanvasJS, and our JS -->
-		<script type="text/javascript" src="<?php echo $base_url ?>js/jquery-2.1.1.min.js"></script>
-		<script type="text/javascript" src="<?php echo $base_url ?>js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="<?php echo $base_url ?>js/scripts.js"></script>
-		<script type="text/javascript" src="<?php echo $base_url ?>js/jquery.canvasjs.min.js"></script>
+		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/scripts.js"></script>
+		<script type="text/javascript" src="js/jquery.canvasjs.min.js"></script>
 		
 	</head>
 
