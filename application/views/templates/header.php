@@ -45,7 +45,10 @@
 
 	            	<!-- When a user sucessfully signs in show this profile tab -->
 	            	<li><a href="#my_profile">My Profile</a></li>
-	          </ul>
+
+	            	<!-- When an admin user successfully signs in show this tab -->
+	            	<li><a href="#admin">Admin</a></li>
+	          	</ul>
 
 	          <!-- Login form. This will toggle into the hamburger menu-->
 	          <form class="navbar-form navbar-right">
