@@ -1,8 +1,3 @@
-<?php 
-	$base_url = ($_SERVER["SERVER_NAME"]);
-	echo $base_url;
-?>
-
 
 
 	    <!-- Main jumbotron for a primary marketing message or call to action -->
@@ -33,3 +28,4 @@
 	          <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
 	        </div>
 	      </div>
+	    </div><!-- /.container -->
