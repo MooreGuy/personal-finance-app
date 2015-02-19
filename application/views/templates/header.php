@@ -23,7 +23,7 @@
 
 	<body>
 		<!-- Top Navbar -->
-		<nav class="navbar navbar-inverse navbar-top">
+		<nav class="navbar navbar-default navbar-static-top">
 	      <div class="container">
 	        <div class="navbar-header">
 	        <!-- When the view shrinks the navbar will push things into the hamburger menu -->
