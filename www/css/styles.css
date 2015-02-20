@@ -7,3 +7,8 @@
 .navbar{
 	margin-bottom: 0px;
 }
+
+footer ul, .copywrite{
+	text-align: center;
+	padding-left: 0px;
+}
