@@ -50,3 +50,6 @@
 
       </div><!-- /.row -->
     </div><!-- /.container -->
+
+    <!-- announcements.js -->
+    <script type="text/javascript" src="js/announcements.js"></script>
