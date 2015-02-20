@@ -23,7 +23,7 @@
 
 	<body>
 		<!-- Top Navbar -->
-		<nav class="navbar navbar-inverse navbar-fixed-top">
+		<nav class="navbar navbar-default navbar-static-top">
 	      <div class="container">
 	        <div class="navbar-header">
 	        <!-- When the view shrinks the navbar will push things into the hamburger menu -->
@@ -40,7 +40,6 @@
 	        <div id="navbar" class="navbar-collapse collapse">
 	        	<ul class="nav navbar-nav">
 	            	<li class="active"><a href="#home">Home</a></li>
-	            	<li><a href="#about">About</a></li>
 	            	<li><a href="#community">Community</a></li>
 
 	            	<!-- When a user sucessfully signs in show this profile tab -->
