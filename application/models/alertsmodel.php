@@ -1,13 +1,13 @@
 <?php
 
-class AlertsModel extends CI_Model {
+class AlertsModel extends CI_Model
 {
-	var $title = ";
-	var $content = ";
-	var $date =";
-	var $author =";
+	var $title = '';
+	var $content = '';
+	var $date = '';
+	var $author = '';
 
-	function__construct()
+	function __construct()
 	{
 		//This calls the constructor of the Model.
 		parent::__construct();
@@ -18,7 +18,7 @@ class AlertsModel extends CI_Model {
 	*/
 	function getLastTwoAlerts()
 	{
-		$query = this->db->get('entries', 2);
+		$query = $this->db->get('entries', 2);
 		return $query->result();
 	}
 
@@ -32,7 +32,7 @@ class AlertsModel extends CI_Model {
 		$this->author = $this->input->post('author');
 		$this->date = time(); 
 	
-		$this->db->insert( 'alerts', $this )
+		$this->db->insert( 'alerts', $this );
 	}
 
 }
