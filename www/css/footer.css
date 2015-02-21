@@ -3,3 +3,9 @@
 	display: inline;
 	color: gray;
 }
+
+
+footer ul, .copywrite{
+	text-align: center;
+	padding-left: 0px;
+}
