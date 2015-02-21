@@ -16,7 +16,7 @@
 		<link rel="stylesheet" type="text/css" href="css/about_us.css">
 		<link rel="stylesheet" type="text/css" href="css/community_board_forums.css">
 		<link rel="stylesheet" type="text/css" href="css/community_board_user_guides.css">
-		<link rel="stylesheet" type="text/css" href="css/community_board_home">
+		<link rel="stylesheet" type="text/css" href="css/community_board_home.css">
 		<link rel="stylesheet" type="text/css" href="css/admin.css">
 		<link rel="stylesheet" type="text/css" href="css/announcements.css">
 		<link rel="stylesheet" type="text/css" href="css/terms_of_use.css">
