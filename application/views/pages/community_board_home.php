@@ -12,6 +12,9 @@
 
 		  		<div class="panel-body">
 		    		Right now we are working on creating the site. More specifically I am working on the community related pages!
+
+		    		<br>
+		    		<button class="btn btn-default commBtn" type="button">Announcements</button>
 		  		</div>
 			</div>
 		</div>
@@ -32,6 +35,9 @@
 
 	  			<div class="panel-body">
 	    			Our User Guides are full of helpful tips by other members of our community. Come check them out and learn more!
+
+	    			<br>
+	    			<button class="btn btn-default commBtn" type="button">User Guides</button>
 	  			</div>
 	  		</div>
 	  	</div>
@@ -47,6 +53,9 @@
 
 		  		<div class="panel-body">
 		    		The Community Q &amp; A Forums are a great place to ask questions and get answers from people in the community.
+
+		    		<br>
+		    		<button class="btn btn-default commBtn" type="button">Q &amp; A Forums</button>
 		  		</div>
 		  	</div>
 	  	</div>
