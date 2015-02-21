@@ -2,7 +2,12 @@
 	margin-top: 20px;
 }
 
+.panel-warning{
+	height: 300px;
+}
+
 .commBtn{
 	float: right;
 	display: block;
+	margin-top: 10px;
 }

@@ -1,8 +1,10 @@
 <div class="container">
 	<div class="row">
 
-		<!-- Community Announcements Panel -->
-		<div class="col-md-12">
+		<!-- This column is for Announcements, User Guides, and Q&A panels -->
+		<div class="col-md-8">
+
+			<!-- Community Announcements Panel -->
 			<div class="panel panel-info">
 		  		<div class="panel-heading">
 
@@ -17,19 +19,12 @@
 		    		<button class="btn btn-default commBtn" type="button">Announcements</button>
 		  		</div>
 			</div>
-		</div>
-	</div><!-- /.row -->
-</div><!-- /.container -->
 
-<div class="container">
-	<div class="row">
-
-		<!-- User Guides Panel -->
-		<div class="col-md-6">
+			<!-- User Guides Panel -->
 			<div class="panel panel-info">
 	  			<div class="panel-heading">
 
-	  				<!-- Title and link to the Announcements page -->
+	  				<!-- Title and link to the User Guides page -->
 	    			<h3 class="panel-title"><a href="#community_board_user_guides">Community User Guides</a></h3>
 	  			</div>
 
@@ -40,11 +35,9 @@
 	    			<button class="btn btn-default commBtn" type="button">User Guides</button>
 	  			</div>
 	  		</div>
-	  	</div>
 
-  		<!-- Q & A Panel -->
-  		<div class="col-md-6">
-			<div class="panel panel-info">
+	  		<!-- Q & A Panel -->
+	  		<div class="panel panel-info">
 	  			<div class="panel-heading">
 
 	  				<!-- Title and link to the Q & A page -->
@@ -58,13 +51,10 @@
 		    		<button class="btn btn-default commBtn" type="button">Q &amp; A Forums</button>
 		  		</div>
 		  	</div>
-	  	</div>
-	</div><!-- /.row -->
-</div><!-- /.container -->
+		</div>
 
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
+		<!-- Community FAQs and Rules -->
+		<div class="col-md-4">
 			<div class="panel panel-warning">
 				<div class="panel-heading">
 					
@@ -77,11 +67,11 @@
 				</div>
 			</div>
 		</div>
+
+
 	</div><!-- /.row -->
 </div><!-- /.container -->
-
-
-
-
+		
+		
 <!-- community_board_home.js -->
 <script type="text/javascript" src="js/community_board_home.js"></script>
