@@ -1,4 +1,3 @@
-
 <!-- SIDEBAR -->
 <div class="container-fluid">
   <div class="row">
@@ -22,9 +21,10 @@
         <li><a href="">Another nav item</a></li>
       </ul>
     </div>
+
+	<!-- MAIN -->
     <div class="col-sm-9 col-md-10 main">
       <h1 class="page-header">Dashboard</h1>
-
       <div class="row placeholders">
         <div class="col-xs-6 col-sm-3 placeholder">
           <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
