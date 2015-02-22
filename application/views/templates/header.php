@@ -24,9 +24,9 @@
 		<link rel="stylesheet" type="text/css" href="<?php base_url(); ?>/css/footer.css">
 
 		<!-- JQuery, Bootstrap, CanvasJS -->
-		<script type="text/javascript" src="<?php base_url(); ?>/js/jquery-2.1.1.min.js"></script>
-		<script type="text/javascript" src="<?php base_url(); ?>/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="<?php base_url(); ?>/js/jquery.canvasjs.min.js"></script>		
+		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/jquery.canvasjs.min.js"></script>		
 		
 	</head>
 
