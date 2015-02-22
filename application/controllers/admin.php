@@ -2,12 +2,8 @@
 
 class Admin extends CI_Controller
 {
-	const ADMIN_COLUMNS =  3;
-	const COLUMN_1 = 'Alerts';
-	const COLUMN_2 = 'Messages';
-	const COLUMN_3 =  'Profiles';
 
-	public function dashboard( $page = 'overview' )
+	public function dashboard( $page = 'admin' )
 	{
 	
 		//Load the model.
@@ -26,20 +22,10 @@ class Admin extends CI_Controller
 		$data['title'] = ucfirst($page);	
 		$data['numAlerts'] = '3';
 
-		$previewData['title'] = 'E tu, Brute?';
-		$previewData['author'] = 'Julius Caesar';
-		$previewData['post'] = $ipsum;
-
 		//load the pages
 		$this->load->view( 'templates/header', $data );
 
-		$this->load->view( 'pages/admin/admin', $data );
-		/*
-		for( $i = 0; $i < self::ADMIN_COLUMNS; $i++ )
-		{
-			$this->load->view( 'templates/posts/preview.php', $previewData );
-		}
-		*/
+		$this->load->view( 'pages/admin', $data );
 
 		$this->load->view( 'templates/footer', $data );
 	}
