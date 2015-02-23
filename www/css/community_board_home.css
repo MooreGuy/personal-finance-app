@@ -1,6 +1,7 @@
 .panel{
 	margin-top: 20px;
 }
+
 .panel-warning{
 	height: 300px;
 }
@@ -9,4 +10,8 @@
 	float: right;
 	display: block;
 	margin-top: 10px;
+}
+
+.panel-title > a{
+	text-decoration: none;
 }
