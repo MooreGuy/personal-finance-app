@@ -15,12 +15,12 @@
 		<link rel="stylesheet" type="text/css" href="<?php base_url(); ?>/css/home.css">
 		<link rel="stylesheet" type="text/css" href="<?php base_url(); ?>/css/about_us.css">
 		<link rel="stylesheet" type="text/css" href="<?php base_url(); ?>/css/community_board_forums.css">
-		<link rel="stylesheet" type="text/css" href="<?php base_url(); ?>/css/community_board_user_guides.css">
+		<link rel="stylesheet" type="text/css" href="<?php base_url(); ?>/css/community_board_user_guide.css">
 		<link rel="stylesheet" type="text/css" href="<?php base_url(); ?>/css/community_board_home.css">
 		<link rel="stylesheet" type="text/css" href="<?php base_url(); ?>/css/admin.css">
 		<link rel="stylesheet" type="text/css" href="<?php base_url(); ?>/css/announcements.css">
 		<link rel="stylesheet" type="text/css" href="<?php base_url(); ?>/css/terms_of_use.css">
-		<link rel="stylesheet" type="text/css" href="<?php base_url(); ?>/css/user_profiles.css">
+		<link rel="stylesheet" type="text/css" href="<?php base_url(); ?>/css/user_profile.css">
 		<link rel="stylesheet" type="text/css" href="<?php base_url(); ?>/css/footer.css">
 
 		<!-- JQuery, Bootstrap, CanvasJS -->
@@ -49,14 +49,14 @@
 		        <!-- Tabs for each section. This will toggle into the hamburger menu -->
 		        <div id="navbar" class="navbar-collapse collapse">
 		        	<ul class="nav navbar-nav">
-		            	<li class="active"><a href="<?php  echo base_url(); ?>home/welcome">Home</a></li>
-		            	<li><a href="<?php  echo base_url(); ?>community_board_home/home">Community</a></li>
+		            	<li class="active"><a href="<?php  echo base_url(); ?>index.php/home/welcome">Home</a></li>
+		            	<li><a href="<?php  echo base_url(); ?>index.php/community_board_home/home">Community</a></li>
 
 		            	<!-- When a user sucessfully signs in show this profile tab -->
-		            	<li><a href="#my_profile">My Profile</a></li>
+		            	<li><a href="<?php  echo base_url(); ?>index.php/user_profile/home">My Profile</a></li>
 
 		            	<!-- When an admin user successfully signs in show this tab -->
-		            	<li><a href="<?php  echo base_url(); ?>admin/dashboard">Admin</a></li>
+		            	<li><a href="<?php  echo base_url(); ?>index.php/admin/dashboard">Admin</a></li>
 		          	</ul>
 
 		          <!-- Login form. This will toggle into the hamburger menu-->

@@ -15,6 +15,17 @@
         <h2>Sign Up!</h2>
         <form>
           <div class="form-group">
+            <div class="pull-left name-container">
+              <label for="first-name">First Name:</label>
+              <input type="email" class="form-control" id="first-name" placeholder="First Name">
+            </div>
+
+            <div class="pull-right name-container">
+              <label for="last-name">Last Name:</label>
+              <input type="email" class="form-control" id="last-name" placeholder="Last Name">
+            </div>
+          </div>
+          <div class="form-group">
             <label for="email">Email Address:</label>
             <input type="email" class="form-control" id="email" placeholder="Enter Email">
           </div>
@@ -25,6 +36,7 @@
           <div class="form-group">
             <label for="password">Password:</label>
             <input type="password" class="form-control" id="password" placeholder="New Password">
+            <input type="password" class="form-control" id="passwordConfirm" placeholder="Confirm Password">
           </div>
           
           <button type="submit" class="btn btn-success"><strong>Sign Up</strong></button>
