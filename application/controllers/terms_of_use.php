@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class About_us extends CI_Controller {
+class Terms_of_use extends CI_Controller {
 
-	public function view($page = 'about_us'){
+	public function view($page = 'terms_of_use'){
 
 	    
 	    $data['title'] = ucfirst($page); // Capitalize the first letter
@@ -14,5 +14,5 @@ class About_us extends CI_Controller {
 	}
 }
 
-/* End of file about_us.php */
-/* Location: ./application/controllers/about_us.php */
+/* End of file terms_of_use.php */
+/* Location: ./application/controllers/terms_of_use.php */
