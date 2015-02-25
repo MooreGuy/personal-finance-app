@@ -1,0 +1,12 @@
+.about-us-row, .contact-us-row{
+	margin: 0;
+	margin-bottom: 15px;
+}
+
+.contact-us-form-wrapper{
+	padding-left: 0px;
+}
+
+.contact-us-submit{
+	float: right;
+}
