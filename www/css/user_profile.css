@@ -22,5 +22,14 @@ hr{
 
 .button-wrapper{
 	bottom: 0;
-	position: absolute;
+	margin-top: 15px;
+}
+
+.user_profile_wrapper{
+	padding: 0;
+}
+
+.expense-list-wrapper{
+	max-height: 300px;
+	overflow-x: hidden;
 }
