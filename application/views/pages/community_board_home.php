@@ -3,17 +3,13 @@
 
 		<!-- Community FAQs and Rules -->
 		<div class="col-md-4">
-			<div class="panel panel-warning">
-				<div class="panel-heading">
-					
-					<!-- Title for the Community Rules -->
-					<h3 class="panel-title">Community FAQ's and Rules</h3>
-				</div>
-
-				<div class="panel-body">
-					Do onto others as you would like others to do onto you.
-				</div>
-			</div>
+			<div class="panel panel-default">
+                 <div class="panel-body">
+                 		<h2>Community Home</h2>
+                 		<hr>
+                             Do onto others as you would like others to do onto you.
+                 </div>
+             </div>
 		</div>
 
 		<!-- This column is for Announcements, User Guides, and Q&A panels -->
