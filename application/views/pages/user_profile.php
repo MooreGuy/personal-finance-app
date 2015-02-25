@@ -33,17 +33,17 @@
 							<div class="panel-heading">
 								House
 							</div>
-							<div class="panel-body">
+							<div class="panel-body list-wrapper-panel">
 								<div class="expense-list-wrapper">
 									<ul class="list-group">
-									  <li class="list-group-item">Cras justo odio</li>
-									  <li class="list-group-item">Dapibus ac facilisis in</li>
-									  <li class="list-group-item">Morbi leo risus</li>
-									  <li class="list-group-item">Porta ac consectetur ac</li>
-									  <li class="list-group-item">Vestibulum at eros</li>
-									  <li class="list-group-item">Morbi leo risus</li>
-									  <li class="list-group-item">Porta ac consectetur ac</li>
-									  <li class="list-group-item">Vestibulum at eros</li>
+									  <li class="row list-group-item expense-item"><span class="col-md-8">Cras justo odio</span><span class="col-md-2">$45.00</span><span class="col-md-2">month</span></li>
+									  <li class="row list-group-item expense-item"><span class="col-md-8">Cras justo odio</span><span class="col-md-2">$45.00</span><span class="col-md-2">year</span></li>
+									  <li class="row list-group-item expense-item"><span class="col-md-8">Cras justo odio</span><span class="col-md-2">$45.00</span><span class="col-md-2">once</span></li>
+									  <li class="row list-group-item expense-item"><span class="col-md-8">Cras justo odio</span><span class="col-md-2">$45.00</span><span class="col-md-2">month</span></li>
+									  <li class="row list-group-item expense-item"><span class="col-md-8">Cras justo odio</span><span class="col-md-2">$45.00</span><span class="col-md-2">month</span></li>
+									  <li class="row list-group-item expense-item"><span class="col-md-8">Cras justo odio</span><span class="col-md-2">$45.00</span><span class="col-md-2">month</span></li>
+									  <li class="row list-group-item expense-item"><span class="col-md-8">Cras justo odio</span><span class="col-md-2">$45.00</span><span class="col-md-2">month</span></li>
+									  <li class="row list-group-item expense-item"><span class="col-md-8">Cras justo odio</span><span class="col-md-2">$45.00</span><span class="col-md-2">month</span></li>
 									</ul>
 								</div>
 								<div class="button-wrapper">
