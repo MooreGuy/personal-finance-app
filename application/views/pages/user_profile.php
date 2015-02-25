@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container user_profile_wrapper">
 
 
 		
@@ -33,14 +33,19 @@
 							<div class="panel-heading">
 								House
 							</div>
-							<div class="panel-body">
-								<form>
-								  	<div class="form-group">
-								    	<input type="text" class="form-control" placeholder="Enter Expense">
-								  	</div>	
-
-								</form>							
-
+							<div class="panel-body list-wrapper-panel">
+								<div class="expense-list-wrapper">
+									<ul class="list-group">
+									  <li class="row list-group-item expense-item"><span class="col-md-8">Cras justo odio</span><span class="col-md-2">$45.00</span><span class="col-md-2">month</span></li>
+									  <li class="row list-group-item expense-item"><span class="col-md-8">Cras justo odio</span><span class="col-md-2">$45.00</span><span class="col-md-2">year</span></li>
+									  <li class="row list-group-item expense-item"><span class="col-md-8">Cras justo odio</span><span class="col-md-2">$45.00</span><span class="col-md-2">once</span></li>
+									  <li class="row list-group-item expense-item"><span class="col-md-8">Cras justo odio</span><span class="col-md-2">$45.00</span><span class="col-md-2">month</span></li>
+									  <li class="row list-group-item expense-item"><span class="col-md-8">Cras justo odio</span><span class="col-md-2">$45.00</span><span class="col-md-2">month</span></li>
+									  <li class="row list-group-item expense-item"><span class="col-md-8">Cras justo odio</span><span class="col-md-2">$45.00</span><span class="col-md-2">month</span></li>
+									  <li class="row list-group-item expense-item"><span class="col-md-8">Cras justo odio</span><span class="col-md-2">$45.00</span><span class="col-md-2">month</span></li>
+									  <li class="row list-group-item expense-item"><span class="col-md-8">Cras justo odio</span><span class="col-md-2">$45.00</span><span class="col-md-2">month</span></li>
+									</ul>
+								</div>
 								<div class="button-wrapper">
 									<button class="btn btn-success btn-add-expense" type="submit"><span class="glyphicon glyphicon-plus"></span></button>
 								</div>
