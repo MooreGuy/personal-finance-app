@@ -50,7 +50,7 @@ $active_record = TRUE;
 
 
 /* Import database settings. */
-require('../cIDatabaseConfig.php');
+require_once('../CIDatabaseConfig.php');
 
 $db['default']['hostname'] = CIDatabaseConfig::$hostname;
 $db['default']['username'] = CIDatabaseConfig::$username;
