@@ -43,7 +43,7 @@
 		            <span class="icon-bar"></span>
 		            <span class="icon-bar"></span>
 		          </button>
-		          <a class="navbar-brand" href="#">Project name</a>
+		          <a class="navbar-brand navbar-site-brand" href="#">Project name</a>
 		        </div>
 
 		        <!-- Tabs for each section. This will toggle into the hamburger menu -->
