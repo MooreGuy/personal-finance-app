@@ -47,28 +47,33 @@
 		        </div>
 
 		        <!-- Tabs for each section. This will toggle into the hamburger menu -->
+		        <!-- Only show the tabs if the user is logged in -->
 		        <div id="navbar" class="navbar-collapse collapse">
 		        	<ul class="nav navbar-nav">
 		            	<li class="active"><a href="<?php  echo base_url(); ?>index.php/home/welcome">Home</a></li>
 		            	<li><a href="<?php  echo base_url(); ?>index.php/community_board_home/home">Community</a></li>
-
-		            	<!-- When a user sucessfully signs in show this profile tab -->
 		            	<li><a href="<?php  echo base_url(); ?>index.php/user_profile/home">My Profile</a></li>
 
-		            	<!-- When an admin user successfully signs in show this tab -->
+		            	<!-- When an admin user successfully signs in show the admin tab -->
 		            	<li><a href="<?php  echo base_url(); ?>index.php/admin/dashboard">Admin</a></li>
 		          	</ul>
 
-		          <!-- Login form. This will toggle into the hamburger menu-->
-		          <form class="navbar-form navbar-right">
-		            <div class="form-group">
-		              <input type="text" placeholder="Email" class="form-control">
-		            </div>
-		            <div class="form-group">
-		              <input type="password" placeholder="Password" class="form-control">
-		            </div>
-		            <button type="submit" class="btn btn-success">Log in</button>
-		          </form>
+		          	<!-- Login form. This will toggle into the hamburger menu-->
+		          	<form class="navbar-form navbar-right">
+		            	<div class="form-group">
+		              		<input type="text" placeholder="Email" class="form-control log-in-input">
+
+		              		<div class="checkbox">
+			              		<input class="remember-me-checkbox" type="checkbox"> Remember Me
+		              		</div>
+		            	</div>
+		            	<div class="form-group">
+		              		<input type="password" placeholder="Password" class="form-control log-in-input">
+		              		<a href="#">Forgot Password?</a>
+		            	</div>
+		            	<button type="submit" class="btn btn-success log-in-button">Log in</button>
+		          	</form>
+
 		        </div><!--/.navbar-collapse -->
 
 	      	</div><!-- /.container -->
