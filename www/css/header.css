@@ -1,5 +1,15 @@
-
+.log-in-input{
+	display: block !important;
+}
 
 .navbar{
 	margin-bottom: 0px;
+}
+
+.remember-me-checkbox{
+	margin-top: 5px;
+}
+
+.log-in-button{
+	margin-bottom: 20px;
 }
