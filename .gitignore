@@ -13,4 +13,4 @@ salt/*
 Vagrantfile
 
 #Database config.
-cIDatabaseConfig.php
+CIDatabaseConfig.php
