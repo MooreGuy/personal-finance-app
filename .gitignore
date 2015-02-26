@@ -11,3 +11,6 @@ application/logs/*
 #Guy's ignored files.
 salt/*
 Vagrantfile
+
+#Database config.
+cIDatabaseConfig.php
