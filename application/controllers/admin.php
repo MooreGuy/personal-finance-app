@@ -4,41 +4,19 @@ class Admin extends CI_Controller
 {
 
 	/*
-		Dashboard page to show admin data and options. The display
-		parameter decides how and what gets displayed in the admin
-		panel. Overview will show a small ammount of everything, where
-		selecting a specific data type will show only that type.
+		Overview of all the alerts on the site for the admin to view in one table.
 	*/
-	public function dashboard( $display = 'overview' )
+	public function overview( $display = 'overview' )
 	{	
-		//Load the model.
-		switch( $display )
-		{
-			case 'overview':
-				$this->load->model( 'alertsmodel' );
-				$this->load->model( 'notificationsmodel' );
-				$this->load->model( 'forummodel' );
-				break;
-			case 'alerts':	
-				$this->load->model( 'alertsmodel' );
-				break;
-			case 'notifications':
-				$this->load->model( 'notificationsmodel' );
-				break;
-			case 'forum:
-				$this->load->model( 'forummodel' );
-				break;
-			default:
-				show_404();
-				break;
-		}
-
-		$data['alerts'] = $this->alertsmodel->getLastAlerts( 3 );	
-		
-
 		//Set the title for the header.
-		$data['title'] = 'Admin Dashboard';	
+		$data['title'] = 'Admin Dashboard Overview';	
 
+		//Load the models required to display the data. So just alerts.
+		$this->load->model( 'alertsmodel' );
+
+		//Retrieve data from the database.
+		$data['alerts'] = $this->alertsmodel->getLastAlerts( 1 );	
+		
 		//load the pages
 		$this->load->view( 'templates/header', $data );
 
@@ -47,4 +25,3 @@ class Admin extends CI_Controller
 		$this->load->view( 'templates/footer', $data );
 	}
 }
-
