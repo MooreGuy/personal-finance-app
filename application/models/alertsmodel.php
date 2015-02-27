@@ -16,9 +16,9 @@ class AlertsModel extends CI_Model
 	/*
 		Get the last two alerts.
 	*/
-	function getLastTwoAlerts()
+	function getLastAlerts( $number )
 	{
-		$query = $this->db->get('entries', 2);
+		$query = $this->db->get('alerts', $number);
 		return $query->result();
 	}
 
