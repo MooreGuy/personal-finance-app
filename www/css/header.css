@@ -7,9 +7,35 @@
 }
 
 .remember-me-checkbox{
-	margin-top: 5px;
+	margin-top: 0px !important;
 }
 
 .log-in-button{
 	margin-bottom: 20px;
+}
+
+.log-in-form{
+	margin-bottom: 0px;
+	margin-top: 5px;
+}
+
+.navbar-site-brand{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.user-name{
+	color: #777;
+	display: inline-block;
+	margin-top: 18px;
+	font-size: 125%;
+}
+
+.log-out-button{
+	margin-bottom: 5px;
+	margin-left: 5px;
+}
+
+.navbar-nav{
+	margin-top: 10px;
 }

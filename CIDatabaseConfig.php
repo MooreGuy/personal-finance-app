@@ -8,9 +8,9 @@ class CIDatabaseConfig
 {
 	//Set static properties for database.
 	public static $hostname = 'localhost';
-	public static $username = 'testing';
-	public static $password = 'testdatabass';
-	public static $database = 'devdatabase';
+	public static $username = 'root';
+	public static $password = '';
+	public static $database = 'finance';
 	public static $dbdriver = 'mysql';
 	public static $dbprefix = '';
 	public static $pconnect = TRUE;

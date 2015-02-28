@@ -26,7 +26,8 @@
 		<!-- JQuery, Bootstrap, CanvasJS -->
 		<script type="text/javascript" src="<?php base_url(); ?>/js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="<?php base_url(); ?>/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="<?php base_url(); ?>/js/jquery.canvasjs.min.js"></script>		
+		<script type="text/javascript" src="<?php base_url(); ?>/js/jquery.canvasjs.min.js"></script>
+		<script type="text/javascript" src="<?php base_url(); ?>/js/header.js"></script>		
 		
 	</head>
 
@@ -43,38 +44,45 @@
 		            <span class="icon-bar"></span>
 		            <span class="icon-bar"></span>
 		          </button>
-		          <a class="navbar-brand" href="#">Project name</a>
+		          <a class="navbar-brand navbar-site-brand" href="#">Project name</a>
 		        </div>
 
 		        <!-- Tabs for each section. This will toggle into the hamburger menu -->
 		        <!-- Only show the tabs if the user is logged in -->
 		        <div id="navbar" class="navbar-collapse collapse">
-		        	<ul class="nav navbar-nav">
-		            	<li class="active"><a href="<?php  echo base_url(); ?>index.php/home/welcome">Home</a></li>
-		            	<li><a href="<?php  echo base_url(); ?>index.php/community_board_home/home">Community</a></li>
-		            	<li><a href="<?php  echo base_url(); ?>index.php/user_profile/home">My Profile</a></li>
+		        	<div class="navbar-tabs-wrapper">
+			        	<ul class="nav navbar-nav">
+			            	<li name="home"><a href="<?php  echo base_url(); ?>index.php/home/welcome">Home</a></li>
+			            	<li name="community_board_home"><a href="<?php  echo base_url(); ?>index.php/community_board_home/home">Community</a></li>
+			            	<li name="user_profile"><a href="<?php  echo base_url(); ?>index.php/user_profile/home">My Profile</a></li>
 
-		            	<!-- When an admin user successfully signs in show the admin tab -->
-		            	<li><a href="<?php  echo base_url(); ?>index.php/admin/dashboard">Admin</a></li>
-		          	</ul>
+			            	<!-- When an admin user successfully signs in show the admin tab -->
+			            	<li name="admin"><a href="<?php  echo base_url(); ?>index.php/admin/overview">Admin</a></li>
+			          	</ul>
+			        </div>
 
-		          	<!-- Login form. This will toggle into the hamburger menu-->
-		          	<form class="navbar-form navbar-right">
-		            	<div class="form-group">
-		              		<input type="text" placeholder="Email" class="form-control log-in-input">
+			        <div class="navbar-login-wrapper pull-right">
+			          	<!-- Login form. This will toggle into the hamburger menu-->
+			          	<form class="navbar-form log-in-form">
+			            	<div class="form-group">
+			              		<input type="text" placeholder="Email" class="form-control log-in-input">
 
-		              		<div class="checkbox">
-			              		<input class="remember-me-checkbox" type="checkbox"> Remember Me
-		              		</div>
-		            	</div>
-		            	<div class="form-group">
-		              		<input type="password" placeholder="Password" class="form-control log-in-input">
-		              		<a href="#">Forgot Password?</a>
-		            	</div>
-		            	<button type="submit" class="btn btn-success log-in-button">Log in</button>
-		          	</form>
+			              		<div class="checkbox">
+				              		<input class="remember-me-checkbox" type="checkbox"> Remember Me
+			              		</div>
+			            	</div>
+			            	<div class="form-group">
+			              		<input type="password" placeholder="Password" class="form-control log-in-input">
+			              		<a href="#">Forgot Password?</a>
+			            	</div>
+			            	<button type="button" class="btn btn-success log-in-button">Log in</button>
+			          	</form>
 
+			          	
+			        </div>
 		        </div><!--/.navbar-collapse -->
 
 	      	</div><!-- /.container -->
 	    </nav>
+
+

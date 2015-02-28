@@ -90,3 +90,5 @@
 
 </div><!-- /.container -->
 
+<!-- user_profile.js -->
+<script type="text/javascript" src="/js/user_profile.js"></script>
