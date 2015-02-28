@@ -15,7 +15,7 @@ $(document).ready(function(){
 		//-Remove the form
 		$('.log-in-form').remove();
 		//-Display the user name and the log out link
-		$('.navbar-login-wrapper').append('<p class="user-name">Welcome, <span>Blade Dyer</span></p> <button type="button" class="btn btn-danger log-out-button">Log out</button>');
+		$('.navbar-login-wrapper').append('<p class="user-name">Welcome, <span>Mister Sprinkles</span></p> <button type="button" class="btn btn-danger log-out-button">Log out</button>');
 	});
 
 	/*
@@ -32,5 +32,13 @@ $(document).ready(function(){
 
 		//Show the log in form
 		$('.navbar-login-wrapper').append('<form class="navbar-form log-in-form"> <div class="form-group"> <input type="text" placeholder="Email" class="form-control log-in-input"> <div class="checkbox"> <input class="remember-me-checkbox" type="checkbox"> Remember Me </div></div> <div class="form-group"> <input type="password" placeholder="Password" class="form-control log-in-input"> <a href="#">Forgot Password?</a></div> <button type="button" class="btn btn-success log-in-button">Log in</button></form>');
+	});
+
+	/*
+		When a navbar menu item gets clicked remove the class "active" from the li element and add it to the clicked element
+	*/
+	$('.navbar-nav li').on("click", 'li', function(){
+		$('.active').removeClass("active");
+		$(this).css("active");
 	});
 });
