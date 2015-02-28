@@ -52,12 +52,12 @@
 		        <div id="navbar" class="navbar-collapse collapse">
 		        	<div class="navbar-tabs-wrapper">
 			        	<ul class="nav navbar-nav">
-			            	<li class="active"><a href="<?php  echo base_url(); ?>index.php/home/welcome">Home</a></li>
-			            	<li><a href="<?php  echo base_url(); ?>index.php/community_board_home/home">Community</a></li>
-			            	<li><a href="<?php  echo base_url(); ?>index.php/user_profile/home">My Profile</a></li>
+			            	<li name="home"><a href="<?php  echo base_url(); ?>index.php/home/welcome">Home</a></li>
+			            	<li name="community_board_home"><a href="<?php  echo base_url(); ?>index.php/community_board_home/home">Community</a></li>
+			            	<li name="user_profile"><a href="<?php  echo base_url(); ?>index.php/user_profile/home">My Profile</a></li>
 
 			            	<!-- When an admin user successfully signs in show the admin tab -->
-			            	<li><a href="<?php  echo base_url(); ?>index.php/admin/dashboard">Admin</a></li>
+			            	<li name="admin"><a href="<?php  echo base_url(); ?>index.php/admin/overview">Admin</a></li>
 			          	</ul>
 			        </div>
 

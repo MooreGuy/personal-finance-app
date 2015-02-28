@@ -20,7 +20,8 @@
 }
 
 .navbar-site-brand{
-	margin-top: 11px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 .user-name{
@@ -33,4 +34,8 @@
 .log-out-button{
 	margin-bottom: 5px;
 	margin-left: 5px;
+}
+
+.navbar-nav{
+	margin-top: 10px;
 }

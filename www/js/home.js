@@ -1,5 +1,8 @@
 $(document).ready(function(){
 
+    //Add the active class to the navbar on page load
+    $('.navbar-nav > li[name="home"]').addClass('active');
+
     var chart = new CanvasJS.Chart("avg_phone_bill", {
 
     	title:{

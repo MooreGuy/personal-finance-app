@@ -36,9 +36,15 @@ $(document).ready(function(){
 
 	/*
 		When a navbar menu item gets clicked remove the class "active" from the li element and add it to the clicked element
-	*/
-	$('.navbar-nav li').on("click", 'li', function(){
-		$('.active').removeClass("active");
-		$(this).css("active");
-	});
+	
+	$('.navbar-nav > li > a').on("click", function(){
+
+		if($('.navbar-nav > li').hasClass("active")){
+			$('.navbar-nav > li.active').removeClass('active');
+
+			
+
+		}
+		$(this).parent().addClass('active');
+	});*/
 });

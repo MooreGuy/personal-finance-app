@@ -15,7 +15,7 @@ class Admin extends CI_Controller
 		$this->load->model( 'alertsmodel' );
 
 		//Retrieve data from the database.
-		$data['alerts'] = $this->alertsmodel->getLastAlerts( 1 );	
+		$data['alerts'] = $this->alertsmodel->getLastAlerts( 2 );	
 		
 		//load the pages
 		$this->load->view( 'templates/header', $data );

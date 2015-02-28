@@ -69,4 +69,4 @@
 		
 		
 <!-- community_board_home.js -->
-<script type="text/javascript" src="js/community_board_home.js"></script>
+<script type="text/javascript" src="/js/community_board_home.js"></script>
