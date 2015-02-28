@@ -3,24 +3,20 @@
 class Admin extends CI_Controller
 {
 
-	public function dashboard( $page = 'admin' )
-	{
-	
-		//Load the model.
+	/*
+		Overview of all the alerts on the site for the admin to view in one table.
+	*/
+	public function overview( $display = 'overview' )
+	{	
+		//Set the title for the header.
+		$data['title'] = 'Admin Dashboard Overview';	
+
+		//Load the models required to display the data. So just alerts.
 		$this->load->model( 'alertsmodel' );
 
-		/*
-			Keeping database calls out of this until we decide on how
-			we want to store database connection info.
-
-			//call the model's function to get alerts.
-			$data['alerts'] = $this->alertsmodel->getLastTwoAlerts();	
-		*/
-
-
-		//Set the title for the header.
-		$data['title'] = ucfirst($page);	
-
+		//Retrieve data from the database.
+		$data['alerts'] = $this->alertsmodel->getLastAlerts( 1 );	
+		
 		//load the pages
 		$this->load->view( 'templates/header', $data );
 
@@ -29,4 +25,3 @@ class Admin extends CI_Controller
 		$this->load->view( 'templates/footer', $data );
 	}
 }
-

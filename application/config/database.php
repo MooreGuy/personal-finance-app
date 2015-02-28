@@ -48,21 +48,25 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'bladed49_bladed';
-$db['default']['password'] = 'Choco35)';
-$db['default']['database'] = 'bladed49_notesDB';
-$db['default']['dbdriver'] = 'mysql';
-$db['default']['dbprefix'] = '';
-$db['default']['pconnect'] = TRUE;
-$db['default']['db_debug'] = FALSE;
-$db['default']['cache_on'] = FALSE;
-$db['default']['cachedir'] = '';
-$db['default']['char_set'] = 'utf8';
-$db['default']['dbcollat'] = 'utf8_general_ci';
-$db['default']['swap_pre'] = '';
-$db['default']['autoinit'] = TRUE;
-$db['default']['stricton'] = FALSE;
+
+/* Import database settings. */
+require_once('../CIDatabaseConfig.php');
+
+$db['default']['hostname'] = CIDatabaseConfig::$hostname;
+$db['default']['username'] = CIDatabaseConfig::$username;
+$db['default']['password'] = CIDatabaseConfig::$password;
+$db['default']['database'] = CIDatabaseConfig::$database;
+$db['default']['dbdriver'] = CIDatabaseConfig::$dbdriver;
+$db['default']['dbprefix'] = CIDatabaseConfig::$dbprefix;
+$db['default']['pconnect'] = CIDatabaseConfig::$pconnect;
+$db['default']['db_debug'] = CIDatabaseConfig::$db_debug;
+$db['default']['cache_on'] = CIDatabaseConfig::$cache_on;
+$db['default']['cachedir'] = CIDatabaseConfig::$cachedir;
+$db['default']['char_set'] = CIDatabaseConfig::$char_set;
+$db['default']['dbcollat'] = CIDatabaseConfig::$dbcollat;
+$db['default']['swap_pre'] = CIDatabaseConfig::$swap_pre;
+$db['default']['autoinit'] = CIDatabaseConfig::$autoinit;
+$db['default']['stricton'] = CIDatabaseConfig::$stricton;
 
 
 /* End of file database.php */
