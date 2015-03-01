@@ -1,7 +1,7 @@
 <div class="container">
 
     <div class="row privacy-policy-row">    
-        <h1>Privacy Policy</h1>
+        <h1><a name="privacy_policy"></a>Privacy Policy</h1>
         <hr>
           
         <div class="span12">
@@ -14,7 +14,7 @@
     </div><!-- /.row -->
 
     <div class="row terms-of-use-row" >
-        <h1>Terms of Use</h1>
+        <h1><a name="terms_of_use"></a>Terms of Use</h1>
         <hr>
         
         <div class="span12">
@@ -26,3 +26,7 @@
     </div><!-- /.row -->
 
 </div><!-- /.container -->
+
+
+<!-- terms_of_use.js -->
+<script type="text/javascript" src="/js/terms_of_use.js"></script>
