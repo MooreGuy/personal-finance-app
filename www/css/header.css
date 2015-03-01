@@ -17,6 +17,7 @@
 .log-in-form{
 	margin-bottom: 0px;
 	margin-top: 5px;
+	padding: 0px;
 }
 
 .navbar-site-brand{
@@ -37,5 +38,18 @@
 }
 
 .navbar-nav{
-	margin-top: 10px;
+	height: 60px;
+}
+
+.navbar-nav > li > a{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.navbar-col{
+	height: 60px;
+}
+
+.login-form-col{
+	padding-left: 0px;
 }

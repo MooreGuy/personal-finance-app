@@ -8,14 +8,14 @@
 			<div class="panel panel-default">
 			  	<div class="panel-body profile-info-section">
 
-			    	<h2>User Name</h2>
+			    	<h2>Mister Sprinkles</h2>
 			    	<hr>
 
-			    	<h4 class="user-info">Email:</h4> User Email
+			    	<h4 class="user-info">Email:</h4> sprinkles@gmail.com
 			    	<br>
-			    	<h4 class="user-info">First Name:</h4> First Name
+			    	<h4 class="user-info">User Name:</h4> Mister Sprinkles
 			    	<br>
-			    	<h4 class="user-info">Last Name:</h4> Last Name
+			    	<h4 class="user-info">Password:</h4> ********
 			  	</div>
 			</div>
 		</div>
