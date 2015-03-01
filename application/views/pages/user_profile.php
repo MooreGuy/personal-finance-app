@@ -11,11 +11,14 @@
 			    	<h2>Mister Sprinkles</h2>
 			    	<hr>
 
-			    	<h4 class="user-info">Email:</h4> sprinkles@gmail.com
+			    	<label for="user-email">Email:</label> 
+			    	<div id="user-email"> sprinkles@gmail.com</div>
 			    	<br>
-			    	<h4 class="user-info">User Name:</h4> Mister Sprinkles
+			    	<label for="user-name">User Name:</label> 
+			    	<div id="user-name">Mister Sprinkles</div>
 			    	<br>
-			    	<h4 class="user-info">Password:</h4> ********
+			    	<label for="user-password">Password:</label> 
+			    	<div id="user-password">********</div>
 			  	</div>
 			</div>
 		</div>
@@ -24,6 +27,17 @@
 		<!-- User Profile Data Section -->
 		<div class="col-md-8">
 			<div class="continer">
+
+				<!-- Controls for the user profile -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="panel panel-default userProf-control-panel">
+							<div class="panel-body">
+								Something
+							</div>
+						</div>
+					</div>
+				</div>
 
 				<!-- Each row can hold up to 2 categories-->
 				<div class="row">
@@ -35,6 +49,62 @@
 							</div>
 							<div class="panel-body list-wrapper-panel">
 								<div class="expense-list-wrapper">
+									<div class="table-responsive">
+										<table class="table table-striped">
+									    	<thead>
+									    		<tr>
+									    			<th>Item</th>
+									    			<th>Amount</th>
+									    			<th>Time</th>
+									    		</tr>	
+									    	</thead>
+
+									    	<tbody>
+									    		<tr>
+									    			<td>Electricity</td>
+									    			<td>$45.00</td>
+									    			<td>Monthly</td>
+									    		</tr>
+									    		<tr>
+									    			<td>Rent</td>
+									    			<td>$650.00</td>
+									    			<td>Monthly</td>
+									    		</tr>
+									    		<tr>
+									    			<td>Rent</td>
+									    			<td>$650.00</td>
+									    			<td>Monthly</td>
+									    		</tr>
+									    		<tr>
+									    			<td>Rent</td>
+									    			<td>$650.00</td>
+									    			<td>Monthly</td>
+									    		</tr>
+									    		<tr>
+									    			<td>Rent</td>
+									    			<td>$650.00</td>
+									    			<td>Monthly</td>
+									    		</tr>
+									    		<tr>
+									    			<td>Rent</td>
+									    			<td>$650.00</td>
+									    			<td>Monthly</td>
+									    		</tr>
+									    		<tr>
+									    			<td>Rent</td>
+									    			<td>$650.00</td>
+									    			<td>Monthly</td>
+									    		</tr>
+									    		<tr>
+									    			<td>Rent</td>
+									    			<td>$650.00</td>
+									    			<td>Monthly</td>
+									    		</tr>
+									    	</tbody>
+										</table>
+									</div>
+
+									<!--
 									<ul class="list-group">
 									  <li class="row list-group-item expense-item"><span class="col-md-8">Cras justo odio</span><span class="col-md-2">$45.00</span><span class="col-md-2">month</span></li>
 									  <li class="row list-group-item expense-item"><span class="col-md-8">Cras justo odio</span><span class="col-md-2">$45.00</span><span class="col-md-2">year</span></li>
@@ -44,7 +114,7 @@
 									  <li class="row list-group-item expense-item"><span class="col-md-8">Cras justo odio</span><span class="col-md-2">$45.00</span><span class="col-md-2">month</span></li>
 									  <li class="row list-group-item expense-item"><span class="col-md-8">Cras justo odio</span><span class="col-md-2">$45.00</span><span class="col-md-2">month</span></li>
 									  <li class="row list-group-item expense-item"><span class="col-md-8">Cras justo odio</span><span class="col-md-2">$45.00</span><span class="col-md-2">month</span></li>
-									</ul>
+									</ul>--!>
 								</div>
 								<div class="button-wrapper">
 									<button class="btn btn-success btn-add-expense" type="submit"><span class="glyphicon glyphicon-plus"></span></button>
@@ -57,7 +127,7 @@
 					<div class="col-md-6">
 						<div class="panel panel-info">
 							<div class="panel-heading">
-								Car
+								Car <span class="pull-right"><a href="#">Edit</a></span>
 							</div>
 							<div class="panel-body">
 								

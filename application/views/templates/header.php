@@ -57,7 +57,7 @@
 				        	<div class="container">
 				        		<div class="row">
 
-				        			<div class="col-md-6 navbar-col">
+				        			<div class="col-md-5 navbar-col">
 							        	<div class="navbar-tabs-wrapper">
 								        	<ul class="nav navbar-nav">
 								            	<li name="home"><a href="<?php  echo base_url(); ?>index.php/home/welcome">Home</a></li>
@@ -71,7 +71,7 @@
 								        </div>
 								    </div>
 
-								    <div class="col-md-5 login-form-col">
+								    <div class="col-md-6 login-form-col">
 								        <div class="navbar-login-wrapper">
 								          	<!-- Login form. This will toggle into the hamburger menu-->
 								          	<form class="navbar-form log-in-form">

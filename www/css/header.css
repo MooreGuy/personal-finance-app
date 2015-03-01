@@ -17,6 +17,7 @@
 .log-in-form{
 	margin-bottom: 0px;
 	margin-top: 5px;
+	margin-left: 70px;
 	padding: 0px;
 }
 
@@ -48,8 +49,9 @@
 
 .navbar-col{
 	height: 60px;
+	padding: 0px;
 }
 
 .login-form-col{
-	padding-left: 0px;
+	padding-left: 25px;
 }
