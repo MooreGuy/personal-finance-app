@@ -18,6 +18,17 @@ class User extends CI_Model
 		$this->load->library('encrypt');
 	}
 
+	/*
+		Creates a new user from the parameters given and the current time.
+		Encrypts the password of the user before storing it.
+	
+		@param $id integer identifying the user //REMOVE THIS
+		@param $username String username alias of the user.
+		@param $password String the unencrypted password to be set as the user's password.
+		@param $email String email of the user.
+
+		@return boolean true if successful creation, or false if the user already exists.
+	*/
 	function insert_user( $id, $username, $password, $email )
 	{
 		if( user_exists($email) == False )
@@ -53,45 +64,39 @@ class User extends CI_Model
 	*/	
 	function login( $email, $password )
 	{		
-		//Check to make sure the user isn't already logged in
-		if( checkCookieLogin() )
-		{
-			return True;
-		}
-
 		//Encrypt the password.
 		$password = $this->encrypt->encode( $password );
 
 		//Authenticate the user credentials, and get ID if it succeeds
 		$user_id = authenticateUser( $email, $password );
-		if( $user_id != NULL )
-		{
-			$cookieInfo = array
-			(
-					'email' => $email,
-					'password' => $password
-			);
-	
-			$CI->session->userdata($cookieInfo);
 
-			//All authenticated, return true to show that it successfully completed.
-			return True;
-		}
-		else
-		{
-			return False;
-		}
 
 	}
 
+	/*
+		Recieves an email string and a password string and checks
+		the database for any matching items. Then, returns the 
+		id if success or NULL if there were no matches.
+	
+		@param string $email of the account to be authenticated.
+		@param string $password is the password of the account to be matched.
+
+		@return Null if authentication fails, or the user_id if successful.
+	*/
 	function authenticate_user( $email, $password )
 	{
 
+		//QUERY
+		//Select the id from the table.
 		$this->db->select( 'id' );
+
+		//Where the email and password match the parameters passed to this function.
 		$this->db->where_in( 'email', $email );
 		$this->db->where_in( 'password', $password );
 		
+		//Now get the data from the USERTABLE
 		$query = $this->db->get( 'USERTABLE' );
+		//END QUERY
 
 		if( $query && $query->num_rows() > 0 )
 		{
@@ -99,7 +104,7 @@ class User extends CI_Model
 		}
 		else
 		{
-			return False;
+			return NULL;
 		}
 
 	}

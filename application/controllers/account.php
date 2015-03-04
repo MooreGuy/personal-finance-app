@@ -13,10 +13,14 @@ class Account extends CI_Controller
 	}
 
 	/*
-		Checks to see if the user is logged in, if not then it tries to log them in.
+		Checks the user session cookie for a login, if there is none then
+		the controller will store the post data from the signin form, and
+		call its login function. If the login attempt fails then it will
+		display an error, if it succeeds then it will redirect to a homepage.
 	*/
 	function login_form()
 	{
+		//Check the session cookie for a username.
 		if( $this->checkCookieLogin() )
 		{
 			echo 'logged in!';
@@ -27,31 +31,38 @@ class Account extends CI_Controller
 			$email = $this->input->post('email');
 			$password = $this->input->post( 'password' );
 
-			//User is not already logged in, so ask the model to log us in.
-			if( $this->User->login( $email, $password ) )
+			//Call the login function to attempt a login.
+			if( $this->login( $email, $password ) )
 			{
+				//Just for testing.
 				echo 'logged in!';
 			}
 			else
 			{
+				//Just for testing.
 				echo 'failed to login';
 			}
 		}
-
 	}		
 	
+	/*
+		The function collects the user form data and passes it to
+		the signup function in the User model, if it it fails it will
+		show an error, otherwise the user will be redirected.
+	*/
 	function signup_form()
 	{
+		//Collect post data.
 		$id = $this->input->form('id');
 		$username = $this->input->form('username');
 		$password = $this->input->form('password');
 		$email = $this->input->form('email');
 
+		//Call the signup function to attempt to login
 		if( $this->User->signup($id, $username, $password, $email) )
 		{
 			echo 'success!';
-		}
-		
+		}	
 		else
 		{
 			echo 'failure';
@@ -74,6 +85,43 @@ class Account extends CI_Controller
 		{
 			return False;
 		}		
+	}
+
+	/*
+		@param $email string the user's email to authenticate.
+		@param $password string the password to authenticate the email with.
+	
+		@return boolean True if there was a successful login, or
+			 return false if the login attempt failed.
+	*/
+	function login( $email, $password )
+	{
+		//Call the authentication method in the model which checks
+		//for an email password matching the one passed.
+		$user_id = $this->User->authenticate_user( $email, $password );
+
+		//If there was something returned then set the cookie to hold the email password and user id.
+		//If it doesn't then return false.
+		if( $user_id != NULL )
+		{
+			$cookieInfo = array
+			(
+					'email' => $email,
+					'password' => $password,
+					'user_id' => $user_id
+			);
+	
+			//Set the session cookie to the cookieInfo array.
+			$CI->session->userdata($cookieInfo);
+
+			//All authenticated, return true to show that it successfully completed.
+			return True;
+		}
+		else
+		{
+			//Authentication failed, return false.
+			return False;
+		}
 	}
 }
 
