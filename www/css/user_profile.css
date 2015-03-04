@@ -1,14 +1,6 @@
-.profile-info-rowection{
+.profile-info-section{
 	width: 100%;
 	height: 300px;
-}
-
-.list-wrapper-panel{
-	min-height: 300px;
-}
-
-.user-info{
-	display: inline;
 }
 
 hr{
@@ -34,8 +26,88 @@ hr{
 	overflow-x: hidden;
 }
 
-.expense-item{
-	padding-right: 5px;
-	padding-left: 0px;
-	margin: 0px;
+.userProf-control-panel{
+	margin-bottom: 0px;
 }
+
+.table-striped{
+	margin-bottom: 0px;
+}
+
+.category-list{
+	margin-bottom: 0px;
+	border-top: 0px;
+	max-height: 300px;
+    max-width: 340px;
+    padding-right: 0px;
+    margin-right: 0px;
+}
+
+.category-list > .list-group-item{
+	border-left: 0px;
+	border-right: 0px;
+}
+
+.list-group-item{
+	margin-right: 0px;
+    margin-left: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.list-group-item:last-child{
+	border-bottom-width: 0px;
+}
+
+.list-group-item:first-child{
+	border-top: 0px;
+}
+
+.category-heading{
+	border-bottom: 1px;
+}
+
+.panel-info > .panel-heading{
+	margin-bottom: 0px;
+}
+
+.category-list-collapse{
+	overflow: auto;
+	max-height: 300px;
+}
+
+.expense-name{
+	padding-right: 0px;
+    border-right-width: -10;
+    padding-left: 15px;
+}
+
+.expense-cost{
+	padding-right: 0px;
+    padding-left: 0px;
+}
+
+.expense-occurance{
+	padding-right: 0px;
+    padding-left: 0px;
+}
+
+.delete-expense-item{
+	padding-left: 0px;
+    padding-right: 0px;
+}
+
+.total-cost, .total-name, .total-occurance{
+	font-weight: bold;
+}
+
+.category-add, .category-delete{
+	width: 100%;
+	display: block;
+	margin-bottom: 10px;
+}
+
+.category-affix{
+	width: 100%;
+}
+
