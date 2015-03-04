@@ -1,6 +1,6 @@
-<?php
+<?php if(! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Login extends CI_Library
+class Login
 {
 
 	/*
@@ -9,15 +9,18 @@ class Login extends CI_Library
 		@param string $password the user's password
 		
 		@return either true if the user successfully authenticated, or false if the authentication failed.
-	*/
-	public function login( $email, $password )
+	*/	
+	public function login( $email = null, $password = null )//I DON'T KNOW WHY DEFAULT ARGUMENTS
+															//FIXES THIS AND NEED TO ASK TYLER
 	{
 		$CI = & get_instance();		
 
 		$CI->load->model('User');
-		$CI->load->model('Session');
 
 		//Check to make sure the user isn't already logged in
+
+		$this->checkCookieLogin();
+
 		if( checkCookieLogin() )
 		{
 			return True;
@@ -58,7 +61,7 @@ class Login extends CI_Library
 		
 		
 		//Check to see if the email in the cookie is set, if it is, then the user logged in already.
-		if( isset($CI->session->userdata('email')) )
+		if( $CI->session->userdata('email') != NULL )
 		{
 			return True;	
 		}
@@ -95,7 +98,7 @@ class Login extends CI_Library
 	/*
 		Remove cookie data ?maybe from databse?
 	*/	
-	function logout()
+	public function logout()
 	{
 
 	}

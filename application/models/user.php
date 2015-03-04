@@ -2,7 +2,6 @@
 
 class User extends CI_Model
 {
-	define("USERTABLE", 'users');
 	
 	var $id = '';
 	var $account_creation_date = '';
@@ -15,6 +14,7 @@ class User extends CI_Model
 	function __construct()
 	{
 		parent::__construct();
+		define( "USERTABLE", "users");
 	}
 
 	function insert_user( $id, $username, $password, $email )
