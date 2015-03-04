@@ -20,7 +20,7 @@ class User extends CI_Model
 
 	function insert_user( $id, $username, $password, $email )
 	{
-		if( user_exists == False )
+		if( user_exists($email) == False )
 		{	
 			$this->load->helper('date');
 
@@ -40,7 +40,7 @@ class User extends CI_Model
 			return False;
 		}
 
-		//Return true if use was successful in creation.
+		//Return true if user creation was successful.
 		return True;
 	}
 	
