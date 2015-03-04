@@ -20,14 +20,17 @@
 		  		<div class="panel-heading">
 
 		  			<!-- Title and link to the Announcements page -->
-		    		<h3 class="panel-title"><a href="#announcements">Community Announcements</a></h3>
+		    		<h3 class="panel-title"><a href="<?php  echo base_url(); ?>index.php/announcements/home">Announcements</a></h3>
 		  		</div>
 
 		  		<div class="panel-body">
 		    		Right now we are working on creating the site. More specifically I am working on the community related pages!
 
 		    		<br>
+		    	
 		    		<button class="btn btn-default commBtn" type="button">Announcements</button>
+		    		
+		    		
 		  		</div>
 			</div>
 
@@ -36,7 +39,7 @@
 	  			<div class="panel-heading">
 
 	  				<!-- Title and link to the User Guides page -->
-	    			<h3 class="panel-title"><a href="#community_board_user_guides">Community User Guides</a></h3>
+	    			<h3 class="panel-title"><a href="<?php  echo base_url(); ?>index.php/community_board_user_guides/guides">Community User Guides</a></h3>
 	  			</div>
 
 	  			<div class="panel-body">
@@ -52,7 +55,7 @@
 	  			<div class="panel-heading">
 
 	  				<!-- Title and link to the Q & A page -->
-	    			<h3 class="panel-title"><a href="#community_board_forum">Community Q &amp; A Forums</a></h3>
+	    			<h3 class="panel-title"><a href="<?php  echo base_url(); ?>index.php/community_board_forums/forums">Community Q &amp; A Forums</a></h3>
 	  			</div>
 
 		  		<div class="panel-body">
