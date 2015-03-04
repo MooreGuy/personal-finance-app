@@ -28,6 +28,7 @@
 
 		    		<br>
 		    		<button class="btn btn-default commBtn" type="button">Announcements</button>
+		    			<a class="btn btn-default commBtn" href="<?php  echo base_url(); ?>index.php/announcements/home"> role="button">Link</a>
 		  		</div>
 			</div>
 
@@ -44,10 +45,11 @@
 
 	    			<br>
 	    			<button class="btn btn-default commBtn" type="button">User Guides</button>
+	    			       <a class="btn btn-default commBtn" href="<?php  echo base_url(); ?>index.php/community_board_user_guides/guides"> role="button">Link</a>
 	  			</div>
 	  		</div>
 
-	  		<!-- Q & A Panel -->
+	  		<!-- Q & A Panel -->o
 	  		<div class="panel panel-info">
 	  			<div class="panel-heading">
 
@@ -60,6 +62,7 @@
 
 		    		<br>
 		    		<button class="btn btn-default commBtn" type="button">Q &amp; A Forums</button>
+		    				<a class="btn btn-default" href="<?php  echo base_url(); ?>index.php/community_board_home_forums/forums"> role="button">Link</a>
 		  		</div>
 		  	</div>
 		</div>
