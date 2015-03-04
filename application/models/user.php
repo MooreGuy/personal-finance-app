@@ -104,6 +104,11 @@ class User extends CI_Model
 
 	}
 
+	/*
+		Checks to make sure that a account with a given email doesn't already exist.
+		
+		@param $email string email that is checked against the database to see if there is a user already.
+	*/
 	function user_exists( $email )
 	{
 		$this->db->select('email');

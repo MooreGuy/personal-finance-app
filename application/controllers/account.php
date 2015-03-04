@@ -13,21 +13,32 @@ class Account extends CI_Controller
 		$this->load->model('User');
 	}
 
+	/*
+		Checks to see if the user is logged in, if not then it tries to log them in.
+	*/
 	function login_form()
 	{
-
-		$email = $this->input->post('email');
-		$password = $this->input->post( 'password' );
-		echo 'hello';
-		if( $this->User->login( $email, $password ) )
+		if( $this->checkCookieLogin() )
 		{
 			echo 'logged in!';
 		}
-
 		else
 		{
-			echo 'failed to login';
+			//Grab the post data from the form.
+			$email = $this->input->post('email');
+			$password = $this->input->post( 'password' );
+
+			//User is not already logged in, so ask the model to log us in.
+			if( $this->User->login( $email, $password ) )
+			{
+				echo 'logged in!';
+			}
+			else
+			{
+				echo 'failed to login';
+			}
 		}
+
 	}		
 	
 	function signup_form()
@@ -51,13 +62,8 @@ class Account extends CI_Controller
 	*/
 	public function checkCookieLogin()
 	{
-		//Load the session library from the CI instance.
-		$CI = & get_instance();		
-		$CI->load->library('session');
-		
-		
 		//Check to see if the email in the cookie is set, if it is, then the user logged in already.
-		if( $CI->session->userdata('email') != NULL )
+		if( $this->session->userdata('email') != NULL )
 		{
 			return True;	
 		}
