@@ -15,6 +15,7 @@ class User extends CI_Model
 	{
 		parent::__construct();
 		define( "USERTABLE", "users");
+		$this->load->library('encrypt');
 	}
 
 	function insert_user( $id, $username, $password, $email )
@@ -42,15 +43,55 @@ class User extends CI_Model
 		//Return true if use was successful in creation.
 		return True;
 	}
+	
+	/*
+		Login the user in
+		@param string $email the user's email
+		@param string $password the user's password
+		
+		@return either true if the user successfully authenticated, or false if the authentication failed.
+	*/	
+	function login( $email, $password )
+	{		
+		//Check to make sure the user isn't already logged in
+		if( checkCookieLogin() )
+		{
+			return True;
+		}
+
+		//Encrypt the password.
+		$password = $this->encrypt->encode( $password );
+
+		//Authenticate the user credentials, and get ID if it succeeds
+		$user_id = authenticateUser( $email, $password );
+		if( $user_id != NULL )
+		{
+			$cookieInfo = array
+			(
+					'email' => $email,
+					'password' => $password
+			);
+	
+			$CI->session->userdata($cookieInfo);
+
+			//All authenticated, return true to show that it successfully completed.
+			return True;
+		}
+		else
+		{
+			return False;
+		}
+
+	}
 
 	function authenticate_user( $email, $password )
 	{
 
-		$this->db->select('id');
-		$this->db->where_in('email', $email);
-		$this->db->where_in('password', $password );
+		$this->db->select( 'id' );
+		$this->db->where_in( 'email', $email );
+		$this->db->where_in( 'password', $password );
 		
-		$query = $this->db->get('USERTABLE');
+		$query = $this->db->get( 'USERTABLE' );
 
 		if( $query && $query->num_rows() > 0 )
 		{
