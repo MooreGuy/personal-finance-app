@@ -96,3 +96,18 @@ hr{
 	padding-left: 0px;
     padding-right: 0px;
 }
+
+.total-cost, .total-name, .total-occurance{
+	font-weight: bold;
+}
+
+.category-add, .category-delete{
+	width: 100%;
+	display: block;
+	margin-bottom: 10px;
+}
+
+.category-affix{
+	width: 100%;
+}
+
