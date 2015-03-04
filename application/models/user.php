@@ -26,7 +26,7 @@ class User extends CI_Model
 
 			$this->id = $id;
 			$this->username = $username;
-			$this->password = $password;
+			$this->password = $this->encrypt->encode($password);
 			$this->email = $email;
 			$this->first_name = $first_name;
 			$this->last_name = $last_name;

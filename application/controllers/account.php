@@ -44,7 +44,7 @@ class Account extends CI_Controller
 	{
 		$id = $this->input->form('id');
 		$username = $this->input->form('username');
-		$password = $this->encrypt->encode($this->input->form('password'));
+		$password = $this->input->form('password');
 		$email = $this->input->form('email');
 
 		if( $this->User->signup($id, $username, $password, $email) )
