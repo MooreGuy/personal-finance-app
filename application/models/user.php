@@ -24,15 +24,15 @@ class User extends CI_Model
 		{	
 			$this->load->helper('date');
 
-			$this->id = $this->input->post('id');
-			$this->username = $this->input->post('username');
-			$this->password = $this->input->post('password');
-			$this->email = $this->input->post('email');
-			$this->first_name = $this->input->post('first_name');
-			$this->last_name = $this->input->post('last_name');
+			$this->id = $id;
+			$this->username = $username;
+			$this->password = $password;
+			$this->email = $email;
+			$this->first_name = $first_name;
+			$this->last_name = $last_name;
 			$this->account_creation_date = now();
 
-			$this->db->insert('USERTABLE');	
+			$this->db->insert('USERTABLE', $this);	
 		}
 		else
 		{
