@@ -1,9 +1,7 @@
 <?php
 
 class User extends CI_Model
-{
-	
-	var $id = '';
+{	
 	var $account_creation_date = '';
 	var $username = '';
 	var $first_name = '';
@@ -14,7 +12,7 @@ class User extends CI_Model
 	function __construct()
 	{
 		parent::__construct();
-		define( "USERTABLE", "users");
+		define( 'USERTABLE', 'users');
 		$this->load->library('encrypt');
 	}
 
@@ -28,9 +26,9 @@ class User extends CI_Model
 
 		@return boolean true if successful creation, or false if the user already exists.
 	*/
-	function insert_user( $username, $password, $email )
+	function insert_user( $username, $password, $email, $first_name, $last_name )
 	{
-		if( user_exists($email) == False )
+		if( $this->user_exists($email) == False )
 		{	
 			$this->load->helper('date');
 
@@ -41,7 +39,11 @@ class User extends CI_Model
 			$this->last_name = $last_name;
 			$this->account_creation_date = now();
 
-			$this->db->insert('USERTABLE', $this);	
+			echo '</br>';
+			echo '<pre>';
+			echo var_dump($this);
+			echo '</pre>';
+			$this->db->insert( USERTABLE, $this);	
 		}
 		else
 		{
@@ -116,7 +118,8 @@ class User extends CI_Model
 	{
 		$this->db->select('email');
 		$this->db->where('email', $email);
-		$this->db->get('USERTABLE');
+
+		$query = $this->db->get('USERTABLE');
 
 		if( $query )
 		{

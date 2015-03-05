@@ -8,6 +8,7 @@ class Account extends CI_Controller
 		parent::__construct();
 
 		$this->load->library('session');
+		$this->load->library('input');
 
 		$this->load->model('User');
 	}
@@ -41,7 +42,7 @@ class Account extends CI_Controller
 		
 		if( $status == "failed" )
 		{
-			data['message'] = 'Error, invalid username or password';
+			$data['message'] = 'Error, invalid username or password';
 		}
 
 		$this->load->view('templates/header', $data);
@@ -93,12 +94,18 @@ class Account extends CI_Controller
 	function signup_form()
 	{
 		//Collect post data.
-		$username = $this->input->form('username');
-		$password = $this->input->form('password');
-		$email = $this->input->form('email');
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+		$first_name = $this->input->post('first_name');
+		$last_name = $this->input->post('last_name');
+		$email = $this->input->post('email');
+		
+		echo 'This is the controllers first_name';
+		echo '</br>';
+		echo "$first_name";
 
 		//Call the signup function to attempt to login
-		if( $this->User->signup($username, $password, $email) )
+		if( $this->User->insert_user($username, $password, $email, $first_name, $last_name) )
 		{
 			echo 'success!';
 		}	
