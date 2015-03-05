@@ -13,6 +13,43 @@ class Account extends CI_Controller
 	}
 
 	/*
+		Signup page with a signup form. With an optional status message.
+
+		@param string $status a status message to display to the user at the form.
+	*/
+	function signup( $status = Null )
+	{
+		$data['title'] = 'Signup';
+		if( $status == "failed" )
+		{
+			$data['message'] = "Error, you entered something in wrong!.";	
+		}
+		
+		$this->load->view('templates/header', $data);
+		$this->load->view('pages/signup', $data);
+		$this->load->view('templates/footer', $data);
+	}
+	
+	/*
+		Loads a login page with an optional status.
+
+		@param string $status a status message to display to the user at the form.
+	*/	
+	function login( $status = Null )
+	{
+		$data['title'] = 'Login';
+		
+		if( $status == "failed" )
+		{
+			data['message'] = 'Error, invalid username or password';
+		}
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('pages/login', $data);
+		$this->load->view('templates/footer', $data);
+	}
+
+	/*
 		Checks the user session cookie for a login, if there is none then
 		the controller will store the post data from the signin form, and
 		call its login function. If the login attempt fails then it will
@@ -31,17 +68,20 @@ class Account extends CI_Controller
 			$email = $this->input->post('email');
 			$password = $this->input->post( 'password' );
 
+			$this->load->helper('url');
 			//Call the login function to attempt a login.
-			if( $this->login( $email, $password ) )
+			if( $this->authenticate( $email, $password ) )
 			{
-				//Just for testing.
-				echo 'logged in!';
+				redirect('home/user_dashboard');
 			}
 			else
 			{
 				//Just for testing.
 				echo 'failed to login';
+
+				redirect('account/signup/failed');
 			}
+
 		}
 	}		
 	
@@ -93,7 +133,7 @@ class Account extends CI_Controller
 		@return boolean True if there was a successful login, or
 			 return false if the login attempt failed.
 	*/
-	function login( $email, $password )
+	function authenticate( $email, $password )
 	{
 		//Call the authentication method in the model which checks
 		//for an email password matching the one passed.
