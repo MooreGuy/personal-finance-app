@@ -13,7 +13,7 @@
       <!-- Sign in -->
       <div class="col-md-5">
         <h2>Sign Up!</h2>
-        <form action="<?php echo base_url();?>account/login_form" method="post">
+        <form action="<?php echo base_url();?>account/signup_form" method="post">
           <div class="form-group">
             <div class="pull-left name-container">
               <label for="first-name">First Name:</label>
