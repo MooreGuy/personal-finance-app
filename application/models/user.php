@@ -22,20 +22,18 @@ class User extends CI_Model
 		Creates a new user from the parameters given and the current time.
 		Encrypts the password of the user before storing it.
 	
-		@param $id integer identifying the user //REMOVE THIS
 		@param $username String username alias of the user.
 		@param $password String the unencrypted password to be set as the user's password.
 		@param $email String email of the user.
 
 		@return boolean true if successful creation, or false if the user already exists.
 	*/
-	function insert_user( $id, $username, $password, $email )
+	function insert_user( $username, $password, $email )
 	{
 		if( user_exists($email) == False )
 		{	
 			$this->load->helper('date');
 
-			$this->id = $id;
 			$this->username = $username;
 			$this->password = $this->encrypt->encode($password);
 			$this->email = $email;

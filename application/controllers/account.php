@@ -53,13 +53,12 @@ class Account extends CI_Controller
 	function signup_form()
 	{
 		//Collect post data.
-		$id = $this->input->form('id');
 		$username = $this->input->form('username');
 		$password = $this->input->form('password');
 		$email = $this->input->form('email');
 
 		//Call the signup function to attempt to login
-		if( $this->User->signup($id, $username, $password, $email) )
+		if( $this->User->signup($username, $password, $email) )
 		{
 			echo 'success!';
 		}	
