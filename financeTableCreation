@@ -1,0 +1,19 @@
+create table if not exists users (
+	id int(11) not null primary key auto_increment,
+	username varchar(64) not null,
+	password varchar(256) not null,
+	email varchar(128) not null,
+	first_name varchar(64) not null,
+	last_name varchar(64) not null,
+	account_creation_date timestamp
+);
+	
+CREATE TABLE IF NOT EXISTS  `sessions` (
+	session_id varchar(40) DEFAULT '0' NOT NULL,
+	ip_address varchar(45) DEFAULT '0' NOT NULL,
+	user_agent varchar(120) NOT NULL,
+	last_activity int(10) unsigned DEFAULT 0 NOT NULL,
+	user_data text NOT NULL,
+	PRIMARY KEY (session_id),
+	KEY `last_activity_idx` (`last_activity`)
+);
