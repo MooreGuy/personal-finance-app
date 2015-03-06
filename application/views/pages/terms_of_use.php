@@ -73,9 +73,9 @@
 <p>If you become aware of any unauthorized use of your Registration or Account Information for the Services, you agree to notify BGR immediately at the email address - <a href="mailto:security@BGR.com">security@BGR.com</a>.</p>
 <p>If you believe that your Registration or Account Information or device that you use to access the Bill Pay Services has been lost or stolen, that someone is using your account without your permission, or that an Unauthorized Transfer (as defined in Section 25.1 Bill Payment Service below) has occurred, you must notify BGR Bills immediately in order to minimize your possible losses.</p>
 <p>The following is BGR’s contact information:</p>
-<p>Telephone: 888-536-4801</p>
+<p>Telephone: 555-555-1234</p>
 <p>Email: <a href="mailto:care@bills.bgr.com">care@bills.bgr.com</a></p>
-<p>Address: 180 Jefferson Drive Menlo Park, CA 94025</p>
+<p>Address 1 The Drive The Great State of, CA 93401</p>
 <p><a class="toc" href="/terms/#toc">Back to Top</a></p>
 <h5>7. Your Use of the Services</h5>
 <p>Your right to access and use the Sites and the Services is personal to you and is not transferable by you to any other person or entity. You are only entitled to access and use the Sites and Services for lawful purposes. Accurate records enable BGR to provide the Services to you. You must provide true, accurate, current and complete information about your accounts maintained at other web sites, as requested in our “add account” setup forms, and you may not misrepresent your Registration and Account Information. In order for the Services to function effectively, you must also keep your Registration and Account Information up to date and accurate. If you do not do this, the accuracy and effectiveness of the Services will be affected. You represent that you are a legal owner of, and that you are authorized to provide us with, all Registration and Account Information and other information necessary to facilitate your use of the Services.</p>
@@ -186,9 +186,9 @@
 <p>The information specified above must be sent to BGR’s Designated Agent, whose contact information is as follows:</p>
 <p>BGR BGR Bills, Inc.</p>
 <p>Attention: DMCA Designated Agent</p>
-<p>180 Jefferson Drive</p>
-<p>Menlo Park, CA 94025</p>
-<p>Fax: 650-747-4666</p>
+<p>1234 The Drive</p>
+<p>The Great State of, CA 93401</p>
+<p>Fax: 555-555-1234</p>
 <p>Email: <a href="mailto:care@bills.BGR.com">care@bills.BGR.com</a></p>
 <p>Please note that Section 512(f) of the Digital Millennium Copyright Act may impose liability for damages on any person who knowingly sends meritless notices of infringement. Please do not make false claims.</p>
 <p>Any information or correspondence that you provide to BGR Bill’s may be shared with third parties, including the person who provided BGR Bill’s with the allegedly infringing material.</p>
@@ -348,7 +348,7 @@ BGR Bills may temporarily suspend your access to Bill Payment Service. Suspiciou
 <li><strong>Product Claims</strong>: BGR, not Apple, is responsible for addressing any user or third party claims relating to the Software or the user’s possession and/or use of the Software, including, but not limited to: (i) product liability claims; (ii) any claim that the Software fail to conform to any applicable legal or regulatory requirement; and (iii) claims arising under consumer protection or similar legislation.</li>
 <li><strong>Intellectual Property Rights</strong>: You acknowledge that, in the event of any third party claim that the Software or your possession and use of the Software infringes that third party’s intellectual property rights, BGR, not Apple, will be solely responsible for the investigation, defense, settlement and discharge of any such intellectual property infringement claim.</li>
 <li><strong>Legal Compliance</strong>: You represent and warrant that (i) you are not located in a country that is subject to a U.S. Government embargo, or that has been designated by the U.S. Government as a terrorist-supporting country; and (ii) you are not listed on any U.S. Government list of prohibited or restricted parties.</li>
-<li><strong>Developer Contact Info</strong>: Direct any questions, complaints or claims to: BGR Inc, 2632 Marine Way, Mountain View, CA 94043 or <a href="https://www.BGR.com/help/" target="_blank">https://www.BGR.com/help/</a></li>
+<li><strong>Developer Contact Info</strong>: Direct any questions, complaints or claims to: BGR Inc, The One Way, The Great State of, CA 93401 or <a href="https://www.BGR.blah/help/" target="_blank">https://www.BGR.blah/help/</a></li>
 <li><strong>Third Party Terms of Agreement</strong>: You must comply with any applicable third party terms of agreement when using the Software.</li>
 <li><strong>Third Party Beneficiary</strong>: You acknowledge and agree that Apple and Apple’s subsidiaries are third party beneficiaries of this Agreement, and that, upon your acceptance of the terms and conditions of the Agreement, Apple will have the right (and will be deemed to have accepted the right) to enforce the Agreement against you as a third party beneficiary thereof.</li>
 </ol>
