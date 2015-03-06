@@ -74,7 +74,7 @@
 								    <div class="col-md-6 login-form-col">
 								        <div class="navbar-login-wrapper">
 								          	<!-- Login form. This will toggle into the hamburger menu-->
-								          	<form class="navbar-form log-in-form">
+								          	<form class="navbar-form log-in-form" action="account/signup_form" method="post">
 								            	<div class="form-group">
 								              		<input type="text" placeholder="Email" class="form-control log-in-input">
 

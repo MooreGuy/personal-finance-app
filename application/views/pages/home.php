@@ -13,29 +13,29 @@
       <!-- Sign in -->
       <div class="col-md-5">
         <h2>Sign Up!</h2>
-        <form>
+        <form action="<?php echo base_url();?>account/signup_form" method="post">
           <div class="form-group">
             <div class="pull-left name-container">
-              <label for="first-name">First Name:</label>
-              <input type="email" class="form-control" id="first-name" placeholder="First Name">
+              <label for="first_name">First Name:</label>
+              <input name="first_name" type="text" class="form-control" id="first-name" placeholder="First Name">
             </div>
 
             <div class="pull-right name-container">
-              <label for="last-name">Last Name:</label>
-              <input type="email" class="form-control" id="last-name" placeholder="Last Name">
+              <label for="last_name">Last Name:</label>
+              <input name="last_name" type="text" class="form-control" id="last-name" placeholder="Last Name">
             </div>
           </div>
           <div class="form-group">
             <label for="email">Email Address:</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter Email">
+            <input name="email" type="email" class="form-control" id="email" placeholder="Enter Email">
           </div>
           <div class="form-group">
             <label for="username">Username:</label>
-            <input type="text" class="form-control" id="username" placeholder="New Username">
+            <input name="username" type="text" class="form-control" id="username" placeholder="New Username">
           </div>
           <div class="form-group">
             <label for="password">Password:</label>
-            <input type="password" class="form-control sign-in-password" id="password" placeholder="New Password">
+            <input name="password" type="password" class="form-control sign-in-password" id="password" placeholder="New Password">
             <input type="password" class="form-control" id="passwordConfirm" placeholder="Confirm Password">
           </div>
           
