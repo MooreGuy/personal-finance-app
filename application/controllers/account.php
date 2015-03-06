@@ -9,6 +9,8 @@ class Account extends CI_Controller
 
 		$this->load->library('session');
 		$this->load->library('input');
+		
+		$this->load->helper('url');
 
 		$this->load->model('User');
 	}
@@ -61,7 +63,8 @@ class Account extends CI_Controller
 		//Check the session cookie for a username.
 		if( $this->checkCookieLogin() )
 		{
-			echo 'logged in!';
+			//The user has already authenticated, send them to their profile home.
+			redirect('user_profile/home', 'location');
 		}
 		else
 		{
@@ -73,14 +76,14 @@ class Account extends CI_Controller
 			//Call the login function to attempt a login.
 			if( $this->authenticate( $email, $password ) )
 			{
-				redirect('home/user_dashboard');
+				redirect('user_profile/home', 'location');
 			}
 			else
 			{
 				//Just for testing.
 				echo 'failed to login';
 
-				redirect('account/signup/failed');
+				redirect('account/signup/failed', 'location');
 			}
 
 		}
@@ -93,25 +96,36 @@ class Account extends CI_Controller
 	*/
 	function signup_form()
 	{
-		//Collect post data.
-		$username = $this->input->post('username');
-		$password = $this->input->post('password');
-		$first_name = $this->input->post('first_name');
-		$last_name = $this->input->post('last_name');
-		$email = $this->input->post('email');
-		
-		echo 'This is the controllers first_name';
-		echo '</br>';
-		echo "$first_name";
 
-		//Call the signup function to attempt to login
-		if( $this->User->insert_user($username, $password, $email, $first_name, $last_name) )
+		//Check the session cookie for if the user has already authenticated.
+		if( $this->checkCookieLogin() )
 		{
-			echo 'success!';
-		}	
+			//The user has already authenticated, send them to their profile home.
+			redirect('user_profile/home', 'location');
+		}
 		else
 		{
-			echo 'failure';
+			//Collect post data.
+			$username = $this->input->post('username');
+			$password = $this->input->post('password');
+			$first_name = $this->input->post('first_name');
+			$last_name = $this->input->post('last_name');
+			$email = $this->input->post('email');
+			
+
+			//Call the signup function to attempt to login. If the insert_user function returns false,
+			//then attempt to login. If both of those fail, then send them to the signup page with a
+			//failure message 
+			if( $this->User->insert_user($username, $password, $email,
+				 	$first_name, $last_name) || $this->authenticate($email, $password) )
+			{
+				redirect('user_profile/home', 'location');
+			}	
+			else
+			{	
+				redirect('account/signup/failure', 'location');
+			}
+			
 		}
 	}
 
