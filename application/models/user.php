@@ -12,7 +12,10 @@ class User extends CI_Model
 	function __construct()
 	{
 		parent::__construct();
+
+		//Define the name of the table to access for this model.
 		define( 'USERTABLE', 'users');
+
 		$this->load->library('encrypt');
 	}
 
@@ -70,7 +73,6 @@ class User extends CI_Model
 		//Authenticate the user credentials, and get ID if it succeeds
 		$user_id = authenticateUser( $email, $password );
 
-
 	}
 
 	/*
@@ -87,6 +89,7 @@ class User extends CI_Model
 	{
 
 		//QUERY
+
 		//Select the id from the table.
 		$this->db->select( 'id' );
 
@@ -95,7 +98,8 @@ class User extends CI_Model
 		$this->db->where_in( 'password', $password );
 		
 		//Now get the data from the USERTABLE
-		$query = $this->db->get( 'USERTABLE' );
+		$query = $this->db->get( USERTABLE);
+
 		//END QUERY
 
 		if( $query && $query->num_rows() > 0 )
@@ -113,21 +117,29 @@ class User extends CI_Model
 		Checks to make sure that a account with a given email doesn't already exist.
 		
 		@param $email string email that is checked against the database to see if there is a user already.
+		
+		@return boolean true if there is a user already in the database with $email as its email, or
+			false if there is no existing user with $email as its email. 
 	*/
 	function user_exists( $email )
 	{
+		//QUERY
+
+		//select only the email and match it against the $email argument.
 		$this->db->select('email');
 		$this->db->where('email', $email);
 
-		$query = $this->db->get('USERTABLE');
+		$query = $this->db->get(USERTABLE);
+		//END QUERY
 
-		if( $query )
+		//Get the number of rows from the query, and check if there is at least one.
+		if( $query->num_rows() > 0 )
 		{
-			return True;
+			return True;	//Yes there is a user already in the database with this email.
 		}
 		else
 		{
-			return False;
+			return False;	//No there isn't a user already in the database with this email.
 		}
 		
 	}		
