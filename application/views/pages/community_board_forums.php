@@ -33,8 +33,8 @@
 			  <div class="panel panel-default forums-panel">
 			    <div class="panel-heading" role="tab" id="headingOne">
 			      <h4 class="panel-title">
-			        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-			          Collapsible Group Item #1
+			        <a id="collapse-one-link" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+			          Collapsible Group Item #1 <span class="badge">3</span>
 			        </a>
 			      </h4>
 			    </div>
@@ -123,3 +123,6 @@
 
 
 </div>
+
+<!-- community_board_forums.js -->
+<script type="text/javascript" src="/js/community_board_forums.js"></script>
