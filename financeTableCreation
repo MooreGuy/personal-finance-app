@@ -8,11 +8,12 @@ create table if not exists users (
 	account_creation_date timestamp
 );
 	
-create table if not exists sessions (
-	session_id varchar(40) not null primary key default '0',
-	ip_address varchar(45) not null default '0',
-	user_agent varchar(120) not null,
-	last_activity int(10) unsigned not null default '0',
-	user_data text not null,
-	key last_activity_idx (last activity)
+CREATE TABLE IF NOT EXISTS  `sessions` (
+	session_id varchar(40) DEFAULT '0' NOT NULL,
+	ip_address varchar(45) DEFAULT '0' NOT NULL,
+	user_agent varchar(120) NOT NULL,
+	last_activity int(10) unsigned DEFAULT 0 NOT NULL,
+	user_data text NOT NULL,
+	PRIMARY KEY (session_id),
+	KEY `last_activity_idx` (`last_activity`)
 );
