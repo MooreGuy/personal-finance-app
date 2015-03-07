@@ -22,11 +22,9 @@ $(document).ready(function(){
 		var elementId = $(this).attr('id');
 
 		if($("."+elementId).hasClass('open')){
-			$("."+elementId).addClass('closed-panel');
-			$("."+elementId).removeClass('open');
+			$("."+elementId).addClass('closed-panel').removeClass('open');
 		}else if($("."+elementId).hasClass('closed-panel')){
-			$("."+elementId).removeClass('closed-panel');
-			$("."+elementId).addClass('open');
+			$("."+elementId).removeClass('closed-panel').addClass('open');
 		}
 	});
 });

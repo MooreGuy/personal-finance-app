@@ -42,5 +42,5 @@ $(document).ready(function(){
 	}
 	else{
 		$("html").removeClass('html-no-bar');
-	}*//
+	}*/
 });
