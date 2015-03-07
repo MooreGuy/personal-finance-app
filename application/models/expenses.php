@@ -14,6 +14,13 @@ class Expenses extends CI_Model
 	var $state = '';
 	var $city = '';
 
+	/*
+		Returns all of the expenses a particular user has that are current.
+
+		@param integer $id the particular user that is related to the expenses.
+	
+		@return
+	*/
 	function get_current_by_id( $id )
 	{
 		$sql = 'select date_added, cost, recurring, type, comment, country, state, city
