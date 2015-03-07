@@ -36,17 +36,11 @@ $(document).ready(function(){
 		$('.navbar-login-wrapper').append('<form class="navbar-form log-in-form"> <div class="form-group"> <input type="text" placeholder="Email" class="form-control log-in-input"> <div class="checkbox"> <input class="remember-me-checkbox" type="checkbox"> Remember Me </div></div> <div class="form-group"> <input type="password" placeholder="Password" class="form-control log-in-input"> <a href="#">Forgot Password?</a></div> <button type="button" class="btn btn-success log-in-button">Log in</button></form>');
 	});
 
-	/*
-		When a navbar menu item gets clicked remove the class "active" from the li element and add it to the clicked element
-	
-	$('.navbar-nav > li > a').on("click", function(){
-
-		if($('.navbar-nav > li').hasClass("active")){
-			$('.navbar-nav > li.active').removeClass('active');
-
-			
-
-		}
-		$(this).parent().addClass('active');
-	});*/
+	//When the page has enough content to scroll ad the scroll bar else get rid of it
+	/*if($("html").height() < $( window ).height()){
+		$("html").addClass('html-no-bar');
+	}
+	else{
+		$("html").removeClass('html-no-bar');
+	}*//
 });
