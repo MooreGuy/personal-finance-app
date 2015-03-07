@@ -74,7 +74,7 @@
 								    <div class="col-md-6 login-form-col">
 								        <div class="navbar-login-wrapper">
 								          	<!-- Login form. This will toggle into the hamburger menu-->
-								          	<form class="navbar-form log-in-form" action="account/signup_form" method="post">
+								          	<form class="navbar-form log-in-form" action="<?php echo base_url();?>account/login_form" method="post" id="log-in-form" >
 								            	<div class="form-group">
 								              		<input type="text" name="email" placeholder="Email" class="form-control log-in-input">
 
@@ -84,9 +84,9 @@
 								            	</div>
 								            	<div class="form-group">
 								              		<input type="password" name="password"  placeholder="Password" class="form-control log-in-input">
-								              		<a href="<?php echo base_url();?>account/login_form">Forgot Password?</a>
+								              		<a href="<?php echo base_url();?>account/forgot_password_form">Forgot Password?</a>
 								            	</div>
-								            	<button type="button" class="btn btn-success log-in-button">Log in</button>
+								            	<button type="submit" class="btn btn-success log-in-button">Log in</button>
 								          	</form>
 								        </div>
 								    </div>
