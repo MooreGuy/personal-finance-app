@@ -224,7 +224,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-require_once('../CICryptoKey.php');
+//require_once('../CICryptoKey.php');
 $config['encryption_key'] = 'CICryptoKey.php';
 
 /*
