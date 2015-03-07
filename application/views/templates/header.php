@@ -76,15 +76,15 @@
 								          	<!-- Login form. This will toggle into the hamburger menu-->
 								          	<form class="navbar-form log-in-form" action="account/signup_form" method="post">
 								            	<div class="form-group">
-								              		<input type="text" placeholder="Email" class="form-control log-in-input">
+								              		<input type="text" name="email" placeholder="Email" class="form-control log-in-input">
 
 								              		<div class="checkbox">
 									              		<input class="remember-me-checkbox" type="checkbox"> Remember Me
 								              		</div>
 								            	</div>
 								            	<div class="form-group">
-								              		<input type="password" placeholder="Password" class="form-control log-in-input">
-								              		<a href="#">Forgot Password?</a>
+								              		<input type="password" name="password"  placeholder="Password" class="form-control log-in-input">
+								              		<a href="<?php echo base_url();?>account/login_form">Forgot Password?</a>
 								            	</div>
 								            	<button type="button" class="btn btn-success log-in-button">Log in</button>
 								          	</form>
