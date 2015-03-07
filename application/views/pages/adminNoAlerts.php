@@ -23,7 +23,7 @@
 			<!-- Warning Panel to display there was no data. -->
 			<div class="alert alert-warning" role="alert">
 				<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-					There is no alerts at this time.
+					There are no alerts at this time.
 			</div>
 
 
