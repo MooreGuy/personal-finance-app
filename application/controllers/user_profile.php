@@ -2,8 +2,10 @@
 
 class User_profile extends CI_Controller {
 
+	/*
+		Load the homepage for the user.
+	*/
 	public function home($page = 'user_profile'){
-
 	    
 	    $data['title'] = ucfirst($page); // Capitalize the first letter
 
