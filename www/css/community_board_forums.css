@@ -1,0 +1,12 @@
+.forums-panel{
+	overflow: hidden;
+	min-height: 150px;
+}
+
+.open{
+	height: 100%
+}
+
+.closed-panel{
+	height: 100px;
+}

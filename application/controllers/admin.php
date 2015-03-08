@@ -10,18 +10,29 @@ class Admin extends CI_Controller
 	{	
 		//Set the title for the header.
 		$data['title'] = 'Admin Dashboard Overview';	
+		//Load the header
+		$this->load->view( 'templates/header', $data );
+
 
 		//Load the models required to display the data. So just alerts.
 		$this->load->model( 'alertsmodel' );
 
-		//Retrieve data from the database.
-		$data['alerts'] = $this->alertsmodel->getLastAlerts( 2 );	
+		/*
+			Retrieve data from database, if there is something to
+			display, then load the admin page, otherwise display
+			a warning.
+		*/
+		$data['alerts'] = $this->alertsmodel->getLastAlerts( 20 );	
+		if( $data['alerts'] != NULL )
+		{
+			$this->load->view( 'pages/admin', $data );
+		}
+		else
+		{
+			$this->load->view( 'pages/adminNoAlerts', $data );
+		}
 		
-		//load the pages
-		$this->load->view( 'templates/header', $data );
-
-		$this->load->view( 'pages/admin', $data );
-
+		//Finish the page with the footer.	
 		$this->load->view( 'templates/footer', $data );
 	}
 }

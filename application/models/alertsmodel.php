@@ -2,6 +2,8 @@
 
 class AlertsModel extends CI_Model
 {
+
+	
 	var $title = '';
 	var $content = '';
 	var $date = '';
@@ -18,8 +20,16 @@ class AlertsModel extends CI_Model
 	*/
 	function getLastAlerts( $number )
 	{
+		//Query and if it has no rows then return nothing.
 		$query = $this->db->get('alerts', $number);
-		return $query->result();
+		if( $query && $query->num_rows() > 0 )
+		{
+			return $query->result();
+		}
+		else
+		{
+			return;
+		}
 	}
 
 	/*

@@ -20,14 +20,21 @@
 		  		<div class="panel-heading">
 
 		  			<!-- Title and link to the Announcements page -->
-		    		<h3 class="panel-title"><a href="#announcements">Community Announcements</a></h3>
+		    		<h3 class="panel-title"><a href="<?php  echo base_url(); ?>index.php/announcements/home">Announcements</a></h3>
 		  		</div>
 
 		  		<div class="panel-body">
 		    		Right now we are working on creating the site. More specifically I am working on the community related pages!
 
 		    		<br>
+<<<<<<< HEAD
 		    		<a class="btn btn-default commBtn" href="<?php  echo base_url(); ?>index.php/announcements/home" role="button">Announcements</a>
+=======
+		    	
+		    		<a class="btn btn-default commBtn" href="<?php  echo base_url(); ?>index.php/announcements/home" role="button">Announcements</a>
+		    		
+		    		
+>>>>>>> aadd6ce27eed9a7f3005a933495e2b168344c138
 		  		</div>
 			</div>
 
@@ -36,14 +43,18 @@
 	  			<div class="panel-heading">
 
 	  				<!-- Title and link to the User Guides page -->
-	    			<h3 class="panel-title"><a href="#community_board_user_guides">Community User Guides</a></h3>
+	    			<h3 class="panel-title"><a href="<?php  echo base_url(); ?>index.php/community_board_user_guides/guides">Community User Guides</a></h3>
 	  			</div>
 
 	  			<div class="panel-body">
 	    			Our User Guides are full of helpful tips by other members of our community. Come check them out and learn more!
 
 	    			<br>
+<<<<<<< HEAD
 	    				<a class="btn btn-default commBtn" href="<?php  echo base_url(); ?>index.php/community_board_user_guides/guides" role="button">User Guides</a>
+=======
+	    			<a class="btn btn-default commBtn" href="<?php  echo base_url(); ?>index.php/community_board_user_guides/guides" role="button">User Guides</a>
+>>>>>>> aadd6ce27eed9a7f3005a933495e2b168344c138
 	  			</div>
 	  		</div>
 
@@ -52,14 +63,18 @@
 	  			<div class="panel-heading">
 
 	  				<!-- Title and link to the Q & A page -->
-	    			<h3 class="panel-title"><a href="#community_board_forum">Community Q &amp; A Forums</a></h3>
+	    			<h3 class="panel-title"><a href="<?php  echo base_url(); ?>index.php/community_board_forums/forums">Community Q &amp; A Forums</a></h3>
 	  			</div>
 
 		  		<div class="panel-body">
 		    		The Community Q &amp; A Forums are a great place to ask questions and get answers from people in the community.
 
 		    		<br>
+<<<<<<< HEAD
 		   				<a class="btn btn-default commBtn" href="<?php  echo base_url(); ?>index.php/community_board_forums/forums" role="button">Q &amp; A Forums</a>
+=======
+		    		<a class="btn btn-default commBtn" href="<?php  echo base_url(); ?>index.php/community_board_forums/forums" role="button">Q &amp; A Forums</a>
+>>>>>>> aadd6ce27eed9a7f3005a933495e2b168344c138
 		  		</div>
 		  	</div>
 		</div>

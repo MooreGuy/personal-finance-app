@@ -1,9 +1,17 @@
+html {
+  overflow-y: scroll;
+}
+
 .log-in-input{
 	display: block !important;
 }
 
 .navbar{
 	margin-bottom: 0px;
+}
+
+.navbar-static-top{
+	z-index: 3;
 }
 
 .remember-me-checkbox{
@@ -54,4 +62,8 @@
 
 .login-form-col{
 	padding-left: 25px;
+}
+
+.html-no-bar{
+	overflow-y: hidden;
 }
