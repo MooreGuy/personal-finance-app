@@ -1,9 +1,8 @@
 <div class="container">
     <div class="row terms-of-use-row" >
+
         <h1  property="schema:name">Terms of Use</h1>  </div>
-  
-  </div>
-<div class="panel-separator"></div><div class="panel-pane pane-node-body"  >
+  		<div class="panel-separator"></div><div class="panel-pane pane-node-body"  >
   
       
   
@@ -355,7 +354,9 @@ BGR Bills may temporarily suspend your access to Bill Payment Service. Suspiciou
 <li><strong>Third Party Beneficiary</strong>: You acknowledge and agree that Apple and Apple’s subsidiaries are third party beneficiaries of this Agreement, and that, upon your acceptance of the terms and conditions of the Agreement, Apple will have the right (and will be deemed to have accepted the right) to enforce the Agreement against you as a third party beneficiary thereof.</li>
 </ol>
 
-    </div><!-- /.row -->
+  </div>
+
+
 
 </div><!-- /.container -->
 
