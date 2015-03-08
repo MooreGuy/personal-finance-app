@@ -36,12 +36,12 @@
 			    	</div>
 
 			    	<!-- Add the id of the post ass a class -->
-			    	<div class="panel-collapse open 1" role="tabpanel">
+			    	<div class="panel-collapse closed-panel 1" role="tabpanel">
 			      		<div class="panel-body">
 			        		 Soon buses will be powered by electricity.
 			      		</div>
 			    	</div>
-			  	</div>
+			  	</div><!-- END Post Panel-->
 
 			  	<!-- Post Panel -->
 				<div class="panel panel-default forums-panel">
@@ -56,13 +56,13 @@
 			    	</div>
 
 			    	<!-- Add the id of the post ass a class -->
-			    	<div class="panel-collapse open 3" role="tabpanel">
+			    	<div class="panel-collapse closed-panel 3" role="tabpanel">
 			      		<div class="panel-body">
 			        		Gas is expensive. Ride your bike to work instead
 			      		</div>
 			    	</div>
 			  	</div>
-			</div>
+			</div><!-- END Post Panel-->
 
 			<div class="panel-group tab-pane" aria-multiselectable="true" id="food" role="tabpanel">
 
@@ -79,7 +79,7 @@
 			    	</div>
 
 			    	<!-- Add the id of the post ass a class -->
-			    	<div class="panel-collapse open 2" role="tabpanel">
+			    	<div class="panel-collapse closed-panel 2" role="tabpanel">
 			      		<div class="panel-body">
 			        		Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
 			      			Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
@@ -87,60 +87,11 @@
 			      			Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
 			      		</div>
 			    	</div>
-			  	</div>
+			  	</div><!-- END Post Panel-->
 			</div>
-			<!--<div class="list-group">	
-
-				<div class="list-group-item">
-					<h4 class="list-group-item">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus.
-					<span class="badge">3</span>
-					</h4>
-					<p class="list-group-item-text">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue.
-					</p>
-				</div>
-				<div class="list-group-item">
-					<h4 class="list-group-item">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus.
-					<span class="badge">10</span>
-					</h4>
-					<p class="list-group-item-text">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue.
-					</p>
-				</div>
-				<div class="list-group-item">
-					<h4 class="list-group-item">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus.
-					<span class="badge">1</span>
-					</h4>
-					<p class="list-group-item-text">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue.
-					</p>
-				</div>
-				<div class="list-group-item">
-					<h4 class="list-group-item">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus.
-					<span class="badge">0</span>
-					</h4>
-					<p class="list-group-item-text">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue.
-					</p>
-				</div>
-
-			</div>-->
-
 		</div>
 	</div> <!-- END row -->
-
-	<div class="row post-row">
-
-		
-
-	</div> <!-- END row -->
-
-
-</div>
+</div><!-- END container-->
 
 <!-- community_board_forums.js -->
 <script type="text/javascript" src="/js/community_board_forums.js"></script>
