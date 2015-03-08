@@ -61,7 +61,7 @@ class Account extends CI_Controller
 	function login_form()
 	{
 		//Check the session cookie for a username.
-		if( $this->checkCookieLogin() )
+		if( $this->check_cookie_login() )
 		{
 			//The user has already authenticated, send them to their profile home.
 			redirect('user_profile/home', 'location');
@@ -98,7 +98,7 @@ class Account extends CI_Controller
 	{
 
 		//Check the session cookie for if the user has already authenticated.
-		if( $this->checkCookieLogin() )
+		if( $this->check_cookie_login() )
 		{
 			//The user has already authenticated, send them to their profile home.
 			redirect('user_profile/home', 'location');
@@ -134,7 +134,7 @@ class Account extends CI_Controller
 
 		@return true if the cookie has a login sessiona and is a valid cookie, otherwise false.
 	*/
-	public function checkCookieLogin()
+	public function check_cookie_login()
 	{
 		//Check to see if the email in the cookie is set, if it is,
 		// then the user logged in by setting the email.
@@ -163,26 +163,40 @@ class Account extends CI_Controller
 
 		//If there was something returned then set the cookie to hold the email password
 		//and user id.If it doesn't then return false.
+		echo var_dump( $user_id );
 		if( $user_id != NULL )
 		{
-			$cookieInfo = array
-			(
-					'email' => $email,
-					'password' => $password,
-					'user_id' => $user_id
-			);
 	
 			//Set the session cookie to the cookieInfo array.
-			$CI->session->userdata($cookieInfo);
+			if( $this->add_cookie_login( $email, $user_id ) )
+			{
+				//Cookie data added. Return true to show that it successfully completed.
+				return True;
+			}
 
-			//All authenticated, return true to show that it successfully completed.
-			return True;
 		}
-		else
-		{
-			//Authentication failed, return false.
-			return False;
-		}
+
+		//Authentication failed, return false.
+		return False;
+	}
+
+	/*
+		Add the $email argument to the cookie so the user can be authenticated by their cookie.	
+		
+		@param string $email the email of the user.
+		
+		@return boolean false if adding the data to the cookie fails, and true if it succeeds.
+	*/
+	function add_cookie_login( $email, $id )
+	{
+		//Set the email and id keys to $email and $id arguments.
+		$login_data = array
+		(
+			'email' => $email
+		);
+
+		//Add $login_data contents to the session cookie to enable cookie login with cookies.
+		$this->session->set_userdata( $login_data );
 	}
 }
 

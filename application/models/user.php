@@ -2,6 +2,8 @@
 
 class User extends CI_Model
 {	
+	const USERSTABLE = 'users';
+
 	var $account_creation_date = '';
 	var $username = '';
 	var $first_name = '';
@@ -14,7 +16,6 @@ class User extends CI_Model
 		parent::__construct();
 
 		//Define the name of the table to access for this model.
-		define( 'USERTABLE', 'users');
 
 		$this->load->library('encrypt');
 	}
@@ -34,19 +35,14 @@ class User extends CI_Model
 		if( $this->user_exists($email) == False )
 		{	
 			$this->load->helper('date');
-
 			$this->username = $username;
-			$this->password = $this->encrypt->encode($password);
+			$this->password = $this->encrypt->encode($password);	//encrypt the password
 			$this->email = $email;
 			$this->first_name = $first_name;
 			$this->last_name = $last_name;
 			$this->account_creation_date = now();
 
-			echo '</br>';
-			echo '<pre>';
-			echo var_dump($this);
-			echo '</pre>';
-			$this->db->insert( USERTABLE, $this);	
+			$this->db->insert( self::USERSTABLE, $this);	
 		}
 		else
 		{
@@ -91,19 +87,17 @@ class User extends CI_Model
 
 		//QUERY
 
-		//Select the id of the user.
-		$this->db->select( 'id' );
-
-		//Where the email and password match the parameters passed to this function.
-		$this->db->where_in( 'email', $email );
-		$this->db->where_in( 'password', $password );
+		//Where the email and password match this function's arguments from the table defined
+		//by the constant USERSTABLE.
+		$sql = 'select id from ' . self::USERSTABLE . ' where email = ? and password = ?';
+		echo $sql;
 		
-		//Now get the data from the USERTABLE
-		$query = $this->db->get( USERTABLE);
+		//Send the querry to the database to the table defined as USERSTABLE
+		$query = $this->db->query( $sql, array( $email, $this->encrypt->decode($password) ) );
 
 		//END QUERY
 
-		if( $query && $query->num_rows() > 0 )
+		if( $query->num_rows() > 0 )
 		{
 			return $query->result();
 		}
@@ -121,7 +115,7 @@ class User extends CI_Model
 		there is a user already.
 		
 		@return boolean true if there is a user already in the database
-		with $email as its email, or false if there is no existing user with $email as its email.
+		with $email as its email, or false if there is no existing user with $email as its email
  	*/
 	function user_exists( $email )
 	{
@@ -131,7 +125,7 @@ class User extends CI_Model
 		$this->db->select('email');
 		$this->db->where('email', $email);
 
-		$query = $this->db->get(USERTABLE);
+		$query = $this->db->get( self::USERSTABLE );
 		//END QUERY
 
 		//Get the number of rows from the query, and check if there is at least one.
@@ -145,6 +139,8 @@ class User extends CI_Model
 		}
 		
 	}		
+
+
 		
 
 }
