@@ -63,7 +63,8 @@ class User extends CI_Model
 		@param string $email the user's email
 		@param string $password the user's password
 		
-		@return either true if the user successfully authenticated, or false if the authentication failed.
+		@return either true if the user successfully authenticated, or false if the
+			authentication failed.
 	*/	
 	function login( $email, $password )
 	{		
@@ -90,7 +91,7 @@ class User extends CI_Model
 
 		//QUERY
 
-		//Select the id from the table.
+		//Select the id of the user.
 		$this->db->select( 'id' );
 
 		//Where the email and password match the parameters passed to this function.
@@ -116,11 +117,12 @@ class User extends CI_Model
 	/*
 		Checks to make sure that a account with a given email doesn't already exist.
 		
-		@param $email string email that is checked against the database to see if there is a user already.
+		@param $email string email that is checked against the database to see if
+		there is a user already.
 		
-		@return boolean true if there is a user already in the database with $email as its email, or
-			false if there is no existing user with $email as its email. 
-	*/
+		@return boolean true if there is a user already in the database
+		with $email as its email, or false if there is no existing user with $email as its email.
+ 	*/
 	function user_exists( $email )
 	{
 		//QUERY

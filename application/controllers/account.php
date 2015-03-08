@@ -113,9 +113,9 @@ class Account extends CI_Controller
 			$email = $this->input->post('email');
 			
 
-			//Call the signup function to attempt to login. If the insert_user function returns false,
-			//then attempt to login. If both of those fail, then send them to the signup page with a
-			//failure message 
+			//Call the signup function to attempt to login. If the insert_user function
+			//returns false, then attempt to login.
+			// If both of those fail, then send them to the signup page with a failure message 
 			if( $this->User->insert_user($username, $password, $email,
 				 	$first_name, $last_name) || $this->authenticate($email, $password) )
 			{
@@ -132,11 +132,12 @@ class Account extends CI_Controller
 	/*
 		Check the cookie for login.
 
-		@return true if the cookie has a login sessiona and is a valid cookie, or otherwise false.
+		@return true if the cookie has a login sessiona and is a valid cookie, otherwise false.
 	*/
 	public function checkCookieLogin()
 	{
-		//Check to see if the email in the cookie is set, if it is, then the user logged in already.
+		//Check to see if the email in the cookie is set, if it is,
+		// then the user logged in by setting the email.
 		if( $this->session->userdata('email') != NULL )
 		{
 			return True;	
@@ -160,8 +161,8 @@ class Account extends CI_Controller
 		//for an email password matching the one passed.
 		$user_id = $this->User->authenticate_user( $email, $password );
 
-		//If there was something returned then set the cookie to hold the email password and user id.
-		//If it doesn't then return false.
+		//If there was something returned then set the cookie to hold the email password
+		//and user id.If it doesn't then return false.
 		if( $user_id != NULL )
 		{
 			$cookieInfo = array
