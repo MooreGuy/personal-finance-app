@@ -1,7 +1,6 @@
 [submodule "saltyphp"]
 	path = saltyphp
 	url = https://github.com/MooreGuy/saltyphp
-	branch = codeigniter
 [submodule "application/third_party/php-markdown"]
 	path = application/third_party/php-markdown
 	url = https://github.com/michelf/php-markdown
