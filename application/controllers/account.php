@@ -110,9 +110,12 @@ class Account extends CI_Controller
 			$email = $this->input->post('email');
 			
 
-			//Call the signup function to attempt to login. If the insert_user function
-			//returns false, then attempt to login.
-			// If both of those fail, then send them to the signup page with a failure message 
+			/*
+				First try to insert the user, if success, get their id and redirect.
+				If that fails because there is already a user with $email as their $email,
+				then try to authenticate with $email and $password, if that fails, then redirect
+				them to a failed login page.
+			*/
 			if( $this->User->insert_user($username, $password, $email,
 				 	$first_name, $last_name) )
 			{
@@ -121,7 +124,7 @@ class Account extends CI_Controller
 			}	
 			else if( $this->authenticate($email, $password) ) 
 			{
-				redirect('user_profile//home', 'location');
+				redirect('user_profile/home', 'location');
 			}
 			else
 			{	
@@ -165,7 +168,7 @@ class Account extends CI_Controller
 
 		//If there was something returned then set the cookie to hold the email password
 		//and user id. If it doesn't then return false.
-		if( $user_id != Null )
+		if( is_numeric($user_id) )
 		{
 	
 			//Set the session cookie to the cookieInfo array.
@@ -188,6 +191,7 @@ class Account extends CI_Controller
 		
 		@return boolean false if adding the data to the cookie fails, and true if it succeeds.
 	*/
+
 	function add_cookie_login( $email, $id )
 	{
 		//Set the email and id keys to $email and $id arguments.
@@ -198,6 +202,10 @@ class Account extends CI_Controller
 
 		//Add $login_data contents to the session cookie to enable cookie login with cookies.
 		$this->session->set_userdata( $login_data );
+
+		//TODO: Add check to make sure the user's browser has cookies enabled. Until then
+		//always return True.
+		return True;
 	}
 }
 

@@ -53,24 +53,6 @@ class User extends CI_Model
 		//Return true if user creation was successful.
 		return True;
 	}
-	
-	/*
-		Login the user in
-		@param string $email the user's email
-		@param string $password the user's password
-		
-		@return either true if the user successfully authenticated, or false if the
-			authentication failed.
-	*/	
-	function login( $email, $password )
-	{		
-		//Encrypt the password.
-		$password = $this->encrypt->encode( $password );
-
-		//Authenticate the user credentials, and get ID if it succeeds
-		$user_id = authenticateUser( $email, $password );
-
-	}
 
 	/*
 		Recieves an email string and a password string and checks
@@ -89,22 +71,18 @@ class User extends CI_Model
 
 		//Where the email and password match this function's arguments from the table defined
 		//by the constant USERSTABLE.
-		$sql = 'select id from ' . self::USERSTABLE . ' where email = ? and password = ?';
-		echo $sql;
+		$sql = "SELECT id FROM " . self::USERSTABLE . " WHERE email = ? AND password = ?;";
 		
 		//Send the querry to the database to the table defined as USERSTABLE
-		$query = $this->db->query( $sql, array($email, $this->encrypt->encode( $password )) );
+		$query = $this->db->query( $sql, array($email,$password) );  //encrypt password
 
 		//END QUERY
 
-		if( $query->num_rows() > 0 )
-		{
-			return $query->result();
-		}
-		else
-		{
-			return Null;
-		}
+		//Only result the first row.
+		$first_row = $query->first_row();	
+
+		//Return the id of the first row.
+		return $first_row->id;
 
 	}
 
@@ -141,7 +119,11 @@ class User extends CI_Model
 	}		
 	
 	/*
-		
+		Query the database for a user with the given email and return their user id.
+	
+		@param string $email is the email of the user.
+
+		@return integer the id of the user.	
 	*/
 	function get_id( $email )
 	{
@@ -150,7 +132,11 @@ class User extends CI_Model
 
 		$query = $this->db->query( $sql, array('email' => $email) );
 		
-		return $query->result();
+		//Only get the first row.
+		$first_row = $query->first_row();
+
+		//Return the id of the first row.
+		return $first_row->id;
 	}
 
 
