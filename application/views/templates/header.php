@@ -32,6 +32,57 @@
 	</head>
 
 	<body>
+
+	<!-- Forgot Password Modal -->
+		<div class="modal fade" id="forgotPassModal" tabindex="-1" role="dialog" aria-labelledby="forgotPassModalLabel" aria-hidden="true">
+		    <div class="modal-dialog">
+		      	<div class="modal-content">
+		        	<div class="modal-header">
+		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+		        		<div class="container">
+		        			<div class="row">
+		        				<div class="col-md-6">
+		        					<h2 class="modal-title" id="forgotPassModalLabel">Forgot Password</h2>
+		        				</div>
+		        			</div>
+		        		</div>
+		        		
+		      		</div>
+		      		<div class="modal-body">
+		        		<form class="edit-modal-form">
+						  	<div class="form-group">
+						    	<div class="input-group forgot-pass-input-group">
+						    		<div class="forgotPass step1">
+						    			<div class="container">
+						    				<div class="row">
+							    				<div class="col-md-6">
+							    					<p>We will send a password reset email with further instructions on resetting your password.</p>
+							    				</div>
+							    			</div>
+
+							    			<div class="row">
+						    					<div class="col-md-3">
+							    					<div class="form-group">
+												  		<label for="forgotPassEmail">Email:</label>
+												  		<input type="email" id="forgotPassEmail" class="form-control">
+												  	</div>
+												</div>
+											</div>
+										</div>
+								  	</div>
+								</div>
+						  	</div>
+						</form>
+		      		</div>
+		      		<div class="modal-footer">
+	        			<button type="button" class="btn btn-default js-forgotPassClose" data-dismiss="modal">Close</button>
+	        			<button type="button" class="btn btn-primary js-forgotPassNext" data-step="1">Next</button>
+	      			</div>
+		    	</div>
+		  	</div>
+		</div>
+
 		<!-- Top Navbar -->
 		<nav class="navbar navbar-default navbar-static-top">
 	      	<div class="container">
@@ -46,7 +97,7 @@
 				            <span class="icon-bar"></span>
 				            <span class="icon-bar"></span>
 				          </button>
-				          <a class="navbar-brand navbar-site-brand" href="#">Project Logo</a>
+				          <a class="navbar-brand navbar-site-brand" href="<?php  echo base_url(); ?>/home/welcome">Project Logo</a>
 				        </div>
 				    </div>
 
@@ -60,13 +111,14 @@
 				        			<div class="col-md-5 navbar-col">
 							        	<div class="navbar-tabs-wrapper">
 								        	<ul class="nav navbar-nav">
-								            	<li name="home"><a href="<?php  echo base_url(); ?>index.php/home/welcome">Home</a></li>
-								            	<li name="community_board_home"><a href="<?php  echo base_url(); ?>index.php/community_board_home/home">Community</a></li>
-								            	<li name="announcements"><a href="<?php  echo base_url(); ?>index.php/announcements/home">Announcements</a></li>
-								            	<li name="user_profile"><a href="<?php  echo base_url(); ?>index.php/user_profile/home">My Profile</a></li>
+								            	<li name="community_board_home"><a href="<?php  echo base_url(); ?>/community_board_home/home">Community</a></li>
+								            	<li name="announcements"><a href="<?php  echo base_url(); ?>/announcements/home">Announcements</a></li>
+
+								            	<!-- Only show the MyProfile tab when the user logs in -->
+								            	<li name="user_profile"><a href="<?php  echo base_url(); ?>/user_profile/home">My Profile</a></li>
 
 								            	<!-- When an admin user successfully signs in show the admin tab -->
-								            	<li name="admin"><a href="<?php  echo base_url(); ?>index.php/admin/overview">Admin</a></li>
+								            	<li name="admin"><a href="<?php  echo base_url(); ?>/admin/overview">Admin</a></li>
 								          	</ul>
 								        </div>
 								    </div>
@@ -84,7 +136,7 @@
 								            	</div>
 								            	<div class="form-group">
 								              		<input type="password" placeholder="Password" class="form-control log-in-input">
-								              		<a href="#">Forgot Password?</a>
+								              		<a href="#" data-toggle="modal" data-target="#forgotPassModal">Forgot Password?</a>
 								            	</div>
 								            	<button type="button" class="btn btn-success log-in-button">Log in</button>
 								          	</form>
