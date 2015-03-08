@@ -97,7 +97,7 @@
 				            <span class="icon-bar"></span>
 				            <span class="icon-bar"></span>
 				          </button>
-				          <a class="navbar-brand navbar-site-brand" href="<?php  echo base_url(); ?>/home/welcome">Project Logo</a>
+				          <a class="navbar-brand navbar-site-brand" href="<?php  echo base_url(); ?>home/welcome">Project Logo</a>
 				        </div>
 				    </div>
 
@@ -111,14 +111,14 @@
 				        			<div class="col-md-5 navbar-col">
 							        	<div class="navbar-tabs-wrapper">
 								        	<ul class="nav navbar-nav">
-								            	<li name="community_board_home"><a href="<?php  echo base_url(); ?>/community_board_home/home">Community</a></li>
-								            	<li name="announcements"><a href="<?php  echo base_url(); ?>/announcements/home">Announcements</a></li>
+								            	<li name="community_board_home"><a href="<?php  echo base_url(); ?>community_board_home/home">Community</a></li>
+								            	<li name="announcements"><a href="<?php  echo base_url(); ?>announcements/home">Announcements</a></li>
 
 								            	<!-- Only show the MyProfile tab when the user logs in -->
-								            	<li name="user_profile"><a href="<?php  echo base_url(); ?>/user_profile/home">My Profile</a></li>
+								            	<li name="user_profile"><a href="<?php  echo base_url(); ?>user_profile/home">My Profile</a></li>
 
 								            	<!-- When an admin user successfully signs in show the admin tab -->
-								            	<li name="admin"><a href="<?php  echo base_url(); ?>/admin/overview">Admin</a></li>
+								            	<li name="admin"><a href="<?php  echo base_url(); ?>admin/overview">Admin</a></li>
 								          	</ul>
 								        </div>
 								    </div>
