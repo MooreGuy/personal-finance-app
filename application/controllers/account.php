@@ -80,9 +80,6 @@ class Account extends CI_Controller
 			}
 			else
 			{
-				//Just for testing.
-				echo 'failed to login';
-
 				redirect('account/signup/failed', 'location');
 			}
 
@@ -117,10 +114,15 @@ class Account extends CI_Controller
 			//returns false, then attempt to login.
 			// If both of those fail, then send them to the signup page with a failure message 
 			if( $this->User->insert_user($username, $password, $email,
-				 	$first_name, $last_name) || $this->authenticate($email, $password) )
+				 	$first_name, $last_name) )
 			{
+				$user_id = $this->User->get_id( $email );
 				redirect('user_profile/home', 'location');
 			}	
+			else if( $this->authenticate($email, $password) ) 
+			{
+				redirect('user_profile//home', 'location');
+			}
 			else
 			{	
 				redirect('account/signup/failure', 'location');
@@ -137,7 +139,7 @@ class Account extends CI_Controller
 	public function check_cookie_login()
 	{
 		//Check to see if the email in the cookie is set, if it is,
-		// then the user logged in by setting the email.
+		//then the user logged in by setting the email.
 		if( $this->session->userdata('email') != NULL )
 		{
 			return True;	
@@ -162,9 +164,8 @@ class Account extends CI_Controller
 		$user_id = $this->User->authenticate_user( $email, $password );
 
 		//If there was something returned then set the cookie to hold the email password
-		//and user id.If it doesn't then return false.
-		echo var_dump( $user_id );
-		if( $user_id != NULL )
+		//and user id. If it doesn't then return false.
+		if( $user_id != Null )
 		{
 	
 			//Set the session cookie to the cookieInfo array.

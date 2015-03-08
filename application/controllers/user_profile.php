@@ -24,7 +24,7 @@ class User_profile extends CI_Controller {
 	function home($page = 'user_profile'){
 		
 		//Require that the user be logged in before serving any pages.
-		//$this->requireLogin();
+		$this->requireLogin();
 	    
 	    $data['title'] = ucfirst($page); // Capitalize the first letter
 

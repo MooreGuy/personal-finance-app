@@ -93,7 +93,7 @@ class User extends CI_Model
 		echo $sql;
 		
 		//Send the querry to the database to the table defined as USERSTABLE
-		$query = $this->db->query( $sql, array( $email, $this->encrypt->decode($password) ) );
+		$query = $this->db->query( $sql, array($email, $this->encrypt->encode( $password )) );
 
 		//END QUERY
 
@@ -103,7 +103,7 @@ class User extends CI_Model
 		}
 		else
 		{
-			return NULL;
+			return Null;
 		}
 
 	}
@@ -139,6 +139,19 @@ class User extends CI_Model
 		}
 		
 	}		
+	
+	/*
+		
+	*/
+	function get_id( $email )
+	{
+		/* get the id of the given user using their email */
+		$sql = 'select id from '. self::USERSTABLE . ' where email = ?';
+
+		$query = $this->db->query( $sql, array('email' => $email) );
+		
+		return $query->result();
+	}
 
 
 		
