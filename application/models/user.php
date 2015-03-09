@@ -55,7 +55,7 @@ class User extends CI_Model
 	}
 
 	/*
-		Recieves an email string and a password string and checks
+		Receives an email string and a password string and checks
 		the database for any matching items. Then, returns the 
 		id if success or NULL if there were no matches.
 	
@@ -68,21 +68,25 @@ class User extends CI_Model
 	{
 
 		//QUERY
-
 		//Where the email and password match this function's arguments from the table defined
 		//by the constant USERSTABLE.
-		$sql = "SELECT id FROM " . self::USERSTABLE . " WHERE email = ? AND password = ?;";
+		$sql = "SELECT id, password FROM " . self::USERSTABLE . " WHERE email = ?;";
 		
 		//Send the querry to the database to the table defined as USERSTABLE
-		$query = $this->db->query( $sql, array($email,$password) );  //encrypt password
-
+		$query = $this->db->query( $sql, array($email) );
 		//END QUERY
 
-		//Only result the first row.
+		//Get the user from the query.
 		$first_row = $query->first_row();	
+		
+		//Decode the password in the database and compare it to the form password $password.
+		if( $this->encrypt->decode($first_row->password) == $password )
+		{
+			//Return the id of the user.
+			return $first_row->id;
+		}
 
-		//Return the id of the first row.
-		return $first_row->id;
+		return Null;
 
 	}
 
