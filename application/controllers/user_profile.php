@@ -11,6 +11,7 @@ class User_profile extends CI_Controller {
 		parent::__construct();
 
 		$this->load->model('expenses');
+		$this->load->model('User');
 		
 		$this->load->helper('url');
 		
@@ -27,6 +28,9 @@ class User_profile extends CI_Controller {
 		$this->requireLogin();
 	    
 	    $data['title'] = ucfirst($page); // Capitalize the first letter
+
+		$user_id = $this->session->userdata('id');
+		$data['user_data'] = $this->User->get_user_profile_data( $user_id );
 
 		$data['expenses'] = $this->expenses->get_all_current();
 

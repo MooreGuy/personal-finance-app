@@ -37,17 +37,24 @@
 			<div class="panel panel-default">
 			  	<div class="panel-body profile-info-section">
 
-			    	<h2>Mister Sprinkles</h2>
+			    	<h2><?php echo $user_data[0]['first_name'] . ' ' . $user_data[0]['last_name'];?></h2>
 			    	<hr>
 
-			    	<label for="user-email">Email:</label> 
-			    	<div id="user-email"> sprinkles@gmail.com</div>
-			    	<br>
-			    	<label for="user-name">User Name:</label> 
-			    	<div id="user-name">Mister Sprinkles</div>
-			    	<br>
-			    	<label for="user-password">Password:</label> 
-			    	<div id="user-password">********</div>
+					<?php	
+					//Fill in the rest of the user data.
+
+					//remove the first and last name from the array since we already displayed those.
+					unset($user_data[0]['first_name'], $user_data[0]['last_name']);
+					
+					foreach( $user_data[0] as $key => $value )
+					{
+						echo '<label for="' . $key . '">' . ucfirst($key) . ':</label>';
+
+						echo '<div id="' . $key . '">' . $value . '</div>';
+
+					}
+					?>
+
 			  	</div>
 			</div>
 

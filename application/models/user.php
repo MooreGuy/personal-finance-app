@@ -143,8 +143,29 @@ class User extends CI_Model
 		return $first_row->id;
 	}
 
-
+	/*
+		Get all user data for a particular user..
+	
+		@parameter integer $id is the id of the user to get the data for.
+	
+		@return array all the user data.
+	*/
+	function get_user_profile_data( $id )
+	{
+		//Select every column.
+		$sql = 'select first_name, last_name, email, username, account_creation_date, password from ' . self::USERSTABLE . ' where id = ? ;';
 		
+		$query = $this->db->query( $sql, array($id) );
+
+		//Decode the password so we can get its length.
+		$data = $query->result_array();
+		$decryptedPassword = $this->encrypt->decode($data[0]['password']);
+		
+		//Replace the password with asterisks.
+		$data[0]['password'] = str_repeat( '*', strlen($decryptedPassword) );
+
+		return $data;
+	}
 
 }
 

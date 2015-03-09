@@ -116,10 +116,12 @@ class Account extends CI_Controller
 				then try to authenticate with $email and $password, if that fails, then redirect
 				them to a failed login page.
 			*/
-			if( $this->User->insert_user($username, $password, $email,
-				 	$first_name, $last_name) )
+			if( $this->User->insert_user($username, $password, $email, $first_name, $last_name) )
 			{
+				//Add email and password to the cookie.
 				$user_id = $this->User->get_id( $email );
+				$this->add_cookie_data( $email, $user_id );
+
 				redirect('user_profile/home', 'location');
 			}	
 			else if( $this->authenticate($email, $password) ) 
@@ -172,7 +174,7 @@ class Account extends CI_Controller
 		{
 	
 			//Set the session cookie to the cookieInfo array.
-			if( $this->add_cookie_login( $email, $user_id ) )
+			if( $this->add_cookie_data( $email, $user_id ) )
 			{
 				//Cookie data added. Return true to show that it successfully completed.
 				return True;
@@ -185,19 +187,21 @@ class Account extends CI_Controller
 	}
 
 	/*
-		Add the $email argument to the cookie so the user can be authenticated by their cookie.	
+		Add the $email and $id arguments to the cookie.
 		
 		@param string $email the email of the user.
+		@param integer $id the id of the user.
 		
 		@return boolean false if adding the data to the cookie fails, and true if it succeeds.
 	*/
 
-	function add_cookie_login( $email, $id )
+	function add_cookie_data( $email, $id )
 	{
 		//Set the email and id keys to $email and $id arguments.
 		$login_data = array
 		(
-			'email' => $email
+			'email' => $email,
+			'id' => $id
 		);
 
 		//Add $login_data contents to the session cookie to enable cookie login with cookies.
