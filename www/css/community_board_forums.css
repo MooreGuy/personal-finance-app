@@ -1,3 +1,4 @@
+
 .forums-panel{
 	overflow: hidden;
 	min-height: 150px;
@@ -10,3 +11,23 @@
 .closed-panel{
 	height: 100px;
 }
+
+.post-vote-wrapper{
+	padding-left: 0px;
+}
+
+.post-wrapper{
+	padding-right: 30px;
+	padding-left: 0px;
+}
+
+.up-vote-wrapper, .down-vote-wrapper, .positive-count-wrapper{
+	text-align: center;
+	width: 100%;
+}
+
+.glyphicon-chevron-up{
+	margin-top: 20px;
+	margin-left: 2px;
+}
+
