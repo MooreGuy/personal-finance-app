@@ -4,6 +4,10 @@
 		<div class="col-md-12">	
 			<h1 class="page-header">Community Forums</h3>	
 		</div>
+
+		<div class="col-md-12">
+			<p>Welcome to the Community Forums. Here you will find user posts that you can comment on. </p>
+		</div>
 	</div> <!-- END row -->
 
 	<div class="row tags">
@@ -31,20 +35,20 @@
 						<div class="col-md-1 post-vote-wrapper">
 
 							<div class="row up-vote-row">
-								<div class="col-md-1 up-vote-wrapper">
-									<span class="glyphicon glyphicon-chevron-up"></span>
+								<div class="col-md-1 up-vote-wrapper" data-post='1'>
+									<span class="glyphicon glyphicon-chevron-up vote-neutral"></span>
 								</div>
 							</div>
 
-							<div class="row vote-count-row">
-								<div class="col-md-1 positive-count-wrapper">
+							<div class="row vote-count-row" data-post='1'>
+								<div class="col-md-1 positive-count-wrapper" data-post='1'>
 									<span class="positive-vote-count">2145</span>
 								</div>
 							</div>
 
 							<div class="row down-vote-row">
-								<div class="col-md-1 down-vote-wrapper">
-									<span class="glyphicon glyphicon-chevron-down"></span>
+								<div class="col-md-1 down-vote-wrapper" data-post='1'>
+									<span class="glyphicon glyphicon-chevron-down vote-neutral"></span>
 								</div>
 							</div>
 						</div>
@@ -75,25 +79,25 @@
 
 
 					<!-- Each Row contains a post-->
-					<div class="row" data-post='1'>
+					<div class="row" data-post='2'>
 						<!-- Wrapper for the up/down vote box-->
 						<div class="col-md-1 post-vote-wrapper">
 
 							<div class="row up-vote-row">
-								<div class="col-md-1 up-vote-wrapper">
-									<span class="glyphicon glyphicon-chevron-up"></span>
+								<div class="col-md-1 up-vote-wrapper" data-post='2'>
+									<span class="glyphicon glyphicon-chevron-up vote-neutral"></span>
 								</div>
 							</div>
 
-							<div class="row vote-count-row">
+							<div class="row vote-count-row" data-post='2'>
 								<div class="col-md-1 positive-count-wrapper">
 									<span class="positive-vote-count">213</span>
 								</div>
 							</div>
 
 							<div class="row down-vote-row">
-								<div class="col-md-1 down-vote-wrapper">
-									<span class="glyphicon glyphicon-chevron-down"></span>
+								<div class="col-md-1 down-vote-wrapper" data-post='2'>
+									<span class="glyphicon glyphicon-chevron-down vote-neutral"></span>
 								</div>
 							</div>
 						</div>
@@ -130,25 +134,26 @@
 				<div class="container">
 
 					<!-- Each Row contains a post-->
-					<div class="row" data-post='1'>
+					<div class="row" data-post='3'>
 						<!-- Wrapper for the up/down vote box-->
 						<div class="col-md-1 post-vote-wrapper">
 
 							<div class="row up-vote-row">
-								<div class="col-md-1 up-vote-wrapper">
-									<span class="glyphicon glyphicon-chevron-up"></span>
+								<div class="col-md-1 up-vote-wrapper" data-post='3'>
+									<!-- For the voting icons: Load from the users -->
+									<span class="glyphicon glyphicon-chevron-up vote-neutral"></span>
 								</div>
 							</div>
 
-							<div class="row vote-count-row">
+							<div class="row vote-count-row" data-post='3'>
 								<div class="col-md-1 positive-count-wrapper">
 									<span class="positive-vote-count">45</span>
 								</div>
 							</div>
 
 							<div class="row down-vote-row">
-								<div class="col-md-1 down-vote-wrapper">
-									<span class="glyphicon glyphicon-chevron-down"></span>
+								<div class="col-md-1 down-vote-wrapper" data-post='3'>
+									<span class="glyphicon glyphicon-chevron-down vote-neutral"></span>
 								</div>
 							</div>
 						</div>

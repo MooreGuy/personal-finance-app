@@ -31,3 +31,14 @@
 	margin-left: 2px;
 }
 
+.vote-neutral{
+	color: #777;
+}
+
+.vote-positive{
+	color: #F44336;
+}
+
+.vote-negative{
+	color: #0D47A1;
+}
