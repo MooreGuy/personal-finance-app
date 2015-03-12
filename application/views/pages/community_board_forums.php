@@ -12,13 +12,14 @@
 
 	<div class="row tags">
 		<div class="col-md-12">	
-			<!-- Added Tags to toggel between post categories -->
-			<h3 class>Tags</h3>	
+			<!-- Categories list -->
+			<h3 class>Categories</h3>	
 			<ul class="nav nav-tabs" role="tablist">
 			  <li role="presentation" class="active"><a href="#transport" role="tab" data-toggle="tab">Transport</a></li>
 			  <li role="presentation"><a href="#food" role="tab" data-toggle="tab">Food</a></li>
 			  <li role="presentation"><a href="#" role="tab" data-toggle="tab">Cell Phone</a></li>
 			  <li role="presentation"><a href="#" role="tab" data-toggle="tab">Entertainment</a></li>
+			  <button class="btn btn-success pull-right add-new-post-btn">Add new post</button>
 			</ul>
 		</div>
 
@@ -33,15 +34,15 @@
 					<div class="row" data-post='1'>
 						<!-- Wrapper for the up/down vote box-->
 						<div class="col-md-1 post-vote-wrapper">
-
 							<div class="row up-vote-row">
+								<!-- The data-post should be the id of the post -->
 								<div class="col-md-1 up-vote-wrapper" data-post='1'>
 									<span class="glyphicon glyphicon-chevron-up vote-neutral"></span>
 								</div>
 							</div>
 
 							<div class="row vote-count-row" data-post='1'>
-								<div class="col-md-1 positive-count-wrapper" data-post='1'>
+								<div class="col-md-1 positive-count-wrapper">
 									<span class="positive-vote-count">2145</span>
 								</div>
 							</div>
@@ -62,8 +63,12 @@
 						      		<h4 class="panel-title">
 						      			<!-- id of the link should be the id of the post in the DB-->
 						        		<a class="header-link-collapse" id="1" aria-expanded="true">
-						          			Bus tricket prices dropped! <span class="badge pull-right">3</span>
+						          			Bus tricket prices dropped!
 						        		</a>
+
+						        		<span class="badge pull-right">3</span>
+
+						        		<a href="#" class="edit-post pull-right">Edit</a>
 						      		</h4>
 						    	</div>
 
@@ -111,8 +116,12 @@
 						      		<h4 class="panel-title">
 						      			<!-- id of the link should be the id of the post in the DB-->
 						        		<a class="header-link-collapse" id="3" aria-expanded="true">
-						          			How riding my bike to work saved me hundreds on gas last year!<span class="badge pull-right">3</span>
+						          			How riding my bike to work saved me hundreds on gas last year!
 						        		</a>
+
+						        		<span class="badge pull-right">3</span>
+
+						        		<a href="#" class="edit-post pull-right">Edit</a>
 						      		</h4>
 						    	</div>
 
@@ -167,8 +176,12 @@
 						      		<h4 class="panel-title">
 						      			<!-- id of the link should be the id of the post in the DB-->
 						        		<a class="header-link-collapse" id="2" aria-expanded="true">
-						          			There should be an In n Out in SLO! <span class="badge pull-right">3</span>
+						          			There should be an In n Out in SLO! 
 						        		</a>
+
+						        		<span class="badge pull-right">3</span>
+
+						        		<a href="#" class="edit-post pull-right">Edit</a>
 						      		</h4>
 						    	</div>
 

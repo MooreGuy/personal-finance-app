@@ -26,6 +26,10 @@
 	width: 100%;
 }
 
+.glyphicon{
+	width: 50%;
+}
+
 .glyphicon-chevron-up{
 	margin-top: 20px;
 	margin-left: 2px;
@@ -33,12 +37,29 @@
 
 .vote-neutral{
 	color: #777;
+	cursor: pointer;
 }
 
 .vote-positive{
 	color: #F44336;
+	cursor: pointer;
+
 }
 
 .vote-negative{
 	color: #0D47A1;
+	cursor: pointer;
+}
+
+.add-new-post-btn{
+	margin-top: 3.5px;
+}
+
+.header-link-collapse{
+	cursor: pointer;
+}
+
+.edit-post{
+	color: #428bca !important;
+	margin-right: 5px;
 }
