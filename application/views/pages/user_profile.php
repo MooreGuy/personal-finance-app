@@ -74,153 +74,94 @@
 
 		<!-- User Profile Data Section -->
 		<div class="col-md-8">
-			<div class="continer">
+			<div class="container">
+			
+			<?php
+			$x = 0;
+			foreach( $expenses as $key => $expense )
+			{
+				//Create a row for every two columns.
+				if( $x % 2 == 0 )
+				{
+					echo '<div class="row">';
+				}
+				echo '<div class="col-md-6">';
+				echo '<div class="panel-group" id="accordian' . $x . '" role="tablist" aria-multiselectable="true">';
 
-				<!-- Each row can hold up to 2 categories-->
-				<div class="row">
+				//Panel info header.
+				echo '<div class="panel panel-info">';
+				echo '<div class="panel-heading category-heading" role="tab" id="collapseListGroupHeading' . $x . '">';
+				echo '<h4 class="panel-title">';
+				echo '<a class="" ';
+					echo 'data-toggle="collapse" ';
+					echo 'data-parent="#accordian' . $x . '" ';
+					echo 'href="#collapseListGroup' . $x . '" ';
+					echo 'aria-expanded="true" ';
+					echo 'aria-controls="collapseListGroup' . $x . '">';
+
+				//Header data here.
+				echo ucfirst($key);
+
+				echo '</a>';
+				//Edit
+				echo '<span class="pull-right"><a href="" data-toggle="modal" data-target="#editModal">Edit</a></span>';
+				echo '</h4>';
+				echo '</div>'; //Panel-heading
+			
+				/*
+					Echo out expenses in an unordered list.
+				*/
+				echo '<div id="collapseListGroup' . $x . '" ';
+					echo 'class="panel-collapse category-list-collapse collapse in" ';
+					echo 'role="tabpanel" ';
+					echo 'aria-labeldby="collapseListGroupHeading' . $x . '" ';
+					echo 'aria-expanded="true">';
+
+				echo '<ul class="list-group category-list container">';
+
+				foreach( $expense as $item )
+				{
+					echo '<li class="list-group-item row">';
+
+					//The name of the expense.
+					echo '<span class="expense-name col-md-6">';
+					echo $item->name;
+					echo '</span>';
+
+					//The cost of the expense.
+					echo '<span class="expense-cost col-md-3">';
+					echo $item->cost;
+					echo '</span>';
+
+					//The interval of the expense
+					echo '<span class="expense-interval col-md-2">';
+					echo $item->interval;
+					echo '</span>';
 					
-					<!-- A single category -->
-					<div class="col-md-6">
-						<div class="panel-group" id="accordian1" role="tablist" aria-multiselectable="true">
-						    <div class="panel panel-info">
-						      <div class="panel-heading category-heading" role="tab" id="collapseListGroupHeading1">
+					//HIDDEN
+					echo '<span class="delete-expense-item"></span>';
+				
+					echo '</li>';
+				}
 
-						      	<!-- Title of category and Edit link -->
-						        <h4 class="panel-title">
-						          <a class="" data-toggle="collapse" data-parent="#accordian1" href="#collapseListGroup1" aria-expanded="true" aria-controls="collapseListGroup1">
-						            Car
-						          </a> 
-						          <span class="pull-right"><a href="#" data-toggle="modal" data-target="#editModal">Edit</a></span>
-						        </h4>
-						      </div>
-						      <div id="collapseListGroup1" class="panel-collapse category-list-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true">
-					      	
-					      		<!-- List of expences in the category -->
-						        <ul class="list-group category-list container">
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
- 								  <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name total-name col-md-6">Total</span><span class="expense-cost total-cost col-md-3">$10,000.00</span><span class="expense-orrurance total-occurance col-md-2">Yearly</span><span class="delete-expense-item"></span></li>
-						        </ul>
-						        
-						      </div>
-						    </div>
-						</div>	
-					</div>
-
-					<!-- A single category -->
-					<div class="col-md-6">
-						<div class="panel-group" id="accordian2" role="tablist" aria-multiselectable="true">
-						    <div class="panel panel-info">
-						      <div class="panel-heading category-heading" role="tab" id="collapseListGroupHeading2">
-						        <h4 class="panel-title">
-						          <a class="" data-toggle="collapse" data-parent="#accordian2" href="#collapseListGroup2" aria-expanded="true" aria-controls="collapseListGroup2">
-						            Car
-						          </a> 
-						          <span class="pull-right"><a href="#">Edit</a></span>
-						        </h4>
-						      </div>
-						      <div id="collapseListGroup2" class="panel-collapse category-list-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading2" aria-expanded="true">
-					      	
-						        <ul class="list-group category-list container">
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
- 								  <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name total-name col-md-6">Total</span><span class="expense-cost total-cost col-md-3">$10,000.00</span><span class="expense-orrurance total-occurance col-md-2">Yearly</span><span class="delete-expense-item"></span></li>
-						        </ul>
-						        
-						      </div>
-						    </div>
-						</div>	
-					</div>
-					
-				</div><!-- /.row -->
-
-				<!-- Each row can hold up to 2 categories-->
-				<div class="row">
-					<!-- A single category -->
-					<div class="col-md-6">
-						<div class="panel-group" id="accordian3" role="tablist" aria-multiselectable="true">
-						    <div class="panel panel-info">
-						      <div class="panel-heading category-heading" role="tab" id="collapseListGroupHeading3">
-
-						      	<!-- Title of category and Edit link -->
-						        <h4 class="panel-title">
-						          <a class="" data-toggle="collapse" data-parent="#accordian3" href="#collapseListGroup3" aria-expanded="true" aria-controls="collapseListGroup3">
-						            Car
-						          </a> 
-						          <span class="pull-right"><a href="#">Edit</a></span>
-						        </h4>
-						      </div>
-						      <div id="collapseListGroup3" class="panel-collapse category-list-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading3" aria-expanded="true">
-					      	
-					      		<!-- List of expences in the category -->
-						        <ul class="list-group category-list container">
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
- 								  <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name total-name col-md-6">Total</span><span class="expense-cost total-cost col-md-3">$10,000.00</span><span class="expense-orrurance total-occurance col-md-2">Yearly</span><span class="delete-expense-item"></span></li>
-						        </ul>
-						        
-						      </div>
-						    </div>
-						</div>	
-					</div>
-
-					<!-- A single category -->
-					<div class="col-md-6">
-						<div class="panel-group" id="accordian4" role="tablist" aria-multiselectable="true">
-						    <div class="panel panel-info">
-						      <div class="panel-heading category-heading" role="tab" id="collapseListGroupHeading4">
-
-						      	<!-- Title of category and Edit link -->
-						        <h4 class="panel-title">
-						          <a class="" data-toggle="collapse" data-parent="#accordian4" href="#collapseListGroup4" aria-expanded="true" aria-controls="collapseListGroup4">
-						            Car
-						          </a> 
-						          <span class="pull-right"><a href="#">Edit</a></span>
-						        </h4>
-						      </div>
-						      <div id="collapseListGroup4" class="panel-collapse category-list-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading4" aria-expanded="true">
-					      	
-					      		<!-- List of expences in the category -->
-						        <ul class="list-group category-list container">
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
- 								  <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name col-md-6">Bootply</span><span class="expense-cost col-md-3">$43.00</span><span class="expense-orrurance col-md-2">Monthly</span><span class="delete-expense-item"></span></li>
-						          <li class="list-group-item row"><span class="expense-name total-name col-md-6">Total</span><span class="expense-cost total-cost col-md-3">$10,000.00</span><span class="expense-orrurance total-occurance col-md-2">Yearly</span><span class="delete-expense-item"></span></li>
-						        </ul>
-						        
-						      </div>
-						    </div>
-						</div>	
-					</div>
-					
-				</div><!-- /.row -->
-
+				echo '</ul>';
+				echo '</div>'; //Panel-info header
+				
+				echo '</div>'; //Panel-group
+				echo '</div>'; //column 6
 				
 
+				//Close the row every other column..
+				if( $x % 2 == 0)
+				{
+					echo '</div>';
+				}
 
+				//Increment x for next panel.
+				$x++;
+				
+			}
+			?> 
 				
 			</div><!-- /.container -->
 		</div>

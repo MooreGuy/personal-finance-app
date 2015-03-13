@@ -81,7 +81,7 @@ class Expenses extends CI_Model
 
 		@return an associative array with the key of the expense type, holding an array of the expenses for that type.
 	*/
-	function get_current_expenses_grouped_by_user( $user_id )
+	function get_current_expenses_grouped_for_user( $user_id )
 	{
 		//Query to get the expenses from the database for a specific type.
 		$sql = select cost, interval, comment, location
