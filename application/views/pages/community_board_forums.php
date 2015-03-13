@@ -1,3 +1,4 @@
+
 <div class="container" >
 
 	<div class="row title">
@@ -61,22 +62,18 @@
 
 						    	<div class="panel-heading" role="tab">
 						      		<h4 class="panel-title">
-						      			<!-- id of the link should be the id of the post in the DB-->
-						        		<a class="header-link-collapse" id="1" aria-expanded="true">
-						          			Bus tricket prices dropped!
-						        		</a>
+						      			<!-- data-post of the link should be the id of the post in the DB-->
+						        		<a class="header-link-collapse" aria-expanded="true" data-post="1">Bus tricket prices dropped!</a>
 
 						        		<span class="badge pull-right">3</span>
 
-						        		<a href="#" class="edit-post pull-right">Edit</a>
+						        		<a href="#" class="edit-post pull-right" data-toggle="modal" data-target="#editForumPostModal" data-post="1">Edit Post</a>
 						      		</h4>
 						    	</div>
 
-						    	<!-- Add the id of the post ass a class -->
-						    	<div class="panel-collapse closed-panel 1" role="tabpanel">
-						      		<div class="panel-body">
-						        		 Soon buses will be powered by electricity.
-						      		</div>
+						    	<!-- Add the id of the post as data-post on the panel-body -->
+						    	<div class="panel-collapse closed-panel" role="tabpanel" data-post="1">
+						      		<div class="panel-body" data-post="1">Soon buses will be powered by electricity.</div>
 						    	</div>
 						  	</div><!-- END Post Panel-->
 						</div><!-- END Post Wrapper-->
@@ -114,22 +111,18 @@
 
 						    	<div class="panel-heading" role="tab">
 						      		<h4 class="panel-title">
-						      			<!-- id of the link should be the id of the post in the DB-->
-						        		<a class="header-link-collapse" id="3" aria-expanded="true">
-						          			How riding my bike to work saved me hundreds on gas last year!
-						        		</a>
+						      			<!-- data-post of the link should be the id of the post in the DB-->
+						        		<a class="header-link-collapse" aria-expanded="true" data-post="2">How riding my bike to work saved me hundreds on gas last year!</a>
 
 						        		<span class="badge pull-right">3</span>
 
-						        		<a href="#" class="edit-post pull-right">Edit</a>
+						        		<a href="#" class="edit-post pull-right" data-toggle="modal" data-target="#editForumPostModal" data-post="2">Edit Post</a>
 						      		</h4>
 						    	</div>
 
-						    	<!-- Add the id of the post ass a class -->
-						    	<div class="panel-collapse closed-panel 3" role="tabpanel">
-						      		<div class="panel-body">
-						        		Gas is expensive. Ride your bike to work instead
-						      		</div>
+						    	<!-- Add the id of the post ass a data-post in the body-->
+						    	<div class="panel-collapse closed-panel" role="tabpanel" data-post="2">
+						      		<div class="panel-body" data-post="2">Gas is expensive. Ride your bike to work instead</div>
 						    	</div>
 						  	</div><!-- END Post Panel-->
 						</div><!-- END Post Wrapper-->
@@ -174,25 +167,19 @@
 
 						    	<div class="panel-heading" role="tab">
 						      		<h4 class="panel-title">
-						      			<!-- id of the link should be the id of the post in the DB-->
-						        		<a class="header-link-collapse" id="2" aria-expanded="true">
-						          			There should be an In n Out in SLO! 
-						        		</a>
+						      			<!-- data-post of the link should be the id of the post in the DB-->
+						        		<a class="header-link-collapse" aria-expanded="true" data-post="3">There should be an In n Out in SLO!</a>
 
 						        		<span class="badge pull-right">3</span>
 
-						        		<a href="#" class="edit-post pull-right">Edit</a>
+						        		<a href="#" class="edit-post pull-right" data-toggle="modal" data-target="#editForumPostModal" data-post="3">Edit Post</a>
 						      		</h4>
 						    	</div>
 
-						    	<!-- Add the id of the post ass a class -->
-						    	<div class="panel-collapse closed-panel 2" role="tabpanel">
-						      		<div class="panel-body">
-						        		Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-						      			Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-						      			Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-						      			Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-						      		</div>
+						    	<!-- Add the id of the post ass a data-post in the body -->
+						    	<div class="panel-collapse closed-panel" role="tabpanel" data-post="3">
+						      		<div class="panel-body" data-post="3">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						      			Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div>
 						    	</div>
 						  	</div><!-- END Post Panel-->
 						</div><!-- END Post Group Wrapper-->

@@ -2,12 +2,12 @@ $(document).ready(function(){
 
 	//Close and open a panel body when the header is clicked. 
 	$('.header-link-collapse').on("click", function(){
-		var elementId = $(this).attr('id');
+		var postId = $(this).data("post");
 
-		if($("."+elementId).hasClass('open')){
-			$("."+elementId).addClass('closed-panel').removeClass('open');
-		}else if($("."+elementId).hasClass('closed-panel')){
-			$("."+elementId).removeClass('closed-panel').addClass('open');
+		if($('.panel-collapse[data-post=\"' + postId + '\"]').hasClass('open')){
+			$('.panel-collapse[data-post=\"' + postId + '\"]').addClass('closed-panel').removeClass('open');
+		}else if($('.panel-collapse[data-post=\"' + postId + '\"]').hasClass('closed-panel')){
+			$('.panel-collapse[data-post=\"' + postId + '\"]').removeClass('closed-panel').addClass('open');
 		}
 	});
 
@@ -77,5 +77,26 @@ $(document).ready(function(){
 			//Set the count of the post to -1
 			$('.vote-count-row[data-post=\"'+postId+'\"]').children().text(++voteCount);
 		}
+	});
+
+	/*
+		When the edit post link is clicked grap the post info and display it in the input fields in the editModal
+	*/
+	$('.edit-post').on("click", function(){
+
+		//Get the id of the post the user wants to edit
+		var postId = $(this).data("post");
+
+		//Get the title of the post
+		var postTitle = $('.header-link-collapse[data-post=\"'+postId+'\"]').text();
+
+		//Get the body of the post
+		var postBody = $('.panel-body[data-post=\"'+postId+'\"]').text();
+
+		//Put the title into the modal for editing
+		$('#editPostTitle').val(postTitle);
+
+		//Put the content into the body
+		$('#editPostBody').text(postBody);
 	});
 });

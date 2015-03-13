@@ -33,13 +33,65 @@
 
 	<body>
 
-	<!-- Forgot Password Modal -->
+		<!-- Putting all of the modals in the header to give them one location -->
+		<!-- Edit Forum Post Modal -->
+		<div class="modal fade" id="editForumPostModal" tabindex="-1" role="dialog" aria-labelledby="editForumPostModalLabel" aria-hidden="true">
+	  		<div class="modal-dialog">
+	    		<div class="modal-content">
+	      			<div class="modal-header">
+	        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+	        			<!-- Title of the Modal -->
+		        		<div class="container">
+		        			<div class="row">
+		        				<div class="col-md-6">
+		        					<h2 class="modal-title" id="editForumPostModalLabel">Edit Post</h2>
+		        				</div>
+		        			</div>
+		        		</div>
+
+	      			</div>
+	      			<div class="modal-body" id="editFourmPostModal-body">
+	      				<div class="container">
+	      					<div class="row">
+	      						<div class="col-md-6">
+	      							<div class="form-group">
+								  		<label for="editPostTitle">Title:</label>
+								  		<input type="text" id="editPostTitle" class="form-control">
+								  	</div>
+	      						</div>
+	      					</div>
+
+	      					<div class="row">
+	      						<div class="col-md-6">
+	      							<div class="form-group editPostFormGroup">
+								  		<label for="editPostBody">Body:</label>
+								  		<textarea type="text" id="editPostBody" class="form-control"></textarea>
+								  	</div>
+	      						</div>
+	      					</div>
+	      				</div>
+	        			
+	      			</div>
+	      			<div class="modal-footer">
+	      				<button type="button" class="btn btn-danger pull-left delete-post-btn">Delete Post</button>
+	        			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        			<button type="button" class="btn btn-primary">Save Changes</button>
+	      			</div>
+	    		</div>
+	  		</div>
+		</div>
+
+
+		<!-- Forgot Password Modal -->
 		<div class="modal fade" id="forgotPassModal" tabindex="-1" role="dialog" aria-labelledby="forgotPassModalLabel" aria-hidden="true">
 		    <div class="modal-dialog">
 		      	<div class="modal-content">
+
 		        	<div class="modal-header">
 		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
+		        		<!-- Title of the Modal -->
 		        		<div class="container">
 		        			<div class="row">
 		        				<div class="col-md-6">
@@ -49,12 +101,15 @@
 		        		</div>
 		        		
 		      		</div>
+
+
 		      		<div class="modal-body">
 		        		<form class="edit-modal-form">
 						  	<div class="form-group">
 						    	<div class="input-group forgot-pass-input-group">
 						    		<div class="forgotPass step1">
 						    			<div class="container">
+
 						    				<div class="row">
 							    				<div class="col-md-6">
 							    					<p>We will send a password reset email with further instructions on resetting your password.</p>
@@ -69,6 +124,7 @@
 												  	</div>
 												</div>
 											</div>
+
 										</div>
 								  	</div>
 								</div>
