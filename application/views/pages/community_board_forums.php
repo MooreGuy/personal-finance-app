@@ -18,15 +18,20 @@
 			<ul class="nav nav-tabs" role="tablist">
 			  <li role="presentation" class="active"><a href="#transport" role="tab" data-toggle="tab">Transport</a></li>
 			  <li role="presentation"><a href="#food" role="tab" data-toggle="tab">Food</a></li>
-			  <li role="presentation"><a href="#" role="tab" data-toggle="tab">Cell Phone</a></li>
-			  <li role="presentation"><a href="#" role="tab" data-toggle="tab">Entertainment</a></li>
-			  <button class="btn btn-success pull-right add-new-post-btn">Add new post</button>
+			  <li role="presentation"><a href="#phone" role="tab" data-toggle="tab">Phone</a></li>
+			  <li role="presentation"><a href="#entertainment" role="tab" data-toggle="tab">Entertainment</a></li>
+			  <li role="presentation"><a href="#housing" role="tab" data-toggle="tab">Housing</a></li>
+			  <li role="presentation"><a href="#utilities" role="tab" data-toggle="tab">Utilities</a></li>
+			  <li role="presentation"><a href="#travel" role="tab" data-toggle="tab">Travel</a></li>
+			  <li role="presentation"><a href="#general" role="tab" data-toggle="tab">General</a></li>
+			  <button class="btn btn-success pull-right add-new-post-btn" data-toggle="modal" data-target="#addForumPostModal">Add new post</button>
 			</ul>
 		</div>
 
 		<div class="col-md-12 tab-content">
 
 			<!-- Panel group that holds all of the panels for each post. This group of panels should switch when the active category tag switches-->
+			<!-- Begin Transport Tab-->
 			<div class="panel-group tab-pane active" aria-multiselectable="true" id="transport" role="tabpanel">
 
 				<div class="container">
@@ -131,6 +136,7 @@
 				</div><!-- END Container-->
 			</div><!-- END Panel Group-->
 
+			<!-- Begin Food Tab-->
 			<div class="panel-group tab-pane" aria-multiselectable="true" id="food" role="tabpanel">
 
 				<div class="container">
@@ -186,7 +192,30 @@
 					</div><!-- END Row-->
 
 				</div><!-- END Container-->
+			</div>
 
+			<!-- Begin Phone Tab-->
+			<div class="panel-group tab-pane" aria-multiselectable="true" id="phone" role="tabpanel">
+			</div>
+
+			<!-- Begin Entertainment Tab-->
+			<div class="panel-group tab-pane" aria-multiselectable="true" id="entertainment" role="tabpanel">
+			</div>
+
+			<!-- Begin Housing Tab-->
+			<div class="panel-group tab-pane" aria-multiselectable="true" id="housing" role="tabpanel">
+			</div>
+
+			<!-- Begin Utilities Tab-->
+			<div class="panel-group tab-pane" aria-multiselectable="true" id="utilities" role="tabpanel">
+			</div>
+
+			<!-- Begin Travel Tab-->
+			<div class="panel-group tab-pane" aria-multiselectable="true" id="travel" role="tabpanel">
+			</div>
+
+			<!-- Begin General Tab-->
+			<div class="panel-group tab-pane" aria-multiselectable="true" id="general" role="tabpanel">
 			</div>
 		</div>
 	</div> <!-- END row -->

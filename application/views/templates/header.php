@@ -44,17 +44,18 @@
 	        			<!-- Title of the Modal -->
 		        		<div class="container">
 		        			<div class="row">
-		        				<div class="col-md-6">
+		        				<div class="col-md-6 modal-col">
 		        					<h2 class="modal-title" id="editForumPostModalLabel">Edit Post</h2>
 		        				</div>
 		        			</div>
 		        		</div>
 
 	      			</div>
+
 	      			<div class="modal-body" id="editFourmPostModal-body">
 	      				<div class="container">
 	      					<div class="row">
-	      						<div class="col-md-6">
+	      						<div class="col-md-6 modal-col">
 	      							<div class="form-group">
 								  		<label for="editPostTitle">Title:</label>
 								  		<input type="text" id="editPostTitle" class="form-control">
@@ -63,7 +64,7 @@
 	      					</div>
 
 	      					<div class="row">
-	      						<div class="col-md-6">
+	      						<div class="col-md-6 modal-col">
 	      							<div class="form-group editPostFormGroup">
 								  		<label for="editPostBody">Body:</label>
 								  		<textarea type="text" id="editPostBody" class="form-control"></textarea>
@@ -71,12 +72,73 @@
 	      						</div>
 	      					</div>
 	      				</div>
-	        			
 	      			</div>
+
 	      			<div class="modal-footer">
-	      				<button type="button" class="btn btn-danger pull-left delete-post-btn">Delete Post</button>
+	      				<button type="button" class="btn btn-danger pull-left">Delete Post</button>
 	        			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	        			<button type="button" class="btn btn-primary">Save Changes</button>
+	      			</div>
+	    		</div>
+	  		</div>
+		</div>
+
+		<!-- Add Forum Post Modal -->
+		<div class="modal fade" id="addForumPostModal" tabindex="-1" role="dialog" aria-labelledby="addForumPostModalLabel" aria-hidden="true">
+	  		<div class="modal-dialog">
+	    		<div class="modal-content">
+	      			<div class="modal-header">
+	        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+	        			<!-- Title of the Modal -->
+		        		<div class="container">
+		        			<div class="row">
+		        				<div class="col-md-6 modal-col">
+		        					<h2 class="modal-title" id="addForumPostModalLabel">Add New Post</h2>
+		        				</div>
+		        			</div>
+		        		</div>
+
+	      			</div>
+
+	      			<div class="modal-body" id="addFourmPostModal-body">
+	      				<div class="container">
+	      					<div class="row">
+	      						<div class="col-md-6 modal-col">
+	      							<!-- Category selection dropdown -->
+	      							<label for="addPostCategory" class="addPostCategoryLabel">Category:</label>
+	      							<select id="addPostCategory">
+	      								<option value="1">Transport</option>
+	      								<option value="2">Phone</option>
+	      								<option value="3">Enternaintment</option>
+	      								<option value="4">Housing</option>
+	      								<option value="5">Utilities</option>
+	      								<option value="6">Travel</option>
+	      								<option value="7">General</option>
+	      							</select>
+									
+
+	      							<div class="form-group">
+								  		<label for="addPostTitle">Title:</label>
+								  		<input type="text" id="addPostTitle" class="form-control">
+								  	</div>
+	      						</div>
+	      					</div>
+
+	      					<div class="row">
+	      						<div class="col-md-6 modal-col">
+	      							<div class="form-group addPostFormGroup">
+								  		<label for="addPostBody">Body:</label>
+								  		<textarea type="text" id="addPostBody" class="form-control"></textarea>
+								  	</div>
+	      						</div>
+	      					</div>
+	      				</div>
+	      			</div>
+
+	      			<div class="modal-footer">
+	        			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        			<button type="button" class="btn btn-success">Add</button>
 	      			</div>
 	    		</div>
 	  		</div>
@@ -94,7 +156,7 @@
 		        		<!-- Title of the Modal -->
 		        		<div class="container">
 		        			<div class="row">
-		        				<div class="col-md-6">
+		        				<div class="col-md-6 modal-col">
 		        					<h2 class="modal-title" id="forgotPassModalLabel">Forgot Password</h2>
 		        				</div>
 		        			</div>
@@ -111,13 +173,13 @@
 						    			<div class="container">
 
 						    				<div class="row">
-							    				<div class="col-md-6">
+							    				<div class="col-md-6 modal-col">
 							    					<p>We will send a password reset email with further instructions on resetting your password.</p>
 							    				</div>
 							    			</div>
 
 							    			<div class="row">
-						    					<div class="col-md-3">
+						    					<div class="col-md-3 modal-col">
 							    					<div class="form-group">
 												  		<label for="forgotPassEmail">Email:</label>
 												  		<input type="email" id="forgotPassEmail" class="form-control">
@@ -138,6 +200,7 @@
 		    	</div>
 		  	</div>
 		</div>
+		<!-- END Modals -->
 
 		<!-- Top Navbar -->
 		<nav class="navbar navbar-default navbar-static-top">

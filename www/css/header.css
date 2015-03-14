@@ -68,12 +68,21 @@ html {
 	overflow-y: hidden;
 }
 
-#editPostBody{
-	max-width: 555px;
+#editPostBody, #addPostBody{
+	max-width: 570px;
+	min-width: 570px;
 	min-height: 300px;
 }
 
-.delete-post-btn{
-	margin-left: 15px;
+.modal-col{
+	padding-left: 0px;
 }
 
+.addPostCategoryLabel{
+	display: block;
+}
+
+#addPostCategory{
+	margin-bottom: 15px;
+	height: 30px;
+}
