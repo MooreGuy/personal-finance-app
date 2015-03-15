@@ -86,4 +86,6 @@ $(document).ready(function(){
 		//Change the title of the modal
 		$('#forgotPassModalLabel').text("Forgot Password");
 	});
+
+	
 });

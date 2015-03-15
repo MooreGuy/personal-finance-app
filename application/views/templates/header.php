@@ -144,6 +144,54 @@
 	  		</div>
 		</div>
 
+		<!-- Add Comment Modal -->
+		<div class="modal fade" id="addCommentPostModal" tabindex="-1" role="dialog" aria-labelledby="addCommentPostModalLabel" aria-hidden="true">
+	  		<div class="modal-dialog">
+	    		<div class="modal-content">
+	      			<div class="modal-header">
+	        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+	        			<!-- Title of the Modal -->
+		        		<div class="container">
+		        			<div class="row">
+		        				<div class="col-md-6 modal-col">
+		        					<h2 class="modal-title" id="addCommentPostModalLabel">Add New Comment</h2>
+		        				</div>
+		        			</div>
+		        		</div>
+
+	      			</div>
+
+	      			<div class="modal-body" id="addCommentPostModal-body">
+	      				<div class="container">
+	      					<div class="row">
+	      						<div class="col-md-6 modal-col">
+	      							<!-- UserName of person looged in -->
+									<h5><strong>Commenting as: </strong><span>Dr.Awkward</span></h5>
+
+	      							<!-- Title of the post the user is commenting on -->
+	      							<h5><strong>Commenting on: </strong><span class="commentOnTitle"></span></h5>
+								</div>
+	      					</div>
+
+	      					<div class="row">
+	      						<div class="col-md-6 modal-col">
+	      							<div class="form-group addCommentGroup">
+								  		<label for="addCommentBody">Body:</label>
+								  		<textarea type="text" id="addCommentBody" class="form-control"></textarea>
+								  	</div>
+	      						</div>
+	      					</div>
+	      				</div>
+	      			</div>
+
+	      			<div class="modal-footer">
+	        			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        			<button type="button" class="btn btn-success">Add</button>
+	      			</div>
+	    		</div>
+	  		</div>
+		</div>
 
 		<!-- Forgot Password Modal -->
 		<div class="modal fade" id="forgotPassModal" tabindex="-1" role="dialog" aria-labelledby="forgotPassModalLabel" aria-hidden="true">

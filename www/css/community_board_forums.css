@@ -12,7 +12,7 @@
 	height: 100px;
 }
 
-.post-vote-wrapper{
+.post-vote-wrapper, .post-comment-vote-wrapper{
 	padding-left: 0px;
 }
 
@@ -26,13 +26,27 @@
 	width: 100%;
 }
 
-.glyphicon{
-	width: 50%;
-}
-
 .glyphicon-chevron-up{
 	margin-top: 20px;
 	margin-left: 2px;
+}
+
+.glyphicon-chevron-right{
+	color: #777;
+	margin-right: 5px;
+}
+
+.glyphicon-chevron-right-rotate{
+	-webkit-transform: rotate(90deg); /* Chrome, Safari 3.1+ */
+    -moz-transform: rotate(90deg);   /* Firefox 3.5-15 */
+    -ms-transform: rotate(90deg);  /* IE 9 */
+    transform: rotate(90deg);  /* Firefox 16+, IE 10+, Opera 12.50+ */
+}
+
+.glyphicon-chevron-right-transition{
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;  /* Firefox 4-15 */
+    transition: all 0.3s ease-out;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.50+ */
 }
 
 .vote-neutral{
@@ -62,4 +76,36 @@
 .edit-post{
 	color: #428bca !important;
 	margin-right: 5px;
+}
+
+.comment-control-wrapper{
+	margin-top: 40px;
+}
+
+.comment-control-col{
+	padding-left: 0px;
+}
+
+.report-abuse-link{
+	color: #777;
+	text-decoration: none;
+}
+
+.report-abuse-link-post{
+	color: #777;
+	text-decoration: none;
+	padding-right: 48px;
+}
+
+.report-abuse-link:hover, .report-abuse-link-post:hover{
+	color: #d9534f;
+	text-decoration: none;
+}
+
+.comment-link{
+	margin-top: -1px;
+}
+
+.comment-wrapper{
+	margin-top: 10px;
 }

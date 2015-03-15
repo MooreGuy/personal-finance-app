@@ -1,11 +1,17 @@
 $(document).ready(function(){
 
-	//Close and open a panel body when the header is clicked. 
+	/*
+		Close and open a panel body when the header is clicked. 
+	*/
 	$('.header-link-collapse').on("click", function(){
+		//id of the post
 		var postId = $(this).data("post");
 
+		//If the panel has an open class remove it and replace it with the closed-panel class
 		if($('.panel-collapse[data-post=\"' + postId + '\"]').hasClass('open')){
 			$('.panel-collapse[data-post=\"' + postId + '\"]').addClass('closed-panel').removeClass('open');
+
+		//If the panel is closed remove it and replace it with the open class
 		}else if($('.panel-collapse[data-post=\"' + postId + '\"]').hasClass('closed-panel')){
 			$('.panel-collapse[data-post=\"' + postId + '\"]').removeClass('closed-panel').addClass('open');
 		}
@@ -91,12 +97,51 @@ $(document).ready(function(){
 		var postTitle = $('.header-link-collapse[data-post=\"'+postId+'\"]').text();
 
 		//Get the body of the post
-		var postBody = $('.panel-body[data-post=\"'+postId+'\"]').text();
+		var postBody = $('.panel-body[data-post=\"'+postId+'\"] > .body-text').text();
 
 		//Put the title into the modal for editing
 		$('#editPostTitle').val(postTitle);
 
 		//Put the content into the body
 		$('#editPostBody').text(postBody);
+	});
+
+	/*
+		When the comment glyphicon is clicked rotate the glyphocon 
+	*/
+	$('.glyphicon-chevron-right').on("click", function(){
+		//Id of the post
+		var postId = $(this).data("post");
+
+		//If the glyphicon is pointing down remove the rotate class and collapse the panel body
+		if($(this).hasClass("glyphicon-chevron-right-rotate")){
+
+			//Remove the rotate which will point the glyphicon back to the right
+			$(this).removeClass("glyphicon-chevron-right-rotate");
+
+			//Make the body of the panel collapse
+			$('.panel-collapse[data-post=\"' + postId + '\"]').addClass('closed-panel').removeClass('open');
+		}else{
+
+			//Add the rotate to get the glyphicon to point down
+			$(this).addClass("glyphicon-chevron-right-rotate glyphicon-chevron-right-transition");
+
+			//Open up the panel body
+			$('.panel-collapse[data-post=\"' + postId + '\"]').removeClass('closed-panel').addClass('open');
+		}
+	});
+
+	/*
+		When the add comment modal pops up fill in the comment on title with the title of the post
+	*/
+	$('.comment-link').on("click", function(){
+		//Id of the post
+		var postId = $(this).data("post");
+
+		//Get the title of the post
+		var postTitle = $('.header-link-collapse[data-post=\"'+postId+'\"]').text();
+
+		//Put it in the modal
+		$('.commentOnTitle').text(postTitle);
 	});
 });
