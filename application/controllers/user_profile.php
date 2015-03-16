@@ -32,7 +32,7 @@ class User_profile extends CI_Controller {
 		$user_id = $this->session->userdata('id');
 		$data['user_data'] = $this->User->get_user_profile_data( $user_id );
 
-		$data['expenses'] = $this->expenses->get_all_current();
+		$data['expenses'] = $this->expenses->get_current_expenses_grouped_for_user( $user_id );
 
 	    $this->load->view('templates/header', $data);
 	    $this->load->view('pages/'.$page, $data);

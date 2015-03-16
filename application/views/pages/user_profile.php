@@ -73,13 +73,17 @@
 
 
 		<!-- User Profile Data Section -->
+		<h1>User Expenses</h1>
 		<div class="col-md-8">
-			<div class="container">
+			<!--<div class="container">-->
 			
+
 			<?php
 			$x = 0;
+
 			foreach( $expenses as $key => $expense )
 			{
+
 				//Create a row for every two columns.
 				if( $x % 2 == 0 )
 				{
@@ -125,7 +129,8 @@
 
 					//The name of the expense.
 					echo '<span class="expense-name col-md-6">';
-					echo $item->name;
+					//THIS IS WHAT THIS SHOULD BE NOT, TYPE. echo $item->name;
+					echo ucfirst($item->type);
 					echo '</span>';
 
 					//The cost of the expense.
@@ -135,26 +140,30 @@
 
 					//The interval of the expense
 					echo '<span class="expense-interval col-md-2">';
-					echo $item->interval;
+					echo $item->interv; //This needs to be pretefied.
 					echo '</span>';
 					
 					//HIDDEN
-					echo '<span class="delete-expense-item"></span>';
+					echo '<span class="delete-expense-item">X</span>';
 				
 					echo '</li>';
 				}
 
 				echo '</ul>';
 				echo '</div>'; //Panel-info header
+
+				echo '</div>'; //trying random things. TODO: Find who this silly div belongs to.
+
 				
 				echo '</div>'; //Panel-group
 				echo '</div>'; //column 6
 				
 
 				//Close the row every other column..
-				if( $x % 2 == 0)
+				if( $x % 2 == 1 )
 				{
 					echo '</div>';
+					echo '<!-- closing row -->';
 				}
 
 				//Increment x for next panel.
@@ -163,7 +172,7 @@
 			}
 			?> 
 				
-			</div><!-- /.container -->
+			<?php //</div><!-- /.container -->?>
 		</div>
 
 </div><!-- /.container -->
