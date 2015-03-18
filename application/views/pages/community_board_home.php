@@ -20,7 +20,7 @@
 		  		<div class="panel-heading">
 
 		  			<!-- Title and link to the Announcements page -->
-		    		<h3 class="panel-title"><a href="<?php  echo base_url(); ?>index.php/announcements/home">Announcements</a></h3>
+		    		<h3 class="panel-title"><a href="<?php  echo base_url(); ?>announcements/home">Announcements</a></h3>
 		  		</div>
 
 		  		<div class="panel-body">
@@ -28,7 +28,7 @@
 
 		    		<br>
 		    	
-		    		<a class="btn btn-default commBtn" href="<?php  echo base_url(); ?>index.php/announcements/home" role="button">Announcements</a>
+		    		<a class="btn btn-default commBtn" href="<?php  echo base_url(); ?>announcements/home" role="button">Announcements</a>
 		    		
 		    		
 		  		</div>
@@ -39,14 +39,14 @@
 	  			<div class="panel-heading">
 
 	  				<!-- Title and link to the User Guides page -->
-	    			<h3 class="panel-title"><a href="<?php  echo base_url(); ?>index.php/community_board_user_guides/guides">Community User Guides</a></h3>
+	    			<h3 class="panel-title"><a href="<?php  echo base_url(); ?>community_board_user_guides/guides">Community User Guides</a></h3>
 	  			</div>
 
 	  			<div class="panel-body">
 	    			Our User Guides are full of helpful tips by other members of our community. Come check them out and learn more!
 
 	    			<br>
-	    			<a class="btn btn-default commBtn" href="<?php  echo base_url(); ?>index.php/community_board_user_guides/guides" role="button">User Guides</a>
+	    			<a class="btn btn-default commBtn" href="<?php  echo base_url(); ?>community_board_user_guides/guides" role="button">User Guides</a>
 	  			</div>
 	  		</div>
 
@@ -55,14 +55,14 @@
 	  			<div class="panel-heading">
 
 	  				<!-- Title and link to the Q & A page -->
-	    			<h3 class="panel-title"><a href="<?php  echo base_url(); ?>index.php/community_board_forums/forums">Community Q &amp; A Forums</a></h3>
+	    			<h3 class="panel-title"><a href="<?php  echo base_url(); ?>community_board_forums/forums">Community Q &amp; A Forums</a></h3>
 	  			</div>
 
 		  		<div class="panel-body">
 		    		The Community Q &amp; A Forums are a great place to ask questions and get answers from people in the community.
 
 		    		<br>
-		    		<a class="btn btn-default commBtn" href="<?php  echo base_url(); ?>index.php/community_board_forums/forums" role="button">Q &amp; A Forums</a>
+		    		<a class="btn btn-default commBtn" href="<?php  echo base_url(); ?>community_board_forums/forums" role="button">Q &amp; A Forums</a>
 		  		</div>
 		  	</div>
 		</div>

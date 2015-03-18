@@ -10,3 +10,124 @@
 .closed-panel{
 	height: 100px;
 }
+
+.post-vote-wrapper, .post-comment-vote-wrapper{
+	padding-left: 0px;
+}
+
+.post-wrapper{
+	padding-right: 30px;
+	padding-left: 0px;
+}
+
+.up-vote-wrapper, .down-vote-wrapper, .positive-count-wrapper{
+	text-align: center;
+	width: 100%;
+}
+
+.glyphicon-chevron-up{
+	margin-top: 20px;
+	margin-left: 2px;
+}
+
+.glyphicon-chevron-right{
+	color: #777;
+	margin-right: 5px;
+}
+
+.glyphicon-chevron-right-rotate{
+	-webkit-transform: rotate(90deg); /* Chrome, Safari 3.1+ */
+    -moz-transform: rotate(90deg);   /* Firefox 3.5-15 */
+    -ms-transform: rotate(90deg);  /* IE 9 */
+    transform: rotate(90deg);  /* Firefox 16+, IE 10+, Opera 12.50+ */
+}
+
+.glyphicon-chevron-right-transition{
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;  /* Firefox 4-15 */
+    transition: all 0.3s ease-out;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.50+ */
+}
+
+.vote-neutral{
+	color: #777;
+	cursor: pointer;
+}
+
+.vote-positive{
+	color: #F44336;
+	cursor: pointer;
+
+}
+
+.vote-negative{
+	color: #0D47A1;
+	cursor: pointer;
+}
+
+.add-new-post-btn{
+	margin-top: 3.5px;
+}
+
+.header-link-collapse{
+	cursor: pointer;
+}
+
+.edit-post{
+	color: #428bca !important;
+	margin-right: 5px;
+}
+
+.comment-control-wrapper{
+	margin-top: 40px;
+}
+
+.comment-control-col{
+	padding-left: 0px;
+}
+
+.report-abuse-link{
+	color: #777;
+	text-decoration: none;
+}
+
+.report-abuse-link-post{
+	color: #777;
+	text-decoration: none;
+	padding-right: 48px;
+}
+
+.report-abuse-link:hover, .report-abuse-link-post:hover{
+	color: #d9534f;
+	text-decoration: none;
+}
+
+.comment-link{
+	margin-top: -1px;
+}
+
+.comment-wrapper{
+	margin-top: 10px;
+}
+
+.post-comment-vote-wrapper{
+	padding-right: 0px;
+	padding-left: 15px;
+}
+
+.comment-glyphicon{
+	margin-top: 0px;
+}
+
+.pagination{
+	margin-bottom: 0px;
+	margin-left: 20%;
+}
+
+.post-nav{
+	text-align: center;
+}
+
+.post-filter-wrapper{
+	margin-top: 25px;
+	margin-right: 30px;
+}

@@ -67,3 +67,22 @@ html {
 .html-no-bar{
 	overflow-y: hidden;
 }
+
+#editPostBody, #addPostBody, #addCommentBody{
+	max-width: 570px;
+	min-width: 570px;
+	min-height: 300px;
+}
+
+.modal-col{
+	padding-left: 0px;
+}
+
+.addPostCategoryLabel{
+	display: block;
+}
+
+#addPostCategory{
+	margin-bottom: 15px;
+	height: 30px;
+}
