@@ -24,30 +24,64 @@ $(document).ready(function(){
 		on what was there previously
 	*/
 	$('.glyphicon-chevron-up').on("click", function(){
-
-		//Get the Id of the post the vote is for
-		var postId = $(this).parent().data('post');
-
-		//Get the count of the vote and add or decrease the count depending on the class
-		var voteCount = parseInt($('.vote-count-row[data-post=\"'+postId+'\"]').children().text());
-
-		//Remove any neg class the bottom vote button has and set it back to neutral
-		if($('.down-vote-wrapper[data-post=\"'+postId+'\"]').children().hasClass('vote-negative')){
-			$('.down-vote-wrapper[data-post=\"'+postId+'\"]').children().removeClass('vote-negative').addClass('vote-neutral');
-
-			//Also set the vote count back to normal
-			$('.vote-count-row[data-post=\"'+postId+'\"]').children().text(++voteCount);
+		//Check to see if it is a comment or a post and get the id
+		if($(this).parent().attr('data-post')){
+			var type = "post";
+		}
+		else if($(this).parent().attr('data-post-comment')){
+			var type = "comment";
 		}
 
-		//If the up vote button is neutral give it a positive and if it is positive give it a neutral
-		if($(this).hasClass('vote-neutral')){
-			$(this).removeClass('vote-neutral').addClass('vote-positive');
-			//Set the count of the post to +1
-			$('.vote-count-row[data-post=\"'+postId+'\"]').children().text(++voteCount);
-		}else{
-			$(this).removeClass('vote-positive').addClass('vote-neutral');
-			//Set the count of the post to -1
-			$('.vote-count-row[data-post=\"'+postId+'\"]').children().text(--voteCount);
+		if(type == "post"){
+			//Get the Id of the post the vote is for
+			var postId = $(this).parent().data('post');
+
+			//Get the count of the vote and add or decrease the count depending on the class
+			var voteCount = parseInt($('.vote-count-row[data-post=\"'+postId+'\"]').children().text());
+
+			//Remove any neg class the bottom vote button has and set it back to neutral
+			if($('.down-vote-wrapper[data-post=\"'+postId+'\"]').children().hasClass('vote-negative')){
+				$('.down-vote-wrapper[data-post=\"'+postId+'\"]').children().removeClass('vote-negative').addClass('vote-neutral');
+
+				//Also set the vote count back to normal
+				$('.vote-count-row[data-post=\"'+postId+'\"]').children().text(++voteCount);
+			}
+
+			//If the up vote button is neutral give it a positive and if it is positive give it a neutral
+			if($(this).hasClass('vote-neutral')){
+				$(this).removeClass('vote-neutral').addClass('vote-positive');
+				//Set the count of the post to +1
+				$('.vote-count-row[data-post=\"'+postId+'\"]').children().text(++voteCount);
+			}else{
+				$(this).removeClass('vote-positive').addClass('vote-neutral');
+				//Set the count of the post to -1
+				$('.vote-count-row[data-post=\"'+postId+'\"]').children().text(--voteCount);
+			}
+		} else if(type == "comment"){
+			//Get the Id of the post the vote is for
+			var postCommentId = $(this).parent().data('post-comment');
+
+			//Get the count of the vote and add or decrease the count depending on the class
+			var voteCount = parseInt($('.vote-count-row[data-post-comment=\"'+postCommentId+'\"]').children().text());
+
+			//Remove any neg class the bottom vote button has and set it back to neutral
+			if($('.down-vote-wrapper[data-post-comment=\"'+postCommentId+'\"]').children().hasClass('vote-negative')){
+				$('.down-vote-wrapper[data-post-comment=\"'+postCommentId+'\"]').children().removeClass('vote-negative').addClass('vote-neutral');
+
+				//Also set the vote count back to normal
+				$('.vote-count-row[data-post-comment=\"'+postCommentId+'\"]').children().text(++voteCount);
+			}
+
+			//If the up vote button is neutral give it a positive and if it is positive give it a neutral
+			if($(this).hasClass('vote-neutral')){
+				$(this).removeClass('vote-neutral').addClass('vote-positive');
+				//Set the count of the post to +1
+				$('.vote-count-row[data-post-comment=\"'+postCommentId+'\"]').children().text(++voteCount);
+			}else{
+				$(this).removeClass('vote-positive').addClass('vote-neutral');
+				//Set the count of the post to -1
+				$('.vote-count-row[data-post-comment=\"'+postCommentId+'\"]').children().text(--voteCount);
+			}
 		}
 	});
 
@@ -58,32 +92,66 @@ $(document).ready(function(){
 		on what was there previously
 	*/
 	$('.glyphicon-chevron-down').on("click", function(){
-
-		//Get the Id of the post the vote is for
-		var postId = $(this).parent().data('post');
-
-		//Get the count of the vote and add or decrease the count depending on the class
-		var voteCount = parseInt($('.vote-count-row[data-post=\"'+postId+'\"]').children().text());
-
-		//Remove any pos class the bottom vote button has and set it back to neutral
-		if($('.up-vote-wrapper[data-post=\"'+postId+'\"]').children().hasClass('vote-positive')){
-			$('.up-vote-wrapper[data-post=\"'+postId+'\"]').children().removeClass('vote-positive').addClass('vote-neutral');
-
-			//Also set the vote count back to normal
-			$('.vote-count-row[data-post=\"'+postId+'\"]').children().text(--voteCount);
+		//Check to see if it is a comment or a post and get the id
+		if($(this).parent().attr('data-post')){
+			var type = "post";
+		}
+		else if($(this).parent().attr('data-post-comment')){
+			var type = "comment";
 		}
 
-		//If the down vote button is neutral give it a positive and if it is positive give it a neutral
-		if($(this).hasClass('vote-neutral')){
-			$(this).removeClass('vote-neutral').addClass('vote-negative');
-			//Set the count of the post to +1
-			$('.vote-count-row[data-post=\"'+postId+'\"]').children().text(--voteCount);
-		}else{
-			$(this).removeClass('vote-negative').addClass('vote-neutral');
-			//Set the count of the post to -1
-			$('.vote-count-row[data-post=\"'+postId+'\"]').children().text(++voteCount);
+		if(type == "post"){
+			//Get the Id of the post the vote is for
+			var postId = $(this).parent().data('post');
+
+			//Get the count of the vote and add or decrease the count depending on the class
+			var voteCount = parseInt($('.vote-count-row[data-post=\"'+postId+'\"]').children().text());
+
+			//Remove any pos class the bottom vote button has and set it back to neutral
+			if($('.up-vote-wrapper[data-post=\"'+postId+'\"]').children().hasClass('vote-positive')){
+				$('.up-vote-wrapper[data-post=\"'+postId+'\"]').children().removeClass('vote-positive').addClass('vote-neutral');
+
+				//Also set the vote count back to normal
+				$('.vote-count-row[data-post=\"'+postId+'\"]').children().text(--voteCount);
+			}
+
+			//If the down vote button is neutral give it a positive and if it is positive give it a neutral
+			if($(this).hasClass('vote-neutral')){
+				$(this).removeClass('vote-neutral').addClass('vote-negative');
+				//Set the count of the post to +1
+				$('.vote-count-row[data-post=\"'+postId+'\"]').children().text(--voteCount);
+			}else{
+				$(this).removeClass('vote-negative').addClass('vote-neutral');
+				//Set the count of the post to -1
+				$('.vote-count-row[data-post=\"'+postId+'\"]').children().text(++voteCount);
+			}
+		}else if(type == "comment"){
+			//Get the Id of the post the vote is for
+			var postCommentId = $(this).parent().data('post-comment');
+
+			//Get the count of the vote and add or decrease the count depending on the class
+			var voteCount = parseInt($('.vote-count-row[data-post-comment=\"'+postCommentId+'\"]').children().text());
+
+			//Remove any neg class the bottom vote button has and set it back to neutral
+			if($('.down-vote-wrapper[data-post-comment=\"'+postCommentId+'\"]').children().hasClass('vote-positive')){
+				$('.down-vote-wrapper[data-post-comment=\"'+postCommentId+'\"]').children().removeClass('vote-positive').addClass('vote-neutral');
+
+				//Also set the vote count back to normal
+				$('.vote-count-row[data-post-comment=\"'+postCommentId+'\"]').children().text(--voteCount);
+			}
+
+			//If the up vote button is neutral give it a positive and if it is positive give it a neutral
+			if($(this).hasClass('vote-neutral')){
+				$(this).removeClass('vote-neutral').addClass('vote-negative');
+				//Set the count of the post to +1
+				$('.vote-count-row[data-post-comment=\"'+postCommentId+'\"]').children().text(--voteCount);
+			}else{
+				$(this).removeClass('vote-positive').addClass('vote-neutral');
+				//Set the count of the post to -1
+				$('.vote-count-row[data-post-comment=\"'+postCommentId+'\"]').children().text(++voteCount);
+			}
 		}
-	});
+		});
 
 	/*
 		When the edit post link is clicked grap the post info and display it in the input fields in the editModal

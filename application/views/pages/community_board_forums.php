@@ -34,6 +34,42 @@
 			<!-- Begin Transport Tab-->
 			<div class="panel-group tab-pane active" aria-multiselectable="true" id="transport" role="tabpanel">
 
+				<!-- Container for the navigation and post filters -->
+				<div class="container">
+					<div class="row">
+						<nav class="post-nav">
+						
+							  	<ul class="pagination">
+							    	<li>
+								      	<a href="#" aria-label="Previous">
+								        	<span aria-hidden="true">&laquo;</span>
+								      	</a>
+							    	</li>
+							    	<li><a href="#">1</a></li>
+							    	<li><a href="#">2</a></li>
+							    	<li><a href="#">3</a></li>
+							    	<li><a href="#">4</a></li>
+							    	<li><a href="#">5</a></li>
+							    	<li>
+							      		<a href="#" aria-label="Next">
+							        		<span aria-hidden="true">&raquo;</span>
+							      		</a>
+							    	</li>
+							  	</ul>
+
+						  	<span class="pull-right post-filter-wrapper">
+						  		<label for="post-filter">Filter results by:</label>
+						  		<select id="post-filter">
+	      								<option value="1">Top</option>
+	      								<option value="2">New</option>
+	      								<option value="3">Most Commented</option>
+	      							</select>
+						  	</span>
+						</nav>
+					</div>
+				</div>
+
+				<!-- Container for the posts -->
 				<div class="container">
 
 					<!-- Each Row contains a post-->
@@ -101,20 +137,20 @@
 													<div class="col-md-1 post-comment-vote-wrapper">
 														<div class="row up-vote-row">
 															<!-- The data-post should be the id of the post -->
-															<div class="col-md-1 up-vote-wrapper" data-post='1'>
-																<span class="glyphicon glyphicon-chevron-up vote-neutral"></span>
+															<div class="col-md-1 up-vote-wrapper" data-post-comment='1'>
+																<span class="glyphicon glyphicon-chevron-up vote-neutral comment-glyphicon"></span>
 															</div>
 														</div>
 
-														<div class="row vote-count-row" data-post='1'>
+														<div class="row vote-count-row" data-post-comment='1'>
 															<div class="col-md-1 positive-count-wrapper">
 																<span class="positive-vote-count">2145</span>
 															</div>
 														</div>
 
 														<div class="row down-vote-row">
-															<div class="col-md-1 down-vote-wrapper" data-post='1'>
-																<span class="glyphicon glyphicon-chevron-down vote-neutral"></span>
+															<div class="col-md-1 down-vote-wrapper" data-post-comment='1'>
+																<span class="glyphicon glyphicon-chevron-down vote-neutral comment-glyphicon"></span>
 															</div>
 														</div>
 													</div>
