@@ -61,7 +61,7 @@ class Account extends CI_Controller
 	function login_form()
 	{
 		//Check the session cookie for a username.
-		if( $this->checkCookieLogin() )
+		if( $this->check_cookie_login() )
 		{
 			//The user has already authenticated, send them to their profile home.
 			redirect('user_profile/home', 'location');
@@ -80,9 +80,6 @@ class Account extends CI_Controller
 			}
 			else
 			{
-				//Just for testing.
-				echo 'failed to login';
-
 				redirect('account/signup/failed', 'location');
 			}
 
@@ -98,7 +95,7 @@ class Account extends CI_Controller
 	{
 
 		//Check the session cookie for if the user has already authenticated.
-		if( $this->checkCookieLogin() )
+		if( $this->check_cookie_login() )
 		{
 			//The user has already authenticated, send them to their profile home.
 			redirect('user_profile/home', 'location');
@@ -113,14 +110,24 @@ class Account extends CI_Controller
 			$email = $this->input->post('email');
 			
 
-			//Call the signup function to attempt to login. If the insert_user function returns false,
-			//then attempt to login. If both of those fail, then send them to the signup page with a
-			//failure message 
-			if( $this->User->insert_user($username, $password, $email,
-				 	$first_name, $last_name) || $this->authenticate($email, $password) )
+			/*
+				First try to insert the user, if success, get their id and redirect.
+				If that fails because there is already a user with $email as their $email,
+				then try to authenticate with $email and $password, if that fails, then redirect
+				them to a failed login page.
+			*/
+			if( $this->User->insert_user($username, $password, $email, $first_name, $last_name) )
 			{
+				//Add email and password to the cookie.
+				$user_id = $this->User->get_id( $email );
+				$this->add_cookie_data( $email, $user_id );
+
 				redirect('user_profile/home', 'location');
 			}	
+			else if( $this->authenticate($email, $password) ) 
+			{
+				redirect('user_profile/home', 'location');
+			}
 			else
 			{	
 				redirect('account/signup/failure', 'location');
@@ -132,11 +139,12 @@ class Account extends CI_Controller
 	/*
 		Check the cookie for login.
 
-		@return true if the cookie has a login sessiona and is a valid cookie, or otherwise false.
+		@return true if the cookie has a login sessiona and is a valid cookie, otherwise false.
 	*/
-	public function checkCookieLogin()
+	public function check_cookie_login()
 	{
-		//Check to see if the email in the cookie is set, if it is, then the user logged in already.
+		//Check to see if the email in the cookie is set, if it is,
+		//then the user logged in by setting the email.
 		if( $this->session->userdata('email') != NULL )
 		{
 			return True;	
@@ -160,28 +168,48 @@ class Account extends CI_Controller
 		//for an email password matching the one passed.
 		$user_id = $this->User->authenticate_user( $email, $password );
 
-		//If there was something returned then set the cookie to hold the email password and user id.
-		//If it doesn't then return false.
-		if( $user_id != NULL )
+		//If there was something returned then set the cookie to hold the email password
+		//and user id. If it doesn't then return false.
+		if( is_numeric($user_id) )
 		{
-			$cookieInfo = array
-			(
-					'email' => $email,
-					'password' => $password,
-					'user_id' => $user_id
-			);
 	
 			//Set the session cookie to the cookieInfo array.
-			$CI->session->userdata($cookieInfo);
+			if( $this->add_cookie_data( $email, $user_id ) )
+			{
+				//Cookie data added. Return true to show that it successfully completed.
+				return True;
+			}
 
-			//All authenticated, return true to show that it successfully completed.
-			return True;
 		}
-		else
-		{
-			//Authentication failed, return false.
-			return False;
-		}
+
+		//Authentication failed, return false.
+		return False;
+	}
+
+	/*
+		Add the $email and $id arguments to the cookie.
+		
+		@param string $email the email of the user.
+		@param integer $id the id of the user.
+		
+		@return boolean false if adding the data to the cookie fails, and true if it succeeds.
+	*/
+
+	function add_cookie_data( $email, $id )
+	{
+		//Set the email and id keys to $email and $id arguments.
+		$login_data = array
+		(
+			'email' => $email,
+			'id' => $id
+		);
+
+		//Add $login_data contents to the session cookie to enable cookie login with cookies.
+		$this->session->set_userdata( $login_data );
+
+		//TODO: Add check to make sure the user's browser has cookies enabled. Until then
+		//always return True.
+		return True;
 	}
 }
 

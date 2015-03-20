@@ -2,6 +2,8 @@
 
 class User extends CI_Model
 {	
+	const USERSTABLE = 'users';
+
 	var $account_creation_date = '';
 	var $username = '';
 	var $first_name = '';
@@ -14,7 +16,6 @@ class User extends CI_Model
 		parent::__construct();
 
 		//Define the name of the table to access for this model.
-		define( 'USERTABLE', 'users');
 
 		$this->load->library('encrypt');
 	}
@@ -34,19 +35,14 @@ class User extends CI_Model
 		if( $this->user_exists($email) == False )
 		{	
 			$this->load->helper('date');
-
 			$this->username = $username;
-			$this->password = $this->encrypt->encode($password);
+			$this->password = $this->encrypt->encode($password);	//encrypt the password
 			$this->email = $email;
 			$this->first_name = $first_name;
 			$this->last_name = $last_name;
 			$this->account_creation_date = now();
 
-			echo '</br>';
-			echo '<pre>';
-			echo var_dump($this);
-			echo '</pre>';
-			$this->db->insert( USERTABLE, $this);	
+			$this->db->insert( self::USERSTABLE, $this);	
 		}
 		else
 		{
@@ -57,26 +53,9 @@ class User extends CI_Model
 		//Return true if user creation was successful.
 		return True;
 	}
-	
-	/*
-		Login the user in
-		@param string $email the user's email
-		@param string $password the user's password
-		
-		@return either true if the user successfully authenticated, or false if the authentication failed.
-	*/	
-	function login( $email, $password )
-	{		
-		//Encrypt the password.
-		$password = $this->encrypt->encode( $password );
-
-		//Authenticate the user credentials, and get ID if it succeeds
-		$user_id = authenticateUser( $email, $password );
-
-	}
 
 	/*
-		Recieves an email string and a password string and checks
+		Receives an email string and a password string and checks
 		the database for any matching items. Then, returns the 
 		id if success or NULL if there were no matches.
 	
@@ -89,38 +68,37 @@ class User extends CI_Model
 	{
 
 		//QUERY
-
-		//Select the id from the table.
-		$this->db->select( 'id' );
-
-		//Where the email and password match the parameters passed to this function.
-		$this->db->where_in( 'email', $email );
-		$this->db->where_in( 'password', $password );
+		//Where the email and password match this function's arguments from the table defined
+		//by the constant USERSTABLE.
+		$sql = "SELECT id, password FROM " . self::USERSTABLE . " WHERE email = ?;";
 		
-		//Now get the data from the USERTABLE
-		$query = $this->db->get( USERTABLE);
-
+		//Send the querry to the database to the table defined as USERSTABLE
+		$query = $this->db->query( $sql, array($email) );
 		//END QUERY
 
-		if( $query && $query->num_rows() > 0 )
+		//Get the user from the query.
+		$first_row = $query->first_row();	
+		
+		//Decode the password in the database and compare it to the form password $password.
+		if( $this->encrypt->decode($first_row->password) == $password )
 		{
-			return $query->result();
+			//Return the id of the user.
+			return $first_row->id;
 		}
-		else
-		{
-			return NULL;
-		}
+
+		return Null;
 
 	}
 
 	/*
 		Checks to make sure that a account with a given email doesn't already exist.
 		
-		@param $email string email that is checked against the database to see if there is a user already.
+		@param $email string email that is checked against the database to see if
+		there is a user already.
 		
-		@return boolean true if there is a user already in the database with $email as its email, or
-			false if there is no existing user with $email as its email. 
-	*/
+		@return boolean true if there is a user already in the database
+		with $email as its email, or false if there is no existing user with $email as its email
+ 	*/
 	function user_exists( $email )
 	{
 		//QUERY
@@ -129,7 +107,7 @@ class User extends CI_Model
 		$this->db->select('email');
 		$this->db->where('email', $email);
 
-		$query = $this->db->get(USERTABLE);
+		$query = $this->db->get( self::USERSTABLE );
 		//END QUERY
 
 		//Get the number of rows from the query, and check if there is at least one.
@@ -143,7 +121,51 @@ class User extends CI_Model
 		}
 		
 	}		
+	
+	/*
+		Query the database for a user with the given email and return their user id.
+	
+		@param string $email is the email of the user.
+
+		@return integer the id of the user.	
+	*/
+	function get_id( $email )
+	{
+		/* get the id of the given user using their email */
+		$sql = 'select id from '. self::USERSTABLE . ' where email = ?';
+
+		$query = $this->db->query( $sql, array('email' => $email) );
 		
+		//Only get the first row.
+		$first_row = $query->first_row();
+
+		//Return the id of the first row.
+		return $first_row->id;
+	}
+
+	/*
+		Get all user data for a particular user..
+	
+		@parameter integer $id is the id of the user to get the data for.
+	
+		@return array all the user data.
+	*/
+	function get_user_profile_data( $id )
+	{
+		//Select every column.
+		$sql = 'select first_name, last_name, email, username, account_creation_date, password from ' . self::USERSTABLE . ' where id = ? ;';
+		
+		$query = $this->db->query( $sql, array($id) );
+
+		//Decode the password so we can get its length.
+		$data = $query->result_array();
+		$decryptedPassword = $this->encrypt->decode($data[0]['password']);
+		
+		//Replace the password with asterisks.
+		$data[0]['password'] = str_repeat( '*', strlen($decryptedPassword) );
+
+		return $data;
+	}
 
 }
 
