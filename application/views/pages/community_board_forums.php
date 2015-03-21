@@ -16,14 +16,14 @@
 			<!-- Categories list -->
 			<h3 class>Categories</h3>	
 			<ul class="nav nav-tabs" role="tablist">
-			  <li role="presentation" class="<?php echo $transportClass ?>"><a href="<?php echo base_url(); ?>community_board_forums/loadCatTabs?tab=transport" id="transportTabLink">Transport</a></li>
-			  <li role="presentation" class="<?php echo $foodClass ?>"><a href="<?php echo base_url(); ?>community_board_forums/loadCatTabs?tab=food" id="foodTabLink">Food</a></li>
-			  <li role="presentation" class="<?php echo $phoneClass ?>"><a href="#phone" role="tab" data-toggle="tab" id="phoneTabLink">Phone</a></li>
-			  <li role="presentation" class="<?php echo $entertainmentClass ?>"><a href="#entertainment" role="tab" data-toggle="tab" id="entertainmentTabLink">Entertainment</a></li>
-			  <li role="presentation" class="<?php echo $housingClass ?>"><a href="#housing" role="tab" data-toggle="tab" id="housingTabLink">Housing</a></li>
-			  <li role="presentation" class="<?php echo $utilitiesClass ?>"><a href="#utilities" role="tab" data-toggle="tab" id="utilitiesTabLink">Utilities</a></li>
-			  <li role="presentation" class="<?php echo $travelClass ?>"><a href="#travel" role="tab" data-toggle="tab" id="travelTabLink">Travel</a></li>
-			  <li role="presentation" class="<?php echo $generalClass ?>"><a href="#general" role="tab" data-toggle="tab" id="generalTabLink">General</a></li>
+			  <li role="presentation" class="<?php echo $transportClass ?>"><a href="<?php echo base_url(); ?>community_board_forums/loadCatTabs?tab=transport">Transport</a></li>
+			  <li role="presentation" class="<?php echo $foodClass ?>"><a href="<?php echo base_url(); ?>community_board_forums/loadCatTabs?tab=food">Food</a></li>
+			  <li role="presentation" class="<?php echo $communicationsClass ?>"><a href="<?php echo base_url(); ?>community_board_forums/loadCatTabs?tab=communications">Communications</a></li>
+			  <li role="presentation" class="<?php echo $entertainmentClass ?>"><a href="<?php echo base_url(); ?>community_board_forums/loadCatTabs?tab=entertainment">Entertainment</a></li>
+			  <li role="presentation" class="<?php echo $housingClass ?>"><a href="<?php echo base_url(); ?>community_board_forums/loadCatTabs?tab=housing">Housing</a></li>
+			  <li role="presentation" class="<?php echo $utilitiesClass ?>"><a href="<?php echo base_url(); ?>community_board_forums/loadCatTabs?tab=utilities">Utilities</a></li>
+			  <li role="presentation" class="<?php echo $travelClass ?>"><a href="<?php echo base_url(); ?>community_board_forums/loadCatTabs?tab=travel">Travel</a></li>
+			  <li role="presentation" class="<?php echo $generalClass ?>"><a href="<?php echo base_url(); ?>community_board_forums/loadCatTabs?tab=general">General</a></li>
 			  <button class="btn btn-success pull-right add-new-post-btn" data-toggle="modal" data-target="#addForumPostModal">Add new post</button>
 			</ul>
 		</div>

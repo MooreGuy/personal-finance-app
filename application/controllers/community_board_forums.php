@@ -9,6 +9,13 @@ class Community_board_forums extends CI_Controller
 	{
 		$data['title'] = 'Forums';
 		$data['transportClass'] = 'active';
+		$data['foodClass'] = '';
+		$data['communicationsClass'] = '';
+		$data['entertainmentClass'] = '';
+		$data['housingClass'] = '';
+		$data['utilitiesClass'] = '';
+		$data['travelClass'] = '';
+		$data['generalClass'] = '';
 		$this->load->view( 'templates/header', $data );
 		$this->load->view( 'pages/community_board_forums', $data );
 		$this->load->view( 'pages/community_board_forums_transport');
@@ -25,7 +32,7 @@ class Community_board_forums extends CI_Controller
 			case "transport":
 				$data['transportClass'] = 'active';
 				$data['foodClass'] = '';
-				$data['phoneClass'] = '';
+				$data['communicationsClass'] = '';
 				$data['entertainmentClass'] = '';
 				$data['housingClass'] = '';
 				$data['utilitiesClass'] = '';
@@ -40,7 +47,7 @@ class Community_board_forums extends CI_Controller
 			case "food": 
 				$data['transportClass'] = '';
 				$data['foodClass'] = 'active';
-				$data['phoneClass'] = '';
+				$data['communicationsClass'] = '';
 				$data['entertainmentClass'] = '';
 				$data['housingClass'] = '';
 				$data['utilitiesClass'] = '';
@@ -51,10 +58,10 @@ class Community_board_forums extends CI_Controller
 				$this->load->view( 'pages/community_board_forums_food', $data );
 				$this->load->view( 'templates/footer' );
 				break;
-			case "phone":
+			case "communications":
 				$data['transportClass'] = '';
 				$data['foodClass'] = '';
-				$data['phoneClass'] = 'active';
+				$data['communicationsClass'] = 'active';
 				$data['entertainmentClass'] = '';
 				$data['housingClass'] = '';
 				$data['utilitiesClass'] = '';
@@ -62,13 +69,13 @@ class Community_board_forums extends CI_Controller
 				$data['generalClass'] = '';
 				$this->load->view( 'templates/header');
 				$this->load->view( 'pages/community_board_forums', $data );
-				$this->load->view( 'pages/community_board_forums_phone', $data );
+				$this->load->view( 'pages/community_board_forums_communications', $data );
 				$this->load->view( 'templates/footer' );
 				break;
 			case "entertainment":
 				$data['transportClass'] = '';
 				$data['foodClass'] = '';
-				$data['phoneClass'] = '';
+				$data['communicationsClass'] = '';
 				$data['entertainmentClass'] = 'active';
 				$data['housingClass'] = '';
 				$data['utilitiesClass'] = '';
@@ -82,7 +89,7 @@ class Community_board_forums extends CI_Controller
 			case "housing":
 				$data['transportClass'] = '';
 				$data['foodClass'] = '';
-				$data['phoneClass'] = '';
+				$data['communicationsClass'] = '';
 				$data['entertainmentClass'] = '';
 				$data['housingClass'] = 'active';
 				$data['utilitiesClass'] = '';
@@ -93,10 +100,10 @@ class Community_board_forums extends CI_Controller
 				$this->load->view( 'pages/community_board_forums_housing', $data );
 				$this->load->view( 'templates/footer' );
 				break;
-			case "ultilities":
+			case "utilities":
 				$data['transportClass'] = '';
 				$data['foodClass'] = '';
-				$data['phoneClass'] = '';
+				$data['communicationsClass'] = '';
 				$data['entertainmentClass'] = '';
 				$data['housingClass'] = '';
 				$data['utilitiesClass'] = 'active';
@@ -110,7 +117,7 @@ class Community_board_forums extends CI_Controller
 			case "travel":
 				$data['transportClass'] = '';
 				$data['foodClass'] = '';
-				$data['phoneClass'] = '';
+				$data['communicationsClass'] = '';
 				$data['entertainmentClass'] = '';
 				$data['housingClass'] = '';
 				$data['utilitiesClass'] = '';
@@ -124,7 +131,7 @@ class Community_board_forums extends CI_Controller
 			case "general":
 				$data['transportClass'] = '';
 				$data['foodClass'] = '';
-				$data['phoneClass'] = '';
+				$data['communicationsClass'] = '';
 				$data['entertainmentClass'] = '';
 				$data['housingClass'] = '';
 				$data['utilitiesClass'] = '';

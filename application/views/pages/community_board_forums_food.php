@@ -1,7 +1,7 @@
 <!-- Begin Food Tab-->
 <div class="panel-group tab-pane active" aria-multiselectable="true" id="food" role="tabpanel">
 
-	<div class="container">
+	<div class="container post-container">
 
 		<!-- Each Row contains a post-->
 		<div class="row" data-post='3'>
