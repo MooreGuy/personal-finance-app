@@ -212,4 +212,32 @@ $(document).ready(function(){
 		//Put it in the modal
 		$('.commentOnTitle').text(postTitle);
 	});
+
+	/*
+		When a tab is clicked change the active tab
+	
+	$("#transportTabLink").on("click", function(){
+		
+
+		
+
+		//Wait for the view to load
+		setTimeout(function(){//Remove the current active tabs active class
+		if($("li[role='presentation']").hasClass('active')){
+			$("li[role='presentation']").removeClass('active');
+		}
+  		$(this).parent().addClass('active');
+		}, 5000);
+	});
+
+	$("#foodTabLink").on("click", function(){
+		
+
+		setTimeout(function(){//Remove the current active tabs active class
+		if($("li[role='presentation']").hasClass('active')){
+			$("li[role='presentation']").removeClass('active');
+		}
+  		$(this).parent().addClass('active');
+		}, 5000);
+	});*/
 });

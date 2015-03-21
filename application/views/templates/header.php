@@ -109,12 +109,13 @@
 	      							<label for="addPostCategory" class="addPostCategoryLabel">Category:</label>
 	      							<select id="addPostCategory">
 	      								<option value="1">Transport</option>
-	      								<option value="2">Phone</option>
-	      								<option value="3">Enternaintment</option>
-	      								<option value="4">Housing</option>
-	      								<option value="5">Utilities</option>
-	      								<option value="6">Travel</option>
-	      								<option value="7">General</option>
+	      								<option value="2">Food</option>
+	      								<option value="3">Phone</option>
+	      								<option value="4">Enternaintment</option>
+	      								<option value="5">Housing</option>
+	      								<option value="6">Utilities</option>
+	      								<option value="7">Travel</option>
+	      								<option value="8">General</option>
 	      							</select>
 									
 
