@@ -80,95 +80,106 @@
 
 			<?php
 			$x = 0;
-
-			foreach( $expenses as $key => $expense )
-			{
-
-				//Create a row for every two columns.
-				if( $x % 2 == 0 )
-				{
-					echo '<div class="row">';
-				}
-				echo '<div class="col-md-6">';
-				echo '<div class="panel-group" id="accordian' . $x . '" role="tablist" aria-multiselectable="true">';
-
-				//Panel info header.
-				echo '<div class="panel panel-info">';
-				echo '<div class="panel-heading category-heading" role="tab" id="collapseListGroupHeading' . $x . '">';
-				echo '<h4 class="panel-title">';
-				echo '<a class="" ';
-					echo 'data-toggle="collapse" ';
-					echo 'data-parent="#accordian' . $x . '" ';
-					echo 'href="#collapseListGroup' . $x . '" ';
-					echo 'aria-expanded="true" ';
-					echo 'aria-controls="collapseListGroup' . $x . '">';
-
-				//Header data here.
-				echo ucfirst($key);
-
-				echo '</a>';
-				//Edit
-				echo '<span class="pull-right"><a href="" data-toggle="modal" data-target="#editModal">Edit</a></span>';
-				echo '</h4>';
-				echo '</div>'; //Panel-heading
 			
-				/*
-					Echo out expenses in an unordered list.
-				*/
-				echo '<div id="collapseListGroup' . $x . '" ';
-					echo 'class="panel-collapse category-list-collapse collapse in" ';
-					echo 'role="tabpanel" ';
-					echo 'aria-labeldby="collapseListGroupHeading' . $x . '" ';
-					echo 'aria-expanded="true">';
-
-				echo '<ul class="list-group category-list container">';
-
-				foreach( $expense as $item )
+			//Check to make sure there are expenses.
+			if( !empty($expenses) )
+			{
+				foreach( $expenses as $key => $expense )
 				{
-					echo '<li class="list-group-item row">';
 
-					//The name of the expense.
-					echo '<span class="expense-name col-md-6">';
-					//THIS IS WHAT THIS SHOULD BE NOT, TYPE. echo $item->name;
-					echo ucfirst($item->type);
-					echo '</span>';
+					//Create a row for every two columns.
+					if( $x % 2 == 0 )
+					{
+						echo '<div class="row">';
+					}
+					echo '<div class="col-md-6">';
+					echo '<div class="panel-group" id="accordian' . $x . '" role="tablist" aria-multiselectable="true">';
 
-					//The cost of the expense.
-					echo '<span class="expense-cost col-md-3">';
-					echo $item->cost;
-					echo '</span>';
+					//Panel info header.
+					echo '<div class="panel panel-info">';
+					echo '<div class="panel-heading category-heading" role="tab" id="collapseListGroupHeading' . $x . '">';
+					echo '<h4 class="panel-title">';
+					echo '<a class="" ';
+						echo 'data-toggle="collapse" ';
+						echo 'data-parent="#accordian' . $x . '" ';
+						echo 'href="#collapseListGroup' . $x . '" ';
+						echo 'aria-expanded="true" ';
+						echo 'aria-controls="collapseListGroup' . $x . '">';
 
-					//The interval of the expense
-					echo '<span class="expense-interval col-md-2">';
-					echo $item->interv; //This needs to be pretefied.
-					echo '</span>';
+					//Header data here.
+					echo ucfirst($key);
+
+					echo '</a>';
+					//Edit
+					echo '<span class="pull-right"><a href="" data-toggle="modal" data-target="#editModal">Edit</a></span>';
+					echo '</h4>';
+					echo '</div>'; //Panel-heading
+				
+					/*
+						Echo out expenses in an unordered list.
+					*/
+					echo '<div id="collapseListGroup' . $x . '" ';
+						echo 'class="panel-collapse category-list-collapse collapse in" ';
+						echo 'role="tabpanel" ';
+						echo 'aria-labeldby="collapseListGroupHeading' . $x . '" ';
+						echo 'aria-expanded="true">';
+
+					echo '<ul class="list-group category-list container">';
+
+					foreach( $expense as $item )
+					{
+						echo '<li class="list-group-item row">';
+
+						//The name of the expense.
+						echo '<span class="expense-name col-md-6">';
+						//THIS IS WHAT THIS SHOULD BE NOT, TYPE. echo $item->name;
+						echo ucfirst($item->type);
+						echo '</span>';
+
+						//The cost of the expense.
+						echo '<span class="expense-cost col-md-3">';
+						echo $item->cost;
+						echo '</span>';
+
+						//The interval of the expense
+						echo '<span class="expense-interval col-md-2">';
+						echo $item->interv; //This needs to be pretefied.
+						echo '</span>';
+						
+						//HIDDEN
+						echo '<span class="delete-expense-item">X</span>';
 					
-					//HIDDEN
-					echo '<span class="delete-expense-item">X</span>';
-				
-					echo '</li>';
+						echo '</li>';
+					}
+
+					echo '</ul>';
+					echo '</div>'; //Panel-info header
+
+					echo '</div>'; //trying random things. TODO: Find who this silly div belongs to.
+
+					
+					echo '</div>'; //Panel-group
+					echo '</div>'; //column 6
+					
+
+					//Close the row every other column..
+					if( $x % 2 == 1 )
+					{
+						echo '</div>';
+						echo '<!-- closing row -->';
+					}
+
+					//Increment x for next panel.
+					$x++;
+					
 				}
-
-				echo '</ul>';
-				echo '</div>'; //Panel-info header
-
-				echo '</div>'; //trying random things. TODO: Find who this silly div belongs to.
-
-				
-				echo '</div>'; //Panel-group
-				echo '</div>'; //column 6
-				
-
-				//Close the row every other column..
-				if( $x % 2 == 1 )
-				{
-					echo '</div>';
-					echo '<!-- closing row -->';
-				}
-
-				//Increment x for next panel.
-				$x++;
-				
+			}
+			else
+			{
+				echo '<div class="info" role="info">';
+				echo '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>';
+				echo 'You don\'t have any expenses, go ahead and add one.';
+				echo '</div>';
 			}
 			?> 
 				
