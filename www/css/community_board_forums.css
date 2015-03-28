@@ -88,6 +88,7 @@
 .report-abuse-link{
 	color: #777;
 	text-decoration: none;
+	padding-right: 15px;
 }
 
 .report-abuse-link-post{
@@ -118,9 +119,13 @@
 	margin-top: 0px;
 }
 
-.pagination{
+.pagination-top{
 	margin-bottom: 0px;
-	margin-left: 20%;
+	margin-left: 23%;
+}
+
+.pagination-bottom{
+
 }
 
 .post-nav{
@@ -134,4 +139,13 @@
 
 .post-container{
 	padding-right: 0px;
+}
+
+.carousel{
+	height: 600px;
+}
+
+.graph{
+	height: 200px;
+	width: 300px;
 }

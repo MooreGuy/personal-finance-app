@@ -11,6 +11,7 @@
 
 		<!-- Bootsrap and our CSS -->
 		<link rel="stylesheet" type="text/css" href="<?php base_url(); ?>/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="<?php base_url(); ?>/css/owl.carousel.css">
 		<link rel="stylesheet" type="text/css" href="<?php base_url(); ?>/css/header.css">
 		<link rel="stylesheet" type="text/css" href="<?php base_url(); ?>/css/home.css">
 		<link rel="stylesheet" type="text/css" href="<?php base_url(); ?>/css/about_us.css">

@@ -8,139 +8,36 @@ class Community_board_forums extends CI_Controller
 	public function forums( $tags = 'none' )
 	{
 		$data['title'] = 'Forums';
-		$data['transportClass'] = 'active';
-		$data['foodClass'] = '';
-		$data['communicationsClass'] = '';
-		$data['entertainmentClass'] = '';
-		$data['housingClass'] = '';
-		$data['utilitiesClass'] = '';
-		$data['travelClass'] = '';
-		$data['generalClass'] = '';
-		$this->load->view( 'templates/header', $data );
-		$this->load->view( 'pages/community_board_forums', $data );
-		$this->load->view( 'pages/community_board_forums_transport');
-		$this->load->view( 'templates/footer', $data );
+		
+		$this->load->view( 'templates/header' );
+		$this->load->view( 'pages/community_board_forums');
+		$this->load->view( 'templates/footer');
+
 	}
 
 	//This function is called when a tab link is clicked on the forums page. It switches the active class of the tab and displays the relavent tab view
 	public function loadCatTabs( ){
+		
 		//Grab the name of the tab
 		$tabName = $this->input->get('tab');
 
 		//Switch through the various tab names and show the corrisponding views
 		switch($tabName){
-			case "transport":
-				$data['transportClass'] = 'active';
-				$data['foodClass'] = '';
-				$data['communicationsClass'] = '';
-				$data['entertainmentClass'] = '';
-				$data['housingClass'] = '';
-				$data['utilitiesClass'] = '';
-				$data['travelClass'] = '';
-				$data['generalClass'] = '';
-				$this->load->view( 'templates/header');
-				$this->load->view( 'pages/community_board_forums', $data );
-				$this->load->view( 'pages/community_board_forums_transport', $data );
-				$this->load->view( 'templates/footer' );
+			case "transport": $this->load->view( 'pages/CommunityBoard/community_board_forums_transport');
 				break;
-
-			case "food": 
-				$data['transportClass'] = '';
-				$data['foodClass'] = 'active';
-				$data['communicationsClass'] = '';
-				$data['entertainmentClass'] = '';
-				$data['housingClass'] = '';
-				$data['utilitiesClass'] = '';
-				$data['travelClass'] = '';
-				$data['generalClass'] = '';
-				$this->load->view( 'templates/header');
-				$this->load->view( 'pages/community_board_forums', $data );
-				$this->load->view( 'pages/community_board_forums_food', $data );
-				$this->load->view( 'templates/footer' );
+			case "food": $this->load->view( 'pages/CommunityBoard/community_board_forums_food');
 				break;
-			case "communications":
-				$data['transportClass'] = '';
-				$data['foodClass'] = '';
-				$data['communicationsClass'] = 'active';
-				$data['entertainmentClass'] = '';
-				$data['housingClass'] = '';
-				$data['utilitiesClass'] = '';
-				$data['travelClass'] = '';
-				$data['generalClass'] = '';
-				$this->load->view( 'templates/header');
-				$this->load->view( 'pages/community_board_forums', $data );
-				$this->load->view( 'pages/community_board_forums_communications', $data );
-				$this->load->view( 'templates/footer' );
+			case "communications": $this->load->view( 'pages/CommunityBoard/community_board_forums_communications');
 				break;
-			case "entertainment":
-				$data['transportClass'] = '';
-				$data['foodClass'] = '';
-				$data['communicationsClass'] = '';
-				$data['entertainmentClass'] = 'active';
-				$data['housingClass'] = '';
-				$data['utilitiesClass'] = '';
-				$data['travelClass'] = '';
-				$data['generalClass'] = '';
-				$this->load->view( 'templates/header');
-				$this->load->view( 'pages/community_board_forums', $data );
-				$this->load->view( 'pages/community_board_forums_entertainment', $data );
-				$this->load->view( 'templates/footer' );
+			case "entertainment": $this->load->view( 'pages/CommunityBoard/community_board_forums_entertainment');
 				break;
-			case "housing":
-				$data['transportClass'] = '';
-				$data['foodClass'] = '';
-				$data['communicationsClass'] = '';
-				$data['entertainmentClass'] = '';
-				$data['housingClass'] = 'active';
-				$data['utilitiesClass'] = '';
-				$data['travelClass'] = '';
-				$data['generalClass'] = '';
-				$this->load->view( 'templates/header');
-				$this->load->view( 'pages/community_board_forums', $data );
-				$this->load->view( 'pages/community_board_forums_housing', $data );
-				$this->load->view( 'templates/footer' );
+			case "housing": $this->load->view( 'pages/CommunityBoard/community_board_forums_housing');
 				break;
-			case "utilities":
-				$data['transportClass'] = '';
-				$data['foodClass'] = '';
-				$data['communicationsClass'] = '';
-				$data['entertainmentClass'] = '';
-				$data['housingClass'] = '';
-				$data['utilitiesClass'] = 'active';
-				$data['travelClass'] = '';
-				$data['generalClass'] = '';
-				$this->load->view( 'templates/header');
-				$this->load->view( 'pages/community_board_forums', $data );
-				$this->load->view( 'pages/community_board_forums_utilities', $data );
-				$this->load->view( 'templates/footer' );
+			case "utilities": $this->load->view( 'pages/CommunityBoard/community_board_forums_utilities');
 				break;
-			case "travel":
-				$data['transportClass'] = '';
-				$data['foodClass'] = '';
-				$data['communicationsClass'] = '';
-				$data['entertainmentClass'] = '';
-				$data['housingClass'] = '';
-				$data['utilitiesClass'] = '';
-				$data['travelClass'] = 'active';
-				$data['generalClass'] = '';
-				$this->load->view( 'templates/header');
-				$this->load->view( 'pages/community_board_forums', $data );
-				$this->load->view( 'pages/community_board_forums_travel', $data );
-				$this->load->view( 'templates/footer' );
+			case "travel": $this->load->view( 'pages/CommunityBoard/community_board_forums_travel');
 				break;
-			case "general":
-				$data['transportClass'] = '';
-				$data['foodClass'] = '';
-				$data['communicationsClass'] = '';
-				$data['entertainmentClass'] = '';
-				$data['housingClass'] = '';
-				$data['utilitiesClass'] = '';
-				$data['travelClass'] = '';
-				$data['generalClass'] = 'active';
-				$this->load->view( 'templates/header');
-				$this->load->view( 'pages/community_board_forums', $data );
-				$this->load->view( 'pages/community_board_forums_general', $data );
-				$this->load->view( 'templates/footer' );
+			case "general": $this->load->view( 'pages/CommunityBoard/community_board_forums_general');
 				break;
 
 			//let the default be the error
@@ -148,4 +45,5 @@ class Community_board_forums extends CI_Controller
 				break;
 		}
 	}
+	
 }
