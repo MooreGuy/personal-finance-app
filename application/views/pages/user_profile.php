@@ -36,20 +36,17 @@
 	<div class="modal fade" id="addCatModal" tabindex="-1" role="dialog" aria-labelledby="addCatModal" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-		    	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		    		<div class="container">
-		    			<div class="row">
-								<div class="col-md-6">
-								<br />
-		    					<h2 class="modal-title" id="addCatModal">Add A Category</h2>
-		    				</div>
-		    			</div>
-		    		</div>
-		      			<div class="container">
+				<div class="modal-header">
+		    		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h2 class="modal-title" id="addCatModal">Add A Category</h2>
+				</div>
+
+		    			<div class="container">
+		    				<h3>Title</h3>
 							<div class="row">
 								<div class="col-md-6">
 										<div class="input-group">
-										<input type="text" class="form-control" placeholder= "Category Title" aria-describedby="amount-addon">
+											<input type="text" class="form-control" placeholder= "Category Title" aria-describedby="amount-addon">
 										</div>
 								</div>
 							</div>	
@@ -106,12 +103,13 @@
 		      		<div class="modal-footer">
 	        			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	        			<button type="button" class="btn btn-success">Add</button>
+	        		</div>
+	        	</div>
+	        </div>
+		</div>
+	</div>
+</div>
 
-					</div>
-	    </div><!-- closes modal-content --> 
-	</div> 
-</div>
-</div>
 		<div class="col-md-4">
 
 			<!-- User Profile Information Section -->
