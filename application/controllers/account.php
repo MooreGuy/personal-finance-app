@@ -1,4 +1,6 @@
 <?php
+//TODO: Sanitize input forms completely.
+//TODO: Test login form authentication, after login form is working perfectly.
 
 class Account extends CI_Controller
 {

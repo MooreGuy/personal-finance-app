@@ -290,6 +290,7 @@
 								        </div>
 								    </div>
 
+									<?php //TODO: Only display login form when the user is unauthenticated. ?>
 								    <div class="col-md-6 login-form-col">
 								        <div class="navbar-login-wrapper">
 								          	<!-- Login form. This will toggle into the hamburger menu-->
