@@ -33,14 +33,20 @@ class User extends CI_Model
 	function insert_user( $username, $password, $email, $first_name, $last_name )
 	{
 		if( $this->user_exists($email) == False )
-		{	
-			$this->load->helper('date');
+		{
+
 			$this->username = $username;
 			$this->password = $this->encrypt->encode($password);	//encrypt the password
 			$this->email = $email;
 			$this->first_name = $first_name;
 			$this->last_name = $last_name;
-			$this->account_creation_date = now();
+
+			$this->load->helper('date');
+			//Format the time with the datestring.
+			$datestring = "%Y-%m-%d %h:%i:%s";
+			//Get the current time to use for the mdate function. Although it defaults to the current time.
+			$time = time();
+			$this->account_creation_date = mdate($datestring, $time);
 
 			$this->db->insert( self::USERSTABLE, $this);	
 		}
