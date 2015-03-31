@@ -25,7 +25,7 @@
 				  	</ul>
 			</nav>
 		</div>
-	</div>-->
+	</div> -->
 
 
 	<!-- Container for the posts -->
