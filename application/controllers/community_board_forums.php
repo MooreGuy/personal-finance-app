@@ -11,6 +11,7 @@ class Community_board_forums extends CI_Controller
 		
 		$this->load->view( 'templates/header' );
 		$this->load->view( 'pages/community_board_forums');
+		//$this->load->view( 'pages/CommunityBoard/community_board_forums_transport');
 		$this->load->view( 'templates/footer');
 
 	}

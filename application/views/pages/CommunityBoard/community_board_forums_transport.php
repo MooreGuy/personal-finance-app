@@ -2,7 +2,7 @@
 <div class="panel-group tab-pane active" aria-multiselectable="true" id="transport" role="tabpanel">
 
 	<!-- Container for the navigation and post filters -->
-	<div class="container">
+	<!--<div class="container">
 		<div class="row">
 			<nav class="post-nav">
 
@@ -23,18 +23,9 @@
 				      		</a>
 				    	</li>
 				  	</ul>
-
-			  	<span class="pull-right post-filter-wrapper">
-			  		<label for="post-filter">Filter results by:</label>
-			  		<select id="post-filter">
-								<option value="1">Top</option>
-								<option value="2">New</option>
-								<option value="3">Most Commented</option>
-							</select>
-			  	</span>
 			</nav>
 		</div>
-	</div>
+	</div>-->
 
 
 	<!-- Container for the posts -->
@@ -222,3 +213,6 @@
 		</div>
 	</div>
 </div><!-- END Panel Group-->
+
+<!-- community_board_forums_post_controls.js -->
+<script type="text/javascript" src="/js/community_board_forums_post_controls.js"></script>
