@@ -131,11 +131,11 @@ $(document).ready(function(){
 			//If the down vote button is neutral give it a positive and if it is positive give it a neutral
 			if($(this).hasClass('vote-neutral')){
 				$(this).removeClass('vote-neutral').addClass('vote-negative');
-				//Set the count of the post to +1
+				//Set the count of the post to -1
 				$('.vote-count-row[data-post=\"'+postId+'\"]').children().text(--voteCount);
 			}else{
 				$(this).removeClass('vote-negative').addClass('vote-neutral');
-				//Set the count of the post to -1
+				//Set the count of the post to +1
 				$('.vote-count-row[data-post=\"'+postId+'\"]').children().text(++voteCount);
 			}
 		}else if(type == "comment"){
@@ -146,8 +146,8 @@ $(document).ready(function(){
 			var voteCount = parseInt($('.vote-count-row[data-post-comment=\"'+postCommentId+'\"]').children().text());
 
 			//Remove any neg class the bottom vote button has and set it back to neutral
-			if($('.down-vote-wrapper[data-post-comment=\"'+postCommentId+'\"]').children().hasClass('vote-positive')){
-				$('.down-vote-wrapper[data-post-comment=\"'+postCommentId+'\"]').children().removeClass('vote-positive').addClass('vote-neutral');
+			if($('.up-vote-wrapper[data-post-comment=\"'+postCommentId+'\"]').children().hasClass('vote-positive')){
+				$('.up-vote-wrapper[data-post-comment=\"'+postCommentId+'\"]').children().removeClass('vote-positive').addClass('vote-neutral');
 
 				//Also set the vote count back to normal
 				$('.vote-count-row[data-post-comment=\"'+postCommentId+'\"]').children().text(--voteCount);
@@ -159,7 +159,7 @@ $(document).ready(function(){
 				//Set the count of the post to +1
 				$('.vote-count-row[data-post-comment=\"'+postCommentId+'\"]').children().text(--voteCount);
 			}else{
-				$(this).removeClass('vote-positive').addClass('vote-neutral');
+				$(this).removeClass('vote-negative').addClass('vote-neutral');
 				//Set the count of the post to -1
 				$('.vote-count-row[data-post-comment=\"'+postCommentId+'\"]').children().text(++voteCount);
 			}

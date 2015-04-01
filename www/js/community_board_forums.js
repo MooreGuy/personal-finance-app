@@ -7,10 +7,17 @@ $(document).ready(function(){
 	$(".owl-carousel").owlCarousel({
 		items:3,
 		loop:false,
-		dots:true,
-		navContainer: '#graphNav',
-		nav:true
 	});
+
+	// Go to the next item
+	$('.graphRightBtn').click(function() {
+    	$(".owl-carousel").trigger('next.owl.carousel');
+	})
+
+	// Go to the previous item
+	$('.graphLeftBtn').click(function() {
+	    $(".owl-carousel").trigger('prev.owl.carousel');
+	})
 
 	
 	//All of the graphs for the community data
@@ -135,7 +142,6 @@ $(document).ready(function(){
 
 	$('ul.nav.nav-tabs > li > a.transport').click(function(e){
 	 	e.preventDefault();
-	 	$('#tabContent').empty();
 	 	
 	 	$('ul > li[role="presentation"].active').removeClass('active');
 	 	$(this).parent().addClass('active');
@@ -155,7 +161,6 @@ $(document).ready(function(){
 
 	$('ul.nav.nav-tabs > li > a.food').click(function(e){
 	 	e.preventDefault();
-	 	$('#tabContent').empty();
 
 	 	$('ul > li[role="presentation"].active').removeClass('active');
 	 	$(this).parent().addClass('active');
@@ -175,7 +180,6 @@ $(document).ready(function(){
 
 	$('ul.nav.nav-tabs > li > a.communications').click(function(e){
 	 	e.preventDefault();
-	 	$('#tabContent').empty();
 	 	
 	 	$('ul > li[role="presentation"].active').removeClass('active');
 	 	$(this).parent().addClass('active');
@@ -195,7 +199,6 @@ $(document).ready(function(){
 
 	$('ul.nav.nav-tabs > li > a.entertainment').click(function(e){
 	 	e.preventDefault();
-	 	$('#tabContent').empty();
 	 	
 	 	$('ul > li[role="presentation"].active').removeClass('active');
 	 	$(this).parent().addClass('active');
@@ -215,7 +218,6 @@ $(document).ready(function(){
 
 	$('ul.nav.nav-tabs > li > a.housing').click(function(e){
 	 	e.preventDefault();
-	 	$('#tabContent').empty();
 	 	
 	 	$('ul > li[role="presentation"].active').removeClass('active');
 	 	$(this).parent().addClass('active');
@@ -235,7 +237,6 @@ $(document).ready(function(){
 
 	$('ul.nav.nav-tabs > li > a.utilities').click(function(e){
 	 	e.preventDefault();
-	 	$('#tabContent').empty();
 	 	
 	 	$('ul > li[role="presentation"].active').removeClass('active');
 	 	$(this).parent().addClass('active');
@@ -255,7 +256,6 @@ $(document).ready(function(){
 
 	$('ul.nav.nav-tabs > li > a.travel').click(function(e){
 	 	e.preventDefault();
-	 	$('#tabContent').empty();
 	 	
 	 	$('ul > li[role="presentation"].active').removeClass('active');
 	 	$(this).parent().addClass('active');
@@ -275,7 +275,6 @@ $(document).ready(function(){
 
 	$('ul.nav.nav-tabs > li > a.general').click(function(e){
 	 	e.preventDefault();
-	 	$('#tabContent').empty();
 	 	
 	 	$('ul > li[role="presentation"].active').removeClass('active');
 	 	$(this).parent().addClass('active');

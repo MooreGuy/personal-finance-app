@@ -16,16 +16,30 @@
 			<!-- Community Graphs -->
 			<h3 class>Community Data</h3>	
 
-			<!-- Owl Carousel Graphs -->
-			<div class="owl-carousel">
-      			<div id="graph1" class="graph"></div>
-      			<div id="graph2" class="graph"></div>
-      			<div id="graph3" class="graph"></div>
-      			<div id="graph4" class="graph"></div>
-    		</div>
-    		<div id="graphNav" class="owl-nav">
-    			
-    		</div>
+			<div id="graphNav">
+				<!-- Owl Carousel Graphs -->
+				<div class="owl-carousel">
+	      			<div id="graph1" class="graph"></div>
+	      			<div id="graph2" class="graph"></div>
+	      			<div id="graph3" class="graph"></div>
+	      			<div id="graph4" class="graph"></div>
+
+	      			
+	    		</div>
+	    		
+				<div class="owl-controls">
+	  				<div class="owl-nav">
+
+	  					<button type="button" class="btn graphLeftBtn">
+	  						<span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
+	  					</button>
+	  					<button type="button" class="btn graphRightBtn">
+	  						<span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
+	  					</button>
+	  					
+					</div>
+	  			</div>
+  			</div>
 			
 		</div><!-- END Col-->
 	</div> <!-- END Graphs row -->
@@ -129,8 +143,10 @@
 			      		<h4 class="panel-title">
 			      			<!-- data-post of the link should be the id of the post in the DB-->
 			        		<a class="header-link-collapse" aria-expanded="true" data-post="1">Bus ticket prices dropped!</a>
-
+			        		<span class="post-author"> by Mister Sprinkles</span>
+			        		<span>-<a href="#" class="report-abuse-link-post"> Report Abuse</a></span>
 			        		<span class="badge pull-right" aria-hidden="true">3</span>
+			        		
 
 			        		<!-- Edit Post -->
 			        		<a href="#" class="edit-post pull-right" data-toggle="modal" data-target="#editForumPostModal" data-post="1">Edit</a>
@@ -148,7 +164,7 @@
 			      						<div class="col-md-11 comment-control-col">
 						      				<span class="glyphicon glyphicon-chevron-right pull-left" data-toggle="collapse" href="#commentSection1" aria-expanded="false" aria-controls="commentSection1" aria-hidden="true" data-post="1"></span>
 						      				<a href="#" class="pull-left comment-link" data-toggle="modal" data-target="#addCommentPostModal" data-post="1">Comment</a>
-						      				<span class="pull-right"><a href="#" class="report-abuse-link-post">Report Abuse</a></span>
+						      				
 						      			</div>
 						      		</div>
 						      	</div>
