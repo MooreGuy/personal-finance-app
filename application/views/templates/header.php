@@ -320,12 +320,14 @@
 								        echo '</div>';
 								    echo '</div>';
 									}//end if
-									else
-									{
-										echo 'Logged in.';
-									}
-									?>
-
+									else 
+									{ ?>
+								     <div class="col-md-6 login-form-col">
+								        <div class="navbar-login-wrapper pull-right">
+											<p class="user-name">Welcome, <span>Mister Sprinkles</span></p> <button type="button" class="btn btn-danger log-out-button">Log out</button>									
+										</div>
+									</div>
+									<?php } ?> 
 							    </div><!-- /.row -->
 							</div><!-- /.container -->
 				        </div><!--/.navbar-collapse -->
