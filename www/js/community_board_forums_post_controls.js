@@ -11,6 +11,72 @@ $(document).ready(function(){
   		$('#tabContent').html(html);
 	}
 	});*/
+
+	/*
+		When the user clicks the add button to add a post submit the form, clear the inputs, close the modal
+	*/
+	$('.js-addNew-forumPost').on('click', function(){
+		//Submit the for
+		$('#addNewPostForm').submit();
+		//Clear the form inputs
+		$('#addNewPostForm')[0].reset();
+		//Reset the validation
+		
+		//Hide the modal
+		$('#addForumPostModal').modal('hide');
+	});
+		
+	//Validate the Add new forum post form
+	$('#addNewPostForm').validate({
+		rules:{
+			addPostCategory: {
+				required: true
+			},
+			addPostTitle: {
+				required: true,
+				minlength: 3,
+				maxlength: 100
+			},
+			addPostBody: {
+				required: true,
+				minlength: 10
+			}
+		},
+		messages:{
+			addPostTitle: {
+				required: "A title for your post is required",
+				minlength: "Your title must be at lease 3 characters long",
+				maxlength: "Your title can not be more than 100 characters long"
+			},
+			addPostBody: {
+				required: "The body in your post is required",
+				minlength: "The body must be more than 10 characters long"
+			}
+		},
+		validClass: "success", 
+		success: function(){
+			
+					
+		},
+		
+		submitHandler: function(form){					
+			var cat = $('#addPostCategory option:selected').text();
+			var title = $('#addPostTitle').val();
+			var content = $("#addPostBody").val();
+			
+			$.ajax({
+			    	type: 'post',
+			    	url: "/community_board_forums/addNewPost",
+			    	dataType: "json",
+			    	data:{
+			    		category: cat,
+			    		title: title,
+			    		content: content
+			    	}
+			});
+		}	
+	});
+	
 	
 
 	/*

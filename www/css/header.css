@@ -86,3 +86,15 @@ html {
 	margin-bottom: 15px;
 	height: 30px;
 }
+
+.success{
+	border: 1px solid green;
+}
+
+.form-control.error{
+	border: 1px solid red;
+}
+
+#addPostBody-error{
+	color: red;
+}

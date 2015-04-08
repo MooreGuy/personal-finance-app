@@ -5,19 +5,17 @@
  */
 class Community_board_forums extends CI_Controller
 {
-	public function forums( $tags = 'none' )
-	{
-		$data['title'] = 'Forums';
-		
+
+	function forums( $tags = 'none' )
+	{		
 		$this->load->view( 'templates/header' );
 		$this->load->view( 'pages/community_board_forums');
-		//$this->load->view( 'pages/CommunityBoard/community_board_forums_transport');
 		$this->load->view( 'templates/footer');
 
 	}
 
 	//This function is called when a tab link is clicked on the forums page. It switches the active class of the tab and displays the relavent tab view
-	public function loadCatTabs( ){
+	function loadCatTabs( ){
 		
 		//Grab the name of the tab
 		$tabName = $this->input->get('tab');
@@ -45,6 +43,17 @@ class Community_board_forums extends CI_Controller
 			default:
 				break;
 		}
+	}
+
+	function addNewPost(){
+		//need category, title, username, content, 
+		$data = array(
+			'category' => $this->input->post('category'),
+			'title' => $this->input->post('title'),
+			'content' => $this->input->post('content')
+		);
+
+		echo json_encode($data);
 	}
 	
 }

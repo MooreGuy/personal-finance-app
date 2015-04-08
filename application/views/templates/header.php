@@ -28,6 +28,7 @@
 		<script type="text/javascript" src="<?php base_url(); ?>/js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="<?php base_url(); ?>/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="<?php base_url(); ?>/js/jquery.canvasjs.min.js"></script>
+		<script type="text/javascript" src="<?php base_url(); ?>/js/jquery.validate.min.js"></script>
 		<script type="text/javascript" src="<?php base_url(); ?>/js/header.js"></script>		
 		
 	</head>
@@ -107,40 +108,40 @@
 	      					<div class="row">
 	      						<div class="col-md-6 modal-col">
 	      							<!-- Category selection dropdown -->
-	      							<label for="addPostCategory" class="addPostCategoryLabel">Category:</label>
-	      							<select id="addPostCategory">
-	      								<option value="1">Transport</option>
-	      								<option value="2">Food</option>
-	      								<option value="3">Phone</option>
-	      								<option value="4">Enternaintment</option>
-	      								<option value="5">Housing</option>
-	      								<option value="6">Utilities</option>
-	      								<option value="7">Travel</option>
-	      								<option value="8">General</option>
-	      							</select>
-									
+	      							<form  id="addNewPostForm">
+		      							<label for="addPostCategory" class="addPostCategoryLabel">Category:</label>
+		      							<select id="addPostCategory">
+		      								<option value="1">Transport</option>
+		      								<option value="2">Food</option>
+		      								<option value="3">Phone</option>
+		      								<option value="4">Enternaintment</option>
+		      								<option value="5">Housing</option>
+		      								<option value="6">Utilities</option>
+		      								<option value="7">Travel</option>
+		      								<option value="8">General</option>
+		      							</select>
+										
 
-	      							<div class="form-group">
-								  		<label for="addPostTitle">Title:</label>
-								  		<input type="text" id="addPostTitle" class="form-control">
-								  	</div>
+		      							<div class="form-group">
+									  		<label for="addPostTitle">Title:</label>
+									  		<input type="text" id="addPostTitle" name="addPostTitle" class="form-control">
+									  	</div>
+
+									  	<div class="form-group addPostFormGroup">
+									  		<label for="addPostBody">Body:</label> <label id="addPostBody-error" class="error" for="addPostBody"></label>
+									  		<textarea type="text" id="addPostBody" name="addPostBody" class="form-control"></textarea>
+									  	</div>
+									</form>
 	      						</div>
 	      					</div>
 
-	      					<div class="row">
-	      						<div class="col-md-6 modal-col">
-	      							<div class="form-group addPostFormGroup">
-								  		<label for="addPostBody">Body:</label>
-								  		<textarea type="text" id="addPostBody" class="form-control"></textarea>
-								  	</div>
-	      						</div>
-	      					</div>
+	      					
 	      				</div>
 	      			</div>
 
 	      			<div class="modal-footer">
 	        			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        			<button type="button" class="btn btn-success">Add</button>
+	        			<button type="button" class="btn btn-success js-addNew-forumPost">Add</button>
 	      			</div>
 	    		</div>
 	  		</div>
