@@ -109,8 +109,9 @@
 	      						<div class="col-md-6 modal-col">
 	      							<!-- Category selection dropdown -->
 	      							<form  id="addNewPostForm">
-		      							<label for="addPostCategory" class="addPostCategoryLabel">Category:</label>
-		      							<select id="addPostCategory">
+		      							<label for="addPostCategory" class="addPostCategoryLabel">Category:</label> <label id="addPostCategory-error" class="error" for="addPostCategory"></label>
+		      							<select id="addPostCategory" name="addPostCategory">
+		      								<option value="">Select a category</option>
 		      								<option value="1">Transport</option>
 		      								<option value="2">Food</option>
 		      								<option value="3">Phone</option>
@@ -123,7 +124,7 @@
 										
 
 		      							<div class="form-group">
-									  		<label for="addPostTitle">Title:</label>
+									  		<label for="addPostTitle">Title:</label> <label id="addPostTitle-error" class="error" for="addPostTitle"></label>
 									  		<input type="text" id="addPostTitle" name="addPostTitle" class="form-control">
 									  	</div>
 

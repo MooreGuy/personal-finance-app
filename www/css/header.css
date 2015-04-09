@@ -79,12 +79,13 @@ html {
 }
 
 .addPostCategoryLabel{
-	display: block;
+	display: inline-block;
 }
 
 #addPostCategory{
 	margin-bottom: 15px;
 	height: 30px;
+	display: block;
 }
 
 .success{
@@ -92,9 +93,9 @@ html {
 }
 
 .form-control.error{
-	border: 1px solid red;
+	border: 1px solid #E13300;
 }
 
-#addPostBody-error{
-	color: red;
+#addPostBody-error, #addPostTitle-error, #addPostCategory-error{
+	color: #E13300;
 }

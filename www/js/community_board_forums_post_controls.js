@@ -16,14 +16,8 @@ $(document).ready(function(){
 		When the user clicks the add button to add a post submit the form, clear the inputs, close the modal
 	*/
 	$('.js-addNew-forumPost').on('click', function(){
-		//Submit the for
+		//Submit the form
 		$('#addNewPostForm').submit();
-		//Clear the form inputs
-		$('#addNewPostForm')[0].reset();
-		//Reset the validation
-		
-		//Hide the modal
-		$('#addForumPostModal').modal('hide');
 	});
 		
 	//Validate the Add new forum post form
@@ -43,6 +37,9 @@ $(document).ready(function(){
 			}
 		},
 		messages:{
+			addPostCategory: {
+				required: "A category for your post is required",
+			},
 			addPostTitle: {
 				required: "A title for your post is required",
 				minlength: "Your title must be at lease 3 characters long",
@@ -54,12 +51,9 @@ $(document).ready(function(){
 			}
 		},
 		validClass: "success", 
-		success: function(){
-			
-					
-		},
 		
-		submitHandler: function(form){					
+		submitHandler: function(){
+
 			var cat = $('#addPostCategory option:selected').text();
 			var title = $('#addPostTitle').val();
 			var content = $("#addPostBody").val();
@@ -72,9 +66,26 @@ $(document).ready(function(){
 			    		category: cat,
 			    		title: title,
 			    		content: content
+			    	},
+			    	success: function(){
+			    		//Hide the modal
+						$('#addForumPostModal').modal('hide');
+						//Clear the form inputs
+						$('#addNewPostForm')[0].reset();
+						//Reset the validation
+						$('.form-control').removeClass('error').removeClass('success');						
 			    	}
 			});
 		}	
+	});
+
+	//When the close button on a modal is clicked clear the form and all validation messages
+	$('.btn[data-dismiss= "modal"]').on("click", function(){
+		//Clear the form inputs
+		$('#addNewPostForm')[0].reset();
+		//Reset the validation
+		$('.form-control').removeClass('error').removeClass('success');
+		$('label[class="error"]').empty();
 	});
 	
 	
