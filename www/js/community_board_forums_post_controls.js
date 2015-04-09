@@ -73,7 +73,9 @@ $(document).ready(function(){
 						//Clear the form inputs
 						$('#addNewPostForm')[0].reset();
 						//Reset the validation
-						$('.form-control').removeClass('error').removeClass('success');						
+						$('.form-control').removeClass('error').removeClass('success');
+						$('#addPostCategory').removeClass('error').removeClass('success');
+						
 			    	}
 			});
 		}	
@@ -82,7 +84,7 @@ $(document).ready(function(){
 	//When the close button on a modal is clicked clear the form and all validation messages
 	$('.btn[data-dismiss= "modal"]').on("click", function(){
 		//Clear the form inputs
-		$('#addNewPostForm')[0].reset();
+		$('form')[0].reset();
 		//Reset the validation
 		$('.form-control').removeClass('error').removeClass('success');
 		$('label[class="error"]').empty();
