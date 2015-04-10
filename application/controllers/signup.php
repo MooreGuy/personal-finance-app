@@ -1,5 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/*
+	Import parent controller.
+*/
+include_once( APPPATH . 'core/account.php' );
+
 
 class Signup extends Account
 {

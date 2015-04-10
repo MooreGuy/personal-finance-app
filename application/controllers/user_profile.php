@@ -1,6 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class User_profile extends CI_Controller {
+/*
+	Load parent controller
+*/
+include_once( APPPATH . 'core/account.php' );
+
+
+class User_profile extends Account {
 
 	/*
 		Load the homepage for the user.
@@ -42,39 +48,12 @@ class User_profile extends CI_Controller {
 		
 	}
 
-	function requireLogin()
-	{
-		if( $this->checkLoginStatus() == False )
-		{
-			redirect('/account/login', 'location');
-		}
-	}
-		
+	
 
 	//function create_category()
 	//function remove_category()
 
 
-	/*
-		Check if the user has already been authenticated by looking at the session data for
-		an email. The existence of an email means the user should have already been
-		authenticated.
-
-		@return boolean True if the user has already been authenticated, false if otherwise.
-	*/
-	function checkLoginStatus()
-	{
-		//Check if there is a email in the cookie, since it is added when a
-		// user is authenticated.
-		if( $this->session->userdata('email') == Null )
-		{
-			return False;
-		}
-		else
-		{
-			return True;
-		}
-	}
 	
 }
 

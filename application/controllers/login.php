@@ -2,6 +2,12 @@
 //TODO: Sanitize input forms completely.
 //TODO: Test login form authentication, after login form is working perfectly.
 
+/*
+	Load parent controller
+*/
+include_once( APPPATH . 'core/account.php' );
+
+
 class Login extends Account
 {
 

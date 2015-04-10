@@ -1,6 +1,12 @@
-<?php
+<?php if( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Admin extends CI_Controller
+/*
+	Load parent controller
+*/
+include_once( APPPATH . 'core/account.php' );
+
+
+class Admin extends Account
 {
 	function __construct()
 	{

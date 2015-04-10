@@ -1,18 +1,36 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class About_us extends CI_Controller {
+/*
+	Load parent controller
+*/
+include_once( APPPATH . 'core/account.php' );
 
-	public function view($page = 'about_us'){
+
+class Info extends Account {
+
+	public function about_us(){
 
 	    
-	    $data['title'] = ucfirst($page); // Capitalize the first letter
+	    $data['title'] = 'About Us';
 
 	    $this->load->view('templates/header', $data);
-	    $this->load->view('pages/'.$page, $data);
+	    $this->load->view('pages/about_us', $data);
+	    $this->load->view('templates/footer', $data);
+		
+	}
+
+
+	public function privacy_policy(){
+
+		data['title'] = 'Privacy Policy';
+
+	    $this->load->view('templates/header', $data);
+	    $this->load->view('pages/privacy_policy', $data);
 	    $this->load->view('templates/footer', $data);
 		
 	}
 }
 
-/* End of file about_us.php */
-/* Location: ./application/controllers/about_us.php */
+/* End of file info.php */
+/* Location: ./application/controllers/info.php */
+?>
