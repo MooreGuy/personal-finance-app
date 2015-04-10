@@ -299,7 +299,7 @@
 								          	//Login form. This will toggle into the hamburger menu
 								          	echo '<form class="navbar-form log-in-form" ';
 											echo 'action="' . base_url() . '" ';
-											echo 'account/login_form" method="post" id="log-in-form" >';
+											echo 'login/login_form" method="post" id="log-in-form" >';
 								            	echo '<div class="form-group">';
 								              		echo '<input type="text" name="email" ';
 													echo 'placeholder="Email" class="form-control log-in-input">';
