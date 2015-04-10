@@ -148,7 +148,7 @@
 	  		</div>
 		</div>
 
-		<!-- Add Comment Modal -->
+		<!-- Add Post Comment Modal -->
 		<div class="modal fade" id="addCommentPostModal" tabindex="-1" role="dialog" aria-labelledby="addCommentPostModalLabel" aria-hidden="true">
 	  		<div class="modal-dialog">
 	    		<div class="modal-content">
@@ -180,10 +180,12 @@
 
 	      					<div class="row">
 	      						<div class="col-md-6 modal-col">
-	      							<div class="form-group addCommentGroup">
-								  		<label for="addCommentBody">Body:</label>
-								  		<textarea type="text" id="addCommentBody" class="form-control"></textarea>
-								  	</div>
+	      							<form id="addCommentForm">
+		      							<div class="form-group addCommentGroup">
+									  		<label for="addCommentBody">Body:</label> <label id="addCommentBody-error" class="error" for="addCommentBody"></label>
+									  		<textarea type="text" id="addCommentBody" name="addCommentBody" class="form-control"></textarea>
+									  	</div>
+									</form>
 	      						</div>
 	      					</div>
 	      				</div>
@@ -191,7 +193,7 @@
 
 	      			<div class="modal-footer">
 	        			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        			<button type="button" class="btn btn-success">Add</button>
+	        			<button type="button" class="btn btn-success js-addNew-Comment">Add</button>
 	      			</div>
 	    		</div>
 	  		</div>

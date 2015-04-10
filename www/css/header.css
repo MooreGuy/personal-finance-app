@@ -96,6 +96,6 @@ html {
 	border: 1px solid #E13300;
 }
 
-#addPostBody-error, #addPostTitle-error, #addPostCategory-error{
+#addPostBody-error, #addPostTitle-error, #addPostCategory-error, #addCommentBody-error{
 	color: #E13300;
 }

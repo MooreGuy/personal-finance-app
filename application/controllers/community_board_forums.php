@@ -55,5 +55,16 @@ class Community_board_forums extends CI_Controller
 
 		echo json_encode($data);
 	}
+
+	function addNewComment(){
+		//need parentId, username, content, 
+		$data = array(
+			'parentId' => $this->input->post('parentId'),
+			'username' => $this->input->post('author'),
+			'content' => $this->input->post('content')
+		);
+
+		echo json_encode($data);
+	}
 	
 }

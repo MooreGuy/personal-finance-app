@@ -87,6 +87,135 @@ $(document).ready(function(){
 		$('#forgotPassModalLabel').text("Forgot Password");
 	});
 
-	
+	/*
+		When the user clicks the add button to add a post submit the form, clear the inputs, close the modal
+	*/
+	$('.js-addNew-forumPost').on('click', function(){
+		//Submit the form
+		$('#addNewPostForm').submit();
+	});
+		
+	//Validate the Add new forum post form
+	$('#addNewPostForm').validate({
+		rules:{
+			addPostCategory: {
+				required: true
+			},
+			addPostTitle: {
+				required: true,
+				minlength: 3,
+				maxlength: 1000
+			},
+			addPostBody: {
+				required: true,
+				minlength: 10
+			}
+		},
+		messages:{
+			addPostCategory: {
+				required: "A category for your post is required",
+			},
+			addPostTitle: {
+				required: "A title for your post is required",
+				minlength: "Your title must be at lease 3 characters long",
+				maxlength: "Your title can not be more than 100 characters long"
+			},
+			addPostBody: {
+				required: "The body in your post is required",
+				minlength: "The body must be more than 10 characters long"
+			}
+		},
+		validClass: "success", 
+		
+		submitHandler: function(){
+
+			var cat = $('#addPostCategory option:selected').text();
+			var title = $('#addPostTitle').val();
+			var content = $("#addPostBody").val();
+			
+			$.ajax({
+			    	type: 'post',
+			    	url: "/community_board_forums/addNewPost",
+			    	dataType: "json",
+			    	data:{
+			    		category: cat,
+			    		title: title,
+			    		content: content
+			    	},
+			    	success: function(){
+			    		//Hide the modal
+						$('#addForumPostModal').modal('hide');
+						//Clear the form inputs
+						$('#addNewPostForm')[0].reset();
+						//Reset the validation
+						$('.form-control').removeClass('error').removeClass('success');
+						$('#addPostCategory').removeClass('error').removeClass('success');
+						
+			    	}
+			});
+		}	
+	});
+
+	//
+	$('.js-addNew-Comment').on('click', function(){
+		//Submit the form
+		$('#addCommentForm').submit();
+	});
+
+	//Validate the add comment forum post form
+	$('#addCommentForm').validate({
+		rules: {
+			addCommentBody: {
+				required: true,
+				minlength: 5,
+				maxlength: 1000
+			}
+		},
+		messages: {
+			addCommentBody: {
+				required: "A body is required for your comment.",
+				minlength: "You comment needs to have at least 5 characters.",
+				maxlength: "Your comment can not be more than 1000 characters long."
+			}
+			
+		},
+		validClass: "success",
+
+		submitHandler: function(){
+			var parentId = "";
+			var author = "";
+			var content = "";
+
+			$.ajax({
+			    	type: 'post',
+			    	url: "/community_board_forums/addNewComment",
+			    	dataType: "json",
+			    	data:{
+			    		parentId: parentId,
+			    		author: author,
+			    		content: content
+			    	},
+			    	success: function(){
+			    		//Hide the modal
+						$('#addCommentPostModal').modal('hide');
+						//Clear the form inputs
+						$('#addCommentForm')[0].reset();
+						//Reset the validation
+						$('.form-control').removeClass('error').removeClass('success');
+			    	}
+			});
+		}
+	});
+
+	//When the close button on a modal is clicked clear the form and all validation messages
+	$('.btn[data-dismiss="modal"]').on("click", function(){
+		//Clear the form inputs
+		$('form')[0].reset();
+		$('.form-control').val('');
+		//Reset the validation
+		$('.form-control').removeClass('success').removeClass('error');
+		$('label[class="error"]').empty();
+		$('select[class="success"]').removeClass('error').removeClass('success');
+	});
 	
 });
