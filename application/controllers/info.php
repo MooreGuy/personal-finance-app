@@ -6,12 +6,14 @@
 include_once( APPPATH . 'core/account.php' );
 
 
-class Info extends Account {
+class Info extends Account
+{
 
-	public function about_us(){
+	function about_us()
+	{
 
 	    
-	    $data['title'] = 'About Us';
+	    $data['title'] = 'About Us | Contact Us';
 
 	    $this->load->view('templates/header', $data);
 	    $this->load->view('pages/about_us', $data);
@@ -20,15 +22,25 @@ class Info extends Account {
 	}
 
 
-	public function privacy_policy(){
-
-		data['title'] = 'Privacy Policy';
+	function privacy_policy()
+	{
+		$data['title'] = 'Privacy Policy';
 
 	    $this->load->view('templates/header', $data);
 	    $this->load->view('pages/privacy_policy', $data);
-	    $this->load->view('templates/footer', $data);
-		
+	    $this->load->view('templates/footer', $data);		
 	}
+
+	function contact_us()
+	{
+		
+	    $data['title'] = 'About Us | Contact Us';
+
+	    $this->load->view('templates/header', $data);
+	    $this->load->view('pages/about_us', $data);
+	    $this->load->view('templates/footer', $data);
+	}
+
 }
 
 /* End of file info.php */
