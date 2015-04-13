@@ -8,7 +8,7 @@
 }
 
 .closed-panel{
-	height: 100px;
+	height: 100%;
 }
 
 /*.post-vote-wrapper, .post-comment-vote-wrapper{
@@ -162,4 +162,9 @@
 
 .post-author{
 	color: #777;
+}
+
+.glyphicon-trash:hover{
+	color: #E13300;
+	cursor: pointer;
 }

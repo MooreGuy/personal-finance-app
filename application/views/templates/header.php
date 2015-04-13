@@ -41,7 +41,6 @@
 	  		<div class="modal-dialog">
 	    		<div class="modal-content">
 	      			<div class="modal-header">
-	        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
 	        			<!-- Title of the Modal -->
 		        		<div class="container">
@@ -56,30 +55,26 @@
 
 	      			<div class="modal-body" id="editFourmPostModal-body">
 	      				<div class="container">
-	      					<div class="row">
+      						<div class="row">
 	      						<div class="col-md-6 modal-col">
-	      							<div class="form-group">
-								  		<label for="editPostTitle">Title:</label>
-								  		<input type="text" id="editPostTitle" class="form-control">
-								  	</div>
-	      						</div>
-	      					</div>
-
-	      					<div class="row">
-	      						<div class="col-md-6 modal-col">
-	      							<div class="form-group editPostFormGroup">
-								  		<label for="editPostBody">Body:</label>
-								  		<textarea type="text" id="editPostBody" class="form-control"></textarea>
-								  	</div>
+	      							<form id="editPostForm">
+		      							<div class="form-group">
+									  		<label for="editPostTitle">Title:</label> <label id="editPostTitle-error" class="error" for="editPostTitle"></label>
+									  		<input type="text" id="editPostTitle" name="editPostTitle" class="form-control">
+									  	</div>
+									  	<div class="form-group editPostFormGroup">
+									  		<label for="editPostBody">Body:</label> <label id="editPostBody-error" class="error" for="editPostBody"></label>
+									  		<textarea type="text" id="editPostBody" name="editPostBody" class="form-control"></textarea>
+									  	</div>
+									</form>
 	      						</div>
 	      					</div>
 	      				</div>
 	      			</div>
 
 	      			<div class="modal-footer">
-	      				<button type="button" class="btn btn-danger pull-left">Delete Post</button>
-	        			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        			<button type="button" class="btn btn-primary">Save Changes</button>
+	        			<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+	        			<button type="button" class="btn btn-primary js-editPost">Save</button>
 	      			</div>
 	    		</div>
 	  		</div>
@@ -90,7 +85,7 @@
 	  		<div class="modal-dialog">
 	    		<div class="modal-content">
 	      			<div class="modal-header">
-	        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        			<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
 
 	        			<!-- Title of the Modal -->
 		        		<div class="container">
@@ -141,7 +136,7 @@
 	      			</div>
 
 	      			<div class="modal-footer">
-	        			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        			<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
 	        			<button type="button" class="btn btn-success js-addNew-forumPost">Add</button>
 	      			</div>
 	    		</div>
@@ -153,7 +148,7 @@
 	  		<div class="modal-dialog">
 	    		<div class="modal-content">
 	      			<div class="modal-header">
-	        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        			<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
 
 	        			<!-- Title of the Modal -->
 		        		<div class="container">

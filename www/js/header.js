@@ -87,6 +87,11 @@ $(document).ready(function(){
 		$('#forgotPassModalLabel').text("Forgot Password");
 	});
 
+	//Check input for special characters
+	$.validator.addMethod("FormRegex", function(value, element) {
+        return this.optional(element) || /^[a-zA-Z 0-9\-\+\.\!\@\#\$\%\^\&\*\(\)\{\}\[\]\"\'\:\;\?\\"]+$/i.test(value);
+    }, "HTML characters are not allowed.");
+
 	/*
 		When the user clicks the add button to add a post submit the form, clear the inputs, close the modal
 	*/
@@ -99,16 +104,20 @@ $(document).ready(function(){
 	$('#addNewPostForm').validate({
 		rules:{
 			addPostCategory: {
-				required: true
+				required: true,
+				FormRegex: true
 			},
 			addPostTitle: {
 				required: true,
 				minlength: 3,
-				maxlength: 1000
+				maxlength: 100,
+				FormRegex: true
 			},
 			addPostBody: {
 				required: true,
-				minlength: 10
+				minlength: 10,
+				maxlength: 1000,
+				FormRegex: true
 			}
 		},
 		messages:{
@@ -122,7 +131,8 @@ $(document).ready(function(){
 			},
 			addPostBody: {
 				required: "The body in your post is required",
-				minlength: "The body must be more than 10 characters long"
+				minlength: "The body must be more than 10 characters long",
+				maxlength: "Your body can not be more than 1000 characters long"
 			}
 		},
 		validClass: "success", 
@@ -156,7 +166,7 @@ $(document).ready(function(){
 		}	
 	});
 
-	//
+	//When the user add a new comment submit the form
 	$('.js-addNew-Comment').on('click', function(){
 		//Submit the form
 		$('#addCommentForm').submit();
@@ -167,14 +177,15 @@ $(document).ready(function(){
 		rules: {
 			addCommentBody: {
 				required: true,
-				minlength: 5,
-				maxlength: 1000
+				minlength: 3,
+				maxlength: 1000,
+				FormRegex: true
 			}
 		},
 		messages: {
 			addCommentBody: {
 				required: "A body is required for your comment.",
-				minlength: "You comment needs to have at least 5 characters.",
+				minlength: "Your comment needs to have at least 3 characters.",
 				maxlength: "Your comment can not be more than 1000 characters long."
 			}
 			
@@ -206,6 +217,73 @@ $(document).ready(function(){
 			});
 		}
 	});
+
+	//Validate the edit post form
+	$('.js-editPost').on('click', function(){
+		//Submit the form
+		$('#editPostForm').submit();
+	});
+
+	//Validate the edit forum form
+	$('#editPostForm').validate({
+		rules: {
+			editPostTitle: {
+				required: true,
+				minlength: 3,
+				maxlength: 100,
+				FormRegex: true
+			},
+			editPostBody: {
+				required: true,
+				minlength: 10,
+				maxlength: 1000,
+				FormRegex: true
+			}
+
+		},
+		messages: {
+			editPostTitle: {
+				required: "A title is required for your post.",
+				minlength: "Your post needs to have at least 3 characters.",
+				maxlength: "Your post can not be more than 100 characters long."
+			},
+			editPostBody: {
+				required: "A body is required for your post.",
+				minlength: "Your post needs to have at least 10 characters.",
+				maxlength: "Your post can not be more than 1000 characters long."
+			}
+			
+		},
+		validClass: "success",
+
+		submitHandler: function(){
+			var postId = "";
+			var author = "";
+			var title = "";
+			var content = "";
+
+			$.ajax({
+			    	type: 'post',
+			    	url: "/community_board_forums/editPost",
+			    	dataType: "json",
+			    	data:{
+			    		postId: postId,
+			    		author: author,
+			    		title: title,
+			    		content: content
+			    	},
+			    	success: function(){
+			    		//Hide the modal
+						$('#editForumPostModal').modal('hide');
+						//Clear the form inputs
+						$('#editPostForm')[0].reset();
+						//Reset the validation
+						$('.form-control').removeClass('error').removeClass('success');
+			    	}
+			});
+		}
+	});
+
 
 	//When the close button on a modal is clicked clear the form and all validation messages
 	$('.btn[data-dismiss="modal"]').on("click", function(){

@@ -122,7 +122,7 @@
 						        		<a class="header-link-collapse" aria-expanded="true" data-post="1">Bus ticket prices dropped!</a>
 						        		<span class="post-author"> by Mister Sprinkles</span>
 						        		<span>-<a href="#" class="report-abuse-link-post"> Report Abuse</a></span>
-						        		<span class="badge pull-right" aria-hidden="true">3</span>
+						        		<span class="glyphicon glyphicon-trash pull-right js-deletePost" aria-hidden="true"></span>
 						        		
 
 						        		<!-- Edit Post -->

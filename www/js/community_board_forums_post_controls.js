@@ -19,7 +19,7 @@ $(document).ready(function(){
 			$('.panel-collapse[data-post=\"' + postId + '\"]').removeClass('closed-panel').addClass('open');
 		}
 	});
-
+	
 
 	/*
 		When the up vote button is clicked remove any previous selection the
@@ -174,7 +174,7 @@ $(document).ready(function(){
 		$('#editPostTitle').val(postTitle);
 
 		//Put the content into the body
-		$('#editPostBody').text(postBody);
+		$('#editPostBody').val(postBody);
 	});
 
 	/*
