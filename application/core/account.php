@@ -2,10 +2,13 @@
 
 class Account extends CI_Controller
 {
-	function __construct()
+	protected $user_id;
+	protected $user_name;
+
+	public function __construct()
 	{
 		parent::__construct();
-		
+
 		//Required for getting user data.
 		$this->load->model('User');
 
@@ -15,12 +18,16 @@ class Account extends CI_Controller
 		//TODO: Check to make sure all of the following loads are necessary for this controller,
 		//or if they should be done in children.
 		$this->load->library('input');
-		
+
 		$this->load->helper('url');
 
 		$this->load->model('User');
-	}
 
+		$this->user_id = $this->session->userdata('id');
+		$this->user_name = $this->User->get_user_name( $this->user_id );
+
+	}
+	
 
 	/*
 		Used to check if the user is logged in, and if they aren't then redirect them
@@ -65,7 +72,6 @@ class Account extends CI_Controller
 		
 		@return boolean false if adding the data to the cookie fails, and true if it succeeds.
 	*/
-
 	function add_cookie_data( $email, $id )
 	{
 		//Set the email and id keys to $email and $id arguments.
@@ -134,5 +140,6 @@ class Account extends CI_Controller
 		//Authentication failed, return false.
 		return False;
 	}
+
 }
 ?>

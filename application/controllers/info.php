@@ -15,6 +15,9 @@ class Info extends Account
 	    
 	    $data['title'] = 'About Us | Contact Us';
 
+		//Get the user's name from the parent class.
+		$data['user_name'] = $this->user_name;
+
 	    $this->load->view('templates/header', $data);
 	    $this->load->view('pages/about_us', $data);
 	    $this->load->view('templates/footer', $data);
@@ -25,6 +28,9 @@ class Info extends Account
 	function privacy_policy()
 	{
 		$data['title'] = 'Privacy Policy';
+
+		//Get the user's name from the parent class.
+		$data['user_name'] = $this->user_name;
 
 	    $this->load->view('templates/header', $data);
 	    $this->load->view('pages/privacy_policy', $data);

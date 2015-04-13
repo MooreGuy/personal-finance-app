@@ -36,16 +36,19 @@ class User_profile extends Account {
 	    $data['title'] = ucfirst($page); // Capitalize the first letter
 		$data['loginStatus'] = $this->checkLoginStatus();
 
-		$user_id = $this->session->userdata('id');
-		$data['user_data'] = $this->User->get_user_profile_data( $user_id );
+		//Get the user's name from the parent class.
+		$data['user_name'] = $this->user_name;
 
 
-		$data['expenses'] = $this->expenses->get_current_expenses_grouped_for_user( $user_id );
+		$data['user_data'] = $this->User->get_user_profile_data( $this->user_id );
+
+
+		$data['expenses'] = $this->expenses->get_current_expenses_grouped_for_user( $this->user_id );
 
 	    $this->load->view('templates/header', $data);
 	    $this->load->view('pages/'.$page, $data);
 	    $this->load->view('templates/footer', $data);
-		
+
 	}
 
 	

@@ -324,7 +324,7 @@
 									{ ?>
 								     <div class="col-md-6 login-form-col">
 								        <div class="navbar-login-wrapper pull-right">
-											<p class="user-name">Welcome, <span>Mister Sprinkles</span></p> <button type="button" class="btn btn-danger log-out-button">Log out</button>									
+											<p class="user-name">Welcome, <span><?php echo $user_name; ?></span></p> <button type="button" class="btn btn-danger log-out-button">Log out</button>									
 										</div>
 									</div>
 									<?php } ?> 

@@ -35,6 +35,9 @@ class Signup extends Account
 		{
 			$data['message'] = "Error, you entered something in wrong!.";	
 		}
+
+		//Get the user's name from the parent class.
+		$data['user_name'] = $this->user_name;
 		
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/signup', $data);

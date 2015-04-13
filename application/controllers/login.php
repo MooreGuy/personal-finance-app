@@ -28,7 +28,7 @@ class Login extends Account
 
 		@param string $status a status message to display to the user at the form.
 	*/	
-	function login( $status = Null )
+	function login( $status = NULL )
 	{
 		$data['title'] = 'Login';
 		
@@ -36,6 +36,9 @@ class Login extends Account
 		{
 			$data['message'] = 'Error, invalid username or password';
 		}
+
+		//Get the user's name from the parent class.
+		$data['user_name'] = $this->user_name;
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/login', $data);

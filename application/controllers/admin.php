@@ -25,6 +25,9 @@ class Admin extends Account
 
 		$data['loginStatus'] = $this->checkLoginStatus();
 
+		//Get the user's name from the parent class.
+		$data['user_name'] = $this->user_name;
+
 		//Set the title for the header.
 		$data['title'] = 'Admin Dashboard Overview';	
 		//Load the header

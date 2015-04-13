@@ -22,6 +22,9 @@ class Community_board_user_guides extends Account
 		$data['title'] = 'Forums';
 		$data['loginStatus'] = $this->checkLoginStatus();
 
+		//Get the user's name from the parent class.
+		$data['user_name'] = $this->user_name;
+
 		$this->load->view( 'templates/header', $data );
 		$this->load->view( 'pages/community_board_user_guides', $data );
 		$this->load->view( 'templates/footer', $data );
