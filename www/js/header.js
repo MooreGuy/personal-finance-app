@@ -193,9 +193,8 @@ $(document).ready(function(){
 		validClass: "success",
 
 		submitHandler: function(){
-			var parentId = "";
-			var author = "";
-			var content = "";
+			var parentId = $('.commentOnTitle').attr('parentId');
+			var content = $('#addCommentBody').val();
 
 			$.ajax({
 			    	type: 'post',
@@ -203,7 +202,6 @@ $(document).ready(function(){
 			    	dataType: "json",
 			    	data:{
 			    		parentId: parentId,
-			    		author: author,
 			    		content: content
 			    	},
 			    	success: function(){
@@ -257,10 +255,9 @@ $(document).ready(function(){
 		validClass: "success",
 
 		submitHandler: function(){
-			var postId = "";
-			var author = "";
-			var title = "";
-			var content = "";
+			var postId = $('#editPostTitle').attr('postId');
+			var title = $('#editPostTitle').val();
+			var content = $('#editPostBody').val();
 
 			$.ajax({
 			    	type: 'post',
@@ -268,7 +265,6 @@ $(document).ready(function(){
 			    	dataType: "json",
 			    	data:{
 			    		postId: postId,
-			    		author: author,
 			    		title: title,
 			    		content: content
 			    	},

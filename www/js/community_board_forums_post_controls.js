@@ -170,6 +170,9 @@ $(document).ready(function(){
 		//Get the body of the post
 		var postBody = $('.panel-body[data-post=\"'+postId+'\"] > .body-text').text();
 
+		//Put the id in the title
+		$('#editPostTitle').attr("postId", postId);
+
 		//Put the title into the modal for editing
 		$('#editPostTitle').val(postTitle);
 
@@ -214,5 +217,6 @@ $(document).ready(function(){
 
 		//Put it in the modal
 		$('.commentOnTitle').text(postTitle);
+		$('.commentOnTitle').attr('parentId', postId);
 	});
 });

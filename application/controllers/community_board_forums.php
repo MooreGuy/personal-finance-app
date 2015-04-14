@@ -46,7 +46,7 @@ class Community_board_forums extends CI_Controller
 	}
 
 	function addNewPost(){
-		//need category, title, username, content, 
+		//need category, title, content, 
 		$data = array(
 			'category' => $this->input->post('category'),
 			'title' => $this->input->post('title'),
@@ -57,10 +57,9 @@ class Community_board_forums extends CI_Controller
 	}
 
 	function addNewComment(){
-		//need parentId, username, content, 
+		//need parentId, content
 		$data = array(
 			'parentId' => $this->input->post('parentId'),
-			'username' => $this->input->post('author'),
 			'content' => $this->input->post('content')
 		);
 
@@ -68,10 +67,9 @@ class Community_board_forums extends CI_Controller
 	}
 
 	function editPost(){
-		//need parentId, username, content, 
+		//need postId, title, content, 
 		$data = array(
-			'parentId' => $this->input->post('postId'),
-			'username' => $this->input->post('author'),
+			'postId' => $this->input->post('postId'),
 			'title' => $this->input->post('title'),
 			'content' => $this->input->post('content')
 		);

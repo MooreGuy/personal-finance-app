@@ -50,7 +50,6 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h3 class="pull-left">Forums</h3>
-					<button class="btn btn-success pull-right" data-toggle="modal" data-target="#addForumPostModal">Add new post</button>
 				</div>
 			</div>
 			
@@ -64,7 +63,8 @@
 			  <li role="presentation" class=""><a href="#" class="travel">Travel</a></li>
 			  <li role="presentation" class=""><a href="#" class="general">General</a></li>
 			  <span class="pull-right post-filter-wrapper">
-			  		<label for="post-filter">Filter results by:</label>
+			  		<a class="" data-toggle="modal" data-target="#addForumPostModal">Add new post</a>
+			  		<!--<label for="post-filter">Filter results by:</label>-->
 			  		<select id="post-filter">
 						<option value="1">Top</option>
 						<option value="2">New</option>
