@@ -310,7 +310,7 @@
 								            	echo '</div>'; // form-group
 								            	echo '<div class="form-group">';
 								              		echo '<input type="password" placeholder="Password" ';
-													echo 'class="form-control log-in-input">';
+													echo 'class="form-control log-in-input" name="password">';
 								              		echo '<a href="'. base_url() . 'account/forgot_password_form" ';
 													echo 'data-toggle="modal" data-target="#forgotPassModal">Forgot Password?';
 													echo '</a>';

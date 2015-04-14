@@ -15,7 +15,6 @@ class Login extends Account
 	{
 		parent::__construct();
 
-		$this->load->library('session');
 		$this->load->library('input');
 		
 		$this->load->helper('url');
@@ -66,7 +65,6 @@ class Login extends Account
 			$email = $this->input->post('email');
 			$password = $this->input->post( 'password' );
 
-			$this->load->helper('url');
 			//Call the login function to attempt a login.
 			if( $this->authenticate( $email, $password ) )
 			{
@@ -79,6 +77,20 @@ class Login extends Account
 
 		}
 	}		
+	
+
+	/*
+		Simple logout that unsets to the cookie email and id, and redirects them to the homepage.	
+	*/
+	function logout()
+	{
+		//Unset cookie information.
+		$this->session->unset_userdata('email');	
+		$this->session->unset_userdata('id');
+
+		//Send them back to the home page.
+		redirect( 'home/welcome', 'location');
+	}
 	
 
 }
