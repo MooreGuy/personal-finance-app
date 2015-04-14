@@ -290,7 +290,7 @@
 								        </div>
 								    </div>
 
-									<?php //TODO: Only display login form when the user is unauthenticated. ?>
+									<?php //TODO: remove all of these echos. ?>
 									<?php 
 									if( $loginStatus == False )
 									{
@@ -298,7 +298,7 @@
 								        echo '<div class="navbar-login-wrapper">';
 								          	//Login form. This will toggle into the hamburger menu
 								          	echo '<form class="navbar-form log-in-form" ';
-											echo 'action="' . base_url() . '" ';
+											echo 'action="' . base_url() . 'login/login_form" ';
 											echo 'login/login_form" method="post" id="log-in-form" >';
 								            	echo '<div class="form-group">';
 								              		echo '<input type="text" name="email" ';
@@ -324,7 +324,10 @@
 									{ ?>
 								     <div class="col-md-6 login-form-col">
 								        <div class="navbar-login-wrapper pull-right">
-											<p class="user-name">Welcome, <span><?php echo $user_name; ?></span></p> <button type="button" class="btn btn-danger log-out-button">Log out</button>									
+											<p class="user-name">Welcome, <span><?php echo $user_name; ?></span></p>
+											<a href="<?php echo base_url(); ?>login/logout">
+												<button type="button" class="btn btn-danger log-out-button">Log out</button>	
+											</a>
 										</div>
 									</div>
 									<?php } ?> 
