@@ -290,26 +290,47 @@
 								        </div>
 								    </div>
 
-								    <div class="col-md-6 login-form-col">
-								        <div class="navbar-login-wrapper">
-								          	<!-- Login form. This will toggle into the hamburger menu-->
-								          	<form class="navbar-form log-in-form" action="<?php echo base_url();?>account/login_form" method="post" id="log-in-form" >
-								            	<div class="form-group">
-								              		<input type="text" name="email" placeholder="Email" class="form-control log-in-input">
+									<?php //TODO: remove all of these echos. ?>
+									<?php 
+									if( $loginStatus == False )
+									{
+								     echo '<div class="col-md-6 login-form-col">';
+								        echo '<div class="navbar-login-wrapper">';
+								          	//Login form. This will toggle into the hamburger menu
+								          	echo '<form class="navbar-form log-in-form" ';
+											echo 'action="' . base_url() . 'login/login_form" ';
+											echo 'login/login_form" method="post" id="log-in-form" >';
+								            	echo '<div class="form-group">';
+								              		echo '<input type="text" name="email" ';
+													echo 'placeholder="Email" class="form-control log-in-input">';
 
-								              		<div class="checkbox">
-									              		<input class="remember-me-checkbox" type="checkbox"> Remember Me
-								              		</div>
-								            	</div>
-								            	<div class="form-group">
-								              		<input type="password" placeholder="Password" class="form-control log-in-input">
-								              		<a href="<?php echo base_url();?>account/forgot_password_form" data-toggle="modal" data-target="#forgotPassModal">Forgot Password?</a>
-								            	</div>
-								            	<button type="submit" class="btn btn-success log-in-button">Log in</button>
-								          	</form>
-								        </div>
-								    </div>
-
+								              		echo '<div class="checkbox">';
+									              		echo '<input class="remember-me-checkbox" type="checkbox"> Remember Me';
+								              		echo '</div>';
+								            	echo '</div>'; // form-group
+								            	echo '<div class="form-group">';
+								              		echo '<input type="password" placeholder="Password" ';
+													echo 'class="form-control log-in-input" name="password">';
+								              		echo '<a href="'. base_url() . 'account/forgot_password_form" ';
+													echo 'data-toggle="modal" data-target="#forgotPassModal">Forgot Password?';
+													echo '</a>';
+								            	echo '</div>';
+								            	echo '<button type="submit" class="btn btn-success log-in-button">Log in</button>';
+								          	echo '</form>';
+								        echo '</div>';
+								    echo '</div>';
+									}//end if
+									else 
+									{ ?>
+								     <div class="col-md-6 login-form-col">
+								        <div class="navbar-login-wrapper pull-right">
+											<p class="user-name">Welcome, <span><?php echo $user_name; ?></span></p>
+											<a href="<?php echo base_url(); ?>login/logout">
+												<button type="button" class="btn btn-danger log-out-button">Log out</button>	
+											</a>
+										</div>
+									</div>
+									<?php } ?> 
 							    </div><!-- /.row -->
 							</div><!-- /.container -->
 				        </div><!--/.navbar-collapse -->

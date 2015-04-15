@@ -20,6 +20,7 @@ class User extends CI_Model
 		$this->load->library('encrypt');
 	}
 
+
 	/*
 		Creates a new user from the parameters given and the current time.
 		Encrypts the password of the user before storing it.
@@ -33,14 +34,20 @@ class User extends CI_Model
 	function insert_user( $username, $password, $email, $first_name, $last_name )
 	{
 		if( $this->user_exists($email) == False )
-		{	
-			$this->load->helper('date');
+		{
+
 			$this->username = $username;
 			$this->password = $this->encrypt->encode($password);	//encrypt the password
 			$this->email = $email;
 			$this->first_name = $first_name;
 			$this->last_name = $last_name;
-			$this->account_creation_date = now();
+
+			$this->load->helper('date');
+			//Format the time with the datestring.
+			$datestring = "%Y-%m-%d %h:%i:%s";
+			//Get the current time to use for the mdate function. Although it defaults to the current time.
+			$time = time();
+			$this->account_creation_date = mdate($datestring, $time);
 
 			$this->db->insert( self::USERSTABLE, $this);	
 		}
@@ -53,6 +60,7 @@ class User extends CI_Model
 		//Return true if user creation was successful.
 		return True;
 	}
+
 
 	/*
 		Receives an email string and a password string and checks
@@ -90,6 +98,7 @@ class User extends CI_Model
 
 	}
 
+
 	/*
 		Checks to make sure that a account with a given email doesn't already exist.
 		
@@ -122,6 +131,7 @@ class User extends CI_Model
 		
 	}		
 	
+
 	/*
 		Query the database for a user with the given email and return their user id.
 	
@@ -142,6 +152,7 @@ class User extends CI_Model
 		//Return the id of the first row.
 		return $first_row->id;
 	}
+
 
 	/*
 		Get all user data for a particular user..
@@ -165,6 +176,32 @@ class User extends CI_Model
 		$data[0]['password'] = str_repeat( '*', strlen($decryptedPassword) );
 
 		return $data;
+	}
+
+
+	/*
+		Gets the users first and last names and combines them into one seperated by a space.
+
+		@return string of the first and last name seperated by a space.
+	*/
+	function get_user_name( $user_id )
+	{
+
+		$sql = 'select first_name, last_name from ' . self::USERSTABLE . ' where id = ?';
+
+		$query = $this->db->query( $sql, array($user_id) );
+
+		//Check to make sure the database returned something, if nothing return null.
+		if( $query->num_rows() > 0 )
+		{
+			$query_result = $query->result();
+			
+			return $query_result[0]->first_name . " " . $query_result[0]->last_name;
+		}
+		else
+		{
+			return NULL;
+		}
 	}
 
 }

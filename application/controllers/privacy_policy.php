@@ -2,16 +2,6 @@
 
 class Privacy_policy extends CI_Controller {
 
-	public function view($page = 'privacy_policy'){
-
-	    
-	    $data['title'] = ucfirst($page); // Capitalize the first letter
-
-	    $this->load->view('templates/header', $data);
-	    $this->load->view('pages/'.$page, $data);
-	    $this->load->view('templates/footer', $data);
-		
-	}
 }
 
 /* End of file privacy_policy.php */

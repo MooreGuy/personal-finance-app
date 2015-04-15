@@ -178,7 +178,7 @@
 			{
 				echo '<div class="alert alert-info" role="alert">';
 				echo '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>';
-				echo 'You don\'t have any expenses, go ahead and add one.';
+				echo ' You don\'t have any expenses, go ahead and add one.';
 				echo '</div>';
 			}
 			?> 
