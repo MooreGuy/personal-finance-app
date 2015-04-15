@@ -15,8 +15,13 @@
 		var $parent = ''
 		var $category = '';
 
-		function addNewPost(){
-			
+		function addNewPost($username, $category, $title, $content){
+			$this->username = $username;
+			$this->category = $category;
+			$this->title = $title;
+			$this->content = $content;
+
+			$this->db->insert(self::POSTTABLE, $this);
 		}
 	}
 ?>

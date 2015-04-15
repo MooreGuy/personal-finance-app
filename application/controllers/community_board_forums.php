@@ -1,10 +1,18 @@
 <?php
+include_once( APPPATH . 'core/account.php' );
 
 /*
  *
  */
-class Community_board_forums extends CI_Controller
+class Community_board_forums extends Account
 {
+	function __construct(){
+		parent::__construct();
+	
+		$this->load->library('session');
+		$this->load->model('User');
+		//$this->load->model('Comm_forums');
+	}
 
 	function forums( $tags = 'none' )
 	{		
@@ -47,13 +55,20 @@ class Community_board_forums extends CI_Controller
 
 	function addNewPost(){
 		//need category, title, content, 
-		$data = array(
-			'category' => $this->input->post('category'),
-			'title' => $this->input->post('title'),
-			'content' => $this->input->post('content')
-		);
+		$space = " ";
+		$user_name = $this->user_name;
+		$category = $this->input->post('category');
+		$title = $this->input->post('title');
+		$content = $this->input->post('content');
 
-		echo json_encode($data);
+
+
+		//Try to add the new data. If it succeds or fails return a status to the user
+		//if($this->Comm_forums->addNewPost($username, $category, $title, $content)){
+
+		//}
+
+		echo json_encode($user_name . $space. $category . $space . $title . $space . $content);
 	}
 
 	function addNewComment(){
@@ -63,7 +78,7 @@ class Community_board_forums extends CI_Controller
 			'content' => $this->input->post('content')
 		);
 
-		echo json_encode($data);
+		//echo json_encode($data);
 	}
 
 	function editPost(){
@@ -74,7 +89,7 @@ class Community_board_forums extends CI_Controller
 			'content' => $this->input->post('content')
 		);
 
-		echo json_encode($data);
+		//echo json_encode($data);
 	}
 	
 }
