@@ -10,8 +10,8 @@ class Community_board_forums extends Account
 		parent::__construct();
 	
 		$this->load->library('session');
-		$this->load->model('User');
-		//$this->load->model('Comm_forums');
+		//$this->load->model('User');
+		$this->load->model('Comm_forums');
 	}
 
 	function forums( $tags = 'none' )
@@ -56,7 +56,7 @@ class Community_board_forums extends Account
 	function addNewPost(){
 		//need category, title, content, 
 		$space = " ";
-		$user_name = $this->user_name;
+		$userId = $this->session->userdata('id');
 		$category = $this->input->post('category');
 		$title = $this->input->post('title');
 		$content = $this->input->post('content');
@@ -64,30 +64,25 @@ class Community_board_forums extends Account
 
 
 		//Try to add the new data. If it succeds or fails return a status to the user
-		//if($this->Comm_forums->addNewPost($username, $category, $title, $content)){
+		$this->Comm_forums->addNewPost($userId, $category, $title, $content);
+		
 
-		//}
-
-		echo json_encode($user_name . $space. $category . $space . $title . $space . $content);
+		echo json_encode($userId. $space. $category . $space . $title . $space . $content);
 	}
 
 	function addNewComment(){
 		//need parentId, content
-		$data = array(
-			'parentId' => $this->input->post('parentId'),
-			'content' => $this->input->post('content')
-		);
+		$parentId = $this->input->post('parentId');
+		$content = $this->input->post('content');
 
 		//echo json_encode($data);
 	}
 
 	function editPost(){
 		//need postId, title, content, 
-		$data = array(
-			'postId' => $this->input->post('postId'),
-			'title' => $this->input->post('title'),
-			'content' => $this->input->post('content')
-		);
+		$postId = $this->input->post('postId');
+		$title = $this->input->post('title');
+		$content = $this->input->post('content');
 
 		//echo json_encode($data);
 	}
