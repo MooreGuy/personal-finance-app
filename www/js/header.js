@@ -122,7 +122,7 @@ $(document).ready(function(){
 		},
 		messages:{
 			addPostCategory: {
-				required: "A category for your post is required",
+				required: "Required",
 			},
 			addPostTitle: {
 				required: "A title for your post is required",
@@ -184,7 +184,7 @@ $(document).ready(function(){
 		},
 		messages: {
 			addCommentBody: {
-				required: "A body is required for your comment.",
+				required: "Required",
 				minlength: "Your comment needs to have at least 3 characters.",
 				maxlength: "Your comment can not be more than 1000 characters long."
 			}
@@ -241,7 +241,7 @@ $(document).ready(function(){
 		},
 		messages: {
 			editPostTitle: {
-				required: "A title is required for your post.",
+				required: "Required",
 				minlength: "Your post needs to have at least 3 characters.",
 				maxlength: "Your post can not be more than 100 characters long."
 			},

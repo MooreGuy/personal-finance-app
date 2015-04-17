@@ -16,21 +16,16 @@
 		var $category = '';
 
 		function addNewPost($userId, $category, $title, $content){
-			$data = array(
-				'date_added' => "",
-				'title' => $title,
-				'content' => $content,
-				'userId' => $userId,
-				'upvotes_total' => "",
-				'parentId' => "",
-				'category' => $category
-			);
-			//$this->userId = $userId;
-			//$this->category = $category;
-			//$this->title = $title;
-			//$this->content = $content;
-
-			$this->db->insert('posts', $data);
+			
+			$this->timestamp = 0;
+			$this->title = $title;
+			$this->content = $content;
+			$this->userId = $userId;
+			$this->upvotes_total = 0;
+			$this->parentId = 0;
+			$this->category = $category;
+	
+			$this->db->insert(self::POSTTABLE, $this);
 		}
 	}
 ?>
