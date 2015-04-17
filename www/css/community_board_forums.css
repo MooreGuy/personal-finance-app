@@ -8,15 +8,15 @@
 }
 
 .closed-panel{
-	height: 100px;
+	height: 100%;
 }
 
-.post-vote-wrapper, .post-comment-vote-wrapper{
+/*.post-vote-wrapper, .post-comment-vote-wrapper{
 	padding-left: 0px;
-}
+}*/
 
 .post-wrapper{
-	padding-right: 30px;
+	padding-right: 40px;
 	padding-left: 0px;
 }
 
@@ -88,6 +88,7 @@
 .report-abuse-link{
 	color: #777;
 	text-decoration: none;
+	padding-right: 15px;
 }
 
 .report-abuse-link-post{
@@ -118,9 +119,13 @@
 	margin-top: 0px;
 }
 
-.pagination{
+.pagination-top{
 	margin-bottom: 0px;
-	margin-left: 20%;
+	margin-left: 23%;
+}
+
+.pagination-bottom{
+
 }
 
 .post-nav{
@@ -128,6 +133,38 @@
 }
 
 .post-filter-wrapper{
-	margin-top: 25px;
-	margin-right: 30px;
+	margin-top: 10px;
+	margin-right: 0px;
+}
+
+.post-container{
+	padding-right: 0px;
+}
+
+.carousel{
+	height: 600px;
+}
+
+.graph{
+	height: 200px;
+	width: 300px;
+}
+
+.graphLeftBtn, .graphRightBtn{
+	margin-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.owl-nav{
+	text-align: center;
+}
+
+.post-author{
+	color: #777;
+}
+
+.glyphicon-trash:hover{
+	color: #E13300;
+	cursor: pointer;
 }

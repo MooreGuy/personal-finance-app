@@ -79,10 +79,23 @@ html {
 }
 
 .addPostCategoryLabel{
-	display: block;
+	display: inline-block;
 }
 
 #addPostCategory{
 	margin-bottom: 15px;
 	height: 30px;
+	display: block;
+}
+
+.success{
+	border: 1px solid green;
+}
+
+.form-control.error{
+	border: 1px solid #E13300;
+}
+
+#addPostBody-error, #addPostTitle-error, #addPostCategory-error, #addCommentBody-error, #editPostBody-error, #editPostTitle-error{
+	color: #E13300;
 }

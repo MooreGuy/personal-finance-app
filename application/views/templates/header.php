@@ -11,6 +11,7 @@
 
 		<!-- Bootsrap and our CSS -->
 		<link rel="stylesheet" type="text/css" href="<?php base_url(); ?>/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="<?php base_url(); ?>/css/owl.carousel.css">
 		<link rel="stylesheet" type="text/css" href="<?php base_url(); ?>/css/header.css">
 		<link rel="stylesheet" type="text/css" href="<?php base_url(); ?>/css/home.css">
 		<link rel="stylesheet" type="text/css" href="<?php base_url(); ?>/css/about_us.css">
@@ -27,6 +28,7 @@
 		<script type="text/javascript" src="<?php base_url(); ?>/js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="<?php base_url(); ?>/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="<?php base_url(); ?>/js/jquery.canvasjs.min.js"></script>
+		<script type="text/javascript" src="<?php base_url(); ?>/js/jquery.validate.min.js"></script>
 		<script type="text/javascript" src="<?php base_url(); ?>/js/header.js"></script>		
 		
 	</head>
@@ -39,7 +41,6 @@
 	  		<div class="modal-dialog">
 	    		<div class="modal-content">
 	      			<div class="modal-header">
-	        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
 	        			<!-- Title of the Modal -->
 		        		<div class="container">
@@ -54,30 +55,26 @@
 
 	      			<div class="modal-body" id="editFourmPostModal-body">
 	      				<div class="container">
-	      					<div class="row">
+      						<div class="row">
 	      						<div class="col-md-6 modal-col">
-	      							<div class="form-group">
-								  		<label for="editPostTitle">Title:</label>
-								  		<input type="text" id="editPostTitle" class="form-control">
-								  	</div>
-	      						</div>
-	      					</div>
-
-	      					<div class="row">
-	      						<div class="col-md-6 modal-col">
-	      							<div class="form-group editPostFormGroup">
-								  		<label for="editPostBody">Body:</label>
-								  		<textarea type="text" id="editPostBody" class="form-control"></textarea>
-								  	</div>
+	      							<form id="editPostForm">
+		      							<div class="form-group">
+									  		<label for="editPostTitle">Title:</label> <label id="editPostTitle-error" class="error" for="editPostTitle"></label>
+									  		<input type="text" id="editPostTitle" name="editPostTitle" class="form-control">
+									  	</div>
+									  	<div class="form-group editPostFormGroup">
+									  		<label for="editPostBody">Body:</label> <label id="editPostBody-error" class="error" for="editPostBody"></label>
+									  		<textarea type="text" id="editPostBody" name="editPostBody" class="form-control"></textarea>
+									  	</div>
+									</form>
 	      						</div>
 	      					</div>
 	      				</div>
 	      			</div>
 
 	      			<div class="modal-footer">
-	      				<button type="button" class="btn btn-danger pull-left">Delete Post</button>
-	        			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        			<button type="button" class="btn btn-primary">Save Changes</button>
+	        			<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+	        			<button type="button" class="btn btn-primary js-editPost">Save</button>
 	      			</div>
 	    		</div>
 	  		</div>
@@ -88,7 +85,7 @@
 	  		<div class="modal-dialog">
 	    		<div class="modal-content">
 	      			<div class="modal-header">
-	        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        			<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
 
 	        			<!-- Title of the Modal -->
 		        		<div class="container">
@@ -106,50 +103,52 @@
 	      					<div class="row">
 	      						<div class="col-md-6 modal-col">
 	      							<!-- Category selection dropdown -->
-	      							<label for="addPostCategory" class="addPostCategoryLabel">Category:</label>
-	      							<select id="addPostCategory">
-	      								<option value="1">Transport</option>
-	      								<option value="2">Phone</option>
-	      								<option value="3">Enternaintment</option>
-	      								<option value="4">Housing</option>
-	      								<option value="5">Utilities</option>
-	      								<option value="6">Travel</option>
-	      								<option value="7">General</option>
-	      							</select>
-									
+	      							<form  id="addNewPostForm">
+		      							<label for="addPostCategory" class="addPostCategoryLabel">Category:</label> <label id="addPostCategory-error" class="error" for="addPostCategory"></label>
+		      							<select id="addPostCategory" name="addPostCategory">
+		      								<option value="">Select a category</option>
+		      								<option value="1">Transport</option>
+		      								<option value="2">Food</option>
+		      								<option value="3">Phone</option>
+		      								<option value="4">Enternaintment</option>
+		      								<option value="5">Housing</option>
+		      								<option value="6">Utilities</option>
+		      								<option value="7">Travel</option>
+		      								<option value="8">General</option>
+		      							</select>
+										
 
-	      							<div class="form-group">
-								  		<label for="addPostTitle">Title:</label>
-								  		<input type="text" id="addPostTitle" class="form-control">
-								  	</div>
+		      							<div class="form-group">
+									  		<label for="addPostTitle">Title:</label> <label id="addPostTitle-error" class="error" for="addPostTitle"></label>
+									  		<input type="text" id="addPostTitle" name="addPostTitle" class="form-control">
+									  	</div>
+
+									  	<div class="form-group addPostFormGroup">
+									  		<label for="addPostBody">Body:</label> <label id="addPostBody-error" class="error" for="addPostBody"></label>
+									  		<textarea type="text" id="addPostBody" name="addPostBody" class="form-control"></textarea>
+									  	</div>
+									</form>
 	      						</div>
 	      					</div>
 
-	      					<div class="row">
-	      						<div class="col-md-6 modal-col">
-	      							<div class="form-group addPostFormGroup">
-								  		<label for="addPostBody">Body:</label>
-								  		<textarea type="text" id="addPostBody" class="form-control"></textarea>
-								  	</div>
-	      						</div>
-	      					</div>
+	      					
 	      				</div>
 	      			</div>
 
 	      			<div class="modal-footer">
-	        			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        			<button type="button" class="btn btn-success">Add</button>
+	        			<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+	        			<button type="button" class="btn btn-success js-addNew-forumPost">Add</button>
 	      			</div>
 	    		</div>
 	  		</div>
 		</div>
 
-		<!-- Add Comment Modal -->
+		<!-- Add Post Comment Modal -->
 		<div class="modal fade" id="addCommentPostModal" tabindex="-1" role="dialog" aria-labelledby="addCommentPostModalLabel" aria-hidden="true">
 	  		<div class="modal-dialog">
 	    		<div class="modal-content">
 	      			<div class="modal-header">
-	        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        			<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
 
 	        			<!-- Title of the Modal -->
 		        		<div class="container">
@@ -176,10 +175,12 @@
 
 	      					<div class="row">
 	      						<div class="col-md-6 modal-col">
-	      							<div class="form-group addCommentGroup">
-								  		<label for="addCommentBody">Body:</label>
-								  		<textarea type="text" id="addCommentBody" class="form-control"></textarea>
-								  	</div>
+	      							<form id="addCommentForm">
+		      							<div class="form-group addCommentGroup">
+									  		<label for="addCommentBody">Body:</label> <label id="addCommentBody-error" class="error" for="addCommentBody"></label>
+									  		<textarea type="text" id="addCommentBody" name="addCommentBody" class="form-control"></textarea>
+									  	</div>
+									</form>
 	      						</div>
 	      					</div>
 	      				</div>
@@ -187,7 +188,7 @@
 
 	      			<div class="modal-footer">
 	        			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        			<button type="button" class="btn btn-success">Add</button>
+	        			<button type="button" class="btn btn-success js-addNew-Comment">Add</button>
 	      			</div>
 	    		</div>
 	  		</div>
