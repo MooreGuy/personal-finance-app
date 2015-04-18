@@ -89,12 +89,12 @@ $(document).ready(function(){
 				required: "Required",
 			},
 			addPostTitle: {
-				required: "A title for your post is required",
+				required: "Required",
 				minlength: "Your title must be at lease 3 characters long",
 				maxlength: "Your title can not be more than 100 characters long"
 			},
 			addPostBody: {
-				required: "The body in your post is required",
+				required: "Required",
 				minlength: "The body must be more than 10 characters long",
 				maxlength: "Your body can not be more than 1000 characters long"
 			}
@@ -103,6 +103,7 @@ $(document).ready(function(){
 		
 		submitHandler: function(){
 
+			//Get the category, title, content, and upvote count
 			var cat = $('#addPostCategory option:selected').text();
 			var title = $('#addPostTitle').val();
 			var content = $("#addPostBody").val();
@@ -110,7 +111,7 @@ $(document).ready(function(){
 			$.ajax({
 			    	type: 'post',
 			    	url: "/community_board_forums/addNewPost",
-			    	dataType: "json",
+			    	dataType: "text",
 			    	data:{
 			    		category: cat,
 			    		title: title,
@@ -124,7 +125,8 @@ $(document).ready(function(){
 						//Reset the validation
 						$('.form-control').removeClass('error').removeClass('success');
 						$('#addPostCategory').removeClass('error').removeClass('success');
-						
+						//Show success message
+						$('.add-post-success-wrapper').fadeIn(800).delay(1500).fadeOut(1000);
 			    	}
 			});
 		}	
@@ -210,7 +212,7 @@ $(document).ready(function(){
 				maxlength: "Your post can not be more than 100 characters long."
 			},
 			editPostBody: {
-				required: "A body is required for your post.",
+				required: "Required",
 				minlength: "Your post needs to have at least 10 characters.",
 				maxlength: "Your post can not be more than 1000 characters long."
 			}

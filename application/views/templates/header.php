@@ -109,8 +109,8 @@
 		      								<option value="">Select a category</option>
 		      								<option value="1">Transport</option>
 		      								<option value="2">Food</option>
-		      								<option value="3">Phone</option>
-		      								<option value="4">Enternaintment</option>
+		      								<option value="3">Communications</option>
+		      								<option value="4">Entertainment</option>
 		      								<option value="5">Housing</option>
 		      								<option value="6">Utilities</option>
 		      								<option value="7">Travel</option>
@@ -251,6 +251,14 @@
 		</div>
 		<!-- END Modals -->
 
+		<!-- Success alert for when the user successfully adds a new post -->
+		<div class="add-post-success-wrapper">
+			<div class="well well-sm" id="add-post-success">
+				<span class="text-info success-text-info">Your post has successfully been added</span>
+			</div>
+		</div>
+		<!-- END User Sussess/Error Messages -->
+
 		<!-- Top Navbar -->
 		<nav class="navbar navbar-default navbar-static-top">
 	      	<div class="container">
@@ -283,7 +291,11 @@
 								            	<li name="announcements"><a href="<?php  echo base_url(); ?>announcements/home">Announcements</a></li>
 
 								            	<!-- Only show the MyProfile tab when the user logs in -->
-								            	<li name="user_profile"><a href="<?php  echo base_url(); ?>user_profile/home">My Profile</a></li>
+								            	<?php 
+								            	if ($loginStatus == True){
+								            	?>
+								            		<li name="user_profile"><a href="<?php  echo base_url(); ?>user_profile/home">My Profile</a></li>
+								            	<?php } ?>
 
 								            	<!-- When an admin user successfully signs in show the admin tab -->
 								            	<li name="admin"><a href="<?php  echo base_url(); ?>admin/overview">Admin</a></li>

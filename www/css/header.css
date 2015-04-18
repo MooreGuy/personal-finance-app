@@ -99,3 +99,19 @@ html {
 #addPostBody-error, #addPostTitle-error, #addPostCategory-error, #addCommentBody-error, #editPostBody-error, #editPostTitle-error{
 	color: #E13300;
 }
+
+.add-post-success-wrapper{
+	position: absolute;
+	right: 50%;
+	margin-top: 10px;
+	z-index: 10;
+	display: none;
+}
+
+#add-post-success{
+	background-color: #d9edf7;
+	left:  -40%;
+	z-index: 10;
+	border-radius: 5px;
+	margin-right: -100px;
+}

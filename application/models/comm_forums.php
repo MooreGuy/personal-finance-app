@@ -4,7 +4,6 @@
 	*/
 	class Comm_forums extends CI_Model
 	{
-		const POSTTABLE = 'posts';
 		
 		var $id = '';
 		var $timestamp = '';
@@ -12,20 +11,28 @@
 		var $content = '';
 		var $userId = '';
 		var $upvotes_total = '';
-		var $parent = '';
+		var $parentId = '';
 		var $category = '';
 
 		function addNewPost($userId, $category, $title, $content){
 			
-			$this->timestamp = 0;
-			$this->title = $title;
-			$this->content = $content;
-			$this->userId = $userId;
-			$this->upvotes_total = 0;
-			$this->parentId = 0;
-			$this->category = $category;
-	
-			$this->db->insert(self::POSTTABLE, $this);
+			/*$this->load->helper('date');
+			//Format the time with the datestring.
+			$datestring = "%Y-%m-%d %h:%i:%s";
+			//Get the current time to use for the mdate function. Although it defaults to the current time.
+			$time = time();
+			$timestamp = mdate($datestring, $time);*/
+
+			$data = array(
+				'title' => $title,
+				'content' => $content,
+				'userId' => $userId,
+				'upvotes_total' => 0,
+				'parentId' => 0,
+				'category' => $category
+			);
+
+			$this->db->insert('posts', $data); 
 		}
 	}
 ?>
