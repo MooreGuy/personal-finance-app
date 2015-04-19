@@ -125,7 +125,7 @@ $(document).ready(function(){
 						//Reset the validation
 						$('.form-control').removeClass('error').removeClass('success');
 						$('#addPostCategory').removeClass('error').removeClass('success');
-						//Show success message
+						//Show and hide success message
 						$('.add-post-success-wrapper').fadeIn(800).delay(1500).fadeOut(1000);
 			    	}
 			});
@@ -241,6 +241,8 @@ $(document).ready(function(){
 						$('#editPostForm')[0].reset();
 						//Reset the validation
 						$('.form-control').removeClass('error').removeClass('success');
+						//Show and hide success message
+						$('.edit-post-success-wrapper').fadeIn(800).delay(1500).fadeOut(1000);
 			    	}
 			});
 		}

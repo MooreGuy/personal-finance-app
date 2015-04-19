@@ -100,7 +100,7 @@ html {
 	color: #E13300;
 }
 
-.add-post-success-wrapper{
+.add-post-success-wrapper, .edit-post-success-wrapper{
 	position: absolute;
 	right: 50%;
 	margin-top: 10px;
@@ -108,7 +108,7 @@ html {
 	display: none;
 }
 
-#add-post-success{
+#add-post-success, #edit-post-success{
 	background-color: #d9edf7;
 	left:  -40%;
 	z-index: 10;

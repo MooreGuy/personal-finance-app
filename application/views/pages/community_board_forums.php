@@ -63,7 +63,11 @@
 			  <li role="presentation" class=""><a href="#" class="travel">Travel</a></li>
 			  <li role="presentation" class=""><a href="#" class="general">General</a></li>
 			  <span class="pull-right post-filter-wrapper">
-			  		<a class="" data-toggle="modal" data-target="#addForumPostModal">Add new post</a>
+
+			  		<?php if($loginStatus == True){
+			  			echo "<a class='' data-toggle='modal' data-target='#addForumPostModal'>Add new post</a>";
+			  		}?>
+			  		
 			  		<!--<label for="post-filter">Filter results by:</label>-->
 			  		<select id="post-filter">
 						<option value="1">Top</option>
@@ -125,8 +129,12 @@
 						        		<span class="glyphicon glyphicon-trash pull-right js-deletePost" aria-hidden="true"></span>
 						        		
 
-						        		<!-- Edit Post -->
-						        		<a href="#" class="edit-post pull-right" data-toggle="modal" data-target="#editForumPostModal" data-post="1">Edit</a>
+						        		<?php 
+						        		//Edit Post
+						        		
+						        			echo "<a href='#' class='edit-post pull-right' data-toggle='modal' data-target='#editForumPostModal' data-post='1'>Edit</a>";
+						        		
+						      			?>
 						      		</h4>
 						    	</div>
 

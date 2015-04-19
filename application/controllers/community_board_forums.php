@@ -21,6 +21,10 @@ class Community_board_forums extends Account
 
 		//Get the user's name from the parent class.
 		$data['user_name'] = $this->user_name;
+		$data['userId'] = $this->session->userdata('id');
+
+		//Find posts that the user has
+		$data['user_posts'] = $this->Comm_forums->findUserPosts($data['userId']);
 
 		$this->load->view( 'templates/header', $data );
 		$this->load->view( 'pages/community_board_forums', $data);
@@ -38,6 +42,7 @@ class Community_board_forums extends Account
 
 		//Get the user's name from the parent class.
 		$data['user_name'] = $this->user_name;
+		$data['userId'] = $this->$this->session->userdata('id');
 
 		//Switch through the various tab names and show the corrisponding views
 		switch($tabName){
@@ -85,12 +90,16 @@ class Community_board_forums extends Account
 	}
 
 	function editPost(){
-		//need postId, title, content, 
+		//need postId, title, content
 		$postId = $this->input->post('postId');
 		$title = $this->input->post('title');
 		$content = $this->input->post('content');
 
-		//echo json_encode($data);
+		$this->Comm_forums->editPost($postId, $title, $content);
+
+		$this->load->view( 'templates/header', $data );
+		$this->load->view( 'pages/community_board_forums', $data);
+		$this->load->view( 'templates/footer', $data);
 	}
 }
 

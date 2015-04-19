@@ -251,10 +251,18 @@
 		</div>
 		<!-- END Modals -->
 
+		<!-- Start User Sussess/Error Messages -->
 		<!-- Success alert for when the user successfully adds a new post -->
 		<div class="add-post-success-wrapper">
 			<div class="well well-sm" id="add-post-success">
-				<span class="text-info success-text-info">Your post has successfully been added</span>
+				<span class="text-info success-text-info">Your post has successfully been added.</span>
+			</div>
+		</div>
+
+		<!-- Success alert for when the user successfully edits a post-->
+		<div class="edit-post-success-wrapper">
+			<div class="well well-sm" id="edit-post-success">
+				<span class="text-info success-text-info">Your post has successfully been saved.</span>
 			</div>
 		</div>
 		<!-- END User Sussess/Error Messages -->

@@ -34,5 +34,24 @@
 
 			$this->db->insert('posts', $data); 
 		}
+
+		function editPost($postId, $title, $content){
+			$data = array(
+				'id' => $postId,
+				'title' => $title,
+				'content' => $content
+			);
+
+			$this->db->where('id', $postId);
+			$this->db->update('posts', $data);
+		}
+
+		function findUserPosts($userId){
+			$this->db->select('id');
+			$this->db->from('posts');
+			$this->db->where('userId', $userId);
+
+			return $this->db->get();
+		}
 	}
 ?>
