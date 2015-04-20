@@ -23,8 +23,8 @@ class Community_board_forums extends Account
 		$data['user_name'] = $this->user_name;
 		$data['userId'] = $this->session->userdata('id');
 
-		//Find posts that the user has
-		$data['user_posts'] = $this->Comm_forums->findUserPosts($data['userId']);
+		//Get all user posts for transport
+		$data['all_posts'] = $this->Comm_forums->getAllUserPosts('transport');
 
 		$this->load->view( 'templates/header', $data );
 		$this->load->view( 'pages/community_board_forums', $data);
@@ -42,25 +42,41 @@ class Community_board_forums extends Account
 
 		//Get the user's name from the parent class.
 		$data['user_name'] = $this->user_name;
-		$data['userId'] = $this->$this->session->userdata('id');
+		$data['userId'] = $this->session->userdata('id');
 
 		//Switch through the various tab names and show the corrisponding views
 		switch($tabName){
-			case "transport": $this->load->view( 'pages/CommunityBoard/community_board_forums_transport', $data);
+			case "transport": 
+				$data['all_posts'] = $this->Comm_forums->getAllUserPosts('transport');
+				$this->load->view( 'pages/CommunityBoard/community_board_forums_transport', $data);
 				break;
-			case "food": $this->load->view( 'pages/CommunityBoard/community_board_forums_food', $data);
+			case "food": 
+				$data['all_posts'] = $this->Comm_forums->getAllUserPosts('food');
+				$this->load->view( 'pages/CommunityBoard/community_board_forums_food', $data);
 				break;
-			case "communications": $this->load->view( 'pages/CommunityBoard/community_board_forums_communications', $data);
+			case "communications": 
+				$data['all_posts'] = $this->Comm_forums->getAllUserPosts('communications');
+				$this->load->view( 'pages/CommunityBoard/community_board_forums_communications', $data);
 				break;
-			case "entertainment": $this->load->view( 'pages/CommunityBoard/community_board_forums_entertainment', $data);
+			case "entertainment": 
+				$data['all_posts'] = $this->Comm_forums->getAllUserPosts('entertainment');
+				$this->load->view( 'pages/CommunityBoard/community_board_forums_entertainment', $data);
 				break;
-			case "housing": $this->load->view( 'pages/CommunityBoard/community_board_forums_housing', $data);
+			case "housing": 
+				$data['all_posts'] = $this->Comm_forums->getAllUserPosts('housing');
+				$this->load->view( 'pages/CommunityBoard/community_board_forums_housing', $data);
 				break;
-			case "utilities": $this->load->view( 'pages/CommunityBoard/community_board_forums_utilities', $data);
+			case "utilities": 
+				$data['all_posts'] = $this->Comm_forums->getAllUserPosts('utilities');
+				$this->load->view( 'pages/CommunityBoard/community_board_forums_utilities', $data);
 				break;
-			case "travel": $this->load->view( 'pages/CommunityBoard/community_board_forums_travel', $data);
+			case "travel": 
+				$data['all_posts'] = $this->Comm_forums->getAllUserPosts('travel');
+				$this->load->view( 'pages/CommunityBoard/community_board_forums_travel', $data);
 				break;
-			case "general": $this->load->view( 'pages/CommunityBoard/community_board_forums_general', $data);
+			case "general": 
+				$data['all_posts'] = $this->Comm_forums->getAllUserPosts('general');
+				$this->load->view( 'pages/CommunityBoard/community_board_forums_general', $data);
 				break;
 
 			//let the default be the error
@@ -97,9 +113,15 @@ class Community_board_forums extends Account
 
 		$this->Comm_forums->editPost($postId, $title, $content);
 
+		/*$data = array(
+			'postId' => $postId,
+			'title' => $title,
+			'content' => $content
+		);
+
 		$this->load->view( 'templates/header', $data );
 		$this->load->view( 'pages/community_board_forums', $data);
-		$this->load->view( 'templates/footer', $data);
+		$this->load->view( 'templates/footer', $data);*/
 	}
 }
 

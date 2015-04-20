@@ -46,12 +46,57 @@
 			$this->db->update('posts', $data);
 		}
 
-		function findUserPosts($userId){
-			$this->db->select('id');
-			$this->db->from('posts');
-			$this->db->where('userId', $userId);
-
-			return $this->db->get();
+		function getAllUserPosts($category){
+			switch($category){
+				case 'transport':
+					$this->db->where('category', $category);
+					$query =  $this->db->get('posts');
+					$posts = $query->result();
+					return $posts;
+					break;
+				case 'food':
+					$this->db->where('category', $category);
+					$query =  $this->db->get('posts');
+					$posts = $query->result();
+					return $posts;
+					break;
+				case 'communications':
+					$this->db->where('category', $category);
+					$query =  $this->db->get('posts');
+					$posts = $query->result();
+					return $posts;
+					break;
+				case 'entertainment':
+					$this->db->where('category', $category);
+					$query =  $this->db->get('posts');
+					$posts = $query->result();
+					return $posts;
+					break;
+				case 'housing':
+					$this->db->where('category', $category);
+					$query =  $this->db->get('posts');
+					$posts = $query->result();
+					return $posts;
+					break;
+				case 'utilities':
+					$this->db->where('category', $category);
+					$query =  $this->db->get('posts');
+					$posts = $query->result();
+					return $posts;
+					break;
+				case 'travel':
+					$this->db->where('category', $category);
+					$query =  $this->db->get('posts');
+					$posts = $query->result();
+					return $posts;
+					break;
+				case 'general':
+					$this->db->where('category', $category);
+					$query =  $this->db->get('posts');
+					$posts = $query->result();
+					return $posts;
+					break;
+			}
 		}
 	}
 ?>
