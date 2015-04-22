@@ -19,12 +19,14 @@ class Community_board_forums extends Account
 	{		
 		$data['loginStatus'] = $this->checkLoginStatus();
 
-		//Get the user's name from the parent class.
-		$data['user_name'] = $this->user_name;
+		//Get the user's name from the parent class
 		$data['userId'] = $this->session->userdata('id');
+		$data['user_name'] = $this->User->get_user_name( $this->session->userdata('id') );
+		$data['user_type'] = $this->User->get_user_type($this->session->userdata('id'));
 
 		//Get all user posts for transport
 		$data['all_posts'] = $this->Comm_forums->getAllUserPosts('transport');
+		$data['all_comments'] = $this->Comm_forums->getAllUserComments('transport');
 
 		$this->load->view( 'templates/header', $data );
 		$this->load->view( 'pages/community_board_forums', $data);
@@ -41,41 +43,50 @@ class Community_board_forums extends Account
 		$data['loginStatus'] = $this->checkLoginStatus();
 
 		//Get the user's name from the parent class.
-		$data['user_name'] = $this->user_name;
 		$data['userId'] = $this->session->userdata('id');
+		$data['user_name'] = $this->User->get_user_name( $this->user_id );
+		$data['user_type'] = $this->User->get_user_type($this->session->userdata('id'));
 
 		//Switch through the various tab names and show the corrisponding views
 		switch($tabName){
 			case "transport": 
 				$data['all_posts'] = $this->Comm_forums->getAllUserPosts('transport');
+				$data['all_comments'] = $this->Comm_forums->getAllUserComments('transport');
 				$this->load->view( 'pages/CommunityBoard/community_board_forums_transport', $data);
 				break;
 			case "food": 
 				$data['all_posts'] = $this->Comm_forums->getAllUserPosts('food');
+				$data['all_comments'] = $this->Comm_forums->getAllUserComments('food');
 				$this->load->view( 'pages/CommunityBoard/community_board_forums_food', $data);
 				break;
 			case "communications": 
 				$data['all_posts'] = $this->Comm_forums->getAllUserPosts('communications');
+				$data['all_comments'] = $this->Comm_forums->getAllUserComments('communications');
 				$this->load->view( 'pages/CommunityBoard/community_board_forums_communications', $data);
 				break;
 			case "entertainment": 
 				$data['all_posts'] = $this->Comm_forums->getAllUserPosts('entertainment');
+				$data['all_comments'] = $this->Comm_forums->getAllUserComments('entertainment');
 				$this->load->view( 'pages/CommunityBoard/community_board_forums_entertainment', $data);
 				break;
 			case "housing": 
 				$data['all_posts'] = $this->Comm_forums->getAllUserPosts('housing');
+				$data['all_comments'] = $this->Comm_forums->getAllUserComments('housing');
 				$this->load->view( 'pages/CommunityBoard/community_board_forums_housing', $data);
 				break;
 			case "utilities": 
 				$data['all_posts'] = $this->Comm_forums->getAllUserPosts('utilities');
+				$data['all_comments'] = $this->Comm_forums->getAllUserComments('utilities');
 				$this->load->view( 'pages/CommunityBoard/community_board_forums_utilities', $data);
 				break;
 			case "travel": 
 				$data['all_posts'] = $this->Comm_forums->getAllUserPosts('travel');
+				$data['all_comments'] = $this->Comm_forums->getAllUserComments('travel');
 				$this->load->view( 'pages/CommunityBoard/community_board_forums_travel', $data);
 				break;
 			case "general": 
 				$data['all_posts'] = $this->Comm_forums->getAllUserPosts('general');
+				$data['all_comments'] = $this->Comm_forums->getAllUserComments('general');
 				$this->load->view( 'pages/CommunityBoard/community_board_forums_general', $data);
 				break;
 
@@ -92,15 +103,18 @@ class Community_board_forums extends Account
 		$title = $this->input->post('title');
 		$content = $this->input->post('content');
 
-		$tabName = strtolower($category);
 		//Try to add the new data
 		$this->Comm_forums->addNewPost($userId, $category, $title, $content);
 	}
 
 	function addNewComment(){
 		//need parentId, content
+		$userId = $this->session->userdata('id');
 		$parentId = $this->input->post('parentId');
 		$content = $this->input->post('content');
+		$category = $this->input->post('category');
+
+		$this->Comm_forums->addNewComment($userId, $parentId, $content, $category);
 
 		//echo json_encode($data);
 	}

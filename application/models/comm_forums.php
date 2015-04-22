@@ -15,14 +15,6 @@
 		var $category = '';
 
 		function addNewPost($userId, $category, $title, $content){
-			
-			/*$this->load->helper('date');
-			//Format the time with the datestring.
-			$datestring = "%Y-%m-%d %h:%i:%s";
-			//Get the current time to use for the mdate function. Although it defaults to the current time.
-			$time = time();
-			$timestamp = mdate($datestring, $time);*/
-
 			$data = array(
 				'title' => $title,
 				'content' => $content,
@@ -46,55 +38,105 @@
 			$this->db->update('posts', $data);
 		}
 
+		function addNewComment($userId, $parentId, $content, $category){
+			$data = array(
+				'title' => NULL,
+				'content' => $content,
+				'userId' => $userId,
+				'upvotes_total' => 0,
+				'parentId' => $parentId,
+				'category' => $category
+			);
+
+			$this->db->insert('posts', $data); 
+		}
+
 		function getAllUserPosts($category){
 			switch($category){
 				case 'transport':
-					$this->db->where('category', $category);
-					$query =  $this->db->get('posts');
+					$query = $this->db->get_where('posts', array('category' => $category, 'parentId' => 0));
 					$posts = $query->result();
 					return $posts;
 					break;
 				case 'food':
-					$this->db->where('category', $category);
-					$query =  $this->db->get('posts');
+					$query =  $this->db->get_where('posts', array('category' => $category, 'parentId' => 0));
 					$posts = $query->result();
 					return $posts;
 					break;
 				case 'communications':
-					$this->db->where('category', $category);
-					$query =  $this->db->get('posts');
+					$query =  $this->db->get_where('posts', array('category' => $category, 'parentId' => 0));
 					$posts = $query->result();
 					return $posts;
 					break;
 				case 'entertainment':
-					$this->db->where('category', $category);
-					$query =  $this->db->get('posts');
+					$query =  $this->db->get_where('posts', array('category' => $category, 'parentId' => 0));
 					$posts = $query->result();
 					return $posts;
 					break;
 				case 'housing':
-					$this->db->where('category', $category);
-					$query =  $this->db->get('posts');
+					$query =  $this->db->get_where('posts', array('category' => $category, 'parentId' => 0));
 					$posts = $query->result();
 					return $posts;
 					break;
 				case 'utilities':
-					$this->db->where('category', $category);
-					$query =  $this->db->get('posts');
+					$query =  $this->db->get_where('posts', array('category' => $category, 'parentId' => 0));
 					$posts = $query->result();
 					return $posts;
 					break;
 				case 'travel':
-					$this->db->where('category', $category);
-					$query =  $this->db->get('posts');
+					$query =  $this->db->get_where('posts', array('category' => $category, 'parentId' => 0));
 					$posts = $query->result();
 					return $posts;
 					break;
 				case 'general':
-					$this->db->where('category', $category);
-					$query =  $this->db->get('posts');
+					$query =  $this->db->get_where('posts', array('category' => $category, 'parentId' => 0));
 					$posts = $query->result();
 					return $posts;
+					break;
+			}
+		}
+
+		function getAllUserComments($category){
+			switch($category){
+				case 'transport':
+					$query = $this->db->get_where('posts', array('category' => $category, 'parentId >' => 0));
+					$comments = $query->result();
+					return $comments;
+					break;
+				case 'food':
+					$query =  $this->db->get_where('posts', array('category' => $category, 'parentId >' => 0));
+					$comments = $query->result();
+					return $comments;
+					break;
+				case 'communications':
+					$query =  $this->db->get_where('posts', array('category' => $category, 'parentId >' => 0));
+					$comments = $query->result();
+					return $comments;
+					break;
+				case 'entertainment':
+					$query =  $this->db->get_where('posts', array('category' => $category, 'parentId >' => 0));
+					$comments = $query->result();
+					return $comments;
+					break;
+				case 'housing':
+					$query =  $this->db->get_where('posts', array('category' => $category, 'parentId >' => 0));
+					$comments = $query->result();
+					return $comments;
+					break;
+				case 'utilities':
+					$query =  $this->db->get_where('posts', array('category' => $category, 'parentId >' => 0));
+					$comments = $query->result();
+					return $comments;
+					break;
+				case 'travel':
+					$query =  $this->db->get_where('posts', array('category' => $category, 'parentId >' => 0));
+					$comments = $query->result();
+					return $comments;
+					break;
+				case 'general':
+					$query =  $this->db->get_where('posts', array('category' => $category, 'parentId >' => 0));
+					$comments = $query->result();
+					return $comments;
 					break;
 			}
 		}

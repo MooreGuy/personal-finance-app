@@ -40,9 +40,10 @@
 								    				echo "<a class='header-link-collapse' aria-expanded='true' data-post=". $post->id .">" . $post->title . "</a>";
 								      				echo "<span class='post-author'> by GET AUTHOR</span>";
 								      				echo "<span>-<a href='#'' class='report-abuse-link-post'><span class='glyphicon glyphicon-flag'></span> </a></span>";
-								        			echo "<span class='glyphicon glyphicon-trash pull-right js-deletePost' aria-hidden='true'></span>";
+								        			
 								        		
 								        			if($post->userId == $userId){
+								        				echo "<span class='glyphicon glyphicon-trash pull-right js-deletePost' aria-hidden='true'></span>";
 								        				echo "<a href='#' class='edit-post pull-right' data-toggle='modal' data-target='#editForumPostModal' data-post='1'>Edit</a>";
 								        			}
 							      				echo "</h4>";
@@ -66,33 +67,37 @@
 
 							      				echo "<div class='comment-wrapper'>";	
 					      							echo "<div class='conatiner'>";
-					      								echo "<div class='row collapse' id='commentSection" . $x . "'>";
+
+					      								if(!empty($all_comments)){
+					      									foreach ($all_comments as $key => $comment) {
+					      										if($comment->parentId == $post->id){
+					      											echo "<div class='row collapse' id='commentSection" . $x . "'>";
 					      									echo "<div class='col-md-1 post-comment-vote-wrapper'>";
 					      										
 					      										echo "<div class='row up-vote-row'>";
-																	echo "<div class='col-md-1 up-vote-wrapper' data-post-comment='GET COMMENT ID'>";
+																	echo "<div class='col-md-1 up-vote-wrapper' data-post-comment='" . $comment->Id . "'>";
 																		echo "<span class='glyphicon glyphicon-chevron-up vote-neutral comment-glyphicon'></span>";
 																	echo "</div>";
 																echo "</div>";
 
-																echo "<div class='row vote-count-row' data-post-comment='GET COMMENT ID'>";
+																echo "<div class='row vote-count-row' data-post-comment='" . $comment->Id . "'>";
 																	echo "<div class='col-md-1 positive-count-wrapper'>";
 																	//GET VOTE COUNT
-																		echo "<span class='positive-vote-count'>5</span>";
+																		echo "<span class='positive-vote-count'>" . $comment->upvotes_total . "</span>";
 																	echo "</div>";
 																echo "</div>";
 
 																echo "<div class='row down-vote-row'>";
-																	echo "<div class='col-md-1 down-vote-wrapper' data-post-comment='GET COMMENT ID'>";
+																	echo "<div class='col-md-1 down-vote-wrapper' data-post-comment='" . $comment->Id . "'>";
 																		echo "<span class='glyphicon glyphicon-chevron-down vote-neutral comment-glyphicon'></span>";
 																	echo "</div>";
 																echo "</div>";
 															echo "</div>";
 
 					      									echo "<div class='col-md-9 user-comment'>";
-					      										echo "<label>GET COMMENT USERNAME</label>";
+					      										echo "<label>GET USERNAME" . $comment->userId . "</label>";
 
-					      										echo "<p class='comment'>GET COMMENT CONTENT</p>";
+					      										echo "<p class='comment'>" . $comment->content . "</p>";
 					      							
 					      									echo "</div>";
 
@@ -100,22 +105,24 @@
 					      										echo "<span class='pull-right'><a href='#'' class='report-abuse-link'><span class='glyphicon glyphicon-flag'></span></a></span>";
 					      									echo "</div>";
 					      								echo "</div>";
+					      										}
+					      									}
+					      								}
+					      								
 					      							echo "</div>";
 					      						echo "</div>";			      	
 						      				echo "</div>";
 						   				echo "</div>";
 						  			echo "</div>";
-								echo "</div>";
+								
 							}
 							
 
-							      			
+						 $x++;	      			
 						}
 					}
-						
-					
 					?>
-				 
+				</div>
 
 				<!-- Container for the navigation -->
 				<div class="container">

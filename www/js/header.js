@@ -159,7 +159,8 @@ $(document).ready(function(){
 		validClass: "success",
 
 		submitHandler: function(){
-			var parentId = $('.commentOnTitle').attr('parentId');
+			var parentId = $('.commentOnTitle').data('parentId');
+			var category = $('.commentOnTitle').data('category')
 			var content = $('#addCommentBody').val();
 
 			$.ajax({
@@ -168,6 +169,7 @@ $(document).ready(function(){
 			    	dataType: "json",
 			    	data:{
 			    		parentId: parentId,
+			    		category: category,
 			    		content: content
 			    	},
 			    	success: function(){
@@ -177,6 +179,8 @@ $(document).ready(function(){
 						$('#addCommentForm')[0].reset();
 						//Reset the validation
 						$('.form-control').removeClass('error').removeClass('success');
+						//Show and hide success message
+						$('.add-comment-success-wrapper').fadeIn(800).delay(1500).fadeOut(1000);
 			    	}
 			});
 		}

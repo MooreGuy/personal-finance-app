@@ -165,11 +165,11 @@
 	      				<div class="container">
 	      					<div class="row">
 	      						<div class="col-md-6 modal-col">
-	      							<!-- UserName of person looged in -->
-									<h5><strong>Commenting as: </strong><span>Dr.Awkward</span></h5>
+	      							<!-- UserName of person logged in -->
+									<h5><strong>Commenting as: </strong><span><?php echo $user_name; ?></span></h5>
 
 	      							<!-- Title of the post the user is commenting on -->
-	      							<h5><strong>Commenting on: </strong><span class="commentOnTitle"></span></h5>
+	      							<h5><strong>Commenting on: </strong><span class="commentOnTitle" data-parentId="" data-category=""></span></h5>
 								</div>
 	      					</div>
 
@@ -178,7 +178,7 @@
 	      							<form id="addCommentForm">
 		      							<div class="form-group addCommentGroup">
 									  		<label for="addCommentBody">Body:</label> <label id="addCommentBody-error" class="error" for="addCommentBody"></label>
-									  		<textarea type="text" id="addCommentBody" name="addCommentBody" class="form-control"></textarea>
+									  		<textarea type="text" id="addCommentBody" name="addCommentBody" class="form-control" data-category=""></textarea>
 									  	</div>
 									</form>
 	      						</div>
@@ -259,10 +259,17 @@
 			</div>
 		</div>
 
-		<!-- Success alert for when the user successfully edits a post-->
+		<!-- Success alert for when the user successfully edits a post -->
 		<div class="edit-post-success-wrapper">
 			<div class="well well-sm" id="edit-post-success">
 				<span class="text-info success-text-info">Your post has successfully been saved.</span>
+			</div>
+		</div>
+
+		<!-- Success alert for when the user successfully adds a comment -->
+		<div class="add-comment-success-wrapper">
+			<div class="well well-sm" id="add-comment-success">
+				<span class="text-info success-text-info">Your comment has successfully been added.</span>
 			</div>
 		</div>
 		<!-- END User Sussess/Error Messages -->
@@ -305,8 +312,13 @@
 								            		<li name="user_profile"><a href="<?php  echo base_url(); ?>user_profile/home">My Profile</a></li>
 								            	<?php } ?>
 
-								            	<!-- When an admin user successfully signs in show the admin tab -->
-								            	<li name="admin"><a href="<?php  echo base_url(); ?>admin/overview">Admin</a></li>
+								            	<?php
+
+								            		if($loginStatus == True && $user_type == 'admin'){
+								            	?>
+								            		<!-- When an admin user successfully signs in show the admin tab -->
+								            		<li name="admin"><a href="<?php  echo base_url(); ?>admin/overview">Admin</a></li>
+								            	<?php } ?>
 								          	</ul>
 								        </div>
 								    </div>

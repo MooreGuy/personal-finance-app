@@ -215,8 +215,12 @@ $(document).ready(function(){
 		//Get the title of the post
 		var postTitle = $('.header-link-collapse[data-post=\"'+postId+'\"]').text();
 
+		//Get the category of the post
+		var category = $('.tab-pane').attr('id');
+
 		//Put it in the modal
 		$('.commentOnTitle').text(postTitle);
-		$('.commentOnTitle').attr('parentId', postId);
+		$('.commentOnTitle').data('parentId', postId);
+		$('.commentOnTitle').data('category', category);
 	});
 });
