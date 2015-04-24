@@ -28,6 +28,11 @@ class Community_board_forums extends Account
 		$data['all_posts'] = $this->Comm_forums->getAllUserPosts('transport');
 		$data['all_comments'] = $this->Comm_forums->getAllUserComments('transport');
 
+		//Get the usernames for the posts and comments
+		$data['all_posts_user_names'] = $this->Comm_forums->getAllPostsUserNames('transport');
+		$data['getAllCommentsUserNames'] = $this->Comm_forums->getAllCommentsUserNames('transport');
+		
+
 		$this->load->view( 'templates/header', $data );
 		$this->load->view( 'pages/community_board_forums', $data);
 		$this->load->view( 'templates/footer', $data);
@@ -113,6 +118,7 @@ class Community_board_forums extends Account
 		$parentId = $this->input->post('parentId');
 		$content = $this->input->post('content');
 		$category = $this->input->post('category');
+		//echo $category;// + " " + $parentId + " " + $content + " " + $category;
 
 		$this->Comm_forums->addNewComment($userId, $parentId, $content, $category);
 

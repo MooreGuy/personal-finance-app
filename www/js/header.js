@@ -53,7 +53,7 @@ $(document).ready(function(){
 
 	//Check input for special characters
 	$.validator.addMethod("FormRegex", function(value, element) {
-        return this.optional(element) || /^[a-zA-Z 0-9\-\+\.\!\@\#\$\%\^\&\*\(\)\{\}\[\]\"\'\:\;\?\\"]+$/i.test(value);
+        return this.optional(element) || /^[a-zA-Z0-9_ \-\+\.\!\@\#\$\%\^\&\*\(\)\{\}\[\]\"\'\:\;\?\\\w\s\n]+$/i.test(value);
     }, "HTML characters are not allowed.");
 
 	/*
@@ -166,7 +166,7 @@ $(document).ready(function(){
 			$.ajax({
 			    	type: 'post',
 			    	url: "/community_board_forums/addNewComment",
-			    	dataType: "json",
+			    	dataType: "text",
 			    	data:{
 			    		parentId: parentId,
 			    		category: category,
@@ -232,7 +232,6 @@ $(document).ready(function(){
 			$.ajax({
 			    	type: 'post',
 			    	url: "/community_board_forums/editPost",
-			    	dataType: "json",
 			    	data:{
 			    		postId: postId,
 			    		title: title,

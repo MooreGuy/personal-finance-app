@@ -94,7 +94,8 @@
 					
 					<?php 
 					if(!empty($all_posts)){
-						$x = 1; //counter for comment sections
+						$x = 0; //counter for comment sections
+
 						foreach( $all_posts as $key => $post ){
 							if ($post->parentId == 0) {
 								echo "<div class='row' data-post=" . $post->id .">";
@@ -123,10 +124,10 @@
 											echo "<div class='panel-heading' role='tab'>";
 												echo "<h4 class='panel-title'>";
 								    				echo "<a class='header-link-collapse' aria-expanded='true' data-post=". $post->id .">" . $post->title . "</a>";
-								      				echo "<span class='post-author'> by GET AUTHOR</span>";
+								      				echo "<span class='post-author'> by " . $all_posts_user_names[$x]->username . "</span>";
 
 								      				if($loginStatus == True){
-								      					echo "<span>-<a href='#'' class='report-abuse-link-post'><span class='glyphicon glyphicon-flag'></span> </a></span>";
+								      					echo "<span> - <a href='#'' class='report-abuse-link-post'><span class='glyphicon glyphicon-flag'></span> </a></span>";
 								      				}
 								        			
 								        		
@@ -158,10 +159,16 @@
 
 					      								
 					      											echo "<div class='collapse' id='commentSection" . $x . "'>";
-					      												if(!empty($all_comments)){
+					      												
+					      													
+					      													$commented = False; //Check to see if a comment was posted
+					      													
 					      													foreach ($all_comments as $key => $comment) {
-					      															      									
-						      													if($comment->parentId == $post->id){
+					
+					      														 									
+						      													if($comment->parentId == $post->id ){
+						      														
+						      														$commented = True;
 						      														echo "<div class='row'>";
 									      												echo "<div class='col-md-1 post-comment-vote-wrapper'>";
 									      													
@@ -185,31 +192,43 @@
 																							echo "</div>";
 																						echo "</div>";
 
-									      												echo "<div class='col-md-9 user-comment'>";
-									      													echo "<label>GET USERNAME" . $comment->userId . "</label>";
-									      													echo "<p class='comment'>" . $comment->content . "</p>";
-									      												echo "</div>";
+									      												echo "<div class='col-md-11 user-comment'>";
+									      													foreach ($getAllCommentsUserNames as $keys => $post_users) {
 
-									      												echo "<div class='col-md-2'>";
-									      													if($loginStatus == True){
-									      														echo "<span class='pull-right'><a href='#'' class='report-abuse-link'><span class='glyphicon glyphicon-flag'></span></a></span>";
+									      														if($post_users->id == $comment->userId){
+									      															echo "<label>" . $post_users->username . "</label>";
+									      															if($loginStatus == True){
+											      														echo "<span class=''> - <a href='#'' class='report-abuse-link'><span class='glyphicon glyphicon-flag'></span></a></span>";
+											      													}
+									      														}
 									      													}
+									      													
+									      													echo "<p class='comment'>" . nl2br($comment->content) . "</p>";
 									      												echo "</div>";
-									      											echo "</div>";
 
-								      											}
-								      										}
-							      										}else{
-							      											echo "<div class='container no-comments-container'>";
-																				echo "<div class='row'>";
-																					echo "<div class='col-md-11 no-comments-col'>";
-																						echo "<div class='well well-sm no-comments-wrapper'>";
-																							echo "<span class='text-info' id='no-comments-message'>There are no comments! Log in to add a new comment. </span>";	
+									      												
+									      													
+									      												
+									      											echo "</div>";
+									      										}
+									      											
+								      											if(next($comment) == NULL && $commented == False){
+								      												echo "<div class='container no-comments-container'>";
+																						echo "<div class='row'>";
+																							echo "<div class='col-md-11 no-comments-col'>";
+																								echo "<div class='well well-sm no-comments-wrapper'>";
+																									echo "<span class='text-info' id='no-comments-message'>There are no comments! Click the comment link to add a new comment. </span>";	
+																								echo "</div>";
+																							echo "</div>";
 																						echo "</div>";
 																					echo "</div>";
-																				echo "</div>";
-																			echo "</div>";
-							      										}
+
+																					$commented = True;
+								      											}
+
+								      											
+								      										}
+							      										
 					      											echo "</div>";
 					      														      								
 					      								

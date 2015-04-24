@@ -39,7 +39,14 @@
 		}
 
 		function addNewComment($userId, $parentId, $content, $category){
+			$this->load->helper('date');
+			//Format the time with the datestring.
+			$datestring = "%Y-%m-%d %h:%i:%s";
+			//Get the current time to use for the mdate function. Although it defaults to the current time.
+			$time = time();
+			
 			$data = array(
+				'timestamp' => mdate($datestring, $time),
 				'title' => NULL,
 				'content' => $content,
 				'userId' => $userId,
@@ -96,6 +103,17 @@
 			}
 		}
 
+		function getAllPostsUserNames($category){
+			$this->db->select('username');
+			$this->db->from('users');
+			$this->db->join('posts', 'posts.userId = users.id');
+			$this->db->where('parentId', 0);
+			$this->db->where('category', $category);
+			$query = $this->db->get();
+			$user_names = $query->result();
+			return $user_names;
+		}
+
 		function getAllUserComments($category){
 			switch($category){
 				case 'transport':
@@ -139,6 +157,18 @@
 					return $comments;
 					break;
 			}
+		}
+
+		function getAllCommentsUserNames($category){
+			$this->db->distinct();
+			$this->db->select('users.username, users.id');
+			$this->db->from('users');
+			$this->db->join('posts', 'posts.userId = users.id');
+			$this->db->where('parentId >', 0);
+			$this->db->where('category', $category);
+			$query = $this->db->get();
+			$user_names = $query->result();
+			return $user_names;
 		}
 	}
 ?>
