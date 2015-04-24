@@ -17,7 +17,11 @@ class Community_board_forums extends Account
 
 	function forums( $tags = 'none' )
 	{		
-		$this->load->view( 'templates/header' );
+		$data['title'] = 'Community Forums';
+		$data['user_name'] = $this->user_name;
+		$data['loginStatus'] = $this->checkLoginStatus();
+
+		$this->load->view( 'templates/header', $data);
 		$this->load->view( 'pages/community_board_forums');
 		$this->load->view( 'templates/footer');
 

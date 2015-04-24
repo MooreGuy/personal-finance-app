@@ -13,14 +13,15 @@ class Info extends Account
 	{
 
 	    
-	    $data['title'] = 'About Us | Contact Us';
+	    $data['title'] = 'About Us';
 
 		//Get the user's name from the parent class.
 		$data['user_name'] = $this->user_name;
+		$data['loginStatus'] = $this->checkLoginStatus();
 
 	    $this->load->view('templates/header', $data);
-	    $this->load->view('pages/about_us', $data);
-	    $this->load->view('templates/footer', $data);
+	    $this->load->view('pages/about_us');
+	    $this->load->view('templates/footer');
 		
 	}
 
@@ -31,20 +32,34 @@ class Info extends Account
 
 		//Get the user's name from the parent class.
 		$data['user_name'] = $this->user_name;
+		$data['loginStatus'] = $this->checkLoginStatus();
 
 	    $this->load->view('templates/header', $data);
-	    $this->load->view('pages/privacy_policy', $data);
-	    $this->load->view('templates/footer', $data);		
+	    $this->load->view('pages/privacy_policy');
+	    $this->load->view('templates/footer');		
 	}
 
 	function contact_us()
 	{
 		
-	    $data['title'] = 'About Us | Contact Us';
+	    $data['title'] = 'Contact Us';
+		$data['user_name'] = $this->user_name;
+		$data['loginStatus'] = $this->checkLoginStatus();
 
 	    $this->load->view('templates/header', $data);
-	    $this->load->view('pages/about_us', $data);
-	    $this->load->view('templates/footer', $data);
+	    $this->load->view('pages/about_us');
+	    $this->load->view('templates/footer');
+	}
+
+	function terms_of_use()
+	{
+		$data['title'] = 'Terms Of Use';
+		$data['user_name'] = $this->user_name;
+		$data['loginStatus'] = $this->checkLoginStatus();
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('pages/terms_of_use');
+		$this->load->view('templates/footer');
 	}
 
 }
