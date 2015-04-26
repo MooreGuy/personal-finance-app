@@ -47,20 +47,63 @@ class Expenses extends CI_Model
 		
 	}
 
-	/*
-		Insert an expense into the database.
-	*/
+	/**
+	 *Insert an expense, its type and location into the databse if they do
+	 *not already exist.
+	 */
 	function insert_expense( $user_id, $cost, $interval, $type, $comment,
 									$location_id )
 	{
+		//If the expense type doesn't exist, then create it.
+		if( $id = $this->get_expense_type_id($type) == NULL )
+		{
+			$id = $this->create_expense_type($type);
+		}
+
+		//TODO: Finish location get or create methods
+
 		$sql = 'insert into expenses values( ?, ?, ?, ?, ?, ?, ?, ? )';
 
 		//Set the date 
 		$this->load->helper('date');
 		$timestamp = now();
-		
-		$query = $this->db->query( $sql, array($timestamp, $current, $type_id, $cost, $interval,
-													 $comment, $location_id, $user_id) );	
+	
+		$query = $this->db->query( $sql, array($timestamp, $current, $type_id,
+		   	$cost, $interval, $comment, $location_id, $user_id) );	
+	}
+
+	/**
+	 * Create an expense type and return its id.
+	 */
+	function create_expense_type( $type )
+	{
+		$sql = 'insert into expense_types values( NULL, ?)
+				select last_insert_id()';
+
+		$query = $this->db->query( $sql, array($type) );
+
+		return $query->result()[0];	
+	}
+
+	/**
+	 * Search for the expense by the title parameter, and return the id of expense
+	 * if it is found. If the expense wasn't found, then return null.
+	 *
+	 * @param string type is the type of the expense.
+	 */
+	function get_expense_type_id( $type )
+	{
+		$sql = 'select id from expense_types
+					where type = ?';
+
+		$query = $this->db->query( $sql, array($type) );
+
+		if( $query->num_rows() < 1)
+		{
+			return NULL;
+		}
+
+		return $query->result()[0];
 	}
 
 	/*
