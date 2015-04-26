@@ -84,7 +84,7 @@
 		<div class="col-md-12 tab-content" id="tabContent">
 
 			<!-- Begin Transport Tab-->
-			<div class="panel-group tab-pane active" aria-multiselectable="true" id="Transport" role="tabpanel">
+			<div class="panel-group tab-pane active" aria-multiselectable="true" id="transport" role="tabpanel">
 
 				<!-- Container for the posts -->
 				<div class="container post-container">
@@ -100,23 +100,64 @@
 							if ($post->parentId == 0) {
 								echo "<div class='row' data-post=" . $post->id .">";
 									echo "<div class='col-md-1 post-vote-wrapper'>";
-										echo "<div class='row up-vote-row'>";
-											echo "<div class='col-md-1 up-vote-wrapper' data-post=" . $post->id . ">";
-												echo "<span class='glyphicon glyphicon-chevron-up vote-neutral'></span>";
-											echo "</div>";
-										echo "</div>";
 
-										echo "<div class='row vote-count-row' data-post=" . $post->id . ">";
-											echo "<div class='col-md-1 positive-count-wrapper'>";
-												echo "<span class='positive-vote-count'>" . $post->upvotes_total . "</span>";
-											echo "</div>";
-										echo "</div>";
+										$voted = False;
 
-										echo "<div class='row down-vote-row'>";
-											echo "<div class='col-md-1 down-vote-wrapper' data-post=" . $post->id . ">";
-												echo "<span class='glyphicon glyphicon-chevron-down vote-neutral'></span>";
+										foreach ($userVotes as $key => $votes) {
+											//If the user thats logged in has voted on a post show what they voted
+											if($votes->userId == $userId && $votes->postId == $post->id){																				
+												echo "<div class='row up-vote-row'>";
+													echo "<div class='col-md-1 up-vote-wrapper' data-post=" . $post->id . ">";
+
+														if($votes->voteCSS == 'vote-positive'){											
+															echo "<span class='glyphicon glyphicon-chevron-up " . $votes->voteCSS ."'></span>";
+														}else{
+															echo "<span class='glyphicon glyphicon-chevron-up vote-neutral'></span>";
+														}
+
+													echo "</div>";
+												echo "</div>";
+
+												echo "<div class='row vote-count-row' data-post=" . $post->id . ">";
+													echo "<div class='col-md-1 positive-count-wrapper'>";
+														echo "<span class='positive-vote-count'>" . $post->upvotes_total . "</span>";
+													echo "</div>";
+												echo "</div>";
+
+												echo "<div class='row down-vote-row'>";
+													echo "<div class='col-md-1 down-vote-wrapper' data-post=" . $post->id . ">";
+														
+														if($votes->voteCSS == 'vote-negative'){															
+															echo "<span class='glyphicon glyphicon-chevron-down " . $votes->voteCSS . "'></span>";
+														}else{
+															echo "<span class='glyphicon glyphicon-chevron-down vote-neutral'></span>";
+														}
+													echo "</div>";
+												echo "</div>";
+
+												$voted = True;
+											}								
+										}
+
+										if((empty($userVotes) || isset($userVotes[0])) && $voted == False){
+											echo "<div class='row up-vote-row'>";
+												echo "<div class='col-md-1 up-vote-wrapper' data-post=" . $post->id . ">";																									
+														echo "<span class='glyphicon glyphicon-chevron-up vote-neutral'></span>";
+												echo "</div>";
 											echo "</div>";
-										echo "</div>";
+
+											echo "<div class='row vote-count-row' data-post=" . $post->id . ">";
+												echo "<div class='col-md-1 positive-count-wrapper'>";
+													echo "<span class='positive-vote-count'>" . $post->upvotes_total . "</span>";
+												echo "</div>";
+											echo "</div>";
+
+											echo "<div class='row down-vote-row'>";
+												echo "<div class='col-md-1 down-vote-wrapper' data-post=" . $post->id . ">";
+													echo "<span class='glyphicon glyphicon-chevron-down vote-neutral'></span>";													
+												echo "</div>";
+											echo "</div>";
+										}
 									echo "</div>";
 
 									echo "<div class='col-md-11 post-wrapper'>";
@@ -124,7 +165,13 @@
 											echo "<div class='panel-heading' role='tab'>";
 												echo "<h4 class='panel-title'>";
 								    				echo "<a class='header-link-collapse' aria-expanded='true' data-post=". $post->id .">" . $post->title . "</a>";
-								      				echo "<span class='post-author'> by " . $all_posts_user_names[$x]->username . "</span>";
+
+								    				foreach ($getAllPostsUserNames as $keys => $post_users) {
+								    					if($post_users->id == $post->userId){
+								    						echo "<span class='post-author'> by " . $post_users->username . "</span>";
+								    					}
+								    				}
+								      				
 
 								      				if($loginStatus == True){
 								      					echo "<span> - <a href='#'' class='report-abuse-link-post'><span class='glyphicon glyphicon-flag'></span> </a></span>";
@@ -132,15 +179,15 @@
 								        			
 								        		
 								        			if($post->userId == $userId){
-								        				echo "<span class='glyphicon glyphicon-trash pull-right js-deletePost' aria-hidden='true'></span>";
-								        				echo "<a href='#' class='edit-post pull-right' data-toggle='modal' data-target='#editForumPostModal' data-post='1'>Edit</a>";
+								        				echo "<span class='glyphicon glyphicon-trash pull-right js-delete-postModal' data-toggle='modal' data-target='#deleteForumPostModal' aria-hidden='true' data-post='" . $post->id . "'></span>";
+								        				echo "<a href='#' class='edit-post pull-right edit-postModal' data-toggle='modal' data-target='#editForumPostModal' data-post='" . $post->id . "'>Edit</a>";
 								        			}
 							      				echo "</h4>";
 							    			echo "</div>";
 
 							    			echo "<div class='panel-collapse closed-panel' role='tabpanel' data-post=" . $post->id . ">";
 							    				echo "<div class='panel-body' data-post=" . $post->id . ">";
-							      					echo "<p class='body-text'>" . $post->content . "</p> ";
+							      					echo "<p class='body-text'>" . nl2br($post->content) . "</p> ";
 							      						echo "<div class='comment-control-wrapper' data-post=" . $post->id . ">";
 							      							echo "<div class='container'>";
 							      								echo "<div class='row'>";
@@ -210,10 +257,14 @@
 									      													
 									      												
 									      											echo "</div>";
-									      										}
 									      											
-								      											if(next($comment) == NULL && $commented == False){
-								      												echo "<div class='container no-comments-container'>";
+									      										}
+
+								      											
+								      										}
+
+								      										if((empty($all_comments) || isset($all_comments[0])) && $commented == False){
+								      											echo "<div class='container no-comments-container'>";
 																						echo "<div class='row'>";
 																							echo "<div class='col-md-11 no-comments-col'>";
 																								echo "<div class='well well-sm no-comments-wrapper'>";
@@ -224,9 +275,6 @@
 																					echo "</div>";
 
 																					$commented = True;
-								      											}
-
-								      											
 								      										}
 							      										
 					      											echo "</div>";

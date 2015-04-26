@@ -125,6 +125,7 @@ $(document).ready(function(){
 						//Reset the validation
 						$('.form-control').removeClass('error').removeClass('success');
 						$('#addPostCategory').removeClass('error').removeClass('success');
+
 						//Show and hide success message
 						$('.add-post-success-wrapper').fadeIn(800).delay(1500).fadeOut(1000);
 			    	}
@@ -251,6 +252,27 @@ $(document).ready(function(){
 		}
 	});
 
+	$('.js-deletePost').on("click", function(){
+		var postId = $('#deletePostTitle').attr('postId');
+
+		$.ajax({
+			    	type: 'post',
+			    	url: "/community_board_forums/deletePost",
+			    	data:{
+			    		postId: postId
+			    	},
+			    	success: function(){
+			    		//Hide the modal
+						$('#deleteForumPostModal').modal('hide');
+
+						//Remove the post from the view
+						$('.row[data-post='+ postId +']').remove();
+						
+						//Show and hide success message
+						$('.delete-post-success-wrapper').fadeIn(800).delay(1500).fadeOut(1000);
+			    	}
+			});
+	});
 
 	//When the close button on a modal is clicked clear the form and all validation messages
 	$('.btn[data-dismiss="modal"]').on("click", function(){

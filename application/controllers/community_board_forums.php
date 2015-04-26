@@ -29,8 +29,11 @@ class Community_board_forums extends Account
 		$data['all_comments'] = $this->Comm_forums->getAllUserComments('transport');
 
 		//Get the usernames for the posts and comments
-		$data['all_posts_user_names'] = $this->Comm_forums->getAllPostsUserNames('transport');
+		$data['getAllPostsUserNames'] = $this->Comm_forums->getAllPostsUserNames('transport');
 		$data['getAllCommentsUserNames'] = $this->Comm_forums->getAllCommentsUserNames('transport');
+
+		//Get all of the user votes
+		$data['userVotes'] = $this->Comm_forums->getAllUserVotes('transport');
 		
 
 		$this->load->view( 'templates/header', $data );
@@ -118,11 +121,8 @@ class Community_board_forums extends Account
 		$parentId = $this->input->post('parentId');
 		$content = $this->input->post('content');
 		$category = $this->input->post('category');
-		//echo $category;// + " " + $parentId + " " + $content + " " + $category;
 
 		$this->Comm_forums->addNewComment($userId, $parentId, $content, $category);
-
-		//echo json_encode($data);
 	}
 
 	function editPost(){
@@ -132,16 +132,29 @@ class Community_board_forums extends Account
 		$content = $this->input->post('content');
 
 		$this->Comm_forums->editPost($postId, $title, $content);
+	}
 
-		/*$data = array(
-			'postId' => $postId,
-			'title' => $title,
-			'content' => $content
-		);
+	function deletePost(){
+		//need postId, title, content
+		$postId = $this->input->post('postId');
 
-		$this->load->view( 'templates/header', $data );
-		$this->load->view( 'pages/community_board_forums', $data);
-		$this->load->view( 'templates/footer', $data);*/
+		$this->Comm_forums->deletePosts($postId);
+	}
+
+	function updatePostVoteCount(){
+		$postId = $this->input->post('postId');
+		$voteCount = $this->input->post('voteCount');
+
+		$this->Comm_forums->updatePostVoteCount($postId, $voteCount);
+	}
+
+	function updateUserVote(){
+		$userId = $this->session->userdata('id');
+		$postId = $this->input->post('postId');
+		$voteCSS = $this->input->post('voteCSS');
+		$category = $this->input->post('category');
+
+		$this->Comm_forums->updateUserVote($postId, $voteCSS, $userId, $category);
 	}
 }
 

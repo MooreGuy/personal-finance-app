@@ -104,7 +104,8 @@
 		}
 
 		function getAllPostsUserNames($category){
-			$this->db->select('username');
+			$this->db->distinct();
+			$this->db->select('users.username, users.id');
 			$this->db->from('users');
 			$this->db->join('posts', 'posts.userId = users.id');
 			$this->db->where('parentId', 0);
@@ -169,6 +170,50 @@
 			$query = $this->db->get();
 			$user_names = $query->result();
 			return $user_names;
+		}
+
+		function deletePosts($postId){
+			$this->db->delete('posts', array('id' => $postId));
+		}
+
+		function updatePostVoteCount($postId, $voteCount){
+			$data = array(
+				'upvotes_total' => $voteCount
+			);
+			//$this->db->where('postId', $postId);
+			$this->db->update('posts', $data, array('id' => $postId));
+		}
+
+		function getAllUserVotes($category){
+			$this->db->select();
+			$this->db->from('UserVote');
+			$this->db->where('category', $category);
+			$query = $this->db->get();
+			$userVotes = $query->result();
+			return $userVotes;
+		}
+
+		function updateUserVote($postId, $voteCSS, $userId, $category){
+			$data = array(
+				'postId' => $postId,
+				'voteCSS' => $voteCSS,
+				'userId' => $userId,
+				'category' => $category
+			);
+
+			//Search to see if the user has already voted on this post. If not add a new row otherwise update
+			$this->db->select();
+			$this->db->from('UserVote');
+			$this->db->where('postId', $postId);
+			$this->db->where('userId', $userId);
+			$query = $this->db->get();
+			$userVoted = $query->result();
+
+			if($userVoted){
+				$this->db->update('UserVote', $data, array('postid' => $postId, 'userId' => $userId));
+			}else{
+				$this->db->insert('UserVote', $data);
+			}
 		}
 	}
 ?>

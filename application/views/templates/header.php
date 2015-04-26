@@ -106,7 +106,7 @@
 	      							<form  id="addNewPostForm">
 		      							<label for="addPostCategory" class="addPostCategoryLabel">Category:</label> <label id="addPostCategory-error" class="error" for="addPostCategory"></label>
 		      							<select id="addPostCategory" name="addPostCategory">
-		      								<option value="">Select a category</option>
+		      								<option value="" disabled>Select a category</option>
 		      								<option value="1">Transport</option>
 		      								<option value="2">Food</option>
 		      								<option value="3">Communications</option>
@@ -194,6 +194,46 @@
 	  		</div>
 		</div>
 
+		<!-- Delete Forum Post Modal -->
+		<div class="modal fade" id="deleteForumPostModal" tabindex="-1" role="dialog" aria-labelledby="deleteForumPostModalLabel" aria-hidden="true">
+	  		<div class="modal-dialog">
+	    		<div class="modal-content">
+	      			<div class="modal-header">
+
+	        			<!-- Title of the Modal -->
+		        		<div class="container">
+		        			<div class="row">
+		        				<div class="col-md-6 modal-col">
+		        					<h2 class="modal-title" id="deleteForumPostModalLabel">Delete Post</h2>
+		        				</div>
+		        			</div>
+		        		</div>
+
+	      			</div>
+
+	      			<div class="modal-body" id="deleteFourmPostModal-body">
+	      				<div class="container">
+      						<div class="row">
+	      						<div class="col-md-6 modal-col">
+	      							<p>Are you sure you want to delete this post?</p>
+	      							<label>Title:</label>
+	      							<p id="deletePostTitle" data-postId=""></p>
+
+	      							<label>Body:</label>
+	      							<p id="deletePostBody"></p>
+	      						</div>
+	      					</div>
+	      				</div>
+	      			</div>
+
+	      			<div class="modal-footer">
+	        			<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+	        			<button type="button" class="btn btn-danger js-deletePost" >Delete</button>
+	      			</div>
+	    		</div>
+	  		</div>
+		</div>
+
 		<!-- Forgot Password Modal -->
 		<div class="modal fade" id="forgotPassModal" tabindex="-1" role="dialog" aria-labelledby="forgotPassModalLabel" aria-hidden="true">
 		    <div class="modal-dialog">
@@ -270,6 +310,13 @@
 		<div class="add-comment-success-wrapper">
 			<div class="well well-sm" id="add-comment-success">
 				<span class="text-info success-text-info">Your comment has successfully been added.</span>
+			</div>
+		</div>
+		
+		<!-- Success alert for when the user successfully deletes a post -->
+		<div class="delete-post-success-wrapper">
+			<div class="well well-sm" id="delete-post-success">
+				<span class="text-info success-text-info">Your post has successfully been deleted.</span>
 			</div>
 		</div>
 		<!-- END User Sussess/Error Messages -->
