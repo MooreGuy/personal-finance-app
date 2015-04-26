@@ -128,7 +128,8 @@ class Expenses extends CI_Model
 	function get_user_expense_types( $user_id )
 	{
 		$sql = 'select type,id from expense_types
-					where id = ( select type_id from expenses where user_id = ? group by type_id )';
+					where id = ( select type_id from expenses
+						where user_id = ? group by type_id )';
 
 		$query = $this->db->query( $sql, array($user_id) );
 		
@@ -136,9 +137,11 @@ class Expenses extends CI_Model
 	}
 
 	/*
-		Return all of the current expenses in an associative array grouped by their type in arrays.
+		Return all of the current expenses in an associative array grouped
+	   	by their type in arrays.
 
-		@return an associative array with the key of the expense type, holding an array of the expenses for that type.
+		@return an associative array with the key of the expense type,
+	   	holding an array of the expenses for that type.
 	*/
 	function get_current_expenses_grouped_for_user( $user_id )
 	{
