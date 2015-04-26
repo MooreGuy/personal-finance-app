@@ -36,75 +36,69 @@
 	<div class="modal fade" id="addCatModal" tabindex="-1" role="dialog" aria-labelledby="addCatModal" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header">
-		    		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h2 class="modal-title" id="addCatModal">Add A Category</h2>
-				</div>
-
-		    			<div class="container">
-		    				<h3>Title</h3>
-							<div class="row">
-								<div class="col-md-6">
-										<div class="input-group">
-											<input type="text" class="form-control" placeholder= "Category Title" aria-describedby="amount-addon">
-										</div>
-								</div>
-							</div>	
-						</div>
-					
-					<div class="container">
-						<h3>Expense</h3>
-						<a><h4>New Expense</h4></a>
+				<form action="<?php echo base_url(); ?>/user_profile/add_category_form" method="post">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h2 class="modal-title" id="addCatModal">Add A Category</h2>
 					</div>
-					<div class="container">
-						<div class="row">
 
-								<div class="col-md-2">
-								<form class="edit-modal-form">
-								  	<div class="form-group">
-								    	<div class="input-group">
-											<input type="text" class="form-control" placeholder="Title" aria-describedby="amount-addon">
-										</div>
-								  	</div>
-								</form>
-								</div>
-							
-							<div class="col-md-2">
-								<form class="edit-modal-form">
-								  	<div class="form-group">
-								    	<div class="input-group">
-											<span class="input-group-addon" id="amount-addon">$</span>
-									  		<input type="text" class="form-control" placeholder="Amount" aria-describedby="amount-addon">
-										</div>
-								  	</div>
-								</form>
-							</div>
-
-							<div class="col-md-2">
-								<form class="edit-modal-form">
-								  	<div class="form-group">
-								    	<div class="input-group">
-											<select class="form-control">
-												<option value="one" disabled selected>Recurrence</option> <!-- what can be inserted in this option so it is not blank and selects for nothing? --> 
-									  			<option value="two">Daily</option>
-									  			<option value="three">Weekly</option>
-									  			<option value="four">Biweekly</option>
-									  			<option value="five">Monthly</option>
-									  			<option value="six">Yearly</option>
-									  		</select>
+							<div class="container">
+								<h3>Title</h3>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="input-group">
+											<input type="text" class="form-control" placeholder= "OLD Category Title" aria-describedby="amount-addon">
 										</div>
 									</div>
-								</form>
+								</div>	
 							</div>
+						
+						<div class="container">
+							<h3>Expense</h3>
+							<a><h4>New Expense</h4></a>
 						</div>
-					</div> <!-- closes container for 3 categories row -->
-			 
-			      	
-		      		<div class="modal-footer">
-	        			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        			<button type="button" class="btn btn-success">Add</button>
-	        		</div>
-	        	</div>
+						<div class="container">
+							<div class="row">
+								<div class="col-md-2">
+									<div class="form-group">
+										<div class="input-group">
+											<input name="title"type="text" class="form-control" placeholder="Title" aria-describedby="amount-addon">
+										</div>
+									</div>
+								</div>
+								
+								<div class="col-md-2">
+									<div class="form-group">
+										<div class="input-group">
+											<span class="input-group-addon" id="amount-addon">$</span>
+											<input name="ammount"type="text" class="form-control" placeholder="Amount" aria-describedby="amount-addon">
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-2">
+									<div class="form-group">
+										<div class="input-group">
+											<select class="form-control" name="Recurrence">
+												<option value="daily">Daily</option>
+												<option value="weekly">Weekly</option>
+												<option value="biweekly">Biweekly</option>
+												<option value="monthly">Monthly</option>
+												<option value="yearly">Yearly</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div> <!-- closes container for 3 categories row -->
+				 
+						
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-success">Add</button>
+						</div>
+					</div>
+				</form>
 	        </div>
 		</div>
 	</div>
