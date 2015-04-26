@@ -51,6 +51,23 @@ class User_profile extends Account {
 
 	}
 
+	function add_category_form()
+	{
+		$title = $this->input->post('title');
+		$amount = $this->input->post('amount');
+		$occurance = $this->input->post('occurance');
+
+		$comment = NULL;
+
+		$country = NULL;
+		$state = NULL;
+		$county = NULL;
+		$city = NULL;
+
+		$this->Expenses->insert_expense( $this->user_id, $amount, $occurance,
+		   	$title, $comment, $country, $state, $county, $city);
+	}
+
 	
 
 	//function create_category()
