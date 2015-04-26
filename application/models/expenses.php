@@ -111,7 +111,7 @@ class Expenses extends CI_Model
 		
 		@return an array of all the types and their ids
 	*/
-	function get_types()
+	function get_all_types()
 	{
 		$sql = 'select id, type from expense_types;';
 		
