@@ -11,12 +11,12 @@ $(document).ready(function(){
 		var postId = $(this).data("post");
 
 		//If the panel has an open class remove it and replace it with the closed-panel class
-		if($('.panel-collapse[data-post=\"' + postId + '\"]').hasClass('open')){
-			$('.panel-collapse[data-post=\"' + postId + '\"]').addClass('closed-panel').removeClass('open');
+		if($('.panel-body[data-post=\"' + postId + '\"]').hasClass('open')){
+			$('.panel-body[data-post=\"' + postId + '\"]').addClass('closed-panel').removeClass('open');
 
 		//If the panel is closed remove it and replace it with the open class
-		}else if($('.panel-collapse[data-post=\"' + postId + '\"]').hasClass('closed-panel')){
-			$('.panel-collapse[data-post=\"' + postId + '\"]').removeClass('closed-panel').addClass('open');
+		}else if($('.panel-body[data-post=\"' + postId + '\"]').hasClass('closed-panel')){
+			$('.panel-body[data-post=\"' + postId + '\"]').removeClass('closed-panel').addClass('open');
 		}
 	});
 	
@@ -73,7 +73,7 @@ $(document).ready(function(){
 		    		dataType: "text",
 		    		data:{
 		    			postId: postId,
-		    			voteCSS: 'vote-positive',
+		    			voteCSS: 'vote-neutral',
 		    			category: category
 		    		},
 
@@ -141,7 +141,7 @@ $(document).ready(function(){
 		    		dataType: "text",
 		    		data:{
 		    			postId: postId,
-		    			voteCSS: 'vote-positive',
+		    			voteCSS: 'vote-neutral',
 		    			category: category
 		    		},
 
@@ -186,8 +186,8 @@ $(document).ready(function(){
 					url: "/community_board_forums/updateUserVote",
 		    		dataType: "text",
 		    		data:{
-		    			postId: postId,
-		    			voteCSS: 'vote-positive',
+		    			postId: postCommentId,
+		    			voteCSS: 'vote-neutral',
 		    			category: category
 		    		},
 
@@ -222,7 +222,7 @@ $(document).ready(function(){
 					url: "/community_board_forums/updateUserVote",
 		    		dataType: "text",
 		    		data:{
-		    			postId: postId,
+		    			postId: postCommentId,
 		    			voteCSS: 'vote-positive',
 		    			category: category
 		    		},
@@ -254,8 +254,8 @@ $(document).ready(function(){
 					url: "/community_board_forums/updateUserVote",
 		    		dataType: "text",
 		    		data:{
-		    			postId: postId,
-		    			voteCSS: 'vote-positive',
+		    			postId: postCommentId,
+		    			voteCSS: 'vote-neutral',
 		    			category: category
 		    		},
 
@@ -318,7 +318,7 @@ $(document).ready(function(){
 		    		dataType: "text",
 		    		data:{
 		    			postId: postId,
-		    			voteCSS: 'vote-negative',
+		    			voteCSS: 'vote-neutral',
 		    			category: category
 		    		},
 
@@ -328,7 +328,7 @@ $(document).ready(function(){
 				});
 			}
 
-			//If the down vote button is neutral give it a positive and if it is positive give it a neutral
+			//If the down vote button is neutral give it a negative and if it is negative give it a neutral
 			if($(this).hasClass('vote-neutral')){
 				$(this).removeClass('vote-neutral').addClass('vote-negative');
 
@@ -348,27 +348,27 @@ $(document).ready(function(){
 				    		
 				    	}
 					});
-
-					$.ajax({
-						type: "post",
-						url: "/community_board_forums/updateUserVote",
-			    		dataType: "text",
-			    		data:{
-			    			postId: postId,
-			    			voteCSS: 'vote-negative',
-		    				category: category
-			    		},
-
-				    	error: function(){
-				    		alert("Opps. Something went wrong.");
-				    	}
-					});
 				}
+
+				$.ajax({
+					type: "post",
+					url: "/community_board_forums/updateUserVote",
+		    		dataType: "text",
+		    		data:{
+		    			postId: postId,
+		    			voteCSS: 'vote-negative',
+	    				category: category
+		    		},
+
+			    	error: function(){
+			    		alert("Opps. Something went wrong.");
+			    	}
+				});
 				
 			}else{
 				$(this).removeClass('vote-negative').addClass('vote-neutral');
 				//Set the count of the post to +1
-				//if(voteCount != 0){
+				if(voteCount != 0){
 					$('.vote-count-row[data-post=\"'+postId+'\"]').children().text(++voteCount);
 					$.ajax({
 						type: "post",
@@ -383,22 +383,22 @@ $(document).ready(function(){
 				    		
 				    	}
 					});
+				}
 
-					$.ajax({
-						type: "post",
-						url: "/community_board_forums/updateUserVote",
-			    		dataType: "text",
-			    		data:{
-			    			postId: postId,
-			    			voteCSS: 'vote-negative',
-		    				category: category
-			    		},
+				$.ajax({
+					type: "post",
+					url: "/community_board_forums/updateUserVote",
+		    		dataType: "text",
+		    		data:{
+		    			postId: postId,
+		    			voteCSS: 'vote-neutral',
+	    				category: category
+		    		},
 
-				    	error: function(){
-				    		alert("Opps. Something went wrong.");
-				    	}
-					});
-				//}
+			    	error: function(){
+			    		alert("Opps. Something went wrong.");
+			    	}
+				});
 			}
 		}else if(type == "comment"){
 			//Get the category the vote is for.
@@ -435,8 +435,8 @@ $(document).ready(function(){
 					url: "/community_board_forums/updateUserVote",
 		    		dataType: "text",
 		    		data:{
-		    			postId: postId,
-		    			voteCSS: 'vote-negative',
+		    			postId: postCommentId,
+		    			voteCSS: 'vote-neutral',
 		    			category: category
 		    		},
 
@@ -451,27 +451,29 @@ $(document).ready(function(){
 				$(this).removeClass('vote-neutral').addClass('vote-negative');
 				//Set the count of the post to -1
 				
-				$('.vote-count-row[data-post-comment=\"'+postCommentId+'\"]').children().text(--voteCount);
-				$.ajax({
-					type: "post",
-					url: "/community_board_forums/updatePostVoteCount",
-		    		dataType: "text",
-		    		data:{
-		    			postId: postCommentId,
-		    			voteCount: voteCount
-		    		},
+				if(voteCount != 0){
+					$('.vote-count-row[data-post-comment=\"'+postCommentId+'\"]').children().text(--voteCount);
+					$.ajax({
+						type: "post",
+						url: "/community_board_forums/updatePostVoteCount",
+			    		dataType: "text",
+			    		data:{
+			    			postId: postCommentId,
+			    			voteCount: voteCount
+			    		},
 
-			    	success: function(){
-			    		
-			    	}
-				});
+				    	success: function(){
+				    		
+				    	}
+					});
+				}
 
 				$.ajax({
 					type: "post",
 					url: "/community_board_forums/updateUserVote",
 		    		dataType: "text",
 		    		data:{
-		    			postId: postId,
+		    			postId: postCommentId,
 		    			voteCSS: 'vote-negative',
 		    			category: category
 		    		},
@@ -505,8 +507,8 @@ $(document).ready(function(){
 					url: "/community_board_forums/updateUserVote",
 		    		dataType: "text",
 		    		data:{
-		    			postId: postId,
-		    			voteCSS: 'vote-negative',
+		    			postId: postCommentId,
+		    			voteCSS: 'vote-neutral',
 		    			category: category
 		    		},
 
@@ -569,10 +571,11 @@ $(document).ready(function(){
 	/*
 		When the comment glyphicon is clicked rotate the glyphocon 
 	*/
-	$('.glyphicon-chevron-right').on("click", function(){
+	$('.glyphicon-chevron-right').on("click", function(e){
 		//Id of the post
 		var postId = $(this).data("post");
 
+		e.stopPropagation(); 
 		//If the glyphicon is pointing down remove the rotate class and collapse the panel body
 		if($(this).hasClass("glyphicon-chevron-right-rotate")){
 
@@ -580,14 +583,14 @@ $(document).ready(function(){
 			$(this).removeClass("glyphicon-chevron-right-rotate");
 
 			//Make the body of the panel collapse
-			$('.panel-collapse[data-post=\"' + postId + '\"]').addClass('closed-panel').removeClass('open');
+			$('.collapse[data-post=\"' + postId+'\"]').removeClass('in');
 		}else{
 
 			//Add the rotate to get the glyphicon to point down
 			$(this).addClass("glyphicon-chevron-right-rotate glyphicon-chevron-right-transition");
 
 			//Open up the panel body
-			$('.panel-collapse[data-post=\"' + postId + '\"]').removeClass('closed-panel').addClass('open');
+			$('.collapse[data-post=\"' + postId+'\"]').addClass('in');
 		}
 	});
 

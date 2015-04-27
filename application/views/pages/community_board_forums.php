@@ -185,27 +185,28 @@
 							      				echo "</h4>";
 							    			echo "</div>";
 
-							    			echo "<div class='panel-collapse closed-panel' role='tabpanel' data-post=" . $post->id . ">";
-							    				echo "<div class='panel-body' data-post=" . $post->id . ">";
-							      					echo "<p class='body-text'>" . nl2br($post->content) . "</p> ";
-							      						echo "<div class='comment-control-wrapper' data-post=" . $post->id . ">";
-							      							echo "<div class='container'>";
-							      								echo "<div class='row'>";
-							      									echo "<div class='col-md-11 comment-control-col'>";
-							      										echo "<span class='glyphicon glyphicon-chevron-right pull-left' data-toggle='collapse' href='#commentSection" . $x . "' aria-expanded='false' aria-controls='commentSection" . $post->id . "' aria-hidden='true' data-post=". $post->id ."></span>";
-							      										echo "<a href='#' class='pull-left comment-link' data-toggle='modal' data-target='#addCommentPostModal' data-post=" . $post->id . ">Comment</a>";
-										      						echo "</div>";
-										      					echo "</div>";
-										      				echo "</div>";
-										      			echo "</div>";
+							    			echo "<div class='panel-collapse ' role='tabpanel' data-post=" . $post->id . ">";
+							    				echo "<div class='panel-body closed-panel' data-post=" . $post->id . ">";
+							      					echo "<p class='body-text ' data-post=" . $post->id . ">" . nl2br($post->content) . "</p> ";
+							      						
 										      		echo "</div>";
-							      				echo "</div>";
 
-							      				echo "<div class='comment-wrapper'>";	
+										      		echo "<div class='comment-control-wrapper' data-post=" . $post->id . ">";
+						      							echo "<div class='container'>";
+						      								echo "<div class='row'>";
+						      									echo "<div class='col-md-11 comment-control-col'>";
+						      										echo "<span class='glyphicon glyphicon-chevron-right pull-left' data-toggle='collapse' href='#commentSection" . $post->id . "' aria-expanded='false' aria-controls='commentSection" . $post->id . "' aria-hidden='true' data-post=". $post->id ."></span>";
+						      										echo "<a href='#' class='pull-left comment-link' data-toggle='modal' data-target='#addCommentPostModal' data-post=" . $post->id . ">Comment</a>";
+									      						echo "</div>";
+									      					echo "</div>";
+									      				echo "</div>";
+									      			echo "</div>";
+
+									      			echo "<div class='comment-wrapper'>";	
 					      							echo "<div class='conatiner'>";
 
 					      								
-					      											echo "<div class='collapse' id='commentSection" . $x . "'>";
+					      											echo "<div class='collapse' id='commentSection" . $post->id . "' data-post='" . $post->id . "'>";
 					      												
 					      													
 					      													$commented = False; //Check to see if a comment was posted
@@ -216,27 +217,68 @@
 						      													if($comment->parentId == $post->id ){
 						      														
 						      														$commented = True;
+
+
 						      														echo "<div class='row'>";
 									      												echo "<div class='col-md-1 post-comment-vote-wrapper'>";
-									      													
-									      													
-									      													echo "<div class='row up-vote-row'>";
-																								echo "<div class='col-md-1 up-vote-wrapper' data-post-comment='" . $comment->id . "'>";
-																									echo "<span class='glyphicon glyphicon-chevron-up vote-neutral comment-glyphicon'></span>";
-																								echo "</div>";
-																							echo "</div>";
 
-																							echo "<div class='row vote-count-row' data-post-comment='" . $comment->id . "'>";
-																								echo "<div class='col-md-1 positive-count-wrapper'>";
-																									echo "<span class='positive-vote-count'>" . $comment->upvotes_total . "</span>";
-																								echo "</div>";
-																							echo "</div>";
+									      													$voted = False;
 
-																							echo "<div class='row down-vote-row'>";
-																								echo "<div class='col-md-1 down-vote-wrapper' data-post-comment='" . $comment->id . "'>";
-																									echo "<span class='glyphicon glyphicon-chevron-down vote-neutral comment-glyphicon'></span>";
+									      													foreach ($userVotes as $key => $votes) {
+								      															if($votes->userId == $userId && $votes->postId == $comment->id){
+								      																echo "<div class='row up-vote-row'>";
+																										echo "<div class='col-md-1 up-vote-wrapper' data-post-comment='" . $comment->id . "'>";
+
+																											if($votes->voteCSS == 'vote-positive'){
+																												echo "<span class='glyphicon glyphicon-chevron-up " . $votes->voteCSS . " comment-glyphicon'></span>";
+																											}else{
+																												echo "<span class='glyphicon glyphicon-chevron-up vote-neutral comment-glyphicon'></span>";
+																											}
+																										echo "</div>";
+																									echo "</div>";
+
+																									echo "<div class='row vote-count-row' data-post-comment='" . $comment->id . "'>";
+																										echo "<div class='col-md-1 positive-count-wrapper'>";
+																											echo "<span class='positive-vote-count'>" . $comment->upvotes_total . "</span>";
+																										echo "</div>";
+																									echo "</div>";
+
+																									echo "<div class='row down-vote-row'>";
+																										echo "<div class='col-md-1 down-vote-wrapper' data-post-comment='" . $comment->id . "'>";
+
+																											if($votes->voteCSS == 'vote-negative'){
+																												echo "<span class='glyphicon glyphicon-chevron-down " . $votes->voteCSS ." comment-glyphicon'></span>";
+																											}else{
+																												echo "<span class='glyphicon glyphicon-chevron-down vote-neutral comment-glyphicon'></span>";
+																											}
+																										echo "</div>";
+																									echo "</div>";
+
+																									$voted = True;
+										      													}
+								      														}
+
+
+									      													if((empty($userVotes) || isset($userVotes[0])) && $voted == False){
+																								echo "<div class='row up-vote-row'>";
+																									echo "<div class='col-md-1 up-vote-wrapper' data-post-comment=" . $comment->id . ">";																									
+																											echo "<span class='glyphicon glyphicon-chevron-up vote-neutral comment-glyphicon'></span>";
+																									echo "</div>";
 																								echo "</div>";
-																							echo "</div>";
+
+																								echo "<div class='row vote-count-row' data-post-comment=" . $comment->id . ">";
+																									echo "<div class='col-md-1 positive-count-wrapper'>";
+																										echo "<span class='positive-vote-count'>" . $comment->upvotes_total . "</span>";
+																									echo "</div>";
+																								echo "</div>";
+
+																								echo "<div class='row down-vote-row'>";
+																									echo "<div class='col-md-1 down-vote-wrapper' data-post-comment=" . $comment->id . ">";
+																										echo "<span class='glyphicon glyphicon-chevron-down vote-neutral comment-glyphicon'></span>";													
+																									echo "</div>";
+																								echo "</div>";
+																							}
+									      													
 																						echo "</div>";
 
 									      												echo "<div class='col-md-11 user-comment'>";
@@ -282,6 +324,9 @@
 					      								
 					      							echo "</div>";
 					      						echo "</div>";	
+							      				echo "</div>";
+
+							      				
 
 						      				echo "</div>";
 						   				echo "</div>";
