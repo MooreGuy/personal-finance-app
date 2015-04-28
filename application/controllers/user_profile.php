@@ -64,7 +64,7 @@ class User_profile extends Account {
 		$county = NULL;
 		$city = NULL;
 
-		$this->Expenses->insert_expense( $this->user_id, $amount, $occurance,
+		$this->expenses->insert_expense( $this->user_id, $amount, $occurance,
 		   	$title, $comment, $country, $state, $county, $city);
 	}
 
