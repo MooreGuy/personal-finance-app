@@ -139,149 +139,19 @@ $(document).ready(function(){
 		chart.render();
 
 	});
-
-	$('ul.nav.nav-tabs > li > a.transport').click(function(e){
+	
+	$('ul.nav.nav-tabs[role="tablist"] > li').on("click", function(e){
 	 	e.preventDefault();
+
+	 	var category = $(this).children().attr('class');
 	 	
 	 	$('ul > li[role="presentation"].active').removeClass('active');
-	 	$(this).parent().addClass('active');
+	 	$(this).addClass('active');
+	 	var order = $('#post-filter option:selected').text().toLowerCase();
 
 	 	$.ajax({
     	type: 'get',
-    	url: '/community_board_forums/loadCatTabs?tab=transport',
-    	dataType: 'html',
-    	success: function (html) {
-      	// success callback -- replace the div's innerHTML with
-      	// the response from the server.
-      	
-      	$('#tabContent').html(html);
-    	}
-  		});
-	});
-
-	$('ul.nav.nav-tabs > li > a.food').click(function(e){
-	 	e.preventDefault();
-
-	 	$('ul > li[role="presentation"].active').removeClass('active');
-	 	$(this).parent().addClass('active');
-
-	 	$.ajax({
-    	type: 'get',
-    	url: '/community_board_forums/loadCatTabs?tab=food',
-    	dataType: 'html',
-    	success: function (html) {
-      	// success callback -- replace the div's innerHTML with
-      	// the response from the server.
-      	
-      	$('#tabContent').html(html);
-    	}
-  		});
-	});
-
-	$('ul.nav.nav-tabs > li > a.communications').click(function(e){
-	 	e.preventDefault();
-	 	
-	 	$('ul > li[role="presentation"].active').removeClass('active');
-	 	$(this).parent().addClass('active');
-
-	 	$.ajax({
-    	type: 'get',
-    	url: '/community_board_forums/loadCatTabs?tab=communications',
-    	dataType: 'html',
-    	success: function (html) {
-      	// success callback -- replace the div's innerHTML with
-      	// the response from the server.
-      	
-      	$('#tabContent').html(html);
-    	}
-  		});
-	});
-
-	$('ul.nav.nav-tabs > li > a.entertainment').click(function(e){
-	 	e.preventDefault();
-	 	
-	 	$('ul > li[role="presentation"].active').removeClass('active');
-	 	$(this).parent().addClass('active');
-
-	 	$.ajax({
-    	type: 'get',
-    	url: '/community_board_forums/loadCatTabs?tab=entertainment',
-    	dataType: 'html',
-    	success: function (html) {
-      	// success callback -- replace the div's innerHTML with
-      	// the response from the server.
-      	
-      	$('#tabContent').html(html);
-    	}
-  		});
-	});
-
-	$('ul.nav.nav-tabs > li > a.housing').click(function(e){
-	 	e.preventDefault();
-	 	
-	 	$('ul > li[role="presentation"].active').removeClass('active');
-	 	$(this).parent().addClass('active');
-
-	 	$.ajax({
-    	type: 'get',
-    	url: '/community_board_forums/loadCatTabs?tab=housing',
-    	dataType: 'html',
-    	success: function (html) {
-      	// success callback -- replace the div's innerHTML with
-      	// the response from the server.
-      	
-      	$('#tabContent').html(html);
-    	}
-  		});
-	});
-
-	$('ul.nav.nav-tabs > li > a.utilities').click(function(e){
-	 	e.preventDefault();
-	 	
-	 	$('ul > li[role="presentation"].active').removeClass('active');
-	 	$(this).parent().addClass('active');
-
-	 	$.ajax({
-    	type: 'get',
-    	url: '/community_board_forums/loadCatTabs?tab=utilities',
-    	dataType: 'html',
-    	success: function (html) {
-      	// success callback -- replace the div's innerHTML with
-      	// the response from the server.
-      	
-      	$('#tabContent').html(html);
-    	}
-  		});
-	});
-
-	$('ul.nav.nav-tabs > li > a.travel').click(function(e){
-	 	e.preventDefault();
-	 	
-	 	$('ul > li[role="presentation"].active').removeClass('active');
-	 	$(this).parent().addClass('active');
-
-	 	$.ajax({
-    	type: 'get',
-    	url: '/community_board_forums/loadCatTabs?tab=travel',
-    	dataType: 'html',
-    	success: function (html) {
-      	// success callback -- replace the div's innerHTML with
-      	// the response from the server.
-      	
-      	$('#tabContent').html(html);
-    	}
-  		});
-	});
-
-	$('ul.nav.nav-tabs > li > a.general').click(function(e){
-	 	e.preventDefault();
-	 	
-	 	$('ul > li[role="presentation"].active').removeClass('active');
-	 	$(this).parent().addClass('active');
-
-	 	$.ajax({
-    	type: 'get',
-    	url: '/community_board_forums/loadCatTabs?tab=general',
+    	url: "/community_board_forums/loadCatTabs?tab="+category+"&orderBy="+order+"",
     	dataType: 'html',
     	success: function (html) {
       	// success callback -- replace the div's innerHTML with

@@ -612,4 +612,21 @@ $(document).ready(function(){
 		$('.commentOnTitle').data('parentId', postId);
 		$('.commentOnTitle').data('category', category);
 	});
+
+	$('#post-filter').change(function(){
+		//Get the category of the post
+		var category = $('.tab-pane').attr('id');
+		var order = $('#post-filter option:selected').text().toLowerCase();
+		
+		$.ajax({
+			type: "get",
+			url: "/community_board_forums/loadCatTabs?tab="+category+"&orderBy="+order+"",
+    		dataType: "html",
+
+	    	success: function(data){
+	    	$('#tabContent').html(data);
+
+	    	}
+		});
+	});
 });

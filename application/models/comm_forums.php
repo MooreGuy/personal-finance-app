@@ -58,45 +58,141 @@
 			$this->db->insert('posts', $data); 
 		}
 
-		function getAllUserPosts($category){
+		function getAllUserPosts($category, $orderBy){
 			switch($category){
 				case 'transport':
-					$query = $this->db->get_where('posts', array('category' => $category, 'parentId' => 0));
+					$this->db->select();
+					$this->db->from('posts');
+					switch ($orderBy) {
+						case 'top': $this->db->order_by('upvotes_total', "desc"); 
+							break;
+						case 'new': $this->db->order_by('timestamp', "desc");
+							break;
+						default:
+						break;
+					}
+					$this->db->where('category', $category);
+					$this->db->where('parentId', 0);
+					$query = $this->db->get();
 					$posts = $query->result();
 					return $posts;
 					break;
 				case 'food':
-					$query =  $this->db->get_where('posts', array('category' => $category, 'parentId' => 0));
+					$this->db->select();
+					$this->db->from('posts');
+					switch ($orderBy) {
+						case 'top': $this->db->order_by('upvotes_total', "desc"); 
+							break;
+						case 'new': $this->db->order_by('timestamp', "desc");
+							break;
+						default:
+						break;
+					}
+					$this->db->where('category', $category);
+					$this->db->where('parentId', 0);
+					$query = $this->db->get();
 					$posts = $query->result();
 					return $posts;
 					break;
 				case 'communications':
-					$query =  $this->db->get_where('posts', array('category' => $category, 'parentId' => 0));
+					$this->db->select();
+					$this->db->from('posts');
+					switch ($orderBy) {
+						case 'top': $this->db->order_by('upvotes_total', "desc"); 
+							break;
+						case 'new': $this->db->order_by('timestamp', "desc");
+							break;
+						default:
+						break;
+					}
+					$this->db->where('category', $category);
+					$this->db->where('parentId', 0);
+					$query = $this->db->get();
 					$posts = $query->result();
 					return $posts;
 					break;
 				case 'entertainment':
-					$query =  $this->db->get_where('posts', array('category' => $category, 'parentId' => 0));
+					$this->db->select();
+					$this->db->from('posts');
+					switch ($orderBy) {
+						case 'top': $this->db->order_by('upvotes_total', "desc"); 
+							break;
+						case 'new': $this->db->order_by('timestamp', "desc");
+							break;
+						default:
+						break;
+					}
+					$this->db->where('category', $category);
+					$this->db->where('parentId', 0);
+					$query = $this->db->get();
 					$posts = $query->result();
 					return $posts;
 					break;
 				case 'housing':
-					$query =  $this->db->get_where('posts', array('category' => $category, 'parentId' => 0));
+					$this->db->select();
+					$this->db->from('posts');
+					switch ($orderBy) {
+						case 'top': $this->db->order_by('upvotes_total', "desc"); 
+							break;
+						case 'new': $this->db->order_by('timestamp', "desc");
+							break;
+						default:
+						break;
+					}
+					$this->db->where('category', $category);
+					$this->db->where('parentId', 0);
+					$query = $this->db->get();
 					$posts = $query->result();
 					return $posts;
 					break;
 				case 'utilities':
-					$query =  $this->db->get_where('posts', array('category' => $category, 'parentId' => 0));
+					$this->db->select();
+					$this->db->from('posts');
+					switch ($orderBy) {
+						case 'top': $this->db->order_by('upvotes_total', "desc"); 
+							break;
+						case 'new': $this->db->order_by('timestamp', "desc");
+							break;
+						default:
+						break;
+					}
+					$this->db->where('category', $category);
+					$this->db->where('parentId', 0);
+					$query = $this->db->get();
 					$posts = $query->result();
 					return $posts;
 					break;
 				case 'travel':
-					$query =  $this->db->get_where('posts', array('category' => $category, 'parentId' => 0));
+					$this->db->select();
+					$this->db->from('posts');
+					switch ($orderBy) {
+						case 'top': $this->db->order_by('upvotes_total', "desc"); 
+							break;
+						case 'new': $this->db->order_by('timestamp', "desc");
+							break;
+						default:
+						break;
+					}
+					$this->db->where('category', $category);
+					$this->db->where('parentId', 0);
+					$query = $this->db->get();
 					$posts = $query->result();
 					return $posts;
 					break;
 				case 'general':
-					$query =  $this->db->get_where('posts', array('category' => $category, 'parentId' => 0));
+					$this->db->select();
+					$this->db->from('posts');
+					switch ($orderBy) {
+						case 'top': $this->db->order_by('upvotes_total', "desc"); 
+							break;
+						case 'new': $this->db->order_by('timestamp', "desc");
+							break;
+						default:
+						break;
+					}
+					$this->db->where('category', $category);
+					$this->db->where('parentId', 0);
+					$query = $this->db->get();
 					$posts = $query->result();
 					return $posts;
 					break;
