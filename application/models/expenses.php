@@ -54,35 +54,36 @@ class Expenses extends CI_Model
 	function insert_expense( $user_id, $cost, $interval, $type, $comment,
 									$location_id )
 	{
+		$type_id = '';
 		//If the expense type doesn't exist, then create it.
-		if( $id = $this->get_expense_type_id($type) == NULL )
+		if( $type_id = $this->get_expense_type_id($type) == NULL )
 		{
-			$id = $this->create_expense_type($type);
+			$type_id = $this->create_expense_type($type, $comment);
 		}
 
 		//TODO: Finish location get or create methods
 
-		$sql = 'insert into expenses values( ?, ?, ?, ?, ?, ?, ?, ? )';
+		$sql = 'insert into expenses values( NULL, ?, ?, ?, ?, ?, ?, ?, ? )';
 
 		//Set the date 
-		$this->load->helper('date');
+	$this->load->helper('date');
 		$timestamp = now();
 	
-		$query = $this->db->query( $sql, array($timestamp, $current, $type_id,
+		$query = $this->db->query( $sql, array($timestamp, true, $type_id,
 		   	$cost, $interval, $comment, $location_id, $user_id) );	
 	}
 
 	/**
 	 * Create an expense type and return its id.
 	 */
-	function create_expense_type( $type )
+	function create_expense_type( $type, $comment )
 	{
-		$sql = 'insert into expense_types values( NULL, ?)
-				select last_insert_id()';
+		$sql = 'insert into expense_types values( NULL, ?, ?)';
 
-		$query = $this->db->query( $sql, array($type) );
+		$this->db->query( $sql, array($type, $comment) );
+		
 
-		return $query->result();
+		return $this->db->insert_id();
 	}
 
 	/**
