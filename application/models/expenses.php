@@ -82,7 +82,7 @@ class Expenses extends CI_Model
 
 		$query = $this->db->query( $sql, array($type) );
 
-		return $query->result()[0];	
+		return $query->result();
 	}
 
 	/**
@@ -103,7 +103,7 @@ class Expenses extends CI_Model
 			return NULL;
 		}
 
-		return $query->result()[0];
+		return $query->result();
 	}
 
 	/*

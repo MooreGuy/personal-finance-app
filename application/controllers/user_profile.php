@@ -57,15 +57,17 @@ class User_profile extends Account {
 		$amount = $this->input->post('amount');
 		$occurance = $this->input->post('occurance');
 
-		$comment = NULL;
+		$comment = "something";
 
-		$country = NULL;
-		$state = NULL;
-		$county = NULL;
-		$city = NULL;
+		$country = "something";
+		$state = "something";
+		$county = "something";
+		$city = "something";
 
 		$this->expenses->insert_expense( $this->user_id, $amount, $occurance,
 		   	$title, $comment, $country, $state, $county, $city);
+
+		redirect('user_profile/home', 'location');
 	}
 
 	
