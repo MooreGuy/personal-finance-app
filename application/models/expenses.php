@@ -128,9 +128,11 @@ class Expenses extends CI_Model
 	*/
 	function get_user_expense_types( $user_id )
 	{
-		$sql = 'select type,id from expense_types
-					where id = ( select type_id from expenses
-						where user_id = ? group by type_id )';
+		$sql = 'select expense_types.type, expense_types.id from expense_types
+					inner join expenses
+					on expenses.type_id = expense_types.id
+					where expenses.user_id = ?
+					group by expense_types.type';
 
 		$query = $this->db->query( $sql, array($user_id) );
 		
