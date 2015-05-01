@@ -103,58 +103,74 @@
 
 										$voted = False;
 
-										foreach ($userVotes as $key => $votes) {
-											//If the user thats logged in has voted on a post show what they voted
-											if($votes->userId == $userId && $votes->postId == $post->id){																				
-												echo "<div class='row up-vote-row'>";
-													echo "<div class='col-md-1 up-vote-wrapper' data-post=" . $post->id . ">";
-
-														if($votes->voteCSS == 'vote-positive'){											
-															echo "<span class='glyphicon glyphicon-chevron-up " . $votes->voteCSS ."'></span>";
-														}else{
-															echo "<span class='glyphicon glyphicon-chevron-up vote-neutral'></span>";
-														}
-
+										if($userVotes != NULL){
+											foreach ($userVotes as $key => $votes) {
+												//If the user thats logged in has voted on a post show what they voted
+												if($votes->userId == $userId && $votes->postId == $post->id){																				
+													echo "<div class='row up-vote-row'>";
+														echo "<div class='col-md-1 up-vote-wrapper' data-post=" . $post->id . ">";
+															echo "<div class='glyphicon'>";
+																if($votes->voteCSS == 'vote-positive'){											
+																	echo "<span class='glyphicon glyphicon-chevron-up " . $votes->voteCSS ."'></span>";
+																}else{
+																	echo "<span class='glyphicon glyphicon-chevron-up vote-neutral'></span>";
+																}
+															echo "</div>";
+														echo "</div>";
 													echo "</div>";
-												echo "</div>";
 
-												echo "<div class='row vote-count-row' data-post=" . $post->id . ">";
-													echo "<div class='col-md-1 positive-count-wrapper'>";
-														echo "<span class='positive-vote-count'>" . $post->upvotes_total . "</span>";
+													echo "<div class='row vote-count-row' data-post=" . $post->id . ">";
+														echo "<div class='col-md-1 positive-count-wrapper'>";
+															if($post->upvotes_total >= 0){
+																echo "<span class='positive-vote-count'>" . $post->upvotes_total . "</span>";
+															}else{
+																echo "<span class='positive-vote-count'>0</span>";
+															}
+														echo "</div>";
 													echo "</div>";
-												echo "</div>";
 
-												echo "<div class='row down-vote-row'>";
-													echo "<div class='col-md-1 down-vote-wrapper' data-post=" . $post->id . ">";
-														
-														if($votes->voteCSS == 'vote-negative'){															
-															echo "<span class='glyphicon glyphicon-chevron-down " . $votes->voteCSS . "'></span>";
-														}else{
-															echo "<span class='glyphicon glyphicon-chevron-down vote-neutral'></span>";
-														}
+													echo "<div class='row down-vote-row'>";
+														echo "<div class='col-md-1 down-vote-wrapper' data-post=" . $post->id . ">";
+															echo "<div class='glyphicon'>";
+																if($votes->voteCSS == 'vote-negative'){															
+																	echo "<span class='glyphicon glyphicon-chevron-down " . $votes->voteCSS . "'></span>";
+																}else{
+																	echo "<span class='glyphicon glyphicon-chevron-down vote-neutral'></span>";
+																}
+															echo "</div>";
+														echo "</div>";
 													echo "</div>";
-												echo "</div>";
 
-												$voted = True;
-											}								
+													$voted = True;
+												}								
+											}
 										}
 
 										if((empty($userVotes) || isset($userVotes[0])) && $voted == False){
 											echo "<div class='row up-vote-row'>";
-												echo "<div class='col-md-1 up-vote-wrapper' data-post=" . $post->id . ">";																									
+												echo "<div class='col-md-1 up-vote-wrapper' data-post=" . $post->id . ">";	
+													echo "<div class='glyphicon'>";																								
 														echo "<span class='glyphicon glyphicon-chevron-up vote-neutral'></span>";
+													echo "</div>";
 												echo "</div>";
 											echo "</div>";
 
 											echo "<div class='row vote-count-row' data-post=" . $post->id . ">";
 												echo "<div class='col-md-1 positive-count-wrapper'>";
+												if($post->upvotes_total >= 0){
 													echo "<span class='positive-vote-count'>" . $post->upvotes_total . "</span>";
+												}else{
+													echo "<span class='positive-vote-count'>0</span>";
+												}
+													
 												echo "</div>";
 											echo "</div>";
 
 											echo "<div class='row down-vote-row'>";
 												echo "<div class='col-md-1 down-vote-wrapper' data-post=" . $post->id . ">";
-													echo "<span class='glyphicon glyphicon-chevron-down vote-neutral'></span>";													
+													echo "<div class='glyphicon'>";
+														echo "<span class='glyphicon glyphicon-chevron-down vote-neutral'></span>";	
+													echo "</div>";												
 												echo "</div>";
 											echo "</div>";
 										}
@@ -227,30 +243,36 @@
 									      													foreach ($userVotes as $key => $votes) {
 								      															if($votes->userId == $userId && $votes->postId == $comment->id){
 								      																echo "<div class='row up-vote-row'>";
-																										echo "<div class='col-md-1 up-vote-wrapper' data-post-comment='" . $comment->id . "'>";
-
-																											if($votes->voteCSS == 'vote-positive'){
-																												echo "<span class='glyphicon glyphicon-chevron-up " . $votes->voteCSS . " comment-glyphicon'></span>";
-																											}else{
-																												echo "<span class='glyphicon glyphicon-chevron-up vote-neutral comment-glyphicon'></span>";
-																											}
+																										echo "<div class='col-md-1 up-vote-wrapper' data-post='" . $comment->id . "'>";
+																											echo "<div class='glyphicon'>";
+																												if($votes->voteCSS == 'vote-positive'){
+																													echo "<span class='glyphicon glyphicon-chevron-up " . $votes->voteCSS . " comment-glyphicon'></span>";
+																												}else{
+																													echo "<span class='glyphicon glyphicon-chevron-up vote-neutral comment-glyphicon'></span>";
+																												}
+																											echo "</div>";
 																										echo "</div>";
 																									echo "</div>";
 
-																									echo "<div class='row vote-count-row' data-post-comment='" . $comment->id . "'>";
+																									echo "<div class='row vote-count-row' data-post='" . $comment->id . "'>";
 																										echo "<div class='col-md-1 positive-count-wrapper'>";
+																										if($post->upvotes_total >= 0){
 																											echo "<span class='positive-vote-count'>" . $comment->upvotes_total . "</span>";
+																										}else{
+																											echo "<span class='positive-vote-count'>0</span>";
+																										}
 																										echo "</div>";
 																									echo "</div>";
 
 																									echo "<div class='row down-vote-row'>";
-																										echo "<div class='col-md-1 down-vote-wrapper' data-post-comment='" . $comment->id . "'>";
-
-																											if($votes->voteCSS == 'vote-negative'){
-																												echo "<span class='glyphicon glyphicon-chevron-down " . $votes->voteCSS ." comment-glyphicon'></span>";
-																											}else{
-																												echo "<span class='glyphicon glyphicon-chevron-down vote-neutral comment-glyphicon'></span>";
-																											}
+																										echo "<div class='col-md-1 down-vote-wrapper' data-post='" . $comment->id . "'>";
+																											echo "<div class='glyphicon'>";
+																												if($votes->voteCSS == 'vote-negative'){
+																													echo "<span class='glyphicon glyphicon-chevron-down " . $votes->voteCSS ." comment-glyphicon'></span>";
+																												}else{
+																													echo "<span class='glyphicon glyphicon-chevron-down vote-neutral comment-glyphicon'></span>";
+																												}
+																											echo "</div>";
 																										echo "</div>";
 																									echo "</div>";
 
@@ -261,20 +283,29 @@
 
 									      													if((empty($userVotes) || isset($userVotes[0])) && $voted == False){
 																								echo "<div class='row up-vote-row'>";
-																									echo "<div class='col-md-1 up-vote-wrapper' data-post-comment=" . $comment->id . ">";																									
+																									echo "<div class='col-md-1 up-vote-wrapper' data-post=" . $comment->id . ">";
+																										echo "<div class='glyphicon'>";																									
 																											echo "<span class='glyphicon glyphicon-chevron-up vote-neutral comment-glyphicon'></span>";
+																										echo "</div>";
 																									echo "</div>";
 																								echo "</div>";
 
-																								echo "<div class='row vote-count-row' data-post-comment=" . $comment->id . ">";
+																								echo "<div class='row vote-count-row' data-post=" . $comment->id . ">";
 																									echo "<div class='col-md-1 positive-count-wrapper'>";
+																									if($comment->upvotes_total < 0){
+																										echo "<span class='positive-vote-count'>0</span>";
+																									}else{
 																										echo "<span class='positive-vote-count'>" . $comment->upvotes_total . "</span>";
+																									}
+																										
 																									echo "</div>";
 																								echo "</div>";
 
 																								echo "<div class='row down-vote-row'>";
-																									echo "<div class='col-md-1 down-vote-wrapper' data-post-comment=" . $comment->id . ">";
-																										echo "<span class='glyphicon glyphicon-chevron-down vote-neutral comment-glyphicon'></span>";													
+																									echo "<div class='col-md-1 down-vote-wrapper' data-post=" . $comment->id . ">";
+																										echo "<div class='glyphicon'>";
+																											echo "<span class='glyphicon glyphicon-chevron-down vote-neutral comment-glyphicon'></span>";													
+																										echo "</div>";
 																									echo "</div>";
 																								echo "</div>";
 																							}
@@ -411,9 +442,9 @@
 <script type="text/javascript" src="/js/owl.carousel.min.js"></script>
 <!-- community_board_forums.js -->
 <script type="text/javascript" src="/js/community_board_forums.js"></script>
-<!-- community_board_forums_post_controls.js -->
-<script type="text/javascript" src="/js/community_board_forums_post_controls.js"></script>
 
+<!-- community_board_forums_post_controls.js -->
+<script type="text/javascript" src="/js/community_board_forums_post_controls.js"></script>	
 
 
 

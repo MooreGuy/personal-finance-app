@@ -26,7 +26,174 @@ $(document).ready(function(){
 		bottom vote button had and add the appropriate color class depending
 		on what was there previously
 	*/
-	$('.glyphicon-chevron-up').on("click", function(){
+	$('.glyphicon').on("click", ".glyphicon-chevron-up, .glyphicon-chevron-down", function(){
+		//Get the category the vote is for.
+		var category = $('.tab-pane').attr('id');
+
+		//Get the Id of the post the vote is for
+		var postId = $(this).parent().parent().data('post');
+
+		//Get the count of the vote and add or decrease the count depending on the class
+		var voteCount = parseInt($('.vote-count-row[data-post=\"'+postId+'\"] > div > span').text());
+		
+
+		if($(this).is('.glyphicon-chevron-up')){
+
+			//Remove any neg class the bottom vote button has and set it back to neutral
+			if($('.down-vote-wrapper[data-post=\"'+postId+'\"] > .glyphicon').children().hasClass('vote-negative')){
+				$('.down-vote-wrapper[data-post=\"'+postId+'\"] > .glyphicon').children().removeClass('vote-negative').addClass('vote-neutral');
+
+				//Also set the vote count back to normal
+				$('.vote-count-row[data-post=\"'+postId+'\"] > div > span').text(++voteCount + 1);
+				
+				$.ajax({
+					type: "post",
+					url: "/community_board_forums/updateUserVote",
+		    		dataType: "text",
+		    		data:{
+		    			postId: postId,
+		    			voteCSS: 'vote-positive',
+		    			category: category,
+		    			//voteCount: voteCount + 1
+		    			//voteType: "up"
+		    		},
+
+			    	error: function(){
+			    		
+			    	}
+				});
+			}
+
+			//If the up vote button is neutral give it a positive and if it is positive give it a neutral
+			if($(this).hasClass('vote-neutral')){
+				$(this).removeClass('vote-neutral').addClass('vote-positive');
+				//Set the count of the post to +1
+				//console.log(voteCount);
+				$('.vote-count-row[data-post=\"'+postId+'\"] > div > span').text(++voteCount);
+
+				$.ajax({
+					type: "post",
+					url: "/community_board_forums/updateUserVote",
+		    		dataType: "text",
+		    		data:{
+		    			postId: postId,
+		    			voteCSS: 'vote-positive',
+		    			category: category,
+		    			//voteCount: voteCount
+		    			//voteType: "up"
+		    		},
+
+			    	error: function(){
+			    		alert("Opps. Something went wrong.");
+			    	}
+				});
+			}else{
+				$(this).removeClass('vote-positive').addClass('vote-neutral');
+
+				if(voteCount > 0){
+					$('.vote-count-row[data-post=\"'+postId+'\"] > div > span').text(--voteCount);
+				}
+
+				$.ajax({
+					type: "post",
+					url: "/community_board_forums/updateUserVote",
+		    		dataType: "text",
+		    		data:{
+		    			postId: postId,
+		    			voteCSS: 'vote-neutral-positive',
+		    			category: category,
+		    			//voteCount: voteCount
+		    			//voteType: "neutral"
+		    		},
+
+			    	error: function(){
+			    		alert("Opps. Something went wrong.");
+			    	}
+				});
+			}
+		}else if($(this).is('.glyphicon-chevron-down')){
+			//Remove any pos class the bottom vote button has and set it back to neutral
+			if($('.up-vote-wrapper[data-post=\"'+postId+'\"] > .glyphicon').children().hasClass('vote-positive')){
+				$('.up-vote-wrapper[data-post=\"'+postId+'\"] > .glyphicon').children().removeClass('vote-positive').addClass('vote-neutral');
+
+				//Also set the vote count back to normal
+				if(voteCount > 0){
+					$('.vote-count-row[data-post=\"'+postId+'\"] > div > span').text(--voteCount);
+				}
+
+				$.ajax({
+					type: "post",
+					url: "/community_board_forums/updateUserVote",
+		    		dataType: "text",
+		    		data:{
+		    			postId: postId,
+		    			voteCSS: 'vote-negative',
+		    			category: category,
+		    			//voteCount: voteCount
+		    			//voteType: "down"
+		    		},
+
+			    	error: function(){
+			    		alert("Opps. Something went wrong.");
+			    	}
+				});
+			}
+
+			//If the down vote button is neutral give it a negative and if it is negative give it a neutral
+			if($(this).hasClass('vote-neutral')){
+				$(this).removeClass('vote-neutral').addClass('vote-negative');
+
+				//Set the count of the post to -1
+				if(voteCount > 0){
+					$('.vote-count-row[data-post=\"'+postId+'\"] > div > span').text(--voteCount);
+				}
+
+				$.ajax({
+					type: "post",
+					url: "/community_board_forums/updateUserVote",
+		    		dataType: "text",
+		    		data:{
+		    			postId: postId,
+		    			voteCSS: 'vote-negative',
+	    				category: category,
+	    				//voteCount: voteCount
+	    				//voteType: "down"
+		    		},
+
+			    	error: function(){
+			    		alert("Opps. Something went wrong.");
+			    	}
+				});
+				
+			}else{
+				$(this).removeClass('vote-negative').addClass('vote-neutral');
+				//Set the count of the post to +1
+				if(voteCount > 0){
+					$('.vote-count-row[data-post=\"'+postId+'\"] > div > span').text(++voteCount);
+				}
+
+				$.ajax({
+					type: "post",
+					url: "/community_board_forums/updateUserVote",
+		    		dataType: "text",
+		    		data:{
+		    			postId: postId,
+		    			voteCSS: 'vote-neutral-negative',
+	    				category: category,
+	    				//voteCount: voteCount
+	    				//voteType: "down"
+		    		},
+
+			    	error: function(){
+			    		alert("Opps. Something went wrong.");
+			    	}
+				});
+				
+			}
+		}
+	});
+
+	/*$('.glyphicon-chevron-up').on("click", function(){
 		//Get the category the vote is for.
 		var category = $('.tab-pane').attr('id');
 
@@ -39,11 +206,7 @@ $(document).ready(function(){
 		}
 
 		if(type == "post"){
-			//Get the Id of the post the vote is for
-			var postId = $(this).parent().data('post');
-
-			//Get the count of the vote and add or decrease the count depending on the class
-			var voteCount = parseInt($('.vote-count-row[data-post=\"'+postId+'\"]').children().text());
+			
 
 			//Remove any neg class the bottom vote button has and set it back to neutral
 			if($('.down-vote-wrapper[data-post=\"'+postId+'\"]').children().hasClass('vote-negative')){
@@ -52,20 +215,6 @@ $(document).ready(function(){
 				//Also set the vote count back to normal
 
 				$('.vote-count-row[data-post=\"'+postId+'\"]').children().text(++voteCount + 1);
-				$.ajax({
-					type: "post",
-					url: "/community_board_forums/updatePostVoteCount",
-		    		dataType: "text",
-		    		data:{
-		    			postId: postId,
-		    			voteCount: voteCount + 1
-		    		},
-
-			    	success: function(){
-			    		
-			    	}
-				});
-
 				
 				$.ajax({
 					type: "post",
@@ -74,11 +223,12 @@ $(document).ready(function(){
 		    		data:{
 		    			postId: postId,
 		    			voteCSS: 'vote-neutral',
-		    			category: category
+		    			category: category,
+		    			voteCount: voteCount + 1
 		    		},
 
 			    	error: function(){
-			    		alert("Opps. Something went wrong.");
+			    		
 			    	}
 				});
 				
@@ -89,19 +239,6 @@ $(document).ready(function(){
 				$(this).removeClass('vote-neutral').addClass('vote-positive');
 				//Set the count of the post to +1
 				$('.vote-count-row[data-post=\"'+postId+'\"]').children().text(++voteCount);
-				$.ajax({
-					type: "post",
-					url: "/community_board_forums/updatePostVoteCount",
-		    		dataType: "text",
-		    		data:{
-		    			postId: postId,
-		    			voteCount: voteCount
-		    		},
-
-			    	success: function(){
-			    		
-			    	}
-				});
 
 				$.ajax({
 					type: "post",
@@ -110,7 +247,8 @@ $(document).ready(function(){
 		    		data:{
 		    			postId: postId,
 		    			voteCSS: 'vote-positive',
-		    			category: category
+		    			category: category,
+		    			voteCount: voteCount
 		    		},
 
 			    	error: function(){
@@ -120,20 +258,6 @@ $(document).ready(function(){
 			}else{
 				$(this).removeClass('vote-positive').addClass('vote-neutral');
 				//Set the count of the post to -1
-				$('.vote-count-row[data-post=\"'+postId+'\"]').children().text(--voteCount);
-				$.ajax({
-					type: "post",
-					url: "/community_board_forums/updatePostVoteCount",
-		    		dataType: "text",
-		    		data:{
-		    			postId: postId,
-		    			voteCount: voteCount
-		    		},
-
-			    	success: function(){
-			    		
-			    	}
-				});
 
 				$.ajax({
 					type: "post",
@@ -142,7 +266,8 @@ $(document).ready(function(){
 		    		data:{
 		    			postId: postId,
 		    			voteCSS: 'vote-neutral',
-		    			category: category
+		    			category: category,
+		    			voteCount: voteCount
 		    		},
 
 			    	error: function(){
@@ -167,19 +292,6 @@ $(document).ready(function(){
 				//Also set the vote count back to normal
 			
 				$('.vote-count-row[data-post-comment=\"'+postCommentId+'\"]').children().text(++voteCount+1);
-				$.ajax({
-					type: "post",
-					url: "/community_board_forums/updatePostVoteCount",
-		    		dataType: "text",
-		    		data:{
-		    			postId: postCommentId,
-		    			voteCount: voteCount + 1
-		    		},
-
-			    	success: function(){
-			    		
-			    	}
-				});
 
 				$.ajax({
 					type: "post",
@@ -188,7 +300,8 @@ $(document).ready(function(){
 		    		data:{
 		    			postId: postCommentId,
 		    			voteCSS: 'vote-neutral',
-		    			category: category
+		    			category: category,
+		    			voteCount: voteCount + 1
 		    		},
 
 			    	error: function(){
@@ -203,19 +316,6 @@ $(document).ready(function(){
 				$(this).removeClass('vote-neutral').addClass('vote-positive');
 				//Set the count of the post to +1
 				$('.vote-count-row[data-post-comment=\"'+postCommentId+'\"]').children().text(++voteCount);
-				$.ajax({
-					type: "post",
-					url: "/community_board_forums/updatePostVoteCount",
-		    		dataType: "text",
-		    		data:{
-		    			postId: postCommentId,
-		    			voteCount: voteCount
-		    		},
-
-			    	success: function(){
-			    		
-			    	}
-				});
 
 				$.ajax({
 					type: "post",
@@ -224,7 +324,8 @@ $(document).ready(function(){
 		    		data:{
 		    			postId: postCommentId,
 		    			voteCSS: 'vote-positive',
-		    			category: category
+		    			category: category,
+		    			voteCount: voteCount
 		    		},
 
 			    	error: function(){
@@ -235,19 +336,7 @@ $(document).ready(function(){
 				$(this).removeClass('vote-positive').addClass('vote-neutral');
 				//Set the count of the post to -1
 				$('.vote-count-row[data-post-comment=\"'+postCommentId+'\"]').children().text(--voteCount);
-				$.ajax({
-					type: "post",
-					url: "/community_board_forums/updatePostVoteCount",
-		    		dataType: "text",
-		    		data:{
-		    			postId: postCommentId,
-		    			voteCount: voteCount
-		    		},
 
-			    	success: function(){
-			    		
-			    	}
-				});
 
 				$.ajax({
 					type: "post",
@@ -256,7 +345,8 @@ $(document).ready(function(){
 		    		data:{
 		    			postId: postCommentId,
 		    			voteCSS: 'vote-neutral',
-		    			category: category
+		    			category: category,
+		    			voteCount: voteCount
 		    		},
 
 			    	error: function(){
@@ -272,7 +362,7 @@ $(document).ready(function(){
 		When the down vote button is clicked remove any previous selection the
 		up vote button had and add the appropriate color class depending
 		on what was there previously
-	*/
+	
 	$('.glyphicon-chevron-down').on("click", function(){
 		//Get the category the vote is for.
 		var category = $('.tab-pane').attr('id');
@@ -519,7 +609,7 @@ $(document).ready(function(){
 				
 			}
 		}
-		});
+	});*/
 
 	/*
 		When the edit post link is clicked grab the post info and display it in the input fields in the editModal
@@ -617,7 +707,7 @@ $(document).ready(function(){
 		//Get the category of the post
 		var category = $('.tab-pane').attr('id');
 		var order = $('#post-filter option:selected').text().toLowerCase();
-		
+
 		$.ajax({
 			type: "get",
 			url: "/community_board_forums/loadCatTabs?tab="+category+"&orderBy="+order+"",

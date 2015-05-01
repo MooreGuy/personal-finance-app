@@ -272,4 +272,3 @@
 	</div><!-- END Container-->
 </div><!-- END Panel Group-->
 
-<script type="text/javascript" src="/js/community_board_forums_post_controls.js"></script>

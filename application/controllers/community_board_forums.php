@@ -275,11 +275,15 @@ class Community_board_forums extends Account
 		$this->Comm_forums->deletePosts($postId);
 	}
 
-	function updatePostVoteCount(){
+	/*function updatePostVoteCount(){
 		$postId = $this->input->post('postId');
-		$voteCount = $this->input->post('voteCount');
+		
 
 		$this->Comm_forums->updatePostVoteCount($postId, $voteCount);
+	}*/
+
+	function updatePostVoteCount($postId, $voteCSS){
+		$this->Comm_forums->updatePostVoteCount($postId, $voteCSS);
 	}
 
 	function updateUserVote(){
@@ -287,9 +291,27 @@ class Community_board_forums extends Account
 		$postId = $this->input->post('postId');
 		$voteCSS = $this->input->post('voteCSS');
 		$category = $this->input->post('category');
+		//$voteType = $this->input->post('voteType');
+		//$this->updatePostVoteCount($postId, $voteCSS);
+		//$this->Comm_forums->updateUserVote($postId, $voteCSS, $userId, $category);
 
-		$this->Comm_forums->updateUserVote($postId, $voteCSS, $userId, $category);
+		$userVoteData = array(
+			'postId' => $postId,
+			'voteCSS' => $voteCSS,
+			'userId' => $userId,
+			'category' => $category
+		);
+
+		$postVoteCount = array(
+			'postId' => $postId,
+			'voteCSS' => $voteCSS
+		);
+
+		$this->Comm_forums->updateUserVoting($userVoteData, $postVoteCount);
+		
 	}
+
+	
 
 	function postFilter(){
 		$category = $this->input->post('category');

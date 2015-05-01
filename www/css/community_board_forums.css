@@ -13,7 +13,7 @@
 .closed-panel{
 	overflow-y: hidden;
 	overflow-x: hidden;
-	max-height: 100px;
+	max-height: 50px;
 }
 
 /*.post-vote-wrapper, .post-comment-vote-wrapper{

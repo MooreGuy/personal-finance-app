@@ -272,12 +272,64 @@
 			$this->db->delete('posts', array('id' => $postId));
 		}
 
-		function updatePostVoteCount($postId, $voteCount){
-			$data = array(
-				'upvotes_total' => $voteCount
-			);
+		function updatePostVoteCount($postVoteCount, $userOldVote){
+			//Get the votes for the post using upvotes_total
+			//Based on the CSS add or detract from the upvotes_total then update
+
+			$this->db->select("upvotes_total");
+			$this->db->from("posts");
+			$this->db->where('id', $postVoteCount['postId']);
+			$getVotes = $this->db->get();
+			$votes = $getVotes->result();
+
+
+
+			/*switch ($voteCSS) {
+				case 'vote-neutral-negative': 
+					if($votes <= 0)
+					break;
+				
+				default:
+					# code...
+					break;
+			}*/
+			//if(is_object($votes) === true){
+				if($postVoteCount['voteCSS'] == "vote-positive" && ($userOldVote == NULL || $userOldVote == "vote-neutral-positive" || $userOldVote == "vote-neutral-negative")){
+					$votes[0]->upvotes_total++; 
+
+				}else if($postVoteCount['voteCSS'] == "vote-positive" && $userOldVote == "vote-negative"){
+					$votes[0]->upvotes_total = $votes[0]->upvotes_total + 2;
+
+				}else if($postVoteCount['voteCSS'] == "vote-negative" && $userOldVote == "vote-positive"){
+					$votes[0]->upvotes_total = $votes[0]->upvotes_total - 2;
+
+				}else if($postVoteCount['voteCSS'] == "vote-negative" && ($userOldVote == NULL || $userOldVote == "vote-neutral-positive" || $userOldVote == "vote-neutral-negative")){
+					$votes[0]->upvotes_total--; 
+
+				}else if($postVoteCount['voteCSS'] == "vote-neutral-negative"){
+					$votes[0]->upvotes_total++; 
+
+				}else if($postVoteCount['voteCSS'] == "vote-neutral-positive"){
+					$votes[0]->upvotes_total--; 
+					
+				}
+
+				$data = array(
+					'upvotes_total' => $votes[0]->upvotes_total
+				);
+			//}else{
+				
+				//$data = array(
+					//'upvotes_total' => 0
+				//);
+			//}
 			//$this->db->where('postId', $postId);
-			$this->db->update('posts', $data, array('id' => $postId));
+			$this->db->update('posts', $data, array('id' => $postVoteCount['postId']));
+		}
+
+		function UpdateUserVoting($userVoteData, $postVoteCount){
+			$userOldVote = $this->updateUserVote($userVoteData);
+			$this->updatePostVoteCount($postVoteCount, $userOldVote);
 		}
 
 		function getAllUserVotes($category){
@@ -286,30 +338,39 @@
 			$this->db->where('category', $category);
 			$query = $this->db->get();
 			$userVotes = $query->result();
-			return $userVotes;
+
+			if($userVotes == NULL){
+				return NULL;
+			}else{
+				return $userVotes;
+			}
+			
 		}
 
-		function updateUserVote($postId, $voteCSS, $userId, $category){
-			$data = array(
-				'postId' => $postId,
-				'voteCSS' => $voteCSS,
-				'userId' => $userId,
-				'category' => $category
-			);
+		function updateUserVote($userVoteData){
 
 			//Search to see if the user has already voted on this post. If not add a new row otherwise update
 			$this->db->select();
 			$this->db->from('UserVote');
-			$this->db->where('postId', $postId);
-			$this->db->where('userId', $userId);
+			$this->db->where('postId', $userVoteData['postId']);
+			$this->db->where('userId', $userVoteData['userId']);
 			$query = $this->db->get();
 			$userVoted = $query->result();
 
-			if($userVoted){
-				$this->db->update('UserVote', $data, array('postid' => $postId, 'userId' => $userId));
-			}else{
-				$this->db->insert('UserVote', $data);
-			}
+			$userOldVote = NULL;
+
+				if($userVoted == NULL){
+					$userOldVote = NULL;
+					$this->db->insert('UserVote', $userVoteData);
+					
+				}else{
+					$userOldVote = $userVoted[0]->voteCSS;
+					$this->db->update('UserVote', $userVoteData, array('postid' => $userVoteData['postId'], 'userId' => $userVoteData['userId'], 'category' => $userVoteData['category']));
+				}
+			
+				
+				return $userOldVote;
+			
 		}
 	}
 ?>

@@ -10,12 +10,12 @@ $(document).ready(function(){
 	});
 
 	// Go to the next item
-	$('.graphRightBtn').click(function() {
+	$('.graphRightBtn').on("click", function() {
     	$(".owl-carousel").trigger('next.owl.carousel');
 	})
 
 	// Go to the previous item
-	$('.graphLeftBtn').click(function() {
+	$('.graphLeftBtn').on("click", function() {
 	    $(".owl-carousel").trigger('prev.owl.carousel');
 	})
 
@@ -150,15 +150,15 @@ $(document).ready(function(){
 	 	var order = $('#post-filter option:selected').text().toLowerCase();
 
 	 	$.ajax({
-    	type: 'get',
-    	url: "/community_board_forums/loadCatTabs?tab="+category+"&orderBy="+order+"",
-    	dataType: 'html',
-    	success: function (html) {
-      	// success callback -- replace the div's innerHTML with
-      	// the response from the server.
-      	
-      	$('#tabContent').html(html);
-    	}
+	    	type: 'get',
+	    	url: "/community_board_forums/loadCatTabs?tab="+category+"&orderBy="+order+"",
+	    	dataType: 'html',
+	    	success: function (html) {
+	      	// success callback -- replace the div's innerHTML with
+	      	// the response from the server.
+	      	
+	      	$('#tabContent').html(html);
+	    	}
   		});
 	});
 	

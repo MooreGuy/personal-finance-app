@@ -29,7 +29,9 @@
 		<script type="text/javascript" src="<?php base_url(); ?>/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="<?php base_url(); ?>/js/jquery.canvasjs.min.js"></script>
 		<script type="text/javascript" src="<?php base_url(); ?>/js/jquery.validate.min.js"></script>
-		<script type="text/javascript" src="<?php base_url(); ?>/js/header.js"></script>		
+		<script type="text/javascript" src="<?php base_url(); ?>/js/header.js"></script>
+			
+		
 		
 	</head>
 
