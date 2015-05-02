@@ -123,6 +123,9 @@
 														echo "<div class='col-md-1 positive-count-wrapper'>";
 															if($post->upvotes_total >= 0){
 																echo "<span class='positive-vote-count'>" . $post->upvotes_total . "</span>";
+																$name = "vote" . $post->id;
+																setcookie($name, $post->upvotes_total);
+																
 															}else{
 																echo "<span class='positive-vote-count'>0</span>";
 															}
