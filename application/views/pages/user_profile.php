@@ -62,7 +62,7 @@
 								<div class="col-md-2">
 									<div class="form-group">
 										<div class="input-group">
-											<input name="title"type="text" class="form-control" placeholder="Title" aria-describedby="amount-addon">
+											<input name="title" type="text" class="form-control" placeholder="Title" aria-describedby="amount-addon">
 										</div>
 									</div>
 								</div>
@@ -71,7 +71,7 @@
 									<div class="form-group">
 										<div class="input-group">
 											<span class="input-group-addon" id="amount-addon">$</span>
-											<input name="ammount"type="text" class="form-control" placeholder="Amount" aria-describedby="amount-addon">
+											<input name="amount" type="text" class="form-control" placeholder="Amount" aria-describedby="amount-addon">
 										</div>
 									</div>
 								</div>
