@@ -98,8 +98,8 @@ class Expenses extends CI_Model
 
 		$query = $this->db->query( $sql, array($type) );
 
-		$id = 'type: ' . $type . '<pre>' . var_dump($query->result_array()) . '</pre>';
-		show_error($id);
+		//$id = 'type: ' . $type . '<pre>' . var_dump($query->result_array()) . '</pre>';
+		//show_error($id);
 		if( $query->num_rows() < 1)
 		{
 			return NULL;
