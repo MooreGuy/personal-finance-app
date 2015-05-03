@@ -66,11 +66,11 @@ class Expenses extends CI_Model
 		$sql = 'insert into expenses values( NULL, ?, ?, ?, ?, ?, ?, ? )';
 
 		//Set the date 
-	$this->load->helper('date');
+		$this->load->helper('date');
 		$timestamp = now();
 	
-		$query = $this->db->query( $sql, array($timestamp, true, $type_id,
-		   	$cost, $interval, $comment, $location_id, $user_id) );	
+		$query = $this->db->query( $sql, array($timestamp, true, $cost,
+		   	$interval, $type_id, $location_id, $user_id) );	
 	}
 
 	/**
@@ -131,8 +131,8 @@ class Expenses extends CI_Model
 	*/
 	function get_user_expense_types( $user_id )
 	{
-		$sql = 'select expense_types.type, expense_types.id from expense_types
-					inner join expenses
+		$sql = 'select expense_types.type, expense_types.id from expenses
+					inner join expense_types
 					on expenses.type_id = expense_types.id
 					where expenses.user_id = ?
 					group by expense_types.type';
@@ -152,7 +152,8 @@ class Expenses extends CI_Model
 	function get_current_expenses_grouped_for_user( $user_id )
 	{
 		//Query to get the expenses from the database for a specific type.
-		$sql = 'select expense_types.type, expense_types.comment, expenses.cost, expenses.interv, locations.country, locations.state, locations.city
+		$sql = 'select expense_types.type, expense_types.comment, expenses.cost,
+				expenses.interv, locations.country, locations.state, locations.city
 					from expenses
 					left join expense_types
 					on expense_types.id = expenses.type_id
