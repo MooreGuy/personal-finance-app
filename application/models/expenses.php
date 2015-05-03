@@ -63,7 +63,7 @@ class Expenses extends CI_Model
 
 		//TODO: Finish location get or create methods
 
-		$sql = 'insert into expenses values( NULL, ?, ?, ?, ?, ?, ?, ?, ? )';
+		$sql = 'insert into expenses values( NULL, ?, ?, ?, ?, ?, ?, ? )';
 
 		//Set the date 
 	$this->load->helper('date');
@@ -94,18 +94,21 @@ class Expenses extends CI_Model
 	 */
 	function get_expense_type_id( $type )
 	{
-		$sql = 'select id from expense_types
-					where type = ?';
+		$sql = 'SELECT id FROM expense_types WHERE type = ?;';
 
 		$query = $this->db->query( $sql, array($type) );
 
+		$id = 'type: ' . $type . '<pre>' . var_dump($query->result_array()) . '</pre>';
+		show_error($id);
 		if( $query->num_rows() < 1)
 		{
 			return NULL;
 		}
-
-		return $query->result();
-	}
+		else
+		{
+			return $query->result_array()[0]['id'];
+		}
+	
 
 	/*
 		Get all the types and their ids from the expense_types table.
