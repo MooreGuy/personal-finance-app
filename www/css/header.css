@@ -68,7 +68,7 @@ html {
 	overflow-y: hidden;
 }
 
-#editPostBody, #addPostBody, #addCommentBody{
+#editPostBody, #addPostBody, #addCommentBody, #editCommentBody{
 	max-width: 570px;
 	min-width: 570px;
 	min-height: 300px;
@@ -96,11 +96,11 @@ html {
 	border: 1px solid #E13300;
 }
 
-#addPostBody-error, #addPostTitle-error, #addPostCategory-error, #addCommentBody-error, #editPostBody-error, #editPostTitle-error{
+#addPostBody-error, #addPostTitle-error, #addPostCategory-error, #addCommentBody-error, #editPostBody-error, #editPostTitle-error, #editCommentTitle-error{
 	color: #E13300;
 }
 
-.add-post-success-wrapper, .edit-post-success-wrapper, .add-comment-success-wrapper, .delete-post-success-wrapper{
+.noUser-vote-warning-wrapper, .add-post-success-wrapper, .edit-post-success-wrapper, .add-comment-success-wrapper, .delete-post-success-wrapper, .edit-comment-success-wrapper, .delete-comment-success-wrapper, .noUser-vote-warning-wrapper{
 	position: fixed;
 	left: 50%;
 	margin-top: 10px;
@@ -110,11 +110,23 @@ html {
 	margin-left: -175px;
 }
 
-#add-post-success, #edit-post-success, #add-comment-success, #delete-post-success{
+
+#add-post-success, #edit-post-success, #add-comment-success, #delete-post-success, #edit-comment-success, #delete-comment-success{
 	background-color: #d9edf7;
+	border-color: #bce8f1;
+	color: #31708f;
 	z-index: 10;
 	border-radius: 5px;
 	text-align: center;
+}
+
+#noUser-vote-warning{
+	background-color: #fcf8e3;
+	color: #8a6d3b;
+	z-index: 10;
+	border-radius: 5px;
+	text-align: center;
+	border-color: #faebcc;
 }
 
 .no-posts-wrapper{

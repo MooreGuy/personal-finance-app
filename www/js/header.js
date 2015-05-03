@@ -118,6 +118,7 @@ $(document).ready(function(){
 			    		content: content
 			    	},
 			    	success: function(){
+
 			    		//Hide the modal
 						$('#addForumPostModal').modal('hide');
 						//Clear the form inputs
@@ -240,6 +241,9 @@ $(document).ready(function(){
 			    		content: content
 			    	},
 			    	success: function(){
+			    		$('.header-link-collapse[data-post="' + postId +'"]').text(title);
+	
+			    		$('.body-text[data-post="' + postId +'"]').text(content);
 			    		//Hide the modal
 						$('#editForumPostModal').modal('hide');
 						//Clear the form inputs
@@ -253,10 +257,11 @@ $(document).ready(function(){
 		}
 	});
 
-	$('.js-deletePost').on("click", function(){
-		var postId = $('#deletePostTitle').attr('postId');
+	$('.js-deletePost, .js-deleteComment').on("click", function(){
+		if($(this).is('.js-deletePost')){
+			var postId = $('#deletePostTitle').attr('postId');
 
-		$.ajax({
+			$.ajax({
 			    	type: 'post',
 			    	url: "/community_board_forums/deletePost",
 			    	data:{
@@ -273,6 +278,84 @@ $(document).ready(function(){
 						$('.delete-post-success-wrapper').fadeIn(800).delay(1500).fadeOut(1000);
 			    	}
 			});
+		}else if('.js-deleteComment'){
+			var commentId = $('#deleteCommentBody').attr('postId');
+
+			$.ajax({
+			    	type: 'post',
+			    	url: "/community_board_forums/deletePost",
+			    	data:{
+			    		postId: commentId
+			    	},
+			    	success: function(){
+			    		//Hide the modal
+						$('#deleteForumCommentModal').modal('hide');
+
+						//Remove the post from the view
+						$('.row[data-post='+ commentId +']').remove();
+						
+						//Show and hide success message
+						$('.delete-comment-success-wrapper').fadeIn(800).delay(1500).fadeOut(1000);
+
+						
+			    	}
+			});
+		}
+		
+	});
+
+	//Validate the edit comment form
+	$('.js-editComment').on('click', function(){
+		//Submit the form
+		$('#editCommentForm').submit();
+	});
+
+	//Validate the edit forum form
+	$('#editCommentForm').validate({
+		rules: {
+			editCommentBody: {
+				required: true,
+				minlength: 10,
+				maxlength: 1000,
+				FormRegex: true
+			}
+
+		},
+		messages: {
+			editCoomentBody: {
+				required: "Required",
+				minlength: "Your comment needs to have at least 10 characters.",
+				maxlength: "Your comment can not be more than 1000 characters long."
+			}
+			
+		},
+		validClass: "success",
+
+		submitHandler: function(){
+			var postId = $('#editCommentBody').attr('postId');
+			var content = $('#editCommentBody').val();
+			console.log(postId);
+			$.ajax({
+			    	type: 'post',
+			    	url: "/community_board_forums/editComment",
+			    	data:{
+			    		postId: postId,
+			    		content: content
+			    	},
+			    	success: function(){
+			    		
+			    		$('.user-comment[data-post="' + postId +'"] > .comment').text(content);
+			    		//Hide the modal
+						$('#editForumCommentModal').modal('hide');
+						//Clear the form inputs
+						$('#editCommentForm')[0].reset();
+						//Reset the validation
+						$('.form-control').removeClass('error').removeClass('success');
+						//Show and hide success message
+						$('.edit-comment-success-wrapper').fadeIn(800).delay(1500).fadeOut(1000);
+			    	}
+			});
+		}
 	});
 
 	//When the close button on a modal is clicked clear the form and all validation messages

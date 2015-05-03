@@ -38,6 +38,16 @@
 			$this->db->update('posts', $data);
 		}
 
+		function editComment($postId, $content){
+			$data = array(
+				'id' => $postId,
+				'content' => $content
+			);
+
+			$this->db->where('id', $postId);
+			$this->db->update('posts', $data);
+		}
+
 		function addNewComment($userId, $parentId, $content, $category){
 			$this->load->helper('date');
 			//Format the time with the datestring.

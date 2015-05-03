@@ -80,8 +80,9 @@
 			</ul>
 		</div>
 
-
-		<div class="col-md-12 tab-content" id="tabContent">
+		<?php
+			echo "<div class='col-md-12 tab-content' id='tabContent' data-currentUserId=" . $userId . ">";
+		?>
 
 			<!-- Begin Transport Tab-->
 			<div class="panel-group tab-pane active" aria-multiselectable="true" id="transport" role="tabpanel">
@@ -123,12 +124,12 @@
 														echo "<div class='col-md-1 positive-count-wrapper'>";
 															if($post->upvotes_total >= 0){
 																echo "<span class='positive-vote-count'>" . $post->upvotes_total . "</span>";
-																$name = "vote" . $post->id;
-																setcookie($name, $post->upvotes_total);
-																
+																													
 															}else{
 																echo "<span class='positive-vote-count'>0</span>";
 															}
+															$name = "vote" . $post->id;
+															setcookie($name, $post->upvotes_total);
 														echo "</div>";
 													echo "</div>";
 
@@ -162,10 +163,12 @@
 												echo "<div class='col-md-1 positive-count-wrapper'>";
 												if($post->upvotes_total >= 0){
 													echo "<span class='positive-vote-count'>" . $post->upvotes_total . "</span>";
+													
 												}else{
 													echo "<span class='positive-vote-count'>0</span>";
 												}
-													
+													$name = "vote" . $post->id;
+													setcookie($name, $post->upvotes_total);
 												echo "</div>";
 											echo "</div>";
 
@@ -215,7 +218,13 @@
 						      								echo "<div class='row'>";
 						      									echo "<div class='col-md-11 comment-control-col'>";
 						      										echo "<span class='glyphicon glyphicon-chevron-right pull-left' data-toggle='collapse' href='#commentSection" . $post->id . "' aria-expanded='false' aria-controls='commentSection" . $post->id . "' aria-hidden='true' data-post=". $post->id ."></span>";
-						      										echo "<a href='#' class='pull-left comment-link' data-toggle='modal' data-target='#addCommentPostModal' data-post=" . $post->id . ">Comment</a>";
+						      										
+						      										if($loginStatus == True){
+						      											echo "<a href='#' class='pull-left comment-link' data-toggle='modal' data-target='#addCommentPostModal' data-post=" . $post->id . ">Comment</a>";
+						      										}else{
+						      											echo "<a href='#' class='pull-left comment-link' data-toggle='modal' data-target='' data-post=" . $post->id . ">Comment</a>";
+						      										}
+						      										
 									      						echo "</div>";
 									      					echo "</div>";
 									      				echo "</div>";
@@ -238,7 +247,7 @@
 						      														$commented = True;
 
 
-						      														echo "<div class='row'>";
+						      														echo "<div class='row' data-post=" . $comment->id .">";
 									      												echo "<div class='col-md-1 post-comment-vote-wrapper'>";
 
 									      													$voted = False;
@@ -261,9 +270,13 @@
 																										echo "<div class='col-md-1 positive-count-wrapper'>";
 																										if($post->upvotes_total >= 0){
 																											echo "<span class='positive-vote-count'>" . $comment->upvotes_total . "</span>";
+																											
+
 																										}else{
 																											echo "<span class='positive-vote-count'>0</span>";
 																										}
+																										$name = "vote" . $post->id;
+																											setcookie($name, $post->upvotes_total);
 																										echo "</div>";
 																									echo "</div>";
 
@@ -297,10 +310,12 @@
 																									echo "<div class='col-md-1 positive-count-wrapper'>";
 																									if($comment->upvotes_total < 0){
 																										echo "<span class='positive-vote-count'>0</span>";
+																										
 																									}else{
 																										echo "<span class='positive-vote-count'>" . $comment->upvotes_total . "</span>";
 																									}
-																										
+																										$name = "vote" . $comment->id;
+																										setcookie($name, $comment->upvotes_total);
 																									echo "</div>";
 																								echo "</div>";
 
@@ -315,13 +330,17 @@
 									      													
 																						echo "</div>";
 
-									      												echo "<div class='col-md-11 user-comment'>";
+									      												echo "<div class='col-md-11 user-comment' data-post=" . $comment->id .">";
 									      													foreach ($getAllCommentsUserNames as $keys => $post_users) {
 
 									      														if($post_users->id == $comment->userId){
 									      															echo "<label>" . $post_users->username . "</label>";
 									      															if($loginStatus == True){
 											      														echo "<span class=''> - <a href='#'' class='report-abuse-link'><span class='glyphicon glyphicon-flag'></span></a></span>";
+											      														
+								        																echo "<span class='glyphicon glyphicon-trash pull-right js-delete-commentModal' data-toggle='modal' data-target='#deleteForumCommentModal' aria-hidden='true' data-post='" . $comment->id . "'></span>";
+								        																echo "<a href='#' class='delete-comment pull-right delete-commentModal' data-toggle='modal' data-target='#deleteForumCommentModal' data-post='" . $comment->id . "'>Edit</a>";
+								        																
 											      													}
 									      														}
 									      													}

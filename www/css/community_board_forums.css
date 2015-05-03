@@ -78,7 +78,7 @@
 	cursor: pointer;
 }
 
-.edit-post{
+.edit-post, .edit-comment{
 	color: #428bca !important;
 	margin-right: 5px;
 }
@@ -183,6 +183,10 @@
 	max-height: 1000px;
 }
 
-.panel-body{
-	
+.user-comment{
+	padding-right: 30px;
+}
+
+.delete-comment{
+	margin-right: 5px;
 }

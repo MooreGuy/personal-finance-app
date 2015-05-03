@@ -268,6 +268,14 @@ class Community_board_forums extends Account
 		$this->Comm_forums->editPost($postId, $title, $content);
 	}
 
+	function editComment(){
+		//need postId, content
+		$postId = $this->input->post('postId');
+		$content = $this->input->post('content');
+
+		$this->Comm_forums->editComment($postId, $content);
+	}
+
 	function deletePost(){
 		//need postId, title, content
 		$postId = $this->input->post('postId');
@@ -307,7 +315,10 @@ class Community_board_forums extends Account
 			'voteCSS' => $voteCSS
 		);
 
-		$this->Comm_forums->updateUserVoting($userVoteData, $postVoteCount);
+		if($userId != 0){
+			$this->Comm_forums->updateUserVoting($userVoteData, $postVoteCount);
+		}
+		
 		
 	}
 

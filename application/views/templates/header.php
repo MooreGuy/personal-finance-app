@@ -35,7 +35,7 @@
 		
 	</head>
 
-	<body>
+	<body >
 
 		<!-- Putting all of the modals in the header to give them one location -->
 		<!-- Edit Forum Post Modal -->
@@ -77,6 +77,46 @@
 	      			<div class="modal-footer">
 	        			<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
 	        			<button type="button" class="btn btn-primary js-editPost">Save</button>
+	      			</div>
+	    		</div>
+	  		</div>
+		</div>
+
+		<!-- Edit Forum Comment Modal -->
+		<div class="modal fade" id="editForumCommentModal" tabindex="-1" role="dialog" aria-labelledby="editForumCommentModalLabel" aria-hidden="true">
+	  		<div class="modal-dialog">
+	    		<div class="modal-content">
+	      			<div class="modal-header">
+
+	        			<!-- Title of the Modal -->
+		        		<div class="container">
+		        			<div class="row">
+		        				<div class="col-md-6 modal-col">
+		        					<h2 class="modal-title" id="editForumCommentModalLabel">Edit Comment</h2>
+		        				</div>
+		        			</div>
+		        		</div>
+
+	      			</div>
+
+	      			<div class="modal-body" id="editFourmCommentModal-body">
+	      				<div class="container">
+      						<div class="row">
+	      						<div class="col-md-6 modal-col">
+	      							<form id="editCommentForm">		      							
+									  	<div class="form-group editPostFormGroup">
+									  		<label for="editCommentBody">Body:</label> <label id="editCommentBody-error" class="error" for="editCommentBody"></label>
+									  		<textarea type="text" id="editCommentBody" name="editCommentBody" class="form-control"></textarea>
+									  	</div>
+									</form>
+	      						</div>
+	      					</div>
+	      				</div>
+	      			</div>
+
+	      			<div class="modal-footer">
+	        			<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+	        			<button type="button" class="btn btn-primary js-editComment">Save</button>
 	      			</div>
 	    		</div>
 	  		</div>
@@ -236,6 +276,45 @@
 	  		</div>
 		</div>
 
+		<!-- Delete Forum Comment Modal -->
+		<div class="modal fade" id="deleteForumCommentModal" tabindex="-1" role="dialog" aria-labelledby="deleteForumCommentModalLabel" aria-hidden="true">
+	  		<div class="modal-dialog">
+	    		<div class="modal-content">
+	      			<div class="modal-header">
+
+	        			<!-- Title of the Modal -->
+		        		<div class="container">
+		        			<div class="row">
+		        				<div class="col-md-6 modal-col">
+		        					<h2 class="modal-title" id="deleteForumCommentModalLabel">Delete Comment</h2>
+		        				</div>
+		        			</div>
+		        		</div>
+
+	      			</div>
+
+	      			<div class="modal-body" id="deleteFourmCommentModal-body">
+	      				<div class="container">
+      						<div class="row">
+	      						<div class="col-md-6 modal-col">
+	      							<p>Are you sure you want to delete this comment?</p>
+
+
+	      							<label>Body:</label>
+	      							<p id="deleteCommentBody"></p>
+	      						</div>
+	      					</div>
+	      				</div>
+	      			</div>
+
+	      			<div class="modal-footer">
+	        			<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+	        			<button type="button" class="btn btn-danger js-deleteComment" >Delete</button>
+	      			</div>
+	    		</div>
+	  		</div>
+		</div>
+
 		<!-- Forgot Password Modal -->
 		<div class="modal fade" id="forgotPassModal" tabindex="-1" role="dialog" aria-labelledby="forgotPassModalLabel" aria-hidden="true">
 		    <div class="modal-dialog">
@@ -308,6 +387,13 @@
 			</div>
 		</div>
 
+		<!-- Success alert for when the user successfully edits a comment -->
+		<div class="edit-comment-success-wrapper">
+			<div class="well well-sm" id="edit-comment-success">
+				<span class="text-info success-text-info">Your comment has successfully been saved.</span>
+			</div>
+		</div>
+
 		<!-- Success alert for when the user successfully adds a comment -->
 		<div class="add-comment-success-wrapper">
 			<div class="well well-sm" id="add-comment-success">
@@ -319,6 +405,20 @@
 		<div class="delete-post-success-wrapper">
 			<div class="well well-sm" id="delete-post-success">
 				<span class="text-info success-text-info">Your post has successfully been deleted.</span>
+			</div>
+		</div>
+
+		<!-- Success alert for when the user successfully deletes a comment -->
+		<div class="delete-comment-success-wrapper">
+			<div class="well well-sm" id="delete-comment-success">
+				<span class="text-info success-text-info">Your comment has successfully been deleted.</span>
+			</div>
+		</div>
+
+		<!-- Warning alert for when a non logged in user trys to vote on something -->
+		<div class="noUser-vote-warning-wrapper">
+			<div class="well well-sm" id="noUser-vote-warning">
+				<span class="text-warning success-text-warning">You must be logged in to do that!</span>
 			</div>
 		</div>
 		<!-- END User Sussess/Error Messages -->
