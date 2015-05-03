@@ -79,7 +79,7 @@
 								<div class="col-md-2">
 									<div class="form-group">
 										<div class="input-group">
-											<select class="form-control" name="Recurrence">
+											<select class="form-control" name="occurrence">
 												<option value="daily">Daily</option>
 												<option value="weekly">Weekly</option>
 												<option value="biweekly">Biweekly</option>
