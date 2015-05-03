@@ -56,7 +56,7 @@ class Expenses extends CI_Model
 	{
 		$type_id = '';
 		//If the expense type doesn't exist, then create it.
-		if( $type_id = $this->get_expense_type_id($type) == NULL )
+		if( ($type_id = $this->get_expense_type_id($type)) == NULL )
 		{
 			$type_id = $this->create_expense_type($type, $comment);
 		}
@@ -106,8 +106,12 @@ class Expenses extends CI_Model
 		}
 		else
 		{
-			return $query->result_array()[0]['id'];
+			//I would prefer this. return $query->result_array()[0]['id'];
+			$result = $query->result();
+			$result = $result[0];
+			return $result->id;
 		}
+	}
 	
 
 	/*
