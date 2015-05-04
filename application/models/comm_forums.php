@@ -382,5 +382,44 @@
 				return $userOldVote;
 			
 		}
+
+		function insertAlert($alertData){
+			$this->db->insert('alerts', $alertData);
+		}
+
+		function updateUserReport($userId, $postId){
+			$this->db->select();
+			$this->db->from('UserReport');
+			$this->db->where('userId', $userId);
+			$this->db->where('postId', $postId);
+			$query = $this->db->get();
+			$hasUserReported = $query->result();
+
+			$data = array(
+				'userId' => $userId,
+				'postId' => $postId
+			);
+
+			if($hasUserReported == NULL){
+				$this->db->insert('UserReport', $data);
+			}
+			
+			
+		}
+
+		function getFlaggedPosts($userId){
+			$this->db->select('postId');
+			$this->db->from('UserReport');
+			$this->db->where('userId', $userId);
+			$query = $this->db->get();
+			if($query != NULL){
+				$userReportedPosts = $query->result();
+
+				return $userReportedPosts;
+			}else{
+				return;
+			}
+			
+		}
 	}
 ?>

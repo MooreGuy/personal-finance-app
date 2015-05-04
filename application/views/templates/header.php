@@ -106,7 +106,7 @@
 	      							<form id="editCommentForm">		      							
 									  	<div class="form-group editPostFormGroup">
 									  		<label for="editCommentBody">Body:</label> <label id="editCommentBody-error" class="error" for="editCommentBody"></label>
-									  		<textarea type="text" id="editCommentBody" name="editCommentBody" class="form-control"></textarea>
+									  		<textarea type="text" id="editCommentBody" name="editCommentBody" postId="" class="form-control"></textarea>
 									  	</div>
 									</form>
 	      						</div>
@@ -315,6 +315,61 @@
 	  		</div>
 		</div>
 
+		<!-- Flag forum post/comment Modal -->
+		<div class="modal fade" id="flagForumPostModal" tabindex="-1" role="dialog" aria-labelledby="flagForumPostModalLabel" aria-hidden="true">
+	  		<div class="modal-dialog">
+	    		<div class="modal-content">
+	      			<div class="modal-header">
+
+	        			<!-- Title of the Modal -->
+		        		<div class="container">
+		        			<div class="row">
+		        				<div class="col-md-6 modal-col">
+		        					<h2 class="modal-title" id="flagForumPostModalLabel">Report Post/Comment</h2>
+		        				</div>
+		        			</div>
+		        		</div>
+
+	      			</div>
+
+	      			<div class="modal-body" id="flagForumPostModal-body">
+	      				<div class="container">
+      						<div class="row">
+	      						<div class="col-md-6 modal-col">
+
+	      							<form id="report-post-form">
+	      								<div class="form-group">
+											<label for="flagForumPost" class="flagForumPostLabel">Why are you reporting this?</label> <label id="flagForumPost-error" class="error" for="flagForumPost"></label>
+			      							<select id="flagForumPost" name="flagForumPost">
+			      								<option value="0" disabled selected>Select a reason</option>	      			
+			      								<option value="1">Offensive Language</option>
+			      								<option value="2">Spam</option>
+			      								<option value="3">Vote Manipulation</option>
+			      								<option value="4">Personal Information</option>
+			      								<option value="5">Other</option>
+			      							</select>
+	      								</div>
+
+	      								<div class="form-group">
+											<label for="flagForumPostCommentBody">Comment:</label> <label id="flagForumPostCommentBody-error" class="error" for="flagForumPostCommentBody"></label>
+											<textarea type="text" id="flagForumPostCommentBody" name="flagForumPostCommentBody" class="form-control" data-category="" postId></textarea>
+	      								</div>
+	      							</form>
+	      							
+	      							
+	      						</div>
+	      					</div>
+	      				</div>
+	      			</div>
+
+	      			<div class="modal-footer">
+	        			<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+	        			<button type="button" class="btn btn-danger js-flagForumPost" >Report</button>
+	      			</div>
+	    		</div>
+	  		</div>
+		</div>
+
 		<!-- Forgot Password Modal -->
 		<div class="modal fade" id="forgotPassModal" tabindex="-1" role="dialog" aria-labelledby="forgotPassModalLabel" aria-hidden="true">
 		    <div class="modal-dialog">
@@ -419,6 +474,13 @@
 		<div class="noUser-vote-warning-wrapper">
 			<div class="well well-sm" id="noUser-vote-warning">
 				<span class="text-warning success-text-warning">You must be logged in to do that!</span>
+			</div>
+		</div>
+
+		<!-- Success alert for when a user reports a post/comment -->
+		<div class="flag-post-success-wrapper">
+			<div class="well well-sm" id="flag-podt-success">
+				<span class="text-info success-text-info">Your abuse report has been sent.</span>
 			</div>
 		</div>
 		<!-- END User Sussess/Error Messages -->

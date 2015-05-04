@@ -196,7 +196,22 @@
 								      				
 
 								      				if($loginStatus == True){
-								      					echo "<span> - <a href='#'' class='report-abuse-link-post'><span class='glyphicon glyphicon-flag'></span> </a></span>";
+								      					$reported = false;
+								      					if($userReport != NULL){
+									      					foreach($userReport as $key => $report){
+									      						if($post->id == $report->postId){
+									      							echo "<span> - <a class='report-abuse-link-post'><span class='glyphicon glyphicon-flag glyphicon-flag-reported' data-post='" . $post->id . "'></span> </a></span>";
+									      							$reported = true;
+									      						}
+									      					}
+									      				}
+
+								      					if($reported == false){
+								      						echo "<span> - <a class='report-abuse-link-post'><span class='glyphicon glyphicon-flag' data-toggle='modal' data-target='#flagForumPostModal' data-post='" . $post->id . "'></span> </a></span>";
+								      					}
+								      						
+								      					
+								      					
 								      				}
 								        			
 								        		
@@ -336,10 +351,23 @@
 									      														if($post_users->id == $comment->userId){
 									      															echo "<label>" . $post_users->username . "</label>";
 									      															if($loginStatus == True){
-											      														echo "<span class=''> - <a href='#'' class='report-abuse-link'><span class='glyphicon glyphicon-flag'></span></a></span>";
+									      																$reported = false;
+																				      					if($userReport != NULL){
+																					      					foreach($userReport as $key => $report){
+																					      						if($comment->id == $report->postId){
+																					      							echo "<span> - <a class='report-abuse-link-post'><span class='glyphicon glyphicon-flag glyphicon-flag-reported' data-post='" . $comment->id . "'></span> </a></span>";
+																					      							$reported = true;
+																					      						}
+																					      					}
+																					      				}
+
+																				      					if($reported == false){
+																				      						echo "<span> - <a class='report-abuse-link-post'><span class='glyphicon glyphicon-flag' data-toggle='modal' data-target='#flagForumPostModal' data-post='" . $comment->id . "'></span> </a></span>";
+																				      					}
+											      														//echo "<span> - <a class='report-abuse-link-post'><span class='glyphicon glyphicon-flag' data-toggle='modal' data-target='#flagForumPostModal' data-post='" . $comment->id . "></span> </a></span>";
 											      														
 								        																echo "<span class='glyphicon glyphicon-trash pull-right js-delete-commentModal' data-toggle='modal' data-target='#deleteForumCommentModal' aria-hidden='true' data-post='" . $comment->id . "'></span>";
-								        																echo "<a href='#' class='delete-comment pull-right delete-commentModal' data-toggle='modal' data-target='#deleteForumCommentModal' data-post='" . $comment->id . "'>Edit</a>";
+								        																echo "<a href='#' class='edit-comment pull-right edit-commentModal' data-toggle='modal' data-target='#editForumCommentModal' data-post='" . $comment->id . "'>Edit</a>";
 								        																
 											      													}
 									      														}

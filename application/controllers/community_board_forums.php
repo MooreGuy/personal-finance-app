@@ -34,6 +34,9 @@ class Community_board_forums extends Account
 
 		//Get all of the user votes
 		$data['userVotes'] = $this->Comm_forums->getAllUserVotes('transport');
+
+		//Get any posts the user has reported on
+		$data['userReport'] = $this->Comm_forums->getFlaggedPosts($data['userId']);
 		
 
 		$this->load->view( 'templates/header', $data );
@@ -322,6 +325,32 @@ class Community_board_forums extends Account
 		
 	}
 
+	function insertAlert(){
+		//$this->load->model( 'alertsmodel' );
+		$this->load->helper('date');
+			//Format the time with the datestring.
+			$datestring = "%Y-%m-%d %h:%i:%s";
+			//Get the current time to use for the mdate function. Although it defaults to the current time.
+			$time = time();
+
+		$content = $this->input->post('content');
+		$userId = $this->session->userdata('id');
+		$severity = $this->input->post('severity');
+		$title = $this->input->post('reason');
+		$postId = $this->input->post('postId');
+
+		$alertData = array(
+			'timestamp' => mdate($datestring, $time),
+			'content' => $content,
+			'userId' => $userId,
+			'severity' => $severity,
+			'title' => $title,
+			'postId' => $postId
+		);
+
+		$this->Comm_forums->insertAlert($alertData);
+	}
+
 	
 
 	function postFilter(){
@@ -329,6 +358,13 @@ class Community_board_forums extends Account
 		$orderBy = $this->input->post('order');
 
 		$this->Comm_forums->getAllUserPosts($category, $orderBy);
+	}
+
+	function updateUserReport(){
+		$userId = $this->session->userdata('id');
+		$postId = $this->input->post('postId');
+
+		$this->Comm_forums->updateUserReport($userId, $postId);
 	}
 }
 

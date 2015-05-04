@@ -363,6 +363,13 @@ $(document).ready(function(){
 		});
 	});
 
+	$('.glyphicon-flag').on("click", function(){
+		if($(this).hasClass('glyphicon-flag')){
+			var postId = $(this).data('post');
+			$('#flagForumPostCommentBody').attr('postId', postId);
+		}
+	});
+
 	/*********************************************************
 gets the value of a cookie
 **********************************************************/

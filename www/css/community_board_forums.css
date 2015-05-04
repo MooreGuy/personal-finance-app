@@ -104,9 +104,17 @@
 	padding-right: 48px;
 }
 
-.report-abuse-link:hover, .report-abuse-link-post:hover{
-	color: #d9534f;
+.report-abuse-link:hover,{
+	/*color: #d9534f;*/
 	text-decoration: none;
+}
+
+.glyphicon-flag:hover{
+	cursor: pointer;
+}
+
+.glyphicon-flag-reported{
+	color: #d9534f;
 }
 
 .comment-link{

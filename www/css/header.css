@@ -68,7 +68,7 @@ html {
 	overflow-y: hidden;
 }
 
-#editPostBody, #addPostBody, #addCommentBody, #editCommentBody{
+#editPostBody, #addPostBody, #addCommentBody, #editCommentBody, #flagForumPostCommentBody{
 	max-width: 570px;
 	min-width: 570px;
 	min-height: 300px;
@@ -78,7 +78,7 @@ html {
 	padding-left: 0px;
 }
 
-.addPostCategoryLabel{
+.addPostCategoryLabel, .flagForumPostLabel{
 	display: inline-block;
 }
 
@@ -96,11 +96,11 @@ html {
 	border: 1px solid #E13300;
 }
 
-#addPostBody-error, #addPostTitle-error, #addPostCategory-error, #addCommentBody-error, #editPostBody-error, #editPostTitle-error, #editCommentTitle-error{
+#flagForumPost-error, #addPostBody-error, #addPostTitle-error, #addPostCategory-error, #addCommentBody-error, #editPostBody-error, #editPostTitle-error, #editCommentTitle-error{
 	color: #E13300;
 }
 
-.noUser-vote-warning-wrapper, .add-post-success-wrapper, .edit-post-success-wrapper, .add-comment-success-wrapper, .delete-post-success-wrapper, .edit-comment-success-wrapper, .delete-comment-success-wrapper, .noUser-vote-warning-wrapper{
+.flag-post-success-wrapper, .noUser-vote-warning-wrapper, .add-post-success-wrapper, .edit-post-success-wrapper, .add-comment-success-wrapper, .delete-post-success-wrapper, .edit-comment-success-wrapper, .delete-comment-success-wrapper, .noUser-vote-warning-wrapper{
 	position: fixed;
 	left: 50%;
 	margin-top: 10px;
@@ -111,7 +111,7 @@ html {
 }
 
 
-#add-post-success, #edit-post-success, #add-comment-success, #delete-post-success, #edit-comment-success, #delete-comment-success{
+#flag-podt-success, #add-post-success, #edit-post-success, #add-comment-success, #delete-post-success, #edit-comment-success, #delete-comment-success{
 	background-color: #d9edf7;
 	border-color: #bce8f1;
 	color: #31708f;
@@ -155,4 +155,8 @@ html {
 
 .no-comments-col{
 	margin-left: -15px;
+}
+
+#flagForumPost{
+	display: block;
 }

@@ -297,7 +297,7 @@ $(document).ready(function(){
 						//Show and hide success message
 						$('.delete-comment-success-wrapper').fadeIn(800).delay(1500).fadeOut(1000);
 
-						
+
 			    	}
 			});
 		}
@@ -322,7 +322,7 @@ $(document).ready(function(){
 
 		},
 		messages: {
-			editCoomentBody: {
+			editCommentBody: {
 				required: "Required",
 				minlength: "Your comment needs to have at least 10 characters.",
 				maxlength: "Your comment can not be more than 1000 characters long."
@@ -358,6 +358,86 @@ $(document).ready(function(){
 		}
 	});
 
+	//Validate the flag post
+	$('.js-flagForumPost').on('click', function(){
+		//Submit the form
+		$('#report-post-form').submit();
+	});
+
+	//Validate the edit forum form
+	$('#report-post-form').validate({
+		rules: {
+			flagFroumPostCommentBody: {
+				required: {
+					depends: function(){
+						return ($('#flagForumPost').val() == "Other");
+					}
+				},
+				minlength: 10,
+				maxlength: 300,
+				FormRegex: true
+			},
+			flagForumPost: {
+				required: true
+			}
+
+		},
+		messages: {
+			flagFroumPostCommentBody: {
+				required: "Required",
+				minlength: "Your comment needs to have at least 10 characters.",
+				maxlength: "Your comment can not be more than 300 characters long."
+			}
+			
+		},
+		validClass: "success",
+
+		submitHandler: function(){
+			var postId = $('#flagForumPostCommentBody').attr('postId');
+			var content = $('#flagForumPostCommentBody').val();
+			var reason = $('#flagForumPost option:selected').text();
+			console.log(postId);
+			$.ajax({
+			    	type: 'post',
+			    	url: "/community_board_forums/insertAlert",
+			    	data:{
+			    		postId: postId,
+			    		content: content,
+			    		severity: 5,
+			    		reason: reason
+			    	},
+			    	success: function(){
+			    		//Hide the modal
+						$('#flagForumPostModal').modal('hide');
+						//Clear the form inputs
+						$('#report-post-form')[0].reset();
+						//Reset the validation
+						$('.form-control').removeClass('error').removeClass('success');
+						//Show and hide success message
+						$('.flag-post-success-wrapper').fadeIn(800).delay(1500).fadeOut(1000);
+						//Set the flag to red
+						$('.glyphicon-flag[data-post='+ postId + ']').addClass('glyphicon-flag-reported');
+
+						updateUserReport(postId);
+			    	}
+			});
+		}
+	});
+
+	function updateUserReport(postId){
+		
+		$.ajax({
+			type: 'post',
+	    	url: "/community_board_forums/updateUserReport",
+	    	data:{
+	    		postId: postId,
+	    	},
+	    	success: function(){
+	    		
+	    	}
+		});
+	}
+
 	//When the close button on a modal is clicked clear the form and all validation messages
 	$('.btn[data-dismiss="modal"]').on("click", function(){
 		//Clear the form inputs
@@ -367,6 +447,5 @@ $(document).ready(function(){
 		$('.form-control').removeClass('success').removeClass('error');
 		$('label[class="error"]').empty();
 		$('select[class="success"]').removeClass('error').removeClass('success');
-	});
-	
+	});	
 });
