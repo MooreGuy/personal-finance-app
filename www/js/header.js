@@ -418,6 +418,8 @@ $(document).ready(function(){
 						//Set the flag to red
 						$('.glyphicon-flag[data-post='+ postId + ']').addClass('glyphicon-flag-reported');
 
+						$('.glyphicon-flag-reported').removeAttr('data-target');
+
 						updateUserReport(postId);
 			    	}
 			});
@@ -425,7 +427,7 @@ $(document).ready(function(){
 	});
 
 	function updateUserReport(postId){
-		
+
 		$.ajax({
 			type: 'post',
 	    	url: "/community_board_forums/updateUserReport",

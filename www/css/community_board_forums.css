@@ -70,8 +70,8 @@
 	cursor: pointer;
 }
 
-.add-new-post-btn{
-	margin-top: 3.5px;
+.add-post-link{
+	margin-right: 5px;
 }
 
 .header-link-collapse{
@@ -111,6 +111,7 @@
 
 .glyphicon-flag:hover{
 	cursor: pointer;
+	
 }
 
 .glyphicon-flag-reported{

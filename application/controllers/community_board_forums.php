@@ -15,6 +15,10 @@ class Community_board_forums extends Account
 		$this->load->model('Comm_forums');
 	}
 
+	/*
+		function On load for the community forums page
+
+	*/
 	function forums( $tags = 'none' )
 	{		
 		$data['loginStatus'] = $this->checkLoginStatus();
@@ -25,18 +29,58 @@ class Community_board_forums extends Account
 		$data['user_type'] = $this->User->get_user_type($this->session->userdata('id'));
 
 		//Get all user posts for transport
-		$data['all_posts'] = $this->Comm_forums->getAllUserPosts('transport', 'top');
-		$data['all_comments'] = $this->Comm_forums->getAllUserComments('transport');
+		$data['all_posts'] = $this->Comm_forums->getAllPosts('transport', 'top');
+		//$data['all_comments'] = $this->Comm_forums->getAllUserComments('transport');
+		$data['all_comments'] = $this->Comm_forums->getAllComments('transport');
 
 		//Get the usernames for the posts and comments
-		$data['getAllPostsUserNames'] = $this->Comm_forums->getAllPostsUserNames('transport');
-		$data['getAllCommentsUserNames'] = $this->Comm_forums->getAllCommentsUserNames('transport');
+		//$data['getAllPostsUserNames'] = $this->Comm_forums->getAllPostsUserNames('transport');
+		//$data['getAllCommentsUserNames'] = $this->Comm_forums->getAllCommentsUserNames('transport');
 
 		//Get all of the user votes
 		$data['userVotes'] = $this->Comm_forums->getAllUserVotes('transport');
 
 		//Get any posts the user has reported on
 		$data['userReport'] = $this->Comm_forums->getFlaggedPosts($data['userId']);
+
+/*
+		$this->load->library('pagination'); 
+		$this->load->helper('url');
+		$config = array(); 
+		$config["base_url"] = base_url() . '/community_board_forums/forums'; 
+		$config['total_rows'] = $this->Comm_forums->getPostCount(); 
+		$config["per_page"] = 10; 
+		$config["uri_segment"] = 3; 
+
+
+		// twitter bootstrap markup 
+		$config['full_tag_open'] = '<ul class="pagination pagination-sm">'; 
+		$config['full_tag_close'] = '</ul>'; 
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>'; 
+		$config['cur_tag_open'] = '<li class="active"><span>'; 
+		$config['cur_tag_close'] = '<span class="sr-only">(current)</span></span></li>'; 
+		$config['prev_tag_open'] = '<li>'; 
+		$config['prev_tag_close'] = '</li>'; 
+		$config['next_tag_open'] = '<li>'; 
+		$config['next_tag_close'] = '</li>'; 
+		$config['first_link'] = '&laquo;'; 
+		$config['prev_link'] = '&lsaquo;'; 
+		$config['last_link'] = '&raquo;'; 
+		$config['next_link'] = '&rsaquo;'; 
+		$config['first_tag_open'] = '<li>'; 
+		$config['first_tag_close'] = '</li>'; 
+		$config['last_tag_open'] = '<li>'; 
+		$config['last_tag_close'] = '</li>'; 
+
+
+		$this->pagination->initialize($config); 
+		// pass the parameters for per_page, page number, order by, sort, etc here 
+
+		// generate links 
+		$data['links'] = $this->pagination->create_links(); 
+*/
+
 		
 
 		$this->load->view( 'templates/header', $data );
@@ -57,7 +101,7 @@ class Community_board_forums extends Account
 		$data['userId'] = $this->session->userdata('id');
 		$data['user_name'] = $this->User->get_user_name( $this->user_id );
 		$data['user_type'] = $this->User->get_user_type($this->session->userdata('id'));
-
+		$data['userReport'] = $this->Comm_forums->getFlaggedPosts($data['userId']);
 		
 
 
@@ -67,9 +111,9 @@ class Community_board_forums extends Account
 		switch($tabName){
 			case "transport": 
 				switch ($orderBy) {
-					case 'top': $data['all_posts'] = $this->Comm_forums->getAllUserPosts('transport', 'top');
+					case 'top': $data['all_posts'] = $this->Comm_forums->getAllPosts('transport', 'top');
 						break;
-					case 'new': $data['all_posts'] = $this->Comm_forums->getAllUserPosts('transport', 'new');
+					case 'new': $data['all_posts'] = $this->Comm_forums->getAllPosts('transport', 'new');
 						break;
 					
 					default:
@@ -77,21 +121,21 @@ class Community_board_forums extends Account
 				}
 
 				//Get the usernames for the posts and comments
-				$data['getAllPostsUserNames'] = $this->Comm_forums->getAllPostsUserNames('transport');
-				$data['getAllCommentsUserNames'] = $this->Comm_forums->getAllCommentsUserNames('transport');
+				//$data['getAllPostsUserNames'] = $this->Comm_forums->getAllPostsUserNames('transport');
+				//$data['getAllCommentsUserNames'] = $this->Comm_forums->getAllCommentsUserNames('transport');
 
 				//Get all of the user votes
 				$data['userVotes'] = $this->Comm_forums->getAllUserVotes('transport');
 
-				$data['all_comments'] = $this->Comm_forums->getAllUserComments('transport');
+				$data['all_comments'] = $this->Comm_forums->getAllComments('transport');
 				
 				$this->load->view( 'pages/CommunityBoard/community_board_forums_transport', $data);
 				break;
 			case "food": 
 				switch ($orderBy) {
-					case 'top': $data['all_posts'] = $this->Comm_forums->getAllUserPosts('food', 'top');
+					case 'top': $data['all_posts'] = $this->Comm_forums->getAllPosts('food', 'top');
 						break;
-					case 'new': $data['all_posts'] = $this->Comm_forums->getAllUserPosts('food', 'new');
+					case 'new': $data['all_posts'] = $this->Comm_forums->getAllPosts('food', 'new');
 						break;
 					
 					default:
@@ -99,20 +143,20 @@ class Community_board_forums extends Account
 				} 
 
 				//Get the usernames for the posts and comments
-				$data['getAllPostsUserNames'] = $this->Comm_forums->getAllPostsUserNames('food');
-				$data['getAllCommentsUserNames'] = $this->Comm_forums->getAllCommentsUserNames('food');
+				//$data['getAllPostsUserNames'] = $this->Comm_forums->getAllPostsUserNames('food');
+				//$data['getAllCommentsUserNames'] = $this->Comm_forums->getAllCommentsUserNames('food');
 
 				//Get all of the user votes
 				$data['userVotes'] = $this->Comm_forums->getAllUserVotes('food');
 				
-				$data['all_comments'] = $this->Comm_forums->getAllUserComments('food');
+				$data['all_comments'] = $this->Comm_forums->getAllComments('food');
 				$this->load->view( 'pages/CommunityBoard/community_board_forums_food', $data);
 				break;
 			case "communications": 
 				switch ($orderBy) {
-					case 'top': $data['all_posts'] = $this->Comm_forums->getAllUserPosts('communications', 'top');
+					case 'top': $data['all_posts'] = $this->Comm_forums->getAllPosts('communications', 'top');
 						break;
-					case 'new': $data['all_posts'] = $this->Comm_forums->getAllUserPosts('communications', 'new');
+					case 'new': $data['all_posts'] = $this->Comm_forums->getAllPosts('communications', 'new');
 						break;
 					
 					default:
@@ -120,20 +164,20 @@ class Community_board_forums extends Account
 				}
 
 				//Get the usernames for the posts and comments
-				$data['getAllPostsUserNames'] = $this->Comm_forums->getAllPostsUserNames('communications');
-				$data['getAllCommentsUserNames'] = $this->Comm_forums->getAllCommentsUserNames('communications');
+				//$data['getAllPostsUserNames'] = $this->Comm_forums->getAllPostsUserNames('communications');
+				//$data['getAllCommentsUserNames'] = $this->Comm_forums->getAllCommentsUserNames('communications');
 
 				//Get all of the user votes
 				$data['userVotes'] = $this->Comm_forums->getAllUserVotes('communications');
 			
-				$data['all_comments'] = $this->Comm_forums->getAllUserComments('communications');
+				$data['all_comments'] = $this->Comm_forums->getAllComments('communications');
 				$this->load->view( 'pages/CommunityBoard/community_board_forums_communications', $data);
 				break;
 			case "entertainment": 
 				switch ($orderBy) {
-					case 'top': $data['all_posts'] = $this->Comm_forums->getAllUserPosts('entertainment', 'top');
+					case 'top': $data['all_posts'] = $this->Comm_forums->getAllPosts('entertainment', 'top');
 						break;
-					case 'new': $data['all_posts'] = $this->Comm_forums->getAllUserPosts('entertainment', 'new');
+					case 'new': $data['all_posts'] = $this->Comm_forums->getAllPosts('entertainment', 'new');
 						break;
 					
 					default:
@@ -142,19 +186,19 @@ class Community_board_forums extends Account
 
 
 				//Get the usernames for the posts and comments
-				$data['getAllPostsUserNames'] = $this->Comm_forums->getAllPostsUserNames('entertainment');
-				$data['getAllCommentsUserNames'] = $this->Comm_forums->getAllCommentsUserNames('entertainment');
+				//$data['getAllPostsUserNames'] = $this->Comm_forums->getAllPostsUserNames('entertainment');
+				//$data['getAllCommentsUserNames'] = $this->Comm_forums->getAllCommentsUserNames('entertainment');
 
 				//Get all of the user votes
-				$data['userVotes'] = $this->Comm_forums->getAllUserVotes('entertainment');
-				$data['all_comments'] = $this->Comm_forums->getAllUserComments('entertainment');
+				$data['userVotes'] = $this->Comm_forums->getAllVotes('entertainment');
+				$data['all_comments'] = $this->Comm_forums->getAllComments('entertainment');
 				$this->load->view( 'pages/CommunityBoard/community_board_forums_entertainment', $data);
 				break;
 			case "housing": 
 				switch ($orderBy) {
-					case 'top': $data['all_posts'] = $this->Comm_forums->getAllUserPosts('housing', 'top');
+					case 'top': $data['all_posts'] = $this->Comm_forums->getAllPosts('housing', 'top');
 						break;
-					case 'new': $data['all_posts'] = $this->Comm_forums->getAllUserPosts('housing', 'new');
+					case 'new': $data['all_posts'] = $this->Comm_forums->getAllPosts('housing', 'new');
 						break;
 					
 					default:
@@ -162,20 +206,20 @@ class Community_board_forums extends Account
 				}
 
 				//Get the usernames for the posts and comments
-				$data['getAllPostsUserNames'] = $this->Comm_forums->getAllPostsUserNames('housing');
-				$data['getAllCommentsUserNames'] = $this->Comm_forums->getAllCommentsUserNames('housing');
+				//$data['getAllPostsUserNames'] = $this->Comm_forums->getAllPostsUserNames('housing');
+				//$data['getAllCommentsUserNames'] = $this->Comm_forums->getAllCommentsUserNames('housing');
 
 				//Get all of the user votes
 				$data['userVotes'] = $this->Comm_forums->getAllUserVotes('housing');
 
-				$data['all_comments'] = $this->Comm_forums->getAllUserComments('housing');
+				$data['all_comments'] = $this->Comm_forums->getAllComments('housing');
 				$this->load->view( 'pages/CommunityBoard/community_board_forums_housing', $data);
 				break;
 			case "utilities": 
 				switch ($orderBy) {
-					case 'top': $data['all_posts'] = $this->Comm_forums->getAllUserPosts('utilities', 'top');
+					case 'top': $data['all_posts'] = $this->Comm_forums->getAllPosts('utilities', 'top');
 						break;
-					case 'new': $data['all_posts'] = $this->Comm_forums->getAllUserPosts('utilities', 'new');
+					case 'new': $data['all_posts'] = $this->Comm_forums->getAllPosts('utilities', 'new');
 						break;
 					
 					default:
@@ -183,20 +227,20 @@ class Community_board_forums extends Account
 				}
 
 				//Get the usernames for the posts and comments
-				$data['getAllPostsUserNames'] = $this->Comm_forums->getAllPostsUserNames('utilities');
-				$data['getAllCommentsUserNames'] = $this->Comm_forums->getAllCommentsUserNames('utilities');
+				//$data['getAllPostsUserNames'] = $this->Comm_forums->getAllPostsUserNames('utilities');
+				//$data['getAllCommentsUserNames'] = $this->Comm_forums->getAllComments('utilities');
 
 				//Get all of the user votes
 				$data['userVotes'] = $this->Comm_forums->getAllUserVotes('utilities');
 
-				$data['all_comments'] = $this->Comm_forums->getAllUserComments('utilities');
+				$data['all_comments'] = $this->Comm_forums->getAllComments('utilities');
 				$this->load->view( 'pages/CommunityBoard/community_board_forums_utilities', $data);
 				break;
 			case "travel": 
 				switch ($orderBy) {
-					case 'top': $data['all_posts'] = $this->Comm_forums->getAllUserPosts('travel', 'top');
+					case 'top': $data['all_posts'] = $this->Comm_forums->getAllPosts('travel', 'top');
 						break;
-					case 'new': $data['all_posts'] = $this->Comm_forums->getAllUserPosts('travel', 'new');
+					case 'new': $data['all_posts'] = $this->Comm_forums->getAllPosts('travel', 'new');
 						break;
 					
 					default:
@@ -204,20 +248,20 @@ class Community_board_forums extends Account
 				}
 
 				//Get the usernames for the posts and comments
-				$data['getAllPostsUserNames'] = $this->Comm_forums->getAllPostsUserNames('travel');
-				$data['getAllCommentsUserNames'] = $this->Comm_forums->getAllCommentsUserNames('travel');
+				//$data['getAllPostsUserNames'] = $this->Comm_forums->getAllPostsUserNames('travel');
+				//$data['getAllCommentsUserNames'] = $this->Comm_forums->getAllCommentsUserNames('travel');
 
 				//Get all of the user votes
 				$data['userVotes'] = $this->Comm_forums->getAllUserVotes('travel');
 
-				$data['all_comments'] = $this->Comm_forums->getAllUserComments('travel');
+				$data['all_comments'] = $this->Comm_forums->getAllComments('travel');
 				$this->load->view( 'pages/CommunityBoard/community_board_forums_travel', $data);
 				break;
 			case "general": 
 				switch ($orderBy) {
-					case 'top': $data['all_posts'] = $this->Comm_forums->getAllUserPosts('general', 'top');
+					case 'top': $data['all_posts'] = $this->Comm_forums->getAllPosts('general', 'top');
 						break;
-					case 'new': $data['all_posts'] = $this->Comm_forums->getAllUserPosts('general', 'new');
+					case 'new': $data['all_posts'] = $this->Comm_forums->getAllPosts('general', 'new');
 						break;
 					
 					default:
@@ -225,13 +269,13 @@ class Community_board_forums extends Account
 				}
 
 				//Get the usernames for the posts and comments
-				$data['getAllPostsUserNames'] = $this->Comm_forums->getAllPostsUserNames('general');
-				$data['getAllCommentsUserNames'] = $this->Comm_forums->getAllCommentsUserNames('general');
+				//$data['getAllPostsUserNames'] = $this->Comm_forums->getAllPostsUserNames('general');
+				//$data['getAllCommentsUserNames'] = $this->Comm_forums->getAllCommentsUserNames('general');
 
 				//Get all of the user votes
 				$data['userVotes'] = $this->Comm_forums->getAllUserVotes('general');
 
-				$data['all_comments'] = $this->Comm_forums->getAllUserComments('general');
+				$data['all_comments'] = $this->Comm_forums->getAllComments('general');
 				$this->load->view( 'pages/CommunityBoard/community_board_forums_general', $data);
 				break;
 
@@ -241,6 +285,10 @@ class Community_board_forums extends Account
 		}
 	}
 
+	/*
+		This function adds a new post to the posts table
+		
+	*/
 	function addNewPost(){
 		//need category, title, content, 
 		$userId = $this->session->userdata('id');
@@ -248,10 +296,13 @@ class Community_board_forums extends Account
 		$title = $this->input->post('title');
 		$content = $this->input->post('content');
 
-		//Try to add the new data
+		//Add the new data
 		$this->Comm_forums->addNewPost($userId, $category, $title, $content);
 	}
 
+	/*
+		This function adds a new comment to the posts table
+	*/
 	function addNewComment(){
 		//need parentId, content
 		$userId = $this->session->userdata('id');
@@ -262,6 +313,7 @@ class Community_board_forums extends Account
 		$this->Comm_forums->addNewComment($userId, $parentId, $content, $category);
 	}
 
+	//This function will edit a user post
 	function editPost(){
 		//need postId, title, content
 		$postId = $this->input->post('postId');
@@ -271,6 +323,7 @@ class Community_board_forums extends Account
 		$this->Comm_forums->editPost($postId, $title, $content);
 	}
 
+	//This function will edit a users comment
 	function editComment(){
 		//need postId, content
 		$postId = $this->input->post('postId');
@@ -279,6 +332,7 @@ class Community_board_forums extends Account
 		$this->Comm_forums->editComment($postId, $content);
 	}
 
+	//This function will delete a users post
 	function deletePost(){
 		//need postId, title, content
 		$postId = $this->input->post('postId');
@@ -293,17 +347,19 @@ class Community_board_forums extends Account
 		$this->Comm_forums->updatePostVoteCount($postId, $voteCount);
 	}*/
 
-	function updatePostVoteCount($postId, $voteCSS){
-		$this->Comm_forums->updatePostVoteCount($postId, $voteCSS);
-	}
+	//This function will update the vote count for a post
+	//function updatePostVoteCount($postId, $voteCSS){
+		//$this->Comm_forums->updatePostVoteCount($postId, $voteCSS);
+	//}
 
+	//This function will update how the user voted on a post and will update the post vote
 	function updateUserVote(){
 		$userId = $this->session->userdata('id');
 		$postId = $this->input->post('postId');
 		$voteCSS = $this->input->post('voteCSS');
 		$category = $this->input->post('category');
 		//$voteType = $this->input->post('voteType');
-		//$this->updatePostVoteCount($postId, $voteCSS);
+		//$this->postVoteCount($postId, $voteCSS);
 		//$this->Comm_forums->updateUserVote($postId, $voteCSS, $userId, $category);
 
 		$userVoteData = array(
@@ -325,6 +381,7 @@ class Community_board_forums extends Account
 		
 	}
 
+	//This function will insert an alert into the admin alerts table for when a user flags a post
 	function insertAlert(){
 		//$this->load->model( 'alertsmodel' );
 		$this->load->helper('date');
@@ -353,6 +410,7 @@ class Community_board_forums extends Account
 
 	
 
+	//This function gets the userposts when the user has used the filter dropdown
 	function postFilter(){
 		$category = $this->input->post('category');
 		$orderBy = $this->input->post('order');
@@ -360,6 +418,7 @@ class Community_board_forums extends Account
 		$this->Comm_forums->getAllUserPosts($category, $orderBy);
 	}
 
+	//This function will update the user report table for when a user flags a post
 	function updateUserReport(){
 		$userId = $this->session->userdata('id');
 		$postId = $this->input->post('postId');

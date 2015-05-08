@@ -65,7 +65,7 @@
 			  <span class="pull-right post-filter-wrapper">
 
 			  		<?php if($loginStatus == True){
-			  			echo "<a class='' data-toggle='modal' data-target='#addForumPostModal'>Add new post</a>";
+			  			echo "<a class='add-post-link' data-toggle='modal' data-target='#addForumPostModal'>Add post</a>";
 			  		}?>
 			  		
 			  		<!--<label for="post-filter">Filter results by:</label>-->
@@ -73,7 +73,7 @@
 			  			<option value="1" disabled>Filter by:</option>
 						<option value="2" selected>Top</option>
 						<option value="3">New</option>
-						<option value="4">Most Commented</option>
+						<!--<option value="4">Most Commented</option>-->
 					</select>
 			  </span>
 			  
@@ -188,11 +188,11 @@
 												echo "<h4 class='panel-title'>";
 								    				echo "<a class='header-link-collapse' aria-expanded='true' data-post=". $post->id .">" . $post->title . "</a>";
 
-								    				foreach ($getAllPostsUserNames as $keys => $post_users) {
-								    					if($post_users->id == $post->userId){
-								    						echo "<span class='post-author'> by " . $post_users->username . "</span>";
-								    					}
-								    				}
+								    				//foreach ($getAllPostsUserNames as $keys => $post_users) {
+								    					//if($post_users->id == $post->userId){
+								    						echo "<span class='post-author'> by " . $post->username . "</span>";
+								    					//}
+								    				//}
 								      				
 
 								      				if($loginStatus == True){
@@ -200,7 +200,7 @@
 								      					if($userReport != NULL){
 									      					foreach($userReport as $key => $report){
 									      						if($post->id == $report->postId){
-									      							echo "<span> - <a class='report-abuse-link-post'><span class='glyphicon glyphicon-flag glyphicon-flag-reported' data-post='" . $post->id . "'></span> </a></span>";
+									      							echo "<span> - <span class='glyphicon glyphicon-flag glyphicon-flag-reported report-abuse-link-post' data-post='" . $post->id . "'></span></span>";
 									      							$reported = true;
 									      						}
 									      					}
@@ -237,7 +237,7 @@
 						      										if($loginStatus == True){
 						      											echo "<a href='#' class='pull-left comment-link' data-toggle='modal' data-target='#addCommentPostModal' data-post=" . $post->id . ">Comment</a>";
 						      										}else{
-						      											echo "<a href='#' class='pull-left comment-link' data-toggle='modal' data-target='' data-post=" . $post->id . ">Comment</a>";
+						      											echo "<a class='pull-left comment-link' data-post=" . $post->id . ">Comment</a>";
 						      										}
 						      										
 									      						echo "</div>";
@@ -283,15 +283,15 @@
 
 																									echo "<div class='row vote-count-row' data-post='" . $comment->id . "'>";
 																										echo "<div class='col-md-1 positive-count-wrapper'>";
-																										if($post->upvotes_total >= 0){
+																										if($comment->upvotes_total > 0){
 																											echo "<span class='positive-vote-count'>" . $comment->upvotes_total . "</span>";
 																											
 
 																										}else{
 																											echo "<span class='positive-vote-count'>0</span>";
 																										}
-																										$name = "vote" . $post->id;
-																											setcookie($name, $post->upvotes_total);
+																										$name = "vote" . $comment->id;
+																											setcookie($name, $comment->upvotes_total);
 																										echo "</div>";
 																									echo "</div>";
 
@@ -346,16 +346,16 @@
 																						echo "</div>";
 
 									      												echo "<div class='col-md-11 user-comment' data-post=" . $comment->id .">";
-									      													foreach ($getAllCommentsUserNames as $keys => $post_users) {
+									      													//foreach ($getAllCommentsUserNames as $keys => $post_users) {
 
-									      														if($post_users->id == $comment->userId){
-									      															echo "<label>" . $post_users->username . "</label>";
+									      														//if($post_users->id == $comment->userId){
+									      															echo "<label>" . $comment->username . "</label>";
 									      															if($loginStatus == True){
 									      																$reported = false;
 																				      					if($userReport != NULL){
 																					      					foreach($userReport as $key => $report){
 																					      						if($comment->id == $report->postId){
-																					      							echo "<span> - <a class='report-abuse-link-post'><span class='glyphicon glyphicon-flag glyphicon-flag-reported' data-post='" . $comment->id . "'></span> </a></span>";
+																					      							echo "<span> - <span class='glyphicon report-abuse-link-post glyphicon-flag glyphicon-flag-reported' data-post='" . $comment->id . "'></span></span>";
 																					      							$reported = true;
 																					      						}
 																					      					}
@@ -366,12 +366,13 @@
 																				      					}
 											      														//echo "<span> - <a class='report-abuse-link-post'><span class='glyphicon glyphicon-flag' data-toggle='modal' data-target='#flagForumPostModal' data-post='" . $comment->id . "></span> </a></span>";
 											      														
-								        																echo "<span class='glyphicon glyphicon-trash pull-right js-delete-commentModal' data-toggle='modal' data-target='#deleteForumCommentModal' aria-hidden='true' data-post='" . $comment->id . "'></span>";
-								        																echo "<a href='#' class='edit-comment pull-right edit-commentModal' data-toggle='modal' data-target='#editForumCommentModal' data-post='" . $comment->id . "'>Edit</a>";
-								        																
+											      														if($comment->userId == $userId){
+								        																	echo "<span class='glyphicon glyphicon-trash pull-right js-delete-commentModal' data-toggle='modal' data-target='#deleteForumCommentModal' aria-hidden='true' data-post='" . $comment->id . "'></span>";
+								        																	echo "<a href='#' class='edit-comment pull-right edit-commentModal' data-toggle='modal' data-target='#editForumCommentModal' data-post='" . $comment->id . "'>Edit</a>";
+								        																}
 											      													}
-									      														}
-									      													}
+									      														//}
+									      													//}
 									      													
 									      													echo "<p class='comment'>" . nl2br($comment->content) . "</p>";
 									      												echo "</div>";
@@ -445,8 +446,10 @@
 					<div class="row">
 						<nav class="post-nav">
 
-							  	
-							    	<?php 
+							  	<?php 
+							  		//echo $links;
+							  	?>
+							    	<?php /*
 							    		$i = 1;
 							    		foreach ($all_posts as $key => $value) {
 							    			if($i > 10){
@@ -472,7 +475,7 @@
 							    			}
 
 							    			$i++;
-							    		}
+							    		}*/
 							    	?>
 							    	
 							    

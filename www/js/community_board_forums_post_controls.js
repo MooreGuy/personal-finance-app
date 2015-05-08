@@ -48,10 +48,13 @@ $(document).ready(function(){
 					$('.down-vote-wrapper[data-post=\"'+postId+'\"] > .glyphicon').children().removeClass('vote-negative').addClass('vote-neutral');
 
 					//Also set the vote count back to normal
-					if(document.getCookie("vote" + postId) > 0){
-						$('.vote-count-row[data-post=\"'+postId+'\"] > div > span').text(voteCount);
+					if(document.getCookie("vote" + postId) >= 0){
+						$('.vote-count-row[data-post=\"'+postId+'\"] > div > span').text(++voteCount);
 						document.setCookie("vote" + postId, voteCount);
+					}else{
+						document.setCookie("vote" + postId, ++voteCount);
 					}
+
 					$.ajax({
 						type: "post",
 						url: "/community_board_forums/updateUserVote",
@@ -79,7 +82,10 @@ $(document).ready(function(){
 						
 						$('.vote-count-row[data-post=\"'+postId+'\"] > div > span').text(++voteCount);
 						document.setCookie("vote" + postId, voteCount);
+					}else{
+						document.setCookie("vote" + postId, ++voteCount);
 					}
+
 					$.ajax({
 						type: "post",
 						url: "/community_board_forums/updateUserVote",
@@ -99,9 +105,11 @@ $(document).ready(function(){
 				}else{
 					$(this).removeClass('vote-positive').addClass('vote-neutral');
 
-					if(document.getCookie("vote" + postId) >= 0){
+					if(document.getCookie("vote" + postId) > 0){
 
 						$('.vote-count-row[data-post=\"'+postId+'\"] > div > span').text(--voteCount);
+						document.setCookie("vote" + postId, voteCount);
+					}else{
 						document.setCookie("vote" + postId, --voteCount);
 					}
 
@@ -137,8 +145,10 @@ $(document).ready(function(){
 
 					//Also set the vote count back to normal
 					if(document.getCookie("vote" + postId) > 0){
-						$('.vote-count-row[data-post=\"'+postId+'\"] > div > span').text(voteCount);
+						$('.vote-count-row[data-post=\"'+postId+'\"] > div > span').text(--voteCount);
 						document.setCookie("vote" + postId, voteCount);
+					}else{
+						document.setCookie("vote" + postId, --voteCount);
 					}
 
 					$.ajax({
@@ -167,6 +177,8 @@ $(document).ready(function(){
 					if(document.getCookie("vote" + postId) > 0){
 						$('.vote-count-row[data-post=\"'+postId+'\"] > div > span').text(--voteCount);
 						document.setCookie("vote" + postId, voteCount);
+					}else{
+						document.setCookie("vote" + postId, --voteCount);
 					}
 
 					$.ajax({
@@ -189,9 +201,11 @@ $(document).ready(function(){
 				}else{
 					$(this).removeClass('vote-negative').addClass('vote-neutral');
 					//Set the count of the post to +1
-					if(document.getCookie("vote" + postId) > 0){
-						$('.vote-count-row[data-post=\"'+postId+'\"] > div > span').text(voteCount);
+					if(document.getCookie("vote" + postId) >= 0){
+						$('.vote-count-row[data-post=\"'+postId+'\"] > div > span').text(++voteCount);
 						document.setCookie("vote" + postId, voteCount);
+					}else{
+						document.setCookie("vote" + postId, ++voteCount);
 					}
 
 					$.ajax({
@@ -249,7 +263,7 @@ $(document).ready(function(){
 			//Get the id of the post the user wants to edit
 			var commentId = $('.edit-commentModal').data("post");
 			//get the comment body
-			var commentBody = $('.user-comment > p').text();
+			var commentBody = $('.user-comment[data-post="' + commentId + '"] > p').text();
 			$('#editCommentBody').val(commentBody);
 			//Put the id in the comment
 			$('#editCommentBody').attr("postId", commentId);
@@ -394,7 +408,7 @@ document.setCookie = function(sName,sValue)
 {
     var oDate = new Date();
     oDate.setYear(oDate.getFullYear()+1);
-    var sCookie = encodeURIComponent(sName) + '=' + encodeURIComponent(sValue) + ';expires=' + oDate.toGMTString() + ';path=/';
+    var sCookie = encodeURIComponent(sName) + '=' + encodeURIComponent(sValue) + ';expires=' + oDate.toGMTString() + ';path=/community_board_forums';
     document.cookie= sCookie;
 }
 /*********************************************************
