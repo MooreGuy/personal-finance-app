@@ -53,7 +53,7 @@ $(document).ready(function(){
 
 	//Check input for special characters
 	$.validator.addMethod("FormRegex", function(value, element) {
-        return this.optional(element) || /^[a-zA-Z 0-9\-\+\.\!\@\#\$\%\^\&\*\(\)\{\}\[\]\"\'\:\;\?\\"]+$/i.test(value);
+        return this.optional(element) || /^[a-zA-Z0-9_ \-\+\.\!\@\#\$\%\^\&\*\(\)\{\}\[\]\"\'\:\;\?\\\w\s\n]+$/i.test(value);
     }, "HTML characters are not allowed.");
 
 	/*
@@ -89,12 +89,12 @@ $(document).ready(function(){
 				required: "Required",
 			},
 			addPostTitle: {
-				required: "A title for your post is required",
+				required: "Required",
 				minlength: "Your title must be at lease 3 characters long",
 				maxlength: "Your title can not be more than 100 characters long"
 			},
 			addPostBody: {
-				required: "The body in your post is required",
+				required: "Required",
 				minlength: "The body must be more than 10 characters long",
 				maxlength: "Your body can not be more than 1000 characters long"
 			}
@@ -103,6 +103,7 @@ $(document).ready(function(){
 		
 		submitHandler: function(){
 
+			//Get the category, title, content, and upvote count
 			var cat = $('#addPostCategory option:selected').text();
 			var title = $('#addPostTitle').val();
 			var content = $("#addPostBody").val();
@@ -110,13 +111,14 @@ $(document).ready(function(){
 			$.ajax({
 			    	type: 'post',
 			    	url: "/community_board_forums/addNewPost",
-			    	dataType: "json",
+			    	dataType: "text",
 			    	data:{
 			    		category: cat,
 			    		title: title,
 			    		content: content
 			    	},
 			    	success: function(){
+
 			    		//Hide the modal
 						$('#addForumPostModal').modal('hide');
 						//Clear the form inputs
@@ -124,7 +126,9 @@ $(document).ready(function(){
 						//Reset the validation
 						$('.form-control').removeClass('error').removeClass('success');
 						$('#addPostCategory').removeClass('error').removeClass('success');
-						
+
+						//Show and hide success message
+						$('.add-post-success-wrapper').fadeIn(800).delay(1500).fadeOut(1000);
 			    	}
 			});
 		}	
@@ -157,15 +161,17 @@ $(document).ready(function(){
 		validClass: "success",
 
 		submitHandler: function(){
-			var parentId = $('.commentOnTitle').attr('parentId');
+			var parentId = $('.commentOnTitle').data('parentId');
+			var category = $('.commentOnTitle').data('category')
 			var content = $('#addCommentBody').val();
 
 			$.ajax({
 			    	type: 'post',
 			    	url: "/community_board_forums/addNewComment",
-			    	dataType: "json",
+			    	dataType: "text",
 			    	data:{
 			    		parentId: parentId,
+			    		category: category,
 			    		content: content
 			    	},
 			    	success: function(){
@@ -175,6 +181,9 @@ $(document).ready(function(){
 						$('#addCommentForm')[0].reset();
 						//Reset the validation
 						$('.form-control').removeClass('error').removeClass('success');
+						
+						//Show and hide success message
+						$('.add-comment-success-wrapper').fadeIn(800).delay(1500).fadeOut(1000);
 			    	}
 			});
 		}
@@ -210,7 +219,7 @@ $(document).ready(function(){
 				maxlength: "Your post can not be more than 100 characters long."
 			},
 			editPostBody: {
-				required: "A body is required for your post.",
+				required: "Required",
 				minlength: "Your post needs to have at least 10 characters.",
 				maxlength: "Your post can not be more than 1000 characters long."
 			}
@@ -226,24 +235,210 @@ $(document).ready(function(){
 			$.ajax({
 			    	type: 'post',
 			    	url: "/community_board_forums/editPost",
-			    	dataType: "json",
 			    	data:{
 			    		postId: postId,
 			    		title: title,
 			    		content: content
 			    	},
 			    	success: function(){
+			    		$('.header-link-collapse[data-post="' + postId +'"]').text(title);
+	
+			    		$('.body-text[data-post="' + postId +'"]').text(content);
 			    		//Hide the modal
 						$('#editForumPostModal').modal('hide');
 						//Clear the form inputs
 						$('#editPostForm')[0].reset();
 						//Reset the validation
 						$('.form-control').removeClass('error').removeClass('success');
+						//Show and hide success message
+						$('.edit-post-success-wrapper').fadeIn(800).delay(1500).fadeOut(1000);
 			    	}
 			});
 		}
 	});
 
+	$('.js-deletePost, .js-deleteComment').on("click", function(){
+		if($(this).is('.js-deletePost')){
+			var postId = $('#deletePostTitle').attr('postId');
+
+			$.ajax({
+			    	type: 'post',
+			    	url: "/community_board_forums/deletePost",
+			    	data:{
+			    		postId: postId
+			    	},
+			    	success: function(){
+			    		//Hide the modal
+						$('#deleteForumPostModal').modal('hide');
+
+						//Remove the post from the view
+						$('.row[data-post='+ postId +']').remove();
+						
+						//Show and hide success message
+						$('.delete-post-success-wrapper').fadeIn(800).delay(1500).fadeOut(1000);
+			    	}
+			});
+		}else if('.js-deleteComment'){
+			var commentId = $('#deleteCommentBody').attr('postId');
+
+			$.ajax({
+			    	type: 'post',
+			    	url: "/community_board_forums/deletePost",
+			    	data:{
+			    		postId: commentId
+			    	},
+			    	success: function(){
+			    		//Hide the modal
+						$('#deleteForumCommentModal').modal('hide');
+
+						//Remove the post from the view
+						$('.row[data-post='+ commentId +']').remove();
+						
+						//Show and hide success message
+						$('.delete-comment-success-wrapper').fadeIn(800).delay(1500).fadeOut(1000);
+
+
+			    	}
+			});
+		}
+		
+	});
+
+	//Validate the edit comment form
+	$('.js-editComment').on('click', function(){
+		//Submit the form
+		$('#editCommentForm').submit();
+	});
+
+	//Validate the edit forum form
+	$('#editCommentForm').validate({
+		rules: {
+			editCommentBody: {
+				required: true,
+				minlength: 10,
+				maxlength: 1000,
+				FormRegex: true
+			}
+
+		},
+		messages: {
+			editCommentBody: {
+				required: "Required",
+				minlength: "Your comment needs to have at least 10 characters.",
+				maxlength: "Your comment can not be more than 1000 characters long."
+			}
+			
+		},
+		validClass: "success",
+
+		submitHandler: function(){
+			var postId = $('#editCommentBody').attr('postId');
+			var content = $('#editCommentBody').val();
+			console.log(postId);
+			$.ajax({
+			    	type: 'post',
+			    	url: "/community_board_forums/editComment",
+			    	data:{
+			    		postId: postId,
+			    		content: content
+			    	},
+			    	success: function(){
+			    		
+			    		$('.user-comment[data-post="' + postId +'"] > .comment').text(content);
+			    		//Hide the modal
+						$('#editForumCommentModal').modal('hide');
+						//Clear the form inputs
+						$('#editCommentForm')[0].reset();
+						//Reset the validation
+						$('.form-control').removeClass('error').removeClass('success');
+						//Show and hide success message
+						$('.edit-comment-success-wrapper').fadeIn(800).delay(1500).fadeOut(1000);
+			    	}
+			});
+		}
+	});
+
+	//Validate the flag post
+	$('.js-flagForumPost').on('click', function(){
+		//Submit the form
+		$('#report-post-form').submit();
+	});
+
+	//Validate the edit forum form
+	$('#report-post-form').validate({
+		rules: {
+			flagFroumPostCommentBody: {
+				required: {
+					depends: function(){
+						return ($('#flagForumPost').val() == "Other");
+					}
+				},
+				minlength: 10,
+				maxlength: 300,
+				FormRegex: true
+			},
+			flagForumPost: {
+				required: true
+			}
+
+		},
+		messages: {
+			flagFroumPostCommentBody: {
+				required: "Required",
+				minlength: "Your comment needs to have at least 10 characters.",
+				maxlength: "Your comment can not be more than 300 characters long."
+			}
+			
+		},
+		validClass: "success",
+
+		submitHandler: function(){
+			var postId = $('#flagForumPostCommentBody').attr('postId');
+			var content = $('#flagForumPostCommentBody').val();
+			var reason = $('#flagForumPost option:selected').text();
+			console.log(postId);
+			$.ajax({
+			    	type: 'post',
+			    	url: "/community_board_forums/insertAlert",
+			    	data:{
+			    		postId: postId,
+			    		content: content,
+			    		severity: 5,
+			    		reason: reason
+			    	},
+			    	success: function(){
+			    		//Hide the modal
+						$('#flagForumPostModal').modal('hide');
+						//Clear the form inputs
+						$('#report-post-form')[0].reset();
+						//Reset the validation
+						$('.form-control').removeClass('error').removeClass('success');
+						//Show and hide success message
+						$('.flag-post-success-wrapper').fadeIn(800).delay(1500).fadeOut(1000);
+						//Set the flag to red
+						$('.glyphicon-flag[data-post='+ postId + ']').addClass('glyphicon-flag-reported');
+
+						$('.glyphicon-flag-reported').removeAttr('data-target');
+
+						updateUserReport(postId);
+			    	}
+			});
+		}
+	});
+
+	function updateUserReport(postId){
+
+		$.ajax({
+			type: 'post',
+	    	url: "/community_board_forums/updateUserReport",
+	    	data:{
+	    		postId: postId,
+	    	},
+	    	success: function(){
+	    		
+	    	}
+		});
+	}
 
 	//When the close button on a modal is clicked clear the form and all validation messages
 	$('.btn[data-dismiss="modal"]').on("click", function(){
@@ -254,6 +449,5 @@ $(document).ready(function(){
 		$('.form-control').removeClass('success').removeClass('error');
 		$('label[class="error"]').empty();
 		$('select[class="success"]').removeClass('error').removeClass('success');
-	});
-	
+	});	
 });
