@@ -30,7 +30,6 @@
 		    	
 		    		<a class="btn btn-default commBtn" href="<?php  echo base_url(); ?>announcements/home" role="button">Announcements</a>
 		    		
-		    		
 		  		</div>
 			</div>
 

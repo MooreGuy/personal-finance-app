@@ -21,6 +21,7 @@ class Community_board_forums extends Account
 	*/
 	function forums( $tags = 'none' )
 	{		
+
 		$data['loginStatus'] = $this->checkLoginStatus();
 
 		//Get the user's name from the parent class
@@ -86,7 +87,6 @@ class Community_board_forums extends Account
 		$this->load->view( 'templates/header', $data );
 		$this->load->view( 'pages/community_board_forums', $data);
 		$this->load->view( 'templates/footer', $data);
-
 	}
 
 	//This function is called when a tab link is clicked on the forums page. It switches the active class of the tab and displays the relavent tab view
