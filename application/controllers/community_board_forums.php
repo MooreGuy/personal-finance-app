@@ -17,14 +17,7 @@ class Community_board_forums extends Account
 
 	function forums( $tags = 'none' )
 	{		
-		$data['title'] = 'Community Forums';
-		$data['user_name'] = $this->user_name;
-		$data['loginStatus'] = $this->checkLoginStatus();
-
-		$this->load->view( 'templates/header', $data);
-		$this->load->view( 'pages/community_board_forums');
-		$this->load->view( 'templates/footer');
-
+		
 	}
 
 	//This function is called when a tab link is clicked on the forums page. It switches the active class of the tab and displays the relavent tab view
