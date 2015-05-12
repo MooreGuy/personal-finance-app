@@ -164,7 +164,7 @@ class User extends CI_Model
 	function get_user_profile_data( $id )
 	{
 		//Select every column.
-		$sql = 'select first_name, last_name, email, username, account_creation_date, password from ' . self::USERSTABLE . ' where id = ? ;';
+		$sql = 'select first_name, last_name, email, username, password, account_creation_date  from ' . self::USERSTABLE . ' where id = ? ;';
 		
 		$query = $this->db->query( $sql, array($id) );
 
@@ -202,6 +202,36 @@ class User extends CI_Model
 		{
 			return NULL;
 		}
+	}
+
+	function checkPassword($userCurrentPassword, $userId){
+		$this->db->select('password');
+		$this->db->from('users');
+		$this->db->where('id', $userId);
+		$query = $this->db->get();
+
+		$userPassword = $query->result_array();
+
+		$decryptedPassword = $this->encrypt->decode($userPassword[0]['password']);
+
+		if($decryptedPassword == $userCurrentPassword){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	function updateProfileInfo($data, $userId){
+		$data['password'] =  $this->encrypt->encode($data['password']);
+
+		echo json_encode($data);
+		$this->db->where('id', $userId);
+		if($this->db->update('users', $data)){
+			return true;
+		}else{
+			return false;
+		}
+
 	}
 
 }
