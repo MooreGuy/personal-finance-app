@@ -204,7 +204,6 @@ class User extends CI_Model
 		}
 	}
 
-<<<<<<< HEAD
 	/*
 		Gets the type of the user
 
