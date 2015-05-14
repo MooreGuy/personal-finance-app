@@ -52,13 +52,62 @@ class User_profile extends Account {
 
 	}
 
+	function add_category_form()
+	{
+		$title = $this->input->post('title');
+		$amount = $this->input->post('amount');
+		$occurance = $this->input->post('occurance');
+
+		$comment = "something";
+
+		$country = "something";
+		$state = "something";
+		$county = "something";
+		$city = "something";
+
+		$this->expenses->insert_expense( $this->user_id, $amount, $occurance,
+		   	$title, $comment, $country, $state, $county, $city);
+
+		redirect('user_profile/home', 'location');
+	}
+
 	
 
 	//function create_category()
 	//function remove_category()
 
-
+	function checkPasswordForProfileUpdate(){
+		$userCurrentPassword = $this->input->post('userCurrentPassword');
+		$userId = $this->user_id;
+		
+		if($this->User->checkPassword($userCurrentPassword, $userId)){
+			return true;
+		}else{
+			$this->output->set_status_header('400');
+		}
 	
+	}
+	
+	function updateProfileInfo(){
+		$userId = $this->user_id;
+		$userFirstName = $this->input->post('userFirstName');
+		$userLastName = $this->input->post('userLastName');
+		$userEmail = $this->input->post('userEmail');
+		$currentUserPassword = $this->input->post('currentUserPassword');
+
+		$data = array(
+			'first_name' => $userFirstName,
+			'last_name' =>  $userLastName,
+			'email' => $userEmail,
+			'password' => $currentUserPassword
+		);
+
+		if($this->User->updateProfileInfo($data, $userId)){
+			return true;
+		}else{
+			return $this->output->set_status_header($this->db->_error_message());
+		}
+	}
 }
 
 /* End of file user_profile.php */

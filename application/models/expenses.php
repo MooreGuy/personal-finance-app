@@ -47,28 +47,79 @@ class Expenses extends CI_Model
 		
 	}
 
-	/*
-		Insert an expense into the database.
-	*/
+	/**
+	 *Insert an expense, its type and location into the databse if they do
+	 *not already exist.
+	 */
 	function insert_expense( $user_id, $cost, $interval, $type, $comment,
 									$location_id )
 	{
-		$sql = 'insert into expenses values( ?, ?, ?, ?, ?, ?, ?, ? )';
+		$type_id = '';
+		//If the expense type doesn't exist, then create it.
+		if( ($type_id = $this->get_expense_type_id($type)) == NULL )
+		{
+			$type_id = $this->create_expense_type($type, $comment);
+		}
+
+		//TODO: Finish location get or create methods
+
+		$sql = 'insert into expenses values( NULL, ?, ?, ?, ?, ?, ?, ? )';
 
 		//Set the date 
 		$this->load->helper('date');
 		$timestamp = now();
-		
-		$query = $this->db->query( $sql, array($timestamp, $current, $type_id, $cost, $interval,
-													 $comment, $location_id, $user_id) );	
+	
+		$query = $this->db->query( $sql, array($timestamp, true, $cost,
+		   	$interval, $type_id, $location_id, $user_id) );	
 	}
+
+	/**
+	 * Create an expense type and return its id.
+	 */
+	function create_expense_type( $type, $comment )
+	{
+		$sql = 'insert into expense_types values( NULL, ?, ?)';
+
+		$this->db->query( $sql, array($type, $comment) );
+		
+
+		return $this->db->insert_id();
+	}
+
+	/**
+	 * Search for the expense by the title parameter, and return the id of expense
+	 * if it is found. If the expense wasn't found, then return null.
+	 *
+	 * @param string type is the type of the expense.
+	 */
+	function get_expense_type_id( $type )
+	{
+		$sql = 'SELECT id FROM expense_types WHERE type = ?;';
+
+		$query = $this->db->query( $sql, array($type) );
+
+		//$id = 'type: ' . $type . '<pre>' . var_dump($query->result_array()) . '</pre>';
+		//show_error($id);
+		if( $query->num_rows() < 1)
+		{
+			return NULL;
+		}
+		else
+		{
+			//I would prefer this. return $query->result_array()[0]['id'];
+			$result = $query->result();
+			$result = $result[0];
+			return $result->id;
+		}
+	}
+	
 
 	/*
 		Get all the types and their ids from the expense_types table.
 		
 		@return an array of all the types and their ids
 	*/
-	function get_types()
+	function get_all_types()
 	{
 		$sql = 'select id, type from expense_types;';
 		
@@ -84,8 +135,11 @@ class Expenses extends CI_Model
 	*/
 	function get_user_expense_types( $user_id )
 	{
-		$sql = 'select type,id from expense_types
-					where id = ( select type_id from expenses where user_id = ? group by type_id )';
+		$sql = 'select expense_types.type, expense_types.id from expenses
+					inner join expense_types
+					on expenses.type_id = expense_types.id
+					where expenses.user_id = ?
+					group by expense_types.type';
 
 		$query = $this->db->query( $sql, array($user_id) );
 		
@@ -93,14 +147,17 @@ class Expenses extends CI_Model
 	}
 
 	/*
-		Return all of the current expenses in an associative array grouped by their type in arrays.
+		Return all of the current expenses in an associative array grouped
+	   	by their type in arrays.
 
-		@return an associative array with the key of the expense type, holding an array of the expenses for that type.
+		@return an associative array with the key of the expense type,
+	   	holding an array of the expenses for that type.
 	*/
 	function get_current_expenses_grouped_for_user( $user_id )
 	{
 		//Query to get the expenses from the database for a specific type.
-		$sql = 'select expense_types.type, expense_types.comment, expenses.cost, expenses.interv, locations.country, locations.state, locations.city
+		$sql = 'select expense_types.type, expense_types.comment, expenses.cost,
+				expenses.interv, locations.country, locations.state, locations.city
 					from expenses
 					left join expense_types
 					on expense_types.id = expenses.type_id

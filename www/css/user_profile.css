@@ -1,10 +1,9 @@
 .profile-info-section{
 	width: 100%;
-	height: 300px;
 }
 
 hr{
-	margin-top: 0px;
+	margin-top: 10px;
 }
 
 .btn-add-expense{
@@ -112,3 +111,66 @@ hr{
 	max-width: 360px;
 }
 
+#usersFirstName, #usersLastName{
+	font-family: inherit;
+  	font-weight: 500;
+  	line-height: 1.1;
+  	font-size: 30px;
+  	margin-bottom: 10px;
+}
+
+#editUserProfileData{
+	margin-top: 10px;
+	font-size: 18px;
+	cursor: pointer;
+}
+
+.firstLast-name-formGroup{
+	margin-bottom: 0px;
+	padding-right: 0px;
+}
+
+.success{
+	border: 1px solid green;
+}
+
+.form-control.error{
+	border: 1px solid #E13300;
+}
+
+#editUserFirstName-error, #editUserLastName-error, #editUserEmail-error, #editUserUsername-error, #editUserPassword-error, #currentUserPassword-error{
+	color: #E13300;
+}
+
+.error-show{
+	display: inline !important;
+}
+
+.update-profile-success-wrapper, .update-profile-error-wrapper{
+	position: fixed;
+	left: 50%;
+	margin-top: 10px;
+	z-index: 10;
+	display: none;
+	width: 350px;
+	margin-left: -175px;
+}
+
+
+#update-profile-success{
+	background-color: #d9edf7;
+	border-color: #bce8f1;
+	color: #31708f;
+	z-index: 10;
+	border-radius: 5px;
+	text-align: center;
+}
+
+#update-profile-error{
+	background-color: #f2dede;
+	border-color: #ebccd1;
+	color: #a94442;
+	z-index: 10;
+	border-radius: 5px;
+	text-align: center;
+}
