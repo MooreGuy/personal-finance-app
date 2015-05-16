@@ -20,7 +20,7 @@ class Community_board_forums extends Account
 		function On load for the community forums page
 
 	*/
-	function forums( $tags = 'none', $offset = 0 )
+	function forums( $offset = 0, $tags = 'none' )
 	{
 
 		$data['loginStatus'] = $this->checkLoginStatus();
