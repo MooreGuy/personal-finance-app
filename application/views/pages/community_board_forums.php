@@ -415,9 +415,10 @@
 						  			echo "</div>";
 								
 							}
-							
 
-						 $x++;	      			
+							//Pagination links.
+							echo $links;
+							$x++;
 						}
 					} else {
 						echo "<div class='container no-posts-container'>";

@@ -1,5 +1,4 @@
 <?php if( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 include_once( APPPATH . 'core/account.php' );
 
 /*
@@ -44,7 +43,6 @@ class Community_board_forums extends Account
 		//Get any posts the user has reported on
 		$data['userReport'] = $this->Comm_forums->getFlaggedPosts($data['userId']);
 
-/*
 		$this->load->library('pagination'); 
 		$this->load->helper('url');
 		$config = array(); 
@@ -80,7 +78,6 @@ class Community_board_forums extends Account
 
 		// generate links 
 		$data['links'] = $this->pagination->create_links(); 
-*/
 
 		
 
