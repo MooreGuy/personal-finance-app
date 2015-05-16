@@ -283,7 +283,7 @@
 			}
 			$sql .= ' limit ?, ?';
 
-			$query = $this->db->query($sql, array($category, $offset, $numberOfPosts));
+			$query = $this->db->query($sql, array($category, intval($offset), $numberOfPosts));
 			/*
 			if($query == NULL){
 				$user_names = NULL;
