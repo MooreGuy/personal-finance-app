@@ -416,8 +416,6 @@
 								
 							}
 
-							//Pagination links.
-							echo $links;
 							$x++;
 						}
 					} else {
@@ -446,41 +444,10 @@
 				<div class="container">
 					<div class="row">
 						<nav class="post-nav">
-
-							  	<?php 
-							  		//echo $links;
-							  	?>
-							    	<?php /*
-							    		$i = 1;
-							    		foreach ($all_posts as $key => $value) {
-							    			if($i > 10){
-							    				echo "<ul class='pagination pagination-bottom'>";
-							    					echo "<li>";
-								      					echo "<a href='#' aria-label='Previous'>";
-								        					echo "<span aria-hidden='true'>&laquo;</span>";
-								      					echo "</a>";
-							    					echo "</li>";
-							    			}
-							    			//Every 10 posts incrament the pagination by 1
-							    			if($i % 10 == 0){
-							    				echo "<li><a href='#''>" . $i . "</a></li>";
-							    			}
-
-							    			if($i > 10){
-								    				echo "<li>";
-								      					echo "<a href='#' aria-label='Next'>";
-								        					echo "<span aria-hidden='true'>&raquo;</span>";
-								      					echo "</a>";
-								    				echo "</li>";
-								  				echo "</ul>";
-							    			}
-
-							    			$i++;
-							    		}*/
-							    	?>
-							    	
-							    
-							    	
+							<?php
+								//Pagination links.
+								echo $links;
+							?>
 						</nav>
 					</div>
 				</div>

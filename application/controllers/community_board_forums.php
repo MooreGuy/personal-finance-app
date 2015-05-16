@@ -6,6 +6,8 @@ include_once( APPPATH . 'core/account.php' );
  */
 class Community_board_forums extends Account
 {
+	const NUMBEROFPOSTS = 10;
+
 	function __construct(){
 		parent::__construct();
 	
@@ -18,8 +20,8 @@ class Community_board_forums extends Account
 		function On load for the community forums page
 
 	*/
-	function forums( $tags = 'none' )
-	{		
+	function forums( $tags = 'none', $offset = 0 )
+	{
 
 		$data['loginStatus'] = $this->checkLoginStatus();
 
@@ -28,9 +30,15 @@ class Community_board_forums extends Account
 		$data['user_name'] = $this->User->get_user_name( $this->session->userdata('id') );
 		$data['user_type'] = $this->User->get_user_type($this->session->userdata('id'));
 
+		/*
 		//Get all user posts for transport
 		$data['all_posts'] = $this->Comm_forums->getAllPosts('transport', 'top');
 		//$data['all_comments'] = $this->Comm_forums->getAllUserComments('transport');
+		$data['all_comments'] = $this->Comm_forums->getAllComments('transport');
+		 */
+
+		$data['all_posts'] = $this->Comm_forums->getPosts('transport', 'top', $offset,
+		 self::NUMBEROFPOSTS);
 		$data['all_comments'] = $this->Comm_forums->getAllComments('transport');
 
 		//Get the usernames for the posts and comments
@@ -43,14 +51,13 @@ class Community_board_forums extends Account
 		//Get any posts the user has reported on
 		$data['userReport'] = $this->Comm_forums->getFlaggedPosts($data['userId']);
 
-		$this->load->library('pagination'); 
+		$this->load->library('pagination');
 		$this->load->helper('url');
-		$config = array(); 
-		$config["base_url"] = base_url() . '/community_board_forums/forums'; 
-		$config['total_rows'] = $this->Comm_forums->getPostCount(); 
-		$config["per_page"] = 10; 
-		$config["uri_segment"] = 3; 
-
+		$config = array();
+		$config["base_url"] = base_url() . '/community_board_forums/forums';
+		$config['total_rows'] = $this->Comm_forums->getPostCount();
+		$config["per_page"] = 10;
+		$config["uri_segment"] = 3;
 
 		// twitter bootstrap markup 
 		$config['full_tag_open'] = '<ul class="pagination pagination-sm">'; 
@@ -78,8 +85,6 @@ class Community_board_forums extends Account
 
 		// generate links 
 		$data['links'] = $this->pagination->create_links(); 
-
-		
 
 		$this->load->view( 'templates/header', $data );
 		$this->load->view( 'pages/community_board_forums', $data);
