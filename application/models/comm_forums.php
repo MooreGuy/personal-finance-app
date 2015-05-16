@@ -256,13 +256,42 @@
 				case 'new': $this->db->order_by('timestamp', 'desc');
 					break;
 			}
-			
+
 			$query = $this->db->get();
+
+			$posts = $query->result();
+
+			return $posts;
+		}
+
+
+		function getPosts($category, $filter, $offset, $numberOfPosts){
+
+			$sql = 'select users.username, users.id, posts.id, posts.category, 
+						posts.upvotes_total, posts.userId, posts.content, 
+						posts.title, posts.parentId 
+						from users 
+						join posts on posts.userId = users.id 
+						where parentId = 0 
+						and category = ?';
+
+			switch($filter){
+				case 'top': $sql .= ' order by posts.upvotes_total desc';
+					break;
+				case 'new': $sql .= ' order by posts.timestamp desc';
+					break;
+			}
+			$sql .= ' limit ?, ?';
+
+			$query = $this->db->query($sql, array($category, $offset, $numberOfPosts));
+			/*
 			if($query == NULL){
 				$user_names = NULL;
 			}else{
 				$user_names = $query->result();
 			}
+			*/
+			$user_names = $query->result();
 			
 			return $user_names;
 		}
@@ -481,10 +510,17 @@
 			THIS FUNCTION IS NO LONGER IN USE: PLEASE KEEP IN 
 		*/
 		function getPostCount(){
-			$this->db->select();
-			$this->db->from('posts');
-			$this->db->where('id', 0);
-			return $this->db->count_all();
+			/*
+				$this->db->select();
+				$this->db->from('posts');
+				//$this->db->where('id', 0);
+				return $this->db->count_all();
+			 */
+
+			$sql = 'select COUNT(id) from posts';
+			$query = $this->db->query($sql);
+			$count = $query->result_array();
+			return $count[0]["COUNT(id)"];
 		}
 	}
 ?>
