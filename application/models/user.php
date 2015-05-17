@@ -204,6 +204,28 @@ class User extends CI_Model
 		}
 	}
 
+	/*
+		Gets the type of the user
+
+		@return string of the type of user
+	*/
+	function get_user_type($user_id){
+		$this->db->select('privelege_level');
+		$query = $this->db->get_where('users', array('id' => $user_id));
+
+		if( $query->num_rows() > 0 )
+		{
+			$query_result = $query->result();
+			
+			return $query_result[0]->privelege_level;
+		}
+		else
+		{
+			return NULL;
+		}
+
+	}
+
 	function checkPassword($userCurrentPassword, $userId){
 		$this->db->select('password');
 		$this->db->from('users');
@@ -246,5 +268,3 @@ class User extends CI_Model
 	}
 
 }
-
-?>

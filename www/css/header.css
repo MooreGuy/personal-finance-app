@@ -68,7 +68,7 @@ html {
 	overflow-y: hidden;
 }
 
-#editPostBody, #addPostBody, #addCommentBody{
+#editPostBody, #addPostBody, #addCommentBody, #editCommentBody, #flagForumPostCommentBody{
 	max-width: 570px;
 	min-width: 570px;
 	min-height: 300px;
@@ -78,7 +78,7 @@ html {
 	padding-left: 0px;
 }
 
-.addPostCategoryLabel{
+.addPostCategoryLabel, .flagForumPostLabel{
 	display: inline-block;
 }
 
@@ -96,11 +96,19 @@ html {
 	border: 1px solid #E13300;
 }
 
+<<<<<<< HEAD
 #addPostBody-error, #addPostTitle-error, #addPostCategory-error, #addCommentBody-error, #editPostBody-error, #editPostTitle-error, .error-text-info{
 	color: #E13300;
 }
 
 .update-profile-success-wrapper, .update-profile-error-wrapper, .update-expenses-success-wrapper{
+=======
+#flagForumPost-error, #addPostBody-error, #addPostTitle-error, #addPostCategory-error, #addCommentBody-error, #editPostBody-error, #editPostTitle-error, #editCommentTitle-error{
+	color: #E13300;
+}
+
+.flag-post-success-wrapper, .noUser-vote-warning-wrapper, .add-post-success-wrapper, .edit-post-success-wrapper, .add-comment-success-wrapper, .delete-post-success-wrapper, .edit-comment-success-wrapper, .delete-comment-success-wrapper, .noUser-vote-warning-wrapper{
+>>>>>>> 4cb924bcf98f4a4c9539f01adc66e663843b47af
 	position: fixed;
 	left: 50%;
 	margin-top: 10px;
@@ -111,7 +119,11 @@ html {
 }
 
 
+<<<<<<< HEAD
 #update-profile-success, #update-expense-success{
+=======
+#flag-podt-success, #add-post-success, #edit-post-success, #add-comment-success, #delete-post-success, #edit-comment-success, #delete-comment-success{
+>>>>>>> 4cb924bcf98f4a4c9539f01adc66e663843b47af
 	background-color: #d9edf7;
 	border-color: #bce8f1;
 	color: #31708f;
@@ -120,6 +132,7 @@ html {
 	text-align: center;
 }
 
+<<<<<<< HEAD
 #update-profile-error{
 	background-color: #f2dede;
 	border-color: #ebccd1;
@@ -127,4 +140,45 @@ html {
 	z-index: 10;
 	border-radius: 5px;
 	text-align: center;
+=======
+#noUser-vote-warning{
+	background-color: #fcf8e3;
+	color: #8a6d3b;
+	z-index: 10;
+	border-radius: 5px;
+	text-align: center;
+	border-color: #faebcc;
+}
+
+.no-posts-wrapper{
+	width: 100%;
+	margin-top: 15px;
+	background-color: #d9edf7;
+	position: relative;
+	margin-left: -30px;
+	text-align: center;
+}
+
+.no-comments-wrapper{
+	width: 95%;
+	background-color: #d9edf7;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+#no-posts-message, #no-comments-message{
+	background-color: #d9edf7;
+	border-radius: 5px;
+}
+
+.no-comments-col{
+	margin-left: -15px;
+}
+
+#flagForumPost{
+	display: block;
+>>>>>>> 4cb924bcf98f4a4c9539f01adc66e663843b47af
 }

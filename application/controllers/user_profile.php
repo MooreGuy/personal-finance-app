@@ -41,6 +41,7 @@ class User_profile extends Account {
 
 
 		$data['user_data'] = $this->User->get_user_profile_data( $this->user_id );
+		$data['user_type'] = $this->User->get_user_type($this->user_id);
 
 		$data['expenses'] = $this->expenses->get_current_expenses_grouped_for_user( $this->user_id );
 
@@ -48,6 +49,8 @@ class User_profile extends Account {
 	    $this->load->view('pages/'.$page, $data);
 	    $this->load->view('templates/footer', $data);
 
+		$this->load->model('Graph');
+		$this->Graph->getUserExpenseTypeGraphs($this->user_id);
 	}
 
 	function add_category_form()

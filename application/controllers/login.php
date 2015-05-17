@@ -38,6 +38,7 @@ class Login extends Account
 
 		//Get the user's name from the parent class.
 		$data['user_name'] = $this->user_name;
+		$data['user_type'] = $this->User->get_user_type($this->session->userdata('id'));
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('pages/login', $data);
