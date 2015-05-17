@@ -1,28 +1,65 @@
-<!-- Edit Category info Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+
+<!-- Delete Category info Modal -->
+<div class="modal fade" id="deleteCatModal" tabindex="-1" role="dialog" aria-labelledby="deleteCatModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       	<div class="modal-content">
         	<div class="modal-header">
-        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        		<h4 class="modal-title" id="editModalLabel">Car</h4>
+        		<h2 class="modal-title" id="deleteCatModalLabel">Delete category and expenses</h2>
       		</div>
       		
-        		<form class="edit-modal-form">
-				  	<div class="form-group">
-				    	<div class="input-group">
-					  		<span class="input-group-addon" id="amount-addon">$</span>
-					  		<input type="text" class="form-control" placeholder="Amount" aria-describedby="amount-addon">
-						</div>
-				  	</div>
+        	<div class="modal-body">
+        		<div class="contianer">
+        			<div class="row">
+        				<div class="col-md-6 deleteCatExpenseText">
 
-				  	<div class="form-group">
-				    	<label for="exampleInputPassword1">Password</label>
-				    	<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-				  	</div>
-				</form>
+        				</div>
+        			</div>
+        		</div>
+
+        	</div>
       		
       		<div class="modal-footer">
-    			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    			<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+    			<button type="button" class="btn btn-danger">Delete</button>
+  			</div>
+    	</div>
+  	</div>
+</div>
+
+<!-- Edit Category info Modal -->
+<div class="modal fade" id="editCatModal" tabindex="-1" role="dialog" aria-labelledby="editCatModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      	<div class="modal-content">
+        	<div class="modal-header">
+        		
+        		<h2 class="modal-title" id="editCatModalLabel">Edit a Category</h2>
+      		</div>
+      		
+        		<div class="container">
+							<h4>Category:</h4>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="input-group">
+										<input type="text" class="form-control" placeholder= "" id="category-title" aria-describedby="category-title">
+									</div>
+								</div>
+							</div>	
+						</div>
+					
+					<div class="container expense-container">
+						<h4 class="editCatExpense">Expenses:</h4><label class="error" id="editExpenseTitle-error" for="title"></label>
+					
+						
+						<div class='row'>
+							<div class="col-md-6">
+								//List of expenses
+							</div>
+						</div>
+						
+					</div>
+      		
+      		<div class="modal-footer">
+    			<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
     			<button type="button" class="btn btn-primary">Save</button>
   			</div>
     	</div>
@@ -130,9 +167,6 @@
 	      		</div>
       		</div>
       		
-      		
-        		
-      		
       		<div class="modal-footer">
     			<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
     			<button type="button" class="btn btn-primary editUserProfileInfo">Save</button>
@@ -178,18 +212,6 @@
 
 			  	</div>
 			</div>
-
-			<!-- User Category Add & Delete Section -->
-			<div class="panel panel-default category-affix" data-spy='affix'>
-			  	<div class="panel-body category-controls-section">
-
-			    	<h4>Category Controls</h4>
-			    	<hr>
-
-			    	
-			    	<button type="button" class="btn btn-danger category-delete">Delete Category</button>
-			  	</div>
-			</div>
 		</div>
 
 
@@ -232,8 +254,10 @@
 					echo ucfirst($key);
 
 					echo '</a>';
+					//Delete
+					echo '<span class="glyphicon glyphicon-trash category-delete pull-right" data-toggle="modal" data-target="#deleteCatModal" data-category=""></span>';
 					//Edit
-					echo '<span class="pull-right"><a href="" data-toggle="modal" data-target="#editModal">Edit</a></span>';
+					echo '<span class="pull-right"><a href="" data-toggle="modal" data-target="#editCatModal" data-category="">Edit</a></span>';
 					echo '</h4>';
 					echo '</div>'; //Panel-heading
 				
@@ -258,7 +282,7 @@
 						echo "</li>";
 					foreach( $expense as $item )
 					{
-						echo '<li class="list-group-item row">';
+						echo '<li class="list-group-item row" data-expenseId="'. $item->id .'">';
 
 						//The name of the expense.
 						echo '<span class="expense-name col-md-6">';
@@ -323,39 +347,68 @@
 <div class="expenseWrapper" data-expense=''>
 	<form class="addCatExpenseForm" id="">
 		
-		
-			<div class='col-md-4 title-col form-group'>
-	
+		<div class='col-md-4 title-col form-group'>
 				<!--<label class="error" id="addExpenseTitle-error" for="title"></label>-->
 				<input name='title' id="" type='text' class='form-control' placeholder='Title' data-expense='' value="">
-			
-	
 		</div>
 
 		<div class="col-md-4 form-group">
 			<div class=' input-group'>
-		
 				<!--<label class="error" id="addExpenseAmount-error" for="amount"></label>-->
 				<span class="input-group-addon" id="amount-addon">$</span>
 				<input name='amount' id="" type='text' class='form-control' placeholder='Amount' data-expense='' value="">
 			</div>
 		</div>
 
-		
-			<div class='col-md-3 occurence-col form-group'>
-	
-				<!--<label class="error" id="addExpenseOccurence-error" for="occurence"></label>-->
-				<select class='form-control' name='' id="" data-expense='' value="">
-					<option selected disabled>Occurence</option>
-					<option value='daily'>Daily</option>
-					<option value='weekly'>Weekly</option>
-					<option value='biweekly'>Bi-weekly</option>
-					<option value='monthly'>Monthly</option>
-					<option value='yearly'>Yearly</option>
-				</select>
-			
+		<div class='col-md-3 occurence-col form-group'>
+			<!--<label class="error" id="addExpenseOccurence-error" for="occurence"></label>-->
+			<select class='form-control' name='' id="" data-expense='' value="">
+				<option selected disabled>Occurence</option>
+				<option value='daily'>Daily</option>
+				<option value='weekly'>Weekly</option>
+				<option value='biweekly'>Bi-weekly</option>
+				<option value='monthly'>Monthly</option>
+				<option value='yearly'>Yearly</option>
+			</select>	
 		</div>
 	</form>
+
+	<div class='col-md-1 trash-col'>
+		<span class="glyphicon glyphicon-trash deleteExpenseFromCat" data-expense=''></span>
+	</div>
+</div>
+</script>
+
+<script id="editExpenseTemplate" type="text/editExpenseTemplate">
+<div class="expenseWrapper" data-expense=''>
+	<form class="editCatExpenseForm" id="">
+		
+		<div class='col-md-4 title-col form-group'>
+			<!--<label class="error" id="editExpenseTitle-error" for="title"></label>-->
+			<input name='title' id="" type='text' class='form-control' placeholder='Title' data-expense='' value="">
+		</div>
+
+		<div class="col-md-4 form-group">
+			<div class=' input-group'>
+				<!--<label class="error" id="editExpenseAmount-error" for="amount"></label>-->
+				<span class="input-group-addon" id="amount-addon">$</span>
+				<input name='amount' id="" type='text' class='form-control' placeholder='Amount' data-expense='' value="">
+			</div>
+		</div>
+
+		<div class='col-md-3 occurence-col form-group'>
+			<!--<label class="error" id="editExpenseOccurence-error" for="occurence"></label>-->
+			<select class='form-control' name='' id="" data-expense='' value="">
+				<option selected disabled>Occurence</option>
+				<option value='daily'>Daily</option>
+				<option value='weekly'>Weekly</option>
+				<option value='biweekly'>Bi-weekly</option>
+				<option value='monthly'>Monthly</option>
+				<option value='yearly'>Yearly</option>
+			</select>	
+		</div>
+	</form>
+	
 	<div class='col-md-1 trash-col'>
 		<span class="glyphicon glyphicon-trash deleteExpenseFromCat" data-expense=''></span>
 	</div>

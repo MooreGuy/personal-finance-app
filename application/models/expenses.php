@@ -156,7 +156,7 @@ class Expenses extends CI_Model
 	{
 		//Query to get the expenses from the database for a specific type.
 		$sql = 'select expense_types.type, expense_types.total_cost, expenses.cost,
-				expenses.interv, expenses.title
+				expenses.interv, expenses.title, expenses.id
 					from expenses
 					left join expense_types
 					on expense_types.id = expenses.type_id

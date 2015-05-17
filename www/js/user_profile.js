@@ -215,6 +215,7 @@ $(document).ready(function() {
 			count++;
 		});
 		console.log(data);
+
 		addCatAndExpenses(data);
 	});
 
@@ -288,6 +289,7 @@ $(document).ready(function() {
 	}
 
 	
+	
 
 	$('.addExpenseToForm').on("click", function(){
 		//Get the number of expense input rows
@@ -333,6 +335,10 @@ $(document).ready(function() {
 		if(expenseCount <= 7){
 			$('.newExpenseForCat').css({'overflow-y': ''});
 		}
+	});
+
+	$('.category-delete').on("click", function(){
+		
 	});
 
 	//When the close button on a modal is clicked clear the form and all validation messages
