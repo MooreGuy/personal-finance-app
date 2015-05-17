@@ -35,64 +35,36 @@
 		<div class="modal-content">
 			<form action="<?php echo base_url(); ?>/user_profile/add_category_form" method="post">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h2 class="modal-title" id="addCatModal">Add A Category</h2>
+					
+					<h2 class="modal-title" id="addCatModalTitle">Add a Category</h2>
 				</div>
 
 						<div class="container">
-							<h3>Title</h3>
+							<h4>Category:</h4>
 							<div class="row">
 								<div class="col-md-6">
 									<div class="input-group">
-										<input type="text" class="form-control" placeholder= "OLD Category Title" aria-describedby="amount-addon">
+										<input type="text" class="form-control" placeholder= "Category" id="category-title" aria-describedby="category-title">
 									</div>
 								</div>
 							</div>	
 						</div>
 					
-					<div class="container">
-						<h3>Expense</h3>
-						<a><h4>New Expense</h4></a>
-					</div>
-					<div class="container">
-						<div class="row">
-							<div class="col-md-2">
-								<div class="form-group">
-									<div class="input-group">
-										<input name="title" type="text" class="form-control" placeholder="Title" aria-describedby="amount-addon">
-									</div>
-								</div>
-							</div>
-							
-							<div class="col-md-2">
-								<div class="form-group">
-									<div class="input-group">
-										<span class="input-group-addon" id="amount-addon">$</span>
-										<input name="amount" type="text" class="form-control" placeholder="Amount" aria-describedby="amount-addon">
-									</div>
-								</div>
-							</div>
-
-							<div class="col-md-2">
-								<div class="form-group">
-									<div class="input-group">
-										<select class="form-control" name="occurrence">
-											<option value="daily">Daily</option>
-											<option value="weekly">Weekly</option>
-											<option value="biweekly">Biweekly</option>
-											<option value="monthly">Monthly</option>
-											<option value="yearly">Yearly</option>
-										</select>
-									</div>
-								</div>
+					<div class="container expense-container">
+						<h4 class="addCatExpense">Expenses:</h4><label class="error" id="addExpenseTitle-error" for="title"></label>
+						<span class="glyphicon glyphicon-plus addExpenseToForm"></span>
+						
+						<div class='row'>
+							<div class="col-md-6 newExpenseForCat">
+								
 							</div>
 						</div>
-					</div> <!-- closes container for 3 categories row -->
-			 
+						
+					</div>
 					
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-success">Add</button>
+						<button type="button" class="btn btn-default pull-left closeAddCat" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-success addCatAndExpenses">Add</button>
 					</div>
 				</div>
 			</form>
@@ -156,10 +128,7 @@
 		      			</div>	
 		      		</div>
 	      		</div>
-      		</div>
-      		
-      		
-        		
+      		</div>	
       		
       		<div class="modal-footer">
     			<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
@@ -169,24 +138,10 @@
   	</div>
 </div>
 
-<!-- Success alert for when the user successfully updates thier profile information -->
-<div class="update-profile-success-wrapper">
-	<div class="well well-sm" id="update-profile-success">
-		<span class="text-info success-text-info">Your profile has successfully been updated.</span>
-	</div>
-</div>
 
-<!-- error alert for when the user fails updates thier profile information -->
-<div class="update-profile-error-wrapper">
-	<div class="well well-sm" id="update-profile-error">
-		<span class="text-info error-text-info">Opps. Something went wrong. Please try again later.</span>
-	</div>
-</div>
-
-<div class="container user_profile_wrapper">
 
 		
-
+<div class="container user_profile_wrapper">
 
 		<div class="col-md-4">
 
@@ -196,7 +151,7 @@
 
 			    	<?php echo '<span id="usersFirstName">' . $user_data[0]['first_name'] . ' </span> <span id="usersLastName">' . $user_data[0]['last_name'] . '</span>'; ?>
 			    	<?php echo '<span><a id="editUserProfileData" class="pull-right" data-toggle="modal" data-target="#editUserProfileModal">Edit</a></span>'; ?>
-			    	<hr>
+			    	<hr class='profile-info-hr'>
 
 					<?php	
 					//Fill in the rest of the user data.
@@ -211,7 +166,7 @@
 							echo '<label for=' . $key . '>' . ucfirst($key) . ':</label>';
 							echo '<p id="' . $key .'">' . $user . '</p>';
 						}else{
-							echo '<label for=' . $key . '>Account cration date:</label>';
+							echo '<label for=' . $key . '>Account creation date:</label>';
 							echo '<p id="' . $key . '">' . $user . '</p>';
 						}
 						
@@ -228,7 +183,7 @@
 			    	<h4>Category Controls</h4>
 			    	<hr>
 
-			    	<button type="button" class="btn btn-success category-add" data-toggle="modal" data-target="#addCatModal">Add Category</button>
+			    	
 			    	<button type="button" class="btn btn-danger category-delete">Delete Category</button>
 			  	</div>
 			</div>
@@ -239,8 +194,8 @@
 		
 		<div class="col-md-8">
 			<!--<div class="container">-->
-			<h1>Expenses</h1>
-			<hr>
+			<h1 class="expense-title">Expenses</h1><button type="button" class="btn btn-success category-add" data-toggle="modal" data-target="#addCatModal">Add Category</button>
+			<hr class="expense-hr">
 
 			<?php
 			$x = 0;
@@ -288,8 +243,16 @@
 						echo 'aria-labeldby="collapseListGroupHeading' . $x . '" ';
 						echo 'aria-expanded="true">';
 
-					echo '<ul class="list-group category-list container">';
+					//echo "<div class='container'>";
+						//echo "<div class='row'>";
+							//echo "<label class='col-md-3'>Title</label><label class='col-md-3'>Cost</label><label class='col-md-3'>Occurense</label>";
+						//echo "</div>";
+					//echo "</div>";
 
+					echo '<ul class="list-group category-list container">';
+						echo '<li class="list-group-item row">';
+							echo "<label class='col-md-6'>Expense</label><label class='col-md-2 expenseCostTitle'>Cost</label><label class='col-md-3 expenseOccurenceTitle'>Occurence</label>";
+						echo "</li>";
 					foreach( $expense as $item )
 					{
 						echo '<li class="list-group-item row">';
@@ -297,7 +260,7 @@
 						//The name of the expense.
 						echo '<span class="expense-name col-md-6">';
 						//THIS IS WHAT THIS SHOULD BE NOT, TYPE. echo $item->name;
-						echo ucfirst($item->type);
+						echo ucfirst($item->title);
 						echo '</span>';
 
 						//The cost of the expense.
@@ -306,16 +269,17 @@
 						echo '</span>';
 
 						//The interval of the expense
-						echo '<span class="expense-interval col-md-2">';
+						echo '<span class="expense-interval col-md-3">';
 						echo $item->interv; //This needs to be pretefied.
 						echo '</span>';
-						
-						//HIDDEN
-						echo '<span class="delete-expense-item">X</span>';
-					
+						//echo $item->total_cost;
 						echo '</li>';
 					}
-
+						//echo '<li class="list-group-item row">';
+							//echo "<label class='col-md-6'>Total Cost:</label><label class='col-md-2 catTotalCost'>";
+							//echo $expenses[$key]->total_cost;
+							//echo "</label><label class='col-md-3 expenseOccurenceTitle'>Yearly</label>";
+						//echo "</li>";
 					echo '</ul>';
 					echo '</div>'; //Panel-info header
 
@@ -352,5 +316,47 @@
 
 </div><!-- /.container -->
 
+<script id="addExpenseTemplate" type="text/addExpenseTemplate">
+<div class="expenseWrapper" data-expense=''>
+	<form class="addCatExpenseForm" id="">
+		
+		
+			<div class='col-md-4 title-col form-group'>
+	
+				<!--<label class="error" id="addExpenseTitle-error" for="title"></label>-->
+				<input name='title' id="" type='text' class='form-control' placeholder='Title' data-expense='' value="">
+			
+	
+		</div>
+
+		<div class="col-md-4 form-group">
+			<div class=' input-group'>
+		
+				<!--<label class="error" id="addExpenseAmount-error" for="amount"></label>-->
+				<span class="input-group-addon" id="amount-addon">$</span>
+				<input name='amount' id="" type='text' class='form-control' placeholder='Amount' data-expense='' value="">
+			</div>
+		</div>
+
+		
+			<div class='col-md-3 occurence-col form-group'>
+	
+				<!--<label class="error" id="addExpenseOccurence-error" for="occurence"></label>-->
+				<select class='form-control' name='' id="" data-expense='' value="">
+					<option selected disabled>Occurence</option>
+					<option value='daily'>Daily</option>
+					<option value='weekly'>Weekly</option>
+					<option value='biweekly'>Bi-weekly</option>
+					<option value='monthly'>Monthly</option>
+					<option value='yearly'>Yearly</option>
+				</select>
+			
+		</div>
+	</form>
+	<div class='col-md-1 trash-col'>
+		<span class="glyphicon glyphicon-trash deleteExpenseFromCat" data-expense=''></span>
+	</div>
+</div>
+</script>
 <!-- user_profile.js -->
 <script type="text/javascript" src="/js/user_profile.js"></script>

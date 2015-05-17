@@ -3,7 +3,11 @@
 }
 
 hr{
-	margin-top: 10px;
+	margin-top: 0px;
+}
+
+.profile-info-hr{
+	margin-top: 3px;
 }
 
 .btn-add-expense{
@@ -37,9 +41,11 @@ hr{
 	margin-bottom: 0px;
 	border-top: 0px;
 	max-height: 300px;
-    max-width: 340px;
+    max-width: 358px;
     padding-right: 0px;
     margin-right: 0px;
+    margin-left: 0px;
+    overflow-x: hidden;
 }
 
 .category-list > .list-group-item{
@@ -71,7 +77,7 @@ hr{
 }
 
 .category-list-collapse{
-	overflow: auto;
+	overflow-x: hidden;
 	max-height: 300px;
 }
 
@@ -101,9 +107,9 @@ hr{
 }
 
 .category-add, .category-delete{
-	width: 100%;
-	display: block;
+	display: inline-block;
 	margin-bottom: 10px;
+	margin-left: 10px;
 }
 
 .category-affix{
@@ -130,6 +136,10 @@ hr{
 	padding-right: 0px;
 }
 
+.expense-title{
+	display: inline-block;
+}
+
 .success{
 	border: 1px solid green;
 }
@@ -138,7 +148,7 @@ hr{
 	border: 1px solid #E13300;
 }
 
-#editUserFirstName-error, #editUserLastName-error, #editUserEmail-error, #editUserUsername-error, #editUserPassword-error, #currentUserPassword-error{
+#addExpenseOccurence-error, #addExpenseAmount-error, #addExpenseTitle-error, #editUserFirstName-error, #editUserLastName-error, #editUserEmail-error, #editUserUsername-error, #editUserPassword-error, #currentUserPassword-error{
 	color: #E13300;
 }
 
@@ -146,7 +156,7 @@ hr{
 	display: inline !important;
 }
 
-.update-profile-success-wrapper, .update-profile-error-wrapper{
+.update-profile-success-wrapper, .update-profile-error-wrapper, .update-expenses-success-wrapper{
 	position: fixed;
 	left: 50%;
 	margin-top: 10px;
@@ -157,7 +167,7 @@ hr{
 }
 
 
-#update-profile-success{
+#update-profile-success, #update-expense-success{
 	background-color: #d9edf7;
 	border-color: #bce8f1;
 	color: #31708f;
@@ -173,4 +183,40 @@ hr{
 	z-index: 10;
 	border-radius: 5px;
 	text-align: center;
+}
+
+.addExpenseToForm{
+	color: #5cb85c;
+	display: inline-block;
+	cursor: pointer;
+	margin-left: 5px;
+	margin-bottom: 10px;
+}
+
+.addCatExpense{
+	display: inline-block;
+}
+
+.newExpenseForCat{
+	padding-right: 0px;
+}
+
+.title-col, .expenseCostTitle, .expense-interval, .catTotalCost{
+	padding-left: 0px;
+}
+
+.expenseOccurenceTitle{
+	padding-left: 30px;
+}
+
+.occurence-col{
+	padding-right: 0px;
+}
+
+.trash-col{
+	margin-top: 7px;
+}
+
+.expense-hr{
+	margin-bottom: 0px;
 }
