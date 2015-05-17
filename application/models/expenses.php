@@ -182,10 +182,8 @@ class Expenses extends CI_Model
 	 * Get the average cost of a specific expense type by its expense_type id.
 	 */
 	function get_average_by_type_id($typeID) {
-		$sql = 'select avg(sumTable.sumCost) as avgCost
-					from (select user_id, sum(cost) as sumCost
-						from expenses where type_id = 1
-						group by user_id) as sumTable';
+		$sql = 'select avg(cost) from expenses
+					where type_id = ?';
 
 		$query =$this->db->query($sql, array($typeID));
 
