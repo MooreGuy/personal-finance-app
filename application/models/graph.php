@@ -1,6 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Graph extends CI_Model {
+
+	/**
+	 * Get all expense types for a user, then find the average for eaach expense
+	 * type in the database. Then return both the user's average and j
+	 */
 	function getUserExpenseTypeGraphs($userID) {
 		$this->load->model('User');
 		$this->load->model('Expenses');
@@ -9,16 +14,15 @@ class Graph extends CI_Model {
 		$expenseTypes = $this->Expenses->get_user_expense_types($userID);
 
 		//Get the user base average for each of the expenses types.
-		var_dump($expenseTypes);
+		$graphData = array();
 		foreach($expenseTypes as $type) {
-			echo '</br>';
-			var_dump($type);
 			//Get average for expense type.
 			$expenseTypeAverage = $this->Expenses->get_average_by_type_id($type->id);
 			$expenseTypeAverage = round($expenseTypeAverage,2);
-			var_dump($expenseTypeAverage);
+			$graphData[$type->type] = $expenseTypeAverage;
 		}
 
-		//Create the graphs for each expense type.
+		//Return the graph data to be made into graphs on the client side.
+		return json_encode($graphData);
 	}
 }
