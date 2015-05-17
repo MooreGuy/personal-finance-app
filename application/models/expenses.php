@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Expenses extends CI_Model
 {
@@ -176,11 +176,21 @@ class Expenses extends CI_Model
 			$query = $this->db->query( $sql, array($user_id, $type->id) );
 
 			$grouped_expenses[$type->type] = $query->result();
-
-				
 		}
 
 		return $grouped_expenses;
 	}
+
+	/**
+	 * Get the average cost of a specific expense type by its expense_type id.
+	 */
+	function get_average_by_type_id($typeID) {
+		$sql = 'select avg(cost) from expenses
+					where type_id = ?';
+		$query =$this->db->query($sql, array($typeID));
+
+		$result = $query->result_array();
+
+		return floatval($result[0]['avg(cost)']);
+	}
 }
-?>
