@@ -180,44 +180,6 @@ class Expenses extends CI_Model
 		return $grouped_expenses;
 	}
 
-	function addCat($data){
-		$expenseTypeData = array(
-			'type' => $data[0]['category']
-		);
-
-		$totalCatCost = 0;
-
-		foreach ($data as $key => $value) {
-			if($value == 'cost'){
-				switch($data[$key]['interv']){
-					case 'Weekly': 
-						$totalCatCost += $value * 52;
-						break;
-					case 'Daily':
-						$totalCatCost += $value * 365;
-						break;
-					case 'Bi-weekly':
-						$totalCatCost += $value * 26;
-						break;
-					case 'Monthly':
-						$totalCatCost += $value * 12;
-						break;
-					case 'Yearly':
-						$totalCatCost += $value * 1;
-						break;
-				}
-				
-			}
-		}
-
-			$sql = 'insert into expense_types values(?,?,?)';
-			$query = $this->db->query($sql, array($expenseTypeData, $totalCatCost));
-		
-	}
-
-	function addCatAndExpences($data, $userId){
-		
-		}
-	}
+}	
 
 ?>

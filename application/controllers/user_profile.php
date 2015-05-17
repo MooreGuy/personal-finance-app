@@ -156,7 +156,7 @@ class User_profile extends Account {
 		}	
 
 		
-			$data['title'] = ucfirst('user_profile'); // Capitalize the first letter
+			/*$data['title'] = ucfirst('user_profile'); // Capitalize the first letter
 		$data['loginStatus'] = $this->checkLoginStatus();
 
 		//Get the user's name from the parent class.
@@ -166,7 +166,7 @@ class User_profile extends Account {
 		$data['user_data'] = $this->User->get_user_profile_data( $this->user_id );
 
 		$data['expenses'] = $this->expenses->get_current_expenses_grouped_for_user( $this->user_id );
-			$this->load->view('pages/user_profile', $data);
+			$this->load->view('pages/user_profile', $data);*/
 		
 		
 	}

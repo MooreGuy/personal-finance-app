@@ -99,3 +99,32 @@ html {
 #addPostBody-error, #addPostTitle-error, #addPostCategory-error, #addCommentBody-error, #editPostBody-error, #editPostTitle-error, .error-text-info{
 	color: #E13300;
 }
+
+.update-profile-success-wrapper, .update-profile-error-wrapper, .update-expenses-success-wrapper{
+	position: fixed;
+	left: 50%;
+	margin-top: 10px;
+	z-index: 10;
+	display: none;
+	width: 350px;
+	margin-left: -175px;
+}
+
+
+#update-profile-success, #update-expense-success{
+	background-color: #d9edf7;
+	border-color: #bce8f1;
+	color: #31708f;
+	z-index: 10;
+	border-radius: 5px;
+	text-align: center;
+}
+
+#update-profile-error{
+	background-color: #f2dede;
+	border-color: #ebccd1;
+	color: #a94442;
+	z-index: 10;
+	border-radius: 5px;
+	text-align: center;
+}
