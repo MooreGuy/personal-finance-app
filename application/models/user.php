@@ -50,6 +50,8 @@ class User extends CI_Model
 			$this->account_creation_date = mdate($datestring, $time);
 
 			$this->db->insert( self::USERSTABLE, $this);	
+
+			
 		}
 		else
 		{
@@ -111,7 +113,9 @@ class User extends CI_Model
 	function user_exists( $email )
 	{
 		//QUERY
-
+		//if(isset($_GET["email"])){
+			//$email = $_GET["email"];
+		//}
 		//select only the email and match it against the $email argument.
 		$this->db->select('email');
 		$this->db->where('email', $email);

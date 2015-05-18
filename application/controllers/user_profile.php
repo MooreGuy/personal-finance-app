@@ -53,7 +53,7 @@ class User_profile extends Account {
 		$this->Graph->getUserExpenseTypeGraphs($this->user_id);
 	}
 
-	function add_category_form()
+	/*function add_category_form()
 	{
 		$title = $this->input->post('title');
 		$amount = $this->input->post('amount');
@@ -70,7 +70,7 @@ class User_profile extends Account {
 		   	$title, $comment, $country, $state, $county, $city);
 
 		redirect('user_profile/home', 'location');
-	}
+	}*/
 
 	
 
@@ -129,8 +129,8 @@ class User_profile extends Account {
 		foreach ($data as $key => $value) {
 			if(sizeof($data) > 1){
 				$title = $value['title'];
-			$amount = $value['amount'];
-			$interv = $value['interv'];
+				$amount = $value['amount'];
+				$interv = $value['interv'];
 			}
 			
 

@@ -140,7 +140,7 @@ class Expenses extends CI_Model
 					where expenses.user_id = ?
 					group by expense_types.type';
 
-		$query = $this->db->query( $sql, array($user_id) );
+		$query = $this->db->query( $sql, array($user_id));
 		
 		return $query->result();
 	}
@@ -155,7 +155,7 @@ class Expenses extends CI_Model
 	function get_current_expenses_grouped_for_user( $user_id )
 	{
 		//Query to get the expenses from the database for a specific type.
-		$sql = 'select expense_types.type, expense_types.total_cost, expenses.cost,
+		$sql = 'select expense_types.type, expense_types.total_cost, expenses.type_id, expenses.cost,
 				expenses.interv, expenses.title, expenses.id
 					from expenses
 					left join expense_types

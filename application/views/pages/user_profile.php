@@ -10,8 +10,18 @@
         	<div class="modal-body">
         		<div class="contianer">
         			<div class="row">
-        				<div class="col-md-6 deleteCatExpenseText">
+        				<div class="col-md-12 deleteCatExpenseText">
+        					<label>Category:</label>
+        					<p class="deleteCategoryTitle"></p>
 
+        				
+        					<ul class="list-group delete-category-list" data-category="">
+								<li class="list-group-item row">
+									<label class='col-md-6'>Expense</label><label class='col-md-2 expenseCostTitle'>Cost</label><label class='col-md-3 expenseOccurenceTitle'>Occurence</label>
+								</li>
+
+							</ul>
+					
         				</div>
         			</div>
         		</div>
@@ -19,7 +29,7 @@
         	</div>
       		
       		<div class="modal-footer">
-    			<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+    			<button type="button" class="btn btn-default pull-left deleteCat" data-dismiss="modal">Close</button>
     			<button type="button" class="btn btn-danger">Delete</button>
   			</div>
     	</div>
@@ -40,7 +50,7 @@
 							<div class="row">
 								<div class="col-md-6">
 									<div class="input-group">
-										<input type="text" class="form-control" placeholder= "" id="category-title" aria-describedby="category-title">
+										<input type="text" class="form-control" placeholder= "" id="edit-category-title" aria-describedby="edit-category-title">
 									</div>
 								</div>
 							</div>	
@@ -70,7 +80,7 @@
 <div class="modal fade" id="addCatModal" tabindex="-1" role="dialog" aria-labelledby="addCatModal" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form action="<?php echo base_url(); ?>/user_profile/add_category_form" method="post">
+			<form id="addCatForm">
 				<div class="modal-header">
 					
 					<h2 class="modal-title" id="addCatModalTitle">Add a Category</h2>
@@ -243,7 +253,8 @@
 					echo '<div class="panel panel-info">';
 					echo '<div class="panel-heading category-heading" role="tab" id="collapseListGroupHeading' . $x . '">';
 					echo '<h4 class="panel-title">';
-					echo '<a class="" ';
+					echo '<a class="categoryTitle" ';
+						echo 'data-category="' .$expense[0]->type_id . '"';
 						echo 'data-toggle="collapse" ';
 						echo 'data-parent="#accordian' . $x . '" ';
 						echo 'href="#collapseListGroup' . $x . '" ';
@@ -255,9 +266,9 @@
 
 					echo '</a>';
 					//Delete
-					echo '<span class="glyphicon glyphicon-trash category-delete pull-right" data-toggle="modal" data-target="#deleteCatModal" data-category=""></span>';
+					echo '<span class="glyphicon glyphicon-trash category-delete pull-right" data-toggle="modal" data-target="#deleteCatModal" data-category="'.$expense[0]->type_id.'"></span>';
 					//Edit
-					echo '<span class="pull-right"><a href="" data-toggle="modal" data-target="#editCatModal" data-category="">Edit</a></span>';
+					echo '<span class="pull-right"><a href="" data-toggle="modal" data-target="#editCatModal" data-category="'.$expense[0]->type_id.'">Edit</a></span>';
 					echo '</h4>';
 					echo '</div>'; //Panel-heading
 				
@@ -276,7 +287,7 @@
 						//echo "</div>";
 					//echo "</div>";
 
-					echo '<ul class="list-group category-list container">';
+					echo '<ul class="list-group category-list container" data-category="'.$expense[0]->type_id.'">';
 						echo '<li class="list-group-item row">';
 							echo "<label class='col-md-6'>Expense</label><label class='col-md-2 expenseCostTitle'>Cost</label><label class='col-md-3 expenseOccurenceTitle'>Occurence</label>";
 						echo "</li>";
@@ -413,6 +424,25 @@
 		<span class="glyphicon glyphicon-trash deleteExpenseFromCat" data-expense=''></span>
 	</div>
 </div>
+</script>
+
+<script id="deleteCatTemplate" type="text/deleteCatTemplate">
+
+
+	<li class="list-group-item row deleteCatRow" data-expenseId="">
+
+					
+		<span class="expense-name col-md-6"></span>
+
+						
+		<span class="expense-cost col-md-2"></span>
+
+						
+		<span class="expense-interval delete-expense-interv col-md-3"></span>
+						
+	</li>
+				
+						
 </script>
 <!-- user_profile.js -->
 <script type="text/javascript" src="/js/user_profile.js"></script>

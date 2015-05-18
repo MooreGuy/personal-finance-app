@@ -2,6 +2,10 @@
 	width: 100%;
 }
 
+.alert-info{
+	margin-top: 10px;
+}
+
 hr{
 	margin-top: 0px;
 }
@@ -190,4 +194,22 @@ hr{
 
 .expense-hr{
 	margin-bottom: 0px;
+}
+
+.delete-expense-interv{
+	margin-left: 30px;
+}
+
+.delete-category-list{
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+}
+
+.scroll{
+	overflow-x: none;
+	overflow-y: auto;
+}
+
+.deleteCatExpenseText{
+	max-height: 350px;
 }

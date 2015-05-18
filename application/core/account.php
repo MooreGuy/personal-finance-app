@@ -109,6 +109,10 @@ class Account extends CI_Controller
 		}		
 	}
 
+	//public function delete_session_cookie(){
+		//$this->session->userd
+	//}
+
 
 	/*
 		@param $email string the user's email to authenticate.

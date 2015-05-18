@@ -96,11 +96,15 @@ html {
 	border: 1px solid #E13300;
 }
 
+#passwordConfirm-error{
+	display: none !important;
+}
+
 #addPostBody-error, #addPostTitle-error, #addPostCategory-error, #addCommentBody-error, #editPostBody-error, #editPostTitle-error, .error-text-info{
 	color: #E13300;
 }
 
-, #flagForumPost-error, #addPostBody-error, #addPostTitle-error, #addPostCategory-error, #addCommentBody-error, #editPostBody-error, #editPostTitle-error, #editCommentTitle-error{
+.error, #flagForumPost-error, #addPostBody-error, #addPostTitle-error, #addPostCategory-error, #addCommentBody-error, #editPostBody-error, #editPostTitle-error, #editCommentTitle-error{
 	color: #E13300;
 }
 

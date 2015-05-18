@@ -3,45 +3,63 @@
   <div class="container">
     <div class="row">
 
-      <!-- Announcements -->
+      
+
+      <?php 
+
+        if($loginStatus == False){
+          ?>
+
+          <!-- Announcements -->
       <div class="col-md-7">
         <h1>Hello, world!</h1>
         <p>We are currently developing the site! Stay tuned to find out more.</p>
         <p><a class="btn btn-primary btn-lg" href="#" role="button">Read More</a></p>
       </div>
-
-      <!-- Sign in -->
+      <!-- Sign up -->
       <div class="col-md-5">
         <h2>Sign Up!</h2>
-        <form action="<?php echo base_url();?>/signup/signup_form" method="post">
+        <form id="signUpForm" method="post">
           <div class="form-group">
             <div class="pull-left name-container">
-              <label for="first_name">First Name:</label>
-              <input name="first_name" type="text" class="form-control" id="first-name" placeholder="First Name">
+              <label for="first_name">First Name:</label><label id="first-name-error" class="error" for="first_name"></label>
+              <input name="first_name" type="text" class="form-control" id="first_name" placeholder="First Name" maxlength="64">
             </div>
 
             <div class="pull-right name-container">
-              <label for="last_name">Last Name:</label>
-              <input name="last_name" type="text" class="form-control" id="last-name" placeholder="Last Name">
+              <label for="last_name">Last Name:</label><label id="last-name-error" class="error" for="last_name"></label>
+              <input name="last_name" type="text" class="form-control" id="last_name" placeholder="Last Name" maxlength="64">
             </div>
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address:</label>
-            <input name="email" type="email" class="form-control" id="email" placeholder="Enter Email">
-          </div>
-          <div class="form-group">
-            <label for="username">Username:</label>
+        
+            <label for="email">Email Address:</label><label id="email-error" class="error" for="email"></label>
+            <input name="email" type="email" class="form-control" id="email" placeholder="Enter Email" >
+          
+         
+            <label for="username">Username:</label><label id="username-error" class="error" for="username"></label>
             <input name="username" type="text" class="form-control" id="username" placeholder="New Username">
-          </div>
-          <div class="form-group">
-            <label for="password">Password:</label>
-            <input name="password" type="password" class="form-control sign-in-password" id="password" placeholder="New Password">
-            <input type="password" class="form-control" id="passwordConfirm" placeholder="Confirm Password">
+  
+            <label for="password">Password:</label><label id="password-error" class="error" for="password"></label><label id="passwordConfirm-error" class="error" for="passwordConfirm"></label>
+            <input name="password" type="password" class="form-control sign-in-password" id="password" placeholder="New Password" data-rule-equalto="input[id=passwordConfirm]" data-msg-equalto="Passwords do not match">
+            <input name="passwordConfirm" type="password" class="form-control" id="passwordConfirm" placeholder="Confirm Password" data-rule-equalto="input[id=password]">
           </div>
           
-          <button type="submit" class="btn btn-success"><strong>Sign Up</strong></button>
+         
         </form>
+         <button type="button" class="btn btn-success pull-right btn-sign-up">Sign Up</button>
       </div>
+        <?php
+          }else{
+        ?>
+             <!-- Announcements -->
+      <div class="col-md-12">
+        <h1>Hello, world!</h1>
+        <p>We are currently developing the site! Stay tuned to find out more.</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Read More</a></p>
+      </div>
+
+        <?php
+          }
+        ?>
     </div>
   </div>
 </div>

@@ -181,6 +181,8 @@ $(document).ready(function() {
 					
 					//Show and hide success message
 					$('.update-profile-success-wrapper').fadeIn(800).delay(1500).fadeOut(1000);
+
+
 		    	},
 
 		    	error: function(xhr, status, error){
@@ -220,6 +222,7 @@ $(document).ready(function() {
 	});
 
 	function addCatAndExpenses(data){
+
 		$.ajax({
 	    	type: 'post',
 	    	url: "/user_profile/addCatAndExpences",
@@ -235,11 +238,17 @@ $(document).ready(function() {
 					//$('#editUserProfile-modal-form')[0].reset();
 					//Reset the validation
 					$('.form-control').removeClass('error').removeClass('success');
+					//$('.update-expenses-success-wrapper').fadeIn(1500).delay(1500).fadeOut(1000).delay(100);
+					//window.location.href= "../user_profile/home";
+					location.reload();
 					
-					//Show and hide success message
-					$('.update-expenses-success-wrapper').fadeIn(800).delay(1500).fadeOut(1000);
 	    	}
 	});
+	}
+
+	function showMessage(){
+		//Show and hide success message
+					
 	}
 
 	function submitNewCategory(count){
@@ -338,7 +347,37 @@ $(document).ready(function() {
 	});
 
 	$('.category-delete').on("click", function(){
+		//get the categoryid for which the delete was click for
+		var categoryId = $(this).attr('data-category');
+
+		//Get the categroy
+		var category = $('a.categoryTitle[data-category=' +categoryId+ ']').text();
+		//Get the expenses
+		var array=[];
+		$('ul.category-list[data-category=' +categoryId+ ']').find('li[data-expenseid]').each(function(){
+			array.push({'id': $(this).attr('data-expenseId'), 'title': $(this).find('.expense-name').text(), 'cost': $(this).find('.expense-cost').text(), 'interv': $(this).find('.expense-interval').text()});
+		});
+		//console.log(categoryId + " " + category + " " + array[0]['id'] + " " + array[0]['title'] + " " + array[0]['cost'] + " " + array[0]['interv']);
+
+		//Insert data into modal
+		$('.deleteCategoryTitle').text(category);
+		$('.delete-category-list[data-category=""]').attr('data-category' , categoryId);
+
+		var deleteCatTemplate = $('#deleteCatTemplate').html();
+
+		//For each expense in the array add the template list and fill in the expensse details
+		for(var i = 0; i < array.length; i++){
+			$('.delete-category-list[data-category=' + categoryId + ']').append(deleteCatTemplate);
+			$('.delete-category-list[data-category=' + categoryId + ']').find('.deleteCatRow[data-expenseid=""]').attr('data-expenseid', array[i]['id']);
+			$('.deleteCatRow[data-expenseId='+array[i]['id']+']').find('.expense-name').text(array[i]['title']);
+			$('.deleteCatRow[data-expenseId='+array[i]['id']+']').find('.expense-cost').text(array[i]['cost']);
+			$('.deleteCatRow[data-expenseId='+array[i]['id']+']').find('.expense-interval').text(array[i]['interv']);
+			if(i >= 5){
+				$('.deleteCatExpenseText').addClass('scroll');
+			}
+		}
 		
+		//For each expense add a new deleteCatTemplate to the modal
 	});
 
 	//When the close button on a modal is clicked clear the form and all validation messages
@@ -353,6 +392,11 @@ $(document).ready(function() {
 
 		if($(this).hasClass('closeAddCat')){
 			$('.expenseWrapper').remove();
+		}
+
+		if($(this).hasClass('deleteCat')){
+			$('.delete-category-list').attr('data-category', '');
+			$('.delete-category-list').find('.deleteCatRow').remove();
 		}
 	});
 });

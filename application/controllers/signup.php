@@ -65,6 +65,7 @@ class Signup extends Account
 			//Collect post data.
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
+			//$passwordConfirm = $this->input->post('passwordConfirm');
 			$first_name = $this->input->post('first_name');
 			$last_name = $this->input->post('last_name');
 			$email = $this->input->post('email');
@@ -76,23 +77,40 @@ class Signup extends Account
 				then try to authenticate with $email and $password, if that fails, then redirect
 				them to a failed login page.
 			*/
-			if( $this->User->insert_user($username, $password, $email, $first_name, $last_name) )
-			{
-				//Add email and password to the cookie.
-				$user_id = $this->User->get_id( $email );
-				$this->add_cookie_data( $email, $user_id );
+			//if($passwordConfirm == $password){
+				if( $this->User->insert_user($username, $password, $email, $first_name, $last_name) )
+				{
+					//Add email and password to the cookie.
+					$user_id = $this->User->get_id( $email );
+					$this->add_cookie_data( $email, $user_id );
+					//$this->authenticate($email, $password);
 
-				redirect('user_profile/home', 'location');
-			}	
-			else if( $this->authenticate($email, $password) ) 
-			{
-				redirect('user_profile/home', 'location');
-			}
-			else
-			{	
-				redirect('account/signup/failure', 'location');
-			}
+					redirect('user_profile/home', 'location');
+				}	
+				else if( $this->authenticate($email, $password) ) 
+				{
+					redirect('user_profile/home', 'location');
+				}
+				else
+				{	
+					redirect('account/signup/failure', 'location');
+				}
+			//}else{
+				//redirect('account/signup/failure', 'location');
+			//}
+				
 			
+		}
+	}
+
+	function user_exists(){
+		$email = $this->input->post('email');
+
+		if($this->User->user_exists($email)){
+			return true;
+		}else{
+			//return false;
+			return $this->output->set_status_header('400');
 		}
 	}
 }
