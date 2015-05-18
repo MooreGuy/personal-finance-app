@@ -377,7 +377,29 @@ $(document).ready(function() {
 			}
 		}
 		
-		//For each expense add a new deleteCatTemplate to the modal
+		//Add the categoryid to the delete button
+		$('.btn-deleteCat').attr('data-category', categoryId);
+	});
+
+	//when the deleteCat button is pressed send the categoryid to be deleted
+	$('.btn-deleteCat').on("click", function(){
+		var catId = $(this).attr('data-category');
+
+		$.ajax({
+			type: 'post',
+	    	url: "/user_profile/deleteCat",
+	    	dataType: "text",
+	    	data: {catId:catId},
+
+	    	success: function(){
+	    		//Hide the modal
+				$('#deleteCatModal').modal('hide');
+				//Remove the category from the page
+				//$('.col-md-6').find('a.categoryTitle[data-category='+ catId +']').parent().parent().parent().parent().remove();
+				//$('.update-expenses-success-wrapper').fadeIn(1500).delay(1500).fadeOut(1000).delay(100);
+				location.reload();
+	    	}
+		});
 	});
 
 	//When the close button on a modal is clicked clear the form and all validation messages

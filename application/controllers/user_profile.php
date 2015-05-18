@@ -157,7 +157,6 @@ class User_profile extends Account {
 			$this->expenses->insert_expense( $userId, $amount, $interv, $title, $type);
 			
 		}	
-
 		
 			/*$data['title'] = ucfirst('user_profile'); // Capitalize the first letter
 		$data['loginStatus'] = $this->checkLoginStatus();
@@ -172,6 +171,13 @@ class User_profile extends Account {
 			$this->load->view('pages/user_profile', $data);*/
 		
 		
+	}
+
+	function deleteCat(){
+		$catId = $this->input->post('catId');
+
+		$this->expenses->deleteCat($catId);
+		$this->expenses->deleteExpenses($catId);
 	}
 }
 

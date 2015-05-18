@@ -191,6 +191,14 @@ class Expenses extends CI_Model
 
 		return floatval($result[0]['avg(cost)']);
 	}
+
+	function deleteCat($catId){
+		$this->db->delete('expense_types', array('id'=> $catId));
+	}
+
+	function deleteExpenses($catId){
+		$this->db->delete('expenses', array('type_id'=> $catId));
+	}
 }
 
 ?>

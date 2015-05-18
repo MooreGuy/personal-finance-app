@@ -30,7 +30,7 @@
       		
       		<div class="modal-footer">
     			<button type="button" class="btn btn-default pull-left deleteCat" data-dismiss="modal">Close</button>
-    			<button type="button" class="btn btn-danger">Delete</button>
+    			<button type="button" class="btn btn-danger btn-deleteCat" data-category="">Delete</button>
   			</div>
     	</div>
   	</div>
