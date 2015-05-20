@@ -78,7 +78,7 @@ $(document).ready(function() {
 			},
 			currentUserPassword: {
 				required: true,
-				maxlength: 256
+				maxlength: 256,
 				minlength: 8
 			}
 
@@ -156,6 +156,8 @@ $(document).ready(function() {
 		//Get the email
 		var userEmail = $('#editUserEmail').val();
 		//Get the new password
+		var newUserPassword = $('#editUserPassword').val();
+		//Get the current password
 		var currentUserPassword = $('#currentUserPassword').val();
 
 		$.ajax({
@@ -166,6 +168,7 @@ $(document).ready(function() {
 		    		userFirstName: userFirstName,
 		    		userLastName: userLastName,
 		    		userEmail: userEmail,
+		    		newUserPassword: newUserPassword,
 		    		currentUserPassword: currentUserPassword
 		    	},
 		    	success: function(){
@@ -178,6 +181,8 @@ $(document).ready(function() {
 					
 					//Show and hide success message
 					$('.update-profile-success-wrapper').fadeIn(800).delay(1500).fadeOut(1000);
+
+
 		    	},
 
 		    	error: function(xhr, status, error){
@@ -188,14 +193,353 @@ $(document).ready(function() {
 					//Reset the validation
 					$('.form-control').removeClass('error').removeClass('success');
 
-					//Show and hide error message
+					//  hide error message
 					$('.update-profile-error-wrapper').fadeIn(800).delay(1500).fadeOut(1000);
 		    	}
 		});
 	}
 
+	$('.addCatAndExpenses').on("click", function(){
+		
+		var data = [];
+		//Get the category
+		var category = $('#category-title').val();
+		data.push({'type': category});
+		data.push({'type_id': ""});
+		
+		$('.expense-container').find('.addCatExpenseForm').each(function(){
+			//Get the title, amount, occurence
+			var count = $(this).attr('id');
+			data.push({'title': $('input[name=title' + count +']').val(), 'amount': $('input[name=amount'+ count +']').val(), 'interv': $('select[name=occurence' + count +'] > option:selected').text()});
+
+			count++;
+		});
+
+		console.log(data);
+
+		addCatAndExpenses(data);
+	});
+
+	$('.editCatSave').on("click", function(){
+		var data = [];
+		//Get the category
+		var category = $('#edit-category-title').val();
+		data.push({'type': category});
+		//get the id of the category that was clicked
+		var categoryId = $(this).data('category');
+		data.push({'type_id': categoryId});
+		
+		$('.expense-container').find('.editCatExpenseForm').each(function(){
+			//Get the title, amount, occurence
+			var count = $(this).attr('id');
+			if(count == null || count == "" || count == undefined){
+				data.push({'id': null , 'title': $('input[id=title]').val(), 'amount': $('input[id=amount]').val(), 'interv': $('select[id=occurence] > option:selected').text()});
+			}else{
+				data.push({'id': count, 'title': $('input[id=title' + count + ']').val(), 'amount': $('input[id=amount' + count + ']').val(), 'interv': $('select[id=occurence' + count + '] > option:selected').text()});
+			}
+			
+
+			//count++;
+		});
+
+		editCatAndExpenses(data);
+	});
+
+	function editCatAndExpenses(data){
+		console.log(data);
+		$.ajax({
+	    	type: 'post',
+	    	url: "/user_profile/editCatAndExpences",
+	    	dataType: "text",
+	    	data: {data:data},
+
+	    	success: function(){
+	    		//Hide the modal
+				$('#editCatModal').modal('hide');
+
+				$('.form-control').removeClass('error').removeClass('success');
+
+				location.reload();	
+	    	},
+
+	    	error: function(XHR, textStatus, errorThrown){
+	    		alert(XHR + " " + textStatus + " " + errorThrown);
+	    	}
+	});
+	}
+
+	function addCatAndExpenses(data){
+		//console.log(data);
+		$.ajax({
+	    	type: 'post',
+	    	url: "/user_profile/addCatAndExpences",
+	    	dataType: "text",
+	    	data: {data:data},
+
+	    	success: function(){
+	    		//Hide the modal
+				$('#addCatModal').modal('hide');
+
+				$('.form-control').removeClass('error').removeClass('success');
+
+				location.reload();	
+	    	}
+	});
+	}
+
+	/*function submitNewCategory(count){
+		var title = "title" + count.toString();
+		var amount = "amount" + count.toString();
+		var occurence = "occurence" + count.toString();
+		
+		$('#' + count).submit();
+
+		$('#' + count).validate({
+			rules:{
+				title: {
+					required: true,
+					FormRegex: true,
+					maxlength: 64
+				},
+				amount:{
+					digits: true,
+					maxlength: 8,
+					required: true,
+					FormRegex: true
+				},
+				occurence: {
+					required: true
+				}
+			},
+			messages:{
+				title: {
+					required: "Required",
+					maxlength: "64 character max-length"
+				},
+				amount:{
+					digits: "Must be a number",
+					maxlength: "8 character max-length",
+					required: "Required"
+				},
+				occurence: {
+					required: "Required"
+				}
+			},
+			validClass: "success",
+
+			submitHandler: function(){
+				alert("validate");
+			}	
+		});
+	}*/
+
+	$('.editCat').on("click", function(){
+		//get the id of the category that was clicked
+		var categoryId = $(this).data('category');
+		//Get the cat name
+		var category = $('.categoryTitle[data-category=' + categoryId + ']').text();
+
+		var expenseItems = [];
+		//For each item in the expenses get the ids of the item and its title, cost, occurance
+		$('.category-list[data-category=' + categoryId +']').find('.list-group-item[data-expenseid]').each(function(){
+			//Grab the id, title, cost, and occurance
+			expenseItems.push({
+				'id': $(this).attr('data-expenseId'), 
+				'title': $(this).children('.expense-name').text(), 
+				'cost': $(this).children('.expense-cost').text(),
+				'interv': $(this).children('.expense-interval').text()
+			});
+
+			//console.log(expenseItems);
+		});
+
+		//Use the edit template and put the items in the modal
+		expenseItems.forEach(function(entry){
+			//console.log(entry);
+			//Put the items in the modal with the template
+
+			//Load the template
+			var editExpenseForm = $('#editExpenseTemplate').html();
+			$('.editExpenseForCat').prepend(editExpenseForm);
+
+			//Put the items in 
+			//Probably over excessive but put the id everywhere
+			$('.expense-container').find('.expenseWrapper[data-expense=""]').attr('data-expense', entry['id']);
+			$('.expense-container').find('input[data-expense=""]').attr('data-expense', entry['id']);
+			$('.expense-container').find('span[data-expense=""]').attr('data-expense', entry['id']);
+			$('.expense-container').find('select[data-expense=""]').attr('data-expense', entry['id']);
+			$('.expense-container').find('form[id=""]').attr('id', entry['id']);
+			$('.expense-container').find('input[name=title][data-expense='+entry['id']+ ']').attr('id', "title" + entry['id']).attr('value', entry['title']);
+			$('.expense-container').find('input[name=amount][data-expense='+entry['id']+ ']').attr('id', "amount" + entry['id']).attr('value', entry['cost']);
+			$('.expense-container').find('select[data-expense='+ entry['id'] +']').attr('id', "occurence" + entry['id']).find('option[value='+ entry['interv'].toLowerCase() +']').prop('selected', true);
+			$('#edit-category-title').val(category);
+			$('.editCatSave').attr('data-category', categoryId);
+		});
+	});
+	
+	
+
+	$('.addExpenseToForm').on("click", function(){
+		//Get the number of expense input rows
+		var expenseCount = $('.expenseWrapper').length + 1;
+
+		//Add an input row with data-expense = num of expense input rows + 1
+
+		var addExpenseForm = $('#addExpenseTemplate').html();
+		//$(".addExpenseToForm").addClass('hidden');
+		$('.addExpenseForCat').prepend(addExpenseForm);
+		//Insert expence id everywhere
+		$('.expense-container').find('.expenseWrapper[data-expense=""]').attr('data-expense', expenseCount);
+		$('.expense-container').find('input[data-expense=""]').attr('data-expense', expenseCount);
+		//$('.expense-container').find('input[data-expense=""]').attr('data-expense', expenseCount);
+		//$('.expense-container').find('div[data-expense=""]').attr('data-expense', expenseCount);
+		$('.expense-container').find('span[data-expense=""]').attr('data-expense', expenseCount);
+		$('.expense-container').find('select[data-expense=""]').attr('data-expense', expenseCount);
+		$('.expense-container').find('form[id=""]').attr('id', expenseCount);
+
+		//$('.expense-container').find('label[for="title"]').attr('for', "title" + expenseCount);
+		$('.expense-container').find('input[name=title]').attr('id', "title" + expenseCount).attr('name', "title" + expenseCount);
+		//$('.expense-container').find('label[for="amount"]').attr('for', "amount" + expenseCount);
+		$('.expense-container').find('input[name=amount]').attr('id', "amount" + expenseCount).attr('name', "amount" + expenseCount);
+		//$('.expense-container').find('label[for="occurence"]').attr('for', "occurence" + expenseCount);
+		$('.expense-container').find('select[data-expense='+ expenseCount +']').attr('id', "occurence" + expenseCount).attr('name', "occurence" + expenseCount);
+
+		if(expenseCount >= 7){
+			$('.addExpenseForCat').css({'overflow-y': 'scroll', 'max-height': '340px'});
+		}
+		//console.log(expenseCount);
+	});
+
+	$('.editExpenseToForm').on("click", function(){
+		//Get the number of expense input rows
+		var expenseCount = $('.expenseWrapper').length + 1;
+
+		//Add an input row with data-expense = num of expense input rows + 1
+
+		var editExpenseForm = $('#editExpenseTemplate').html();
+		//$(".addExpenseToForm").addClass('hidden');
+		$('.editExpenseForCat').prepend(editExpenseForm);
+		//Insert expence id everywhere
+		//$('.expense-container').find('.expenseWrapper[data-expense=""]').attr('data-expense', expenseCount);
+		//$('.expense-container').find('input[data-expense=""]').attr('data-expense', expenseCount);
+		//$('.expense-container').find('input[data-expense=""]').attr('data-expense', expenseCount);
+		//$('.expense-container').find('div[data-expense=""]').attr('data-expense', expenseCount);
+		//$('.expense-container').find('span[data-expense=""]').attr('data-expense', expenseCount);
+		//$('.expense-container').find('select[data-expense=""]').attr('data-expense', expenseCount);
+		//$('.expense-container').find('form[id=""]').attr('id', expenseCount);
+
+		//$('.expense-container').find('label[for="title"]').attr('for', "title" + expenseCount);
+		$('.expense-container').find('input[id=title]').attr('id', "title").attr('name', "title" + expenseCount);
+		//$('.expense-container').find('label[for="amount"]').attr('for', "amount" + expenseCount);
+		$('.expense-container').find('input[id=amount]').attr('id', "amount").attr('name', "amount" + expenseCount);
+		//$('.expense-container').find('label[for="occurence"]').attr('for', "occurence" + expenseCount);
+		$('.expense-container').find('select[id=expense]').attr('id', "occurence").attr('name', "occurence" + expenseCount);
+	});
+
+	$('.addExpenseForCat').on("click", ".deleteExpenseFromCat", function(){
+		//Get the id of the expense to remove
+		var expenseId = $(this).data('expense');
+		//console.log(expenseId);
+		//Remove the expense from the list
+		$('.expenseWrapper[data-expense=' + expenseId + ']').remove();
+
+		//Get the count of inputs. If less than 7 remove scroll
+		var expenseCount = $('input[name=title]').length;
+
+		if(expenseCount <= 7){
+			$('.addExpenseForCat').css({'overflow-y': ''});
+		}
+	});
+
+	$('.editExpenseForCat').on("click", ".deleteExpenseFromCat", function(){
+		//Get the id of the expense to remove
+		var expenseId = $(this).data('expense');
+		//console.log(expenseId);
+		//Remove the expense from the list
+		$('.expenseWrapper[data-expense=' + expenseId + ']').remove();
+
+		//Get the count of inputs. If less than 7 remove scroll
+		var expenseCount = $('input[name=title]').length;
+
+		if(expenseCount <= 7){
+			$('.addExpenseForCat').css({'overflow-y': ''});
+		}
+
+		$.ajax({
+			type: 'post',
+	    	url: "/user_profile/deleteExpenses",
+	    	dataType: "text",
+	    	data: {id:expenseId},
+
+	    	success: function(){
+	    	
+	    	},
+
+	    	error: function(XHR, textStatus, errorThrown){
+	    		//alert(XHR + " " + textStatus + " " + errorThrown);
+	    	}
+		});
+	});
+
+	$('.category-delete').on("click", function(){
+		//get the categoryid for which the delete was click for
+		var categoryId = $(this).attr('data-category');
+
+		//Get the categroy
+		var category = $('a.categoryTitle[data-category=' +categoryId+ ']').text();
+		//Get the expenses
+		var array=[];
+		$('ul.category-list[data-category=' +categoryId+ ']').find('li[data-expenseid]').each(function(){
+			array.push({'id': $(this).attr('data-expenseId'), 'title': $(this).find('.expense-name').text(), 'cost': $(this).find('.expense-cost').text(), 'interv': $(this).find('.expense-interval').text()});
+		});
+		//console.log(categoryId + " " + category + " " + array[0]['id'] + " " + array[0]['title'] + " " + array[0]['cost'] + " " + array[0]['interv']);
+
+		//Insert data into modal
+		$('.deleteCategoryTitle').text(category);
+		$('.delete-category-list[data-category=""]').attr('data-category' , categoryId);
+
+		var deleteCatTemplate = $('#deleteCatTemplate').html();
+
+		//For each expense in the array add the template list and fill in the expensse details
+		for(var i = 0; i < array.length; i++){
+			$('.delete-category-list[data-category=' + categoryId + ']').append(deleteCatTemplate);
+			$('.delete-category-list[data-category=' + categoryId + ']').find('.deleteCatRow[data-expenseid=""]').attr('data-expenseid', array[i]['id']);
+			$('.deleteCatRow[data-expenseId='+array[i]['id']+']').find('.expense-name').text(array[i]['title']);
+			$('.deleteCatRow[data-expenseId='+array[i]['id']+']').find('.expense-cost').text(array[i]['cost']);
+			$('.deleteCatRow[data-expenseId='+array[i]['id']+']').find('.expense-interval').text(array[i]['interv']);
+			if(i >= 5){
+				$('.deleteCatExpenseText').addClass('scroll');
+			}
+		}
+		
+		//Add the categoryid to the delete button
+		$('.btn-deleteCat').attr('data-category', categoryId);
+	});
+
+	//when the deleteCat button is pressed send the categoryid to be deleted
+	$('.btn-deleteCat').on("click", function(){
+		var catId = $(this).attr('data-category');
+
+		$.ajax({
+			type: 'post',
+	    	url: "/user_profile/deleteCat",
+	    	dataType: "text",
+	    	data: {catId:catId},
+
+	    	success: function(){
+	    		//Hide the modal
+				$('#deleteCatModal').modal('hide');
+				//Remove the category from the page
+				//$('.col-md-6').find('a.categoryTitle[data-category='+ catId +']').parent().parent().parent().parent().remove();
+				//$('.update-expenses-success-wrapper').fadeIn(1500).delay(1500).fadeOut(1000).delay(100);
+				location.reload();
+	    	}
+		});
+	});
+
+
 	//When the close button on a modal is clicked clear the form and all validation messages
-	$('.btn[data-dismiss="modal"]').on("click", function(){
+	$('.btn[data-dismiss="modal"]').on("click",function(){
 		//Clear the form inputs
 		$('form')[0].reset();
 		$('.form-control').val('');
@@ -203,5 +547,15 @@ $(document).ready(function() {
 		$('.form-control').removeClass('success').removeClass('error');
 		$('label[class="error"]').empty();
 		$('select[class="success"]').removeClass('error').removeClass('success');
+
+		if($(this).hasClass('closeAddCat')){
+			$('.expenseWrapper').remove();
+		}else if($(this).hasClass('deleteCat')){
+			$('.delete-category-list').attr('data-category', '');
+			$('.delete-category-list').find('.deleteCatRow').remove();
+		}else if($(this).hasClass('closeEditModal')){
+			$('.editExpenseForCat').children().remove();
+		}
 	});
 });
+

@@ -96,11 +96,19 @@ html {
 	border: 1px solid #E13300;
 }
 
-#flagForumPost-error, #addPostBody-error, #addPostTitle-error, #addPostCategory-error, #addCommentBody-error, #editPostBody-error, #editPostTitle-error, #editCommentTitle-error{
+#passwordConfirm-error{
+	display: none !important;
+}
+
+#addPostBody-error, #addPostTitle-error, #addPostCategory-error, #addCommentBody-error, #editPostBody-error, #editPostTitle-error, .error-text-info{
 	color: #E13300;
 }
 
-.flag-post-success-wrapper, .noUser-vote-warning-wrapper, .add-post-success-wrapper, .edit-post-success-wrapper, .add-comment-success-wrapper, .delete-post-success-wrapper, .edit-comment-success-wrapper, .delete-comment-success-wrapper, .noUser-vote-warning-wrapper{
+.error, #flagForumPost-error, #addPostBody-error, #addPostTitle-error, #addPostCategory-error, #addCommentBody-error, #editPostBody-error, #editPostTitle-error, #editCommentTitle-error{
+	color: #E13300;
+}
+
+.update-profile-success-wrapper, .update-profile-error-wrapper, .update-expenses-success-wrapper, .flag-post-success-wrapper, .noUser-vote-warning-wrapper, .add-post-success-wrapper, .edit-post-success-wrapper, .add-comment-success-wrapper, .delete-post-success-wrapper, .edit-comment-success-wrapper, .delete-comment-success-wrapper, .noUser-vote-warning-wrapper{
 	position: fixed;
 	left: 50%;
 	margin-top: 10px;
@@ -110,11 +118,20 @@ html {
 	margin-left: -175px;
 }
 
-
-#flag-podt-success, #add-post-success, #edit-post-success, #add-comment-success, #delete-post-success, #edit-comment-success, #delete-comment-success{
+#update-profile-success, #update-expense-success, #flag-podt-success, #add-post-success, #edit-post-success, #add-comment-success, #delete-post-success, #edit-comment-success, #delete-comment-success{
 	background-color: #d9edf7;
 	border-color: #bce8f1;
 	color: #31708f;
+	z-index: 10;
+	border-radius: 5px;
+	text-align: center;
+}
+
+
+#update-profile-error{
+	background-color: #f2dede;
+	border-color: #ebccd1;
+	color: #a94442;
 	z-index: 10;
 	border-radius: 5px;
 	text-align: center;

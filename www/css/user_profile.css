@@ -2,8 +2,16 @@
 	width: 100%;
 }
 
-hr{
+.alert-info{
 	margin-top: 10px;
+}
+
+hr{
+	margin-top: 0px;
+}
+
+.profile-info-hr{
+	margin-top: 3px;
 }
 
 .btn-add-expense{
@@ -37,9 +45,11 @@ hr{
 	margin-bottom: 0px;
 	border-top: 0px;
 	max-height: 300px;
-    max-width: 340px;
+    max-width: 358px;
     padding-right: 0px;
     margin-right: 0px;
+    margin-left: 0px;
+    overflow-x: hidden;
 }
 
 .category-list > .list-group-item{
@@ -71,7 +81,7 @@ hr{
 }
 
 .category-list-collapse{
-	overflow: auto;
+	overflow-x: hidden;
 	max-height: 300px;
 }
 
@@ -101,9 +111,9 @@ hr{
 }
 
 .category-add, .category-delete{
-	width: 100%;
-	display: block;
+	display: inline-block;
 	margin-bottom: 10px;
+	margin-left: 10px;
 }
 
 .category-affix{
@@ -130,6 +140,10 @@ hr{
 	padding-right: 0px;
 }
 
+.expense-title{
+	display: inline-block;
+}
+
 .success{
 	border: 1px solid green;
 }
@@ -138,7 +152,7 @@ hr{
 	border: 1px solid #E13300;
 }
 
-#editUserFirstName-error, #editUserLastName-error, #editUserEmail-error, #editUserUsername-error, #editUserPassword-error, #currentUserPassword-error{
+#addExpenseOccurence-error, #addExpenseAmount-error, #addExpenseTitle-error, #editUserFirstName-error, #editUserLastName-error, #editUserEmail-error, #editUserUsername-error, #editUserPassword-error, #currentUserPassword-error{
 	color: #E13300;
 }
 
@@ -146,31 +160,56 @@ hr{
 	display: inline !important;
 }
 
-.update-profile-success-wrapper, .update-profile-error-wrapper{
-	position: fixed;
-	left: 50%;
-	margin-top: 10px;
-	z-index: 10;
-	display: none;
-	width: 350px;
-	margin-left: -175px;
+.addExpenseToForm, .editExpenseToForm{
+	color: #5cb85c;
+	display: inline-block;
+	cursor: pointer;
+	margin-left: 5px;
+	margin-bottom: 10px;
 }
 
-
-#update-profile-success{
-	background-color: #d9edf7;
-	border-color: #bce8f1;
-	color: #31708f;
-	z-index: 10;
-	border-radius: 5px;
-	text-align: center;
+.addCatExpense, .editCatExpense{
+	display: inline-block;
 }
 
-#update-profile-error{
-	background-color: #f2dede;
-	border-color: #ebccd1;
-	color: #a94442;
-	z-index: 10;
-	border-radius: 5px;
-	text-align: center;
+.newExpenseForCat{
+	padding-right: 0px;
+}
+
+.title-col, .expenseCostTitle, .expense-interval, .catTotalCost{
+	padding-left: 0px;
+}
+
+.expenseOccurenceTitle{
+	padding-left: 30px;
+}
+
+.occurence-col{
+	padding-right: 0px;
+}
+
+.trash-col{
+	margin-top: 7px;
+}
+
+.expense-hr{
+	margin-bottom: 0px;
+}
+
+.delete-expense-interv{
+	margin-left: 30px;
+}
+
+.delete-category-list{
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+}
+
+.scroll{
+	overflow-x: none;
+	overflow-y: auto;
+}
+
+.deleteCatExpenseText{
+	max-height: 350px;
 }

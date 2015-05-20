@@ -428,6 +428,28 @@
 		<!-- END Modals -->
 
 		<!-- Start User Sussess/Error Messages -->
+		<!-- Success alert for when the user successfully updates thier profile information -->
+		<div class="update-profile-success-wrapper">
+			<div class="well well-sm" id="update-profile-success">
+				<span class="text-info success-text-info">Your profile has successfully been updated.</span>
+			</div>
+		</div>
+
+		<!-- error alert for when the user fails updates thier profile information -->
+		<div class="update-profile-error-wrapper">
+			<div class="well well-sm" id="update-profile-error">
+				<span class="danger-info error-text-info">Opps, Something went wrong. Please try again later.</span>
+			</div>
+		</div>
+
+
+		<!-- success alert for when the user updates thier expense information -->
+		<div class="update-expenses-success-wrapper">
+			<div class="well well-sm" id="update-expense-success">
+				<span class="text-info success-text-info">Your expenses have successfully been updated.</span>
+			</div>
+		</div>
+
 		<!-- Success alert for when the user successfully adds a new post -->
 		<div class="add-post-success-wrapper">
 			<div class="well well-sm" id="add-post-success">

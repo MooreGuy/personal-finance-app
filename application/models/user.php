@@ -50,6 +50,8 @@ class User extends CI_Model
 			$this->account_creation_date = mdate($datestring, $time);
 
 			$this->db->insert( self::USERSTABLE, $this);	
+
+			
 		}
 		else
 		{
@@ -111,7 +113,9 @@ class User extends CI_Model
 	function user_exists( $email )
 	{
 		//QUERY
-
+		//if(isset($_GET["email"])){
+			//$email = $_GET["email"];
+		//}
 		//select only the email and match it against the $email argument.
 		$this->db->select('email');
 		$this->db->where('email', $email);
@@ -243,19 +247,28 @@ class User extends CI_Model
 		}
 	}
 
-	function updateProfileInfo($data, $userId){
+	function updateProfileInfo($data, $userId, $currentUserPassword){
 		$data['password'] =  $this->encrypt->encode($data['password']);
-
-		echo json_encode($data);
+		
+		//Get the current users passwrd
+		$this->db->select('password');
+		$this->db->from('users');
 		$this->db->where('id', $userId);
-		if($this->db->update('users', $data)){
-			return true;
+		$query = $this->db->get();
+		$userCurrentPassword = $query->result_array();
+
+		$currentPassword = $this->encrypt->decode($userCurrentPassword[0]['password']);
+
+		if($currentPassword == $currentUserPassword){
+			$this->db->where('id', $userId);
+			if($this->db->update('users', $data)){
+				return true;
+			}else{
+				return false;
+			}
 		}else{
 			return false;
 		}
-
 	}
 
 }
-
-?>
