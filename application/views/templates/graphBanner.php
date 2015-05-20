@@ -1,3 +1,4 @@
+<script src="<?php echo base_urL(); ?>js/graphBanner.js"></script>
 <div class="row graphs">
 	<div class="col-md-12">
 		<!-- Community Graphs -->
