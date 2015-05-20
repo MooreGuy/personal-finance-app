@@ -130,10 +130,9 @@ class Expenses extends CI_Model
 	
 	/*
 		Get all the expense types for a particular user.
-		
 		@return an array of all the expense types that a particular user has.
 	*/
-	function get_user_expense_types( $user_id )
+	function get_user_expense_types($user_id, $limit = null)
 	{
 		$sql = 'select expense_types.type, expense_types.id from expenses
 					inner join expense_types
@@ -141,7 +140,17 @@ class Expenses extends CI_Model
 					where expenses.user_id = ?
 					group by expense_types.type';
 
-		$query = $this->db->query( $sql, array($user_id) );
+		$params = array($user_id);
+
+		if($limit !== null)
+		{
+			$sql = $sql . ' limit ?';
+			$params[] = $limit;
+		}
+
+		$query = $this->db->query( $sql, $params );
+
+		$result = $query->result_array();
 		
 		return $query->result();
 	}
@@ -195,5 +204,25 @@ class Expenses extends CI_Model
 		$result = $query->result_array();
 
 		return floatval($result[0]['avgCost']);
+	}
+
+	/**
+	 * Get the average expense for a given expense_type
+	 *
+	 * @param $userID the user that the expense belongs to.
+	 * @param $typeID the expense_type for the user that should be totaled.
+	 */
+	function userExpenseTypeTotal($userID, $typeID) {
+		$sql = 'select sum(cost) as totalCost
+					from expenses
+					where user_id = ?
+					and type_id = ?';
+		$params = array($userID, $typeID);
+
+		$query = $this->db->query($sql, $params);
+
+		$result = $query->result_array();
+
+		return floatval($result[0]['totalCost']);
 	}
 }

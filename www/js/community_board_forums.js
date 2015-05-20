@@ -22,6 +22,7 @@ $(document).ready(function(){
 	
 	//All of the graphs for the community data
 	$(document).ready(function(){
+		/*
 		var chart = new CanvasJS.Chart("graph1", {
 
 	    	title:{
@@ -137,6 +138,7 @@ $(document).ready(function(){
 	    });
 
 		chart.render();
+		*/
 
 	});
 	
