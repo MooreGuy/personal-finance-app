@@ -60,17 +60,19 @@
 						<h4 class="editCatExpense">Expenses:</h4><label class="error" id="editExpenseTitle-error" for="title"></label>
 					
 						
+						<span class="glyphicon glyphicon-plus editExpenseToForm"></span>
+						
 						<div class='row'>
-							<div class="col-md-6">
-								//List of expenses
+							<div class="col-md-6 editExpenseForCat newExpenseForCat">
+								
 							</div>
 						</div>
 						
 					</div>
       		
       		<div class="modal-footer">
-    			<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-    			<button type="button" class="btn btn-primary">Save</button>
+    			<button type="button" class="btn btn-default pull-left closeEditModal" data-dismiss="modal">Close</button>
+    			<button type="button" class="btn btn-primary editCatSave">Save</button>
   			</div>
     	</div>
   	</div>
@@ -102,7 +104,7 @@
 						<span class="glyphicon glyphicon-plus addExpenseToForm"></span>
 						
 						<div class='row'>
-							<div class="col-md-6 newExpenseForCat">
+							<div class="col-md-6 newExpenseForCat addExpenseForCat">
 								
 							</div>
 						</div>
@@ -238,7 +240,7 @@
 			//Check to make sure there are expenses.
 			if( !empty($expenses) )
 			{
-				foreach( $expenses as $key => $expense )
+				foreach($expenses as $key => $expense )
 				{
 
 					//Create a row for every two columns.
@@ -268,7 +270,7 @@
 					//Delete
 					echo '<span class="glyphicon glyphicon-trash category-delete pull-right" data-toggle="modal" data-target="#deleteCatModal" data-category="'.$expense[0]->type_id.'"></span>';
 					//Edit
-					echo '<span class="pull-right"><a href="" data-toggle="modal" data-target="#editCatModal" data-category="'.$expense[0]->type_id.'">Edit</a></span>';
+					echo '<span class="pull-right"><a href="" class="editCat" data-toggle="modal" data-target="#editCatModal" data-category="'.$expense[0]->type_id.'">Edit</a></span>';
 					echo '</h4>';
 					echo '</div>'; //Panel-heading
 				
@@ -392,25 +394,25 @@
 
 <script id="editExpenseTemplate" type="text/editExpenseTemplate">
 <div class="expenseWrapper" data-expense=''>
-	<form class="editCatExpenseForm" id="">
+	<form class="editCatExpenseForm" id="" >
 		
 		<div class='col-md-4 title-col form-group'>
 			<!--<label class="error" id="editExpenseTitle-error" for="title"></label>-->
-			<input name='title' id="" type='text' class='form-control' placeholder='Title' data-expense='' value="">
+			<input name='title' id="title" type='text' class='form-control' placeholder='Title' data-expense='' value="">
 		</div>
 
 		<div class="col-md-4 form-group">
 			<div class=' input-group'>
 				<!--<label class="error" id="editExpenseAmount-error" for="amount"></label>-->
 				<span class="input-group-addon" id="amount-addon">$</span>
-				<input name='amount' id="" type='text' class='form-control' placeholder='Amount' data-expense='' value="">
+				<input id="amount" name='amount' type='text' class='form-control' placeholder='Amount' data-expense='' value="">
 			</div>
 		</div>
 
 		<div class='col-md-3 occurence-col form-group'>
 			<!--<label class="error" id="editExpenseOccurence-error" for="occurence"></label>-->
-			<select class='form-control' name='' id="" data-expense='' value="">
-				<option selected disabled>Occurence</option>
+			<select class='form-control' name='' id="expense" data-expense='' value="">
+				<option disabled>Occurence</option>
 				<option value='daily'>Daily</option>
 				<option value='weekly'>Weekly</option>
 				<option value='biweekly'>Bi-weekly</option>

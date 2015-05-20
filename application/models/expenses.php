@@ -47,20 +47,36 @@ class Expenses extends CI_Model
 		
 	}
 
+	//Check if the expense_ypes exists
+	function doesExists_type_id($type_id){
+		
+			$this->db->select();
+			$this->db->from('expense_types');
+			$this->db->where('id', $type_id);
+			$query = $this->db->get();
+
+			if($query->num_rows() > 0){
+				return true;
+			}else{
+				return false;
+			}
+	
+		
+	}
+
 	/**
 	 *Insert an expense, its type and location into the databse if they do
 	 *not already exist.
 	 */
-	function insert_expense( $user_id, $cost, $interv, $title, $type )
+	function insert_expense( $user_id, $cost, $interv, $title, $type, $type_id )
 	{
-		$type_id = '';
+
 		//If the expense type doesn't exist, then create it.
-		if( ($type_id = $this->get_expense_type_id($type)) == NULL )
-		{
+		if(!$this->doesExists_type_id($type_id)){// && (($temp_type_id = $this->get_expense_type_id($type)) == NULL)){
 			$type_id = $this->create_expense_type($type);
+			
 		}
 
-		//TODO: Finish location get or create methods
 
 		$sql = 'insert into expenses values( NULL, ?, ?, ?, ?, ?, ?, ?, ? )';
 
@@ -70,6 +86,41 @@ class Expenses extends CI_Model
 	
 		$query = $this->db->query( $sql, array($timestamp, 1, $cost,
 		   	$interv, $type_id, 0, $user_id, $title) );	
+
+		return $type_id;
+	}
+
+	//Update the expenses
+	function update_expense(  $user_id, $type_id, $amount, $interv, $title, $expenseId )
+	{
+		//If it an old expense update it
+		if($expenseId != NULL && $expenseId != ''){
+			$data = array(
+				'cost' => $amount,
+				'interv' => $interv,
+				'title' => $title
+			);
+
+			$this->db->where('id', $expenseId);
+			$this->db->update('expenses', $data);
+		}else{
+			//If it is a new expense insert it
+			$this->insert_expense($user_id, $amount,  $interv, $title, NULL, $type_id);
+		}
+	}
+
+	//Update the type "category" by the typeid
+	function update_type($type, $type_id)
+	{
+		$data = array(
+			'type' => $type
+		);
+
+			//Update the expense type table
+			$this->db->where('id', $type_id);
+			$this->db->update('expense_types', $data);
+
+		
 	}
 
 	/**
@@ -111,6 +162,8 @@ class Expenses extends CI_Model
 			return $result->id;
 		}
 	}
+
+	
 	
 
 	/*
@@ -192,12 +245,19 @@ class Expenses extends CI_Model
 		return floatval($result[0]['avg(cost)']);
 	}
 
+	//Delete the expense types based on the categoryid
 	function deleteCat($catId){
 		$this->db->delete('expense_types', array('id'=> $catId));
 	}
 
+	//Delete expenses based off of the category id
 	function deleteExpenses($catId){
 		$this->db->delete('expenses', array('type_id'=> $catId));
+	}
+
+	//Delete expenses off of the expenseId
+	function deleteExpensesById($expenseId){
+		$this->db->delete('expenses', array('id' => $expenseId));
 	}
 }
 

@@ -160,7 +160,7 @@ hr{
 	display: inline !important;
 }
 
-.addExpenseToForm{
+.addExpenseToForm, .editExpenseToForm{
 	color: #5cb85c;
 	display: inline-block;
 	cursor: pointer;
@@ -168,7 +168,7 @@ hr{
 	margin-bottom: 10px;
 }
 
-.addCatExpense{
+.addCatExpense, .editCatExpense{
 	display: inline-block;
 }
 

@@ -113,71 +113,84 @@ class User_profile extends Account {
 		}
 	}
 
+	//Add the category and expenses on add
 	function addCatAndExpences(){
 
 		$data = $this->input->post('data');
 
 		$userId = $this->user_id;
 		$type = $data[0]['type'];
+		$type_id = $data[1]['type_id'];
+		$title = '';
+		$amount = '';
+		$interv = '';
+
+		
+		//Get the data for the new expense
+		foreach ($data as $key => $value) {
+			if(sizeof($data) >= 2){
+				$title = $value['title'];
+				$amount = $value['amount'];
+				$interv = $value['interv'];
+
+				
+			}
+
+			//Insert the expense
+			$type_id = $this->expenses->insert_expense( $userId, $amount, $interv, $title, $type, $type_id);
+		}	
+		
+	}
+
+	//Edit the category and the expenses on update
+	function editCatAndExpences(){
+
+		$data = $this->input->post('data');
+
+		$userId = $this->user_id;
+		$type = $data[0]['type'];
+		$type_id = $data[1]['type_id'];
 		$totalCatCost = 0;
 		$title = '';
 		$amount = '';
 		$interv = '';
 
+		//Update the expense type
+		$this->expenses->update_type( $type, $type_id);
 
+		//Remove the type and type_it as it is no longer needed
+		unset($data[0]);
+		unset($data[1]);
 
+		//unsetting those also makes it easier to get the data
 		foreach ($data as $key => $value) {
-			if(sizeof($data) > 1){
+			
 				$title = $value['title'];
 				$amount = $value['amount'];
 				$interv = $value['interv'];
-			}
+				$expenseId = $value['id'];
+
+			//Update the expenses			
+			$type_id = $this->expenses->update_expense( $userId, $type_id, $amount, $interv, $title, $expenseId);
 			
-
-			switch($interv){
-				case 'Weekly': 
-					$totalCatCost += $amount * 52;
-					break;
-				case 'Daily':
-					$totalCatCost += $amount * 365;
-					break;
-				case 'Bi-weekly':
-					$totalCatCost += $amount * 26;
-					break;
-				case 'Monthly':
-					$totalCatCost += $amount * 12;
-					break;
-				case 'Yearly':
-					$totalCatCost += $amount * 1;
-					break;
-				default:
-					break;
-			}
-
-			$this->expenses->insert_expense( $userId, $amount, $interv, $title, $type);
-			
-		}	
-		
-			/*$data['title'] = ucfirst('user_profile'); // Capitalize the first letter
-		$data['loginStatus'] = $this->checkLoginStatus();
-
-		//Get the user's name from the parent class.
-		$data['user_name'] = $this->user_name;
-
-
-		$data['user_data'] = $this->User->get_user_profile_data( $this->user_id );
-
-		$data['expenses'] = $this->expenses->get_current_expenses_grouped_for_user( $this->user_id );
-			$this->load->view('pages/user_profile', $data);*/
+		}
 		
 		
 	}
 
+	//Delete the category
 	function deleteCat(){
 		$catId = $this->input->post('catId');
 
 		$this->expenses->deleteCat($catId);
 		$this->expenses->deleteExpenses($catId);
+	}
+
+	//Delete the expenses 
+	function deleteExpenses(){
+		$expenseId = $this->input->post('id');
+
+		$this->expenses->deleteExpensesById($expenseId);
 	}
 }
 
