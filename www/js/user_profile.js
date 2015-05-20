@@ -453,10 +453,10 @@ $(document).ready(function() {
 
 	$('.editExpenseForCat').on("click", ".deleteExpenseFromCat", function(){
 		//Get the id of the expense to remove
-		var expenseId = $(this).data('expense');
+		//var expenseId = $(this).data('expense');
 		//console.log(expenseId);
 		//Remove the expense from the list
-		$('.expenseWrapper[data-expense=' + expenseId + ']').remove();
+		$('.expenseWrapper[data-expense]').remove();
 
 		//Get the count of inputs. If less than 7 remove scroll
 		var expenseCount = $('input[name=title]').length;
