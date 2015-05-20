@@ -182,10 +182,9 @@ class Expenses extends CI_Model
 	
 	/*
 		Get all the expense types for a particular user.
-		
 		@return an array of all the expense types that a particular user has.
 	*/
-	function get_user_expense_types( $user_id )
+	function get_user_expense_types($user_id, $limit = null)
 	{
 		$sql = 'select expense_types.type, expense_types.id from expenses
 					inner join expense_types
@@ -193,7 +192,17 @@ class Expenses extends CI_Model
 					where expenses.user_id = ?
 					group by expense_types.type';
 
-		$query = $this->db->query( $sql, array($user_id));
+		$params = array($user_id);
+
+		if($limit !== null)
+		{
+			$sql = $sql . ' limit ?';
+			$params[] = $limit;
+		}
+
+		$query = $this->db->query( $sql, $params );
+
+		$result = $query->result_array();
 		
 		return $query->result();
 	}
@@ -235,14 +244,42 @@ class Expenses extends CI_Model
 	 * Get the average cost of a specific expense type by its expense_type id.
 	 */
 	function get_average_by_type_id($typeID) {
+<<<<<<< HEAD
 		$sql = 'select avg(cost) from expenses
 					where type_id = ?';
+=======
+		$sql = 'select avg(sumTable.sumCost) as avgCost
+					from (select user_id, sum(cost) as sumCost
+						from expenses where type_id = ?
+						group by user_id) as sumTable';
+>>>>>>> connect-graphs
 
 		$query =$this->db->query($sql, array($typeID));
 
 		$result = $query->result_array();
 
-		return floatval($result[0]['avg(cost)']);
+		return floatval($result[0]['avgCost']);
+	}
+
+	/**
+	 * Get the average expense for a given expense_type
+	 *
+	 * @param $userID the user that the expense belongs to.
+	 * @param $typeID the expense_type for the user that should be totaled.
+	 */
+	function userExpenseTypeTotal($userID, $typeID) {
+		$sql = '
+			select avg(cost) as averageCost
+					from expenses
+					where user_id = ?
+					and type_id = ?';
+		$params = array($userID, $typeID);
+
+		$query = $this->db->query($sql, $params);
+
+		$result = $query->result_array();
+
+		return floatval($result[0]['averageCost']);
 	}
 
 	//Delete the expense types based on the categoryid

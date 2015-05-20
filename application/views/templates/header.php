@@ -521,7 +521,7 @@
 				            <span class="icon-bar"></span>
 				            <span class="icon-bar"></span>
 				          </button>
-				          <a class="navbar-brand navbar-site-brand" href="<?php  echo base_url(); ?>home/welcome">Project Logo</a>
+				          <a class="navbar-brand navbar-site-brand" href="<?php  echo base_url(); ?>home/welcome">Logo</a>
 				        </div>
 				    </div>
 

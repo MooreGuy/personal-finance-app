@@ -86,9 +86,11 @@ class Community_board_forums extends Account
 		// generate links 
 		$data['links'] = $this->pagination->create_links(); 
 
-		$this->load->view( 'templates/header', $data );
-		$this->load->view( 'pages/community_board_forums', $data);
-		$this->load->view( 'templates/footer', $data);
+		$data['graphBanner'] = $this->load->view('templates/graphBanner', $data, TRUE);
+
+		$this->load->view( 'templates/header', $data, FALSE );
+		$this->load->view( 'pages/community_board_forums', $data, FALSE);
+		$this->load->view( 'templates/footer', $data, FALSE);
 	}
 
 	//This function is called when a tab link is clicked on the forums page. It switches the active class of the tab and displays the relavent tab view

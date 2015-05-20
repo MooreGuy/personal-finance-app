@@ -50,7 +50,7 @@ class User_profile extends Account {
 	    $this->load->view('templates/footer', $data);
 
 		$this->load->model('Graph');
-		$this->Graph->getUserExpenseTypeGraphs($this->user_id);
+		$this->Graph->expenseTypeAverages($this->user_id);
 	}
 
 	/*function add_category_form()
