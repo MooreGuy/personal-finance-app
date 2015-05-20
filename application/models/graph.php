@@ -6,7 +6,7 @@ class Graph extends CI_Model {
 	 * Get all expense types for a user, then find the average for eaach expense
 	 * type in the database. Then return both the user's average and j
 	 */
-	function getUserExpenseTypeGraphs($userID) {
+	function expenseTypeAverages($userID) {
 		$this->load->model('User');
 		$this->load->model('Expenses');
 

@@ -194,6 +194,6 @@ class Expenses extends CI_Model
 
 		$result = $query->result_array();
 
-		return floatval($result[0]['avg(cost)']);
+		return floatval($result[0]['avgCost']);
 	}
 }
