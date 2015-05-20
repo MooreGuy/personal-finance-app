@@ -196,7 +196,7 @@ class Expenses extends CI_Model
 	function get_average_by_type_id($typeID) {
 		$sql = 'select avg(sumTable.sumCost) as avgCost
 					from (select user_id, sum(cost) as sumCost
-						from expenses where type_id = 1
+						from expenses where type_id = ?
 						group by user_id) as sumTable';
 
 		$query =$this->db->query($sql, array($typeID));
@@ -213,7 +213,8 @@ class Expenses extends CI_Model
 	 * @param $typeID the expense_type for the user that should be totaled.
 	 */
 	function userExpenseTypeTotal($userID, $typeID) {
-		$sql = 'select sum(cost) as totalCost
+		$sql = '
+			select avg(cost) as averageCost
 					from expenses
 					where user_id = ?
 					and type_id = ?';
@@ -223,6 +224,6 @@ class Expenses extends CI_Model
 
 		$result = $query->result_array();
 
-		return floatval($result[0]['totalCost']);
+		return floatval($result[0]['averageCost']);
 	}
 }
